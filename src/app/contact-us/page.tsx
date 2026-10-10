@@ -51,7 +51,7 @@ export default function ContactPage() {
             </Reveal>
           ))}
           <Reveal delay={0.3}>
-            <div className="bg-pine-deep contours rounded-[1.4rem] p-6 text-white">
+            <div className="bg-pine-deep aura relative overflow-hidden rounded-[1.4rem] p-6 text-white">
               <p className="eyebrow text-marigold">Come say namaste</p>
               <p className="font-display mt-2 text-3xl font-black uppercase">Find us in Kathmandu</p>
               <p className="mt-3 flex gap-2 text-white/80">

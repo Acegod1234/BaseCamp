@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BadgeCheck, Clock, HeartHandshake, Route, Star, Users } from "lucide-react";
+import { Accreditations } from "@/components/accreditations";
 import { AltitudeProfile } from "@/components/altitude-profile";
 import { Faq } from "@/components/faq";
 import { FeaturedTrips, type TripGroup } from "@/components/home/featured-trips";
@@ -8,6 +9,7 @@ import { HomeHero } from "@/components/home/hero";
 import { RegionShowcase } from "@/components/home/regions";
 import { activityIcons } from "@/components/icons";
 import { CountUp, Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { RegionMarquee } from "@/components/region-marquee";
 import { ReviewsMarquee } from "@/components/reviews-marquee";
 import { Accent, SectionHeading } from "@/components/section-heading";
 import {
@@ -82,21 +84,8 @@ export default function HomePage() {
         stats={{ trips: cards.length, regions: destinations.length, years: new Date().getFullYear() - site.founded }}
       />
 
-      {/* Trust: licences and memberships, right under the fold. */}
-      <section aria-label="Licences and memberships" className="border-b border-line">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-6 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
-          <p className="max-w-sm text-sm text-muted">
-            Licensed by the Government of Nepal. Members of TAAN and the Nepal Mountaineering Association since 2010.
-          </p>
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-4">
-            {site.affiliations.map((a) => (
-              <li key={a.name}>
-                <Image src={a.logo} alt={a.name} title={a.name} width={a.logo.includes("bookmundi") ? 130 : 52} height={52} className="h-11 w-auto object-contain opacity-75 grayscale transition hover:opacity-100 hover:grayscale-0" />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <Accreditations />
+      <RegionMarquee />
 
       {/* Where do you want to go? */}
       <section id="find" className="scroll-mt-20 py-24 lg:py-32">
@@ -117,7 +106,7 @@ export default function HomePage() {
       {/* The climb, day by day */}
       {ebc ? (
         <section className="bg-pine-night relative overflow-hidden py-24 text-white lg:py-32">
-          <div className="contours absolute inset-0" aria-hidden />
+          <div className="aura absolute inset-0" aria-hidden />
           <div className="relative mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.4fr] lg:items-center">
             <div>
               <SectionHeading

@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Compass, RotateCcw, Search, SlidersHorizontal, X } from "lucide-react";
+import { Portal } from "@/components/portal";
 import { TripCard } from "@/components/trip-card";
 import type { TripCard as Card } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -107,20 +108,20 @@ export function TripExplorer({
     state.q && { k: "q", l: `“${state.q}”` },
   ].filter(Boolean) as { k: keyof typeof state; l: string }[];
 
-  const controls = (
+  const controls = (p: string) => (
     <div className="grid gap-3 sm:grid-cols-2 lg:flex lg:flex-wrap lg:items-center">
       {!lockActivity ? (
-        <Select id="f-activity" label="Activity" value={state.activity} onChange={(v) => set({ activity: v })} options={[{ v: "", l: "All activities" }, ...activities.map((a) => ({ v: a.slug, l: `${a.name} (${a.count})` }))]} />
+        <Select id={`${p}-activity`} label="Activity" value={state.activity} onChange={(v) => set({ activity: v })} options={[{ v: "", l: "All activities" }, ...activities.map((a) => ({ v: a.slug, l: `${a.name} (${a.count})` }))]} />
       ) : null}
-      <Select id="f-days" label="Duration" value={state.days} onChange={(v) => set({ days: v })} options={DURATIONS} />
-      <Select id="f-budget" label="Budget" value={state.budget} onChange={(v) => set({ budget: v })} options={BUDGETS} />
-      <Select id="f-sort" label="Sort" value={state.sort} onChange={(v) => set({ sort: v === "popular" ? "" : v })} options={SORTS} />
+      <Select id={`${p}-days`} label="Duration" value={state.days} onChange={(v) => set({ days: v })} options={DURATIONS} />
+      <Select id={`${p}-budget`} label="Budget" value={state.budget} onChange={(v) => set({ budget: v })} options={BUDGETS} />
+      <Select id={`${p}-sort`} label="Sort" value={state.sort} onChange={(v) => set({ sort: v === "popular" ? "" : v })} options={SORTS} />
     </div>
   );
 
   return (
     <div>
-      <div className="sticky top-[4.5rem] z-30 -mx-4 border-b border-line bg-snow/90 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:top-20">
+      <div className="sticky top-[4.75rem] z-30 -mx-4 border-b border-line bg-snow/90 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:top-[5.25rem]">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
           <form
             role="search"
@@ -145,7 +146,7 @@ export function TripExplorer({
               className="h-12 w-full rounded-full border border-line bg-white pr-4 pl-11 text-sm outline-none transition focus:border-pine focus:ring-4 focus:ring-pine/10"
             />
           </form>
-          <div className="hidden lg:block">{controls}</div>
+          <div className="hidden lg:block">{controls("f")}</div>
           <button type="button" onClick={() => setSheet(true)} className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-semibold lg:hidden">
             <SlidersHorizontal className="size-4" aria-hidden /> Filters &amp; sort {active.length ? <span className="bg-pine grid size-5 place-items-center rounded-full text-[0.7rem] text-white">{active.length}</span> : null}
           </button>
@@ -213,9 +214,10 @@ export function TripExplorer({
       )}
 
       {/* Mobile filter sheet */}
+      <Portal>
       <AnimatePresence>
         {sheet ? (
-          <motion.div className="fixed inset-0 z-[80] lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.div data-lenis-prevent className="fixed inset-0 z-[200] lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <button type="button" aria-label="Close filters" className="absolute inset-0 bg-pine-night/50" onClick={() => setSheet(false)} />
             <motion.div
               role="dialog"
@@ -229,7 +231,7 @@ export function TripExplorer({
             >
               <div className="mx-auto mb-5 h-1.5 w-12 rounded-full bg-line" />
               <p className="font-display mb-5 text-3xl font-black uppercase">Filters</p>
-              {controls}
+              {controls("m")}
               <button type="button" onClick={() => setSheet(false)} className="bg-pine mt-6 w-full rounded-full py-4 font-bold text-white">
                 Show {results.length} trips
               </button>
@@ -237,6 +239,7 @@ export function TripExplorer({
           </motion.div>
         ) : null}
       </AnimatePresence>
+      </Portal>
     </div>
   );
 }

@@ -36,7 +36,7 @@ export function BookingCard({ slug, title, price, days }: { slug: string; title:
 
   return (
     <div className="overflow-hidden rounded-[1.8rem] border border-line bg-white shadow-[0_30px_60px_-40px_oklch(0.2_0.04_170/0.55)]">
-      <div className="bg-pine-deep contours relative p-6 text-white">
+      <div className="bg-pine-deep aura relative overflow-hidden relative p-6 text-white">
         <p className="eyebrow text-marigold">Let&apos;s get you there</p>
         {price ? (
           <div className="mt-3 flex items-end gap-3">

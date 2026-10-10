@@ -95,7 +95,7 @@ export function ArticleLayout({
 
         <aside className="min-w-0">
           <div className="sticky top-32 space-y-5">
-            <div className="bg-pine-deep contours rounded-[1.6rem] p-6 text-white">
+            <div className="bg-pine-deep aura relative overflow-hidden rounded-[1.6rem] p-6 text-white">
               <p className="eyebrow text-marigold">Ready to go?</p>
               <p className="font-display mt-2 text-3xl font-black uppercase leading-[0.95]">Let&apos;s plan it with you.</p>
               <p className="mt-2 text-sm text-white/75">Tell us your dates and fitness. A local guide will draft the route.</p>

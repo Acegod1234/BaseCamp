@@ -9,11 +9,20 @@ import path from "node:path";
  * in .data/ (outside the repository). Nothing a traveller sends is lost while
  * the admin is being built; the importer for the admin reads these files.
  */
-const dir = path.join(process.cwd(), ".data");
+// Serverless hosts (Vercel) only allow writes under /tmp, which is wiped
+// between cold starts: fine for a preview, and the admin database replaces it.
+const dir = process.env.VERCEL ? "/tmp/bca-data" : path.join(process.cwd(), ".data");
 
 export async function record(kind: "enquiries" | "bookings", entry: Record<string, unknown>) {
-  await mkdir(dir, { recursive: true });
-  await appendFile(path.join(dir, `${kind}.jsonl`), `${JSON.stringify({ ...entry, at: new Date().toISOString() })}\n`, "utf8");
+  const line = JSON.stringify({ kind, ...entry, at: new Date().toISOString() });
+  // Always in the server log, so nothing is lost even if the disk write fails.
+  console.info(`[${kind}] ${line}`);
+  try {
+    await mkdir(dir, { recursive: true });
+    await appendFile(path.join(dir, `${kind}.jsonl`), `${line}\n`, "utf8");
+  } catch (error) {
+    console.error(`[${kind}] could not write to ${dir}`, error);
+  }
 }
 
 /** A short reference a traveller can quote on the phone. */

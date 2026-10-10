@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUp, Mail, MapPin, Phone } from "lucide-react";
+import { Accreditations } from "@/components/accreditations";
 import { Logo } from "@/components/brand/logo";
 import { FacebookIcon, InstagramIcon, PaymentMarks, WhatsappIcon, XIcon } from "@/components/icons";
 import { getLiveTerms } from "@/lib/content";
@@ -12,7 +12,7 @@ export function SiteFooter() {
 
   return (
     <footer className="bg-pine-night relative overflow-hidden text-white">
-      <div className="contours pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+      <div className="aura pointer-events-none absolute inset-0" aria-hidden />
       <div className="prayer-flags h-1.5 w-full opacity-90" aria-hidden />
 
       {/* The last ask on every page. */}
@@ -44,7 +44,7 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-[90rem] border-t border-white/10 px-4 py-14 sm:px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <Logo tone="light" className="w-36" />
+            <span className="inline-block rounded-2xl bg-white p-3"><Logo /></span>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/65">
               Founded in {site.founded} by a local guide. Trekking, tours and climbs across Nepal, Bhutan and Tibet.
             </p>
@@ -96,15 +96,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 lg:flex-row lg:items-center lg:justify-between">
-          <ul className="flex flex-wrap items-center gap-3" aria-label="Memberships and partners">
-            {site.affiliations.map((a) => (
-              <li key={a.name}>
-                <a href={a.href} target="_blank" rel="noopener noreferrer" title={a.name} className="grid h-14 place-items-center rounded-xl bg-white px-3 transition-transform hover:-translate-y-0.5">
-                  <Image src={a.logo} alt={a.name} width={a.logo.includes("bookmundi") ? 120 : 46} height={46} className="h-10 w-auto object-contain" />
-                </a>
-              </li>
-            ))}
-          </ul>
+          <Accreditations variant="compact" />
           <PaymentMarks className="flex flex-wrap gap-2" />
         </div>
 

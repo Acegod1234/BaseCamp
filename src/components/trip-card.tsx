@@ -84,7 +84,7 @@ export function TripCard({
             className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-trail)] group-hover:scale-[1.07]"
           />
         ) : (
-          <div className="contours absolute inset-0" />
+          <div className="aura absolute inset-0" />
         )}
         <div className="scrim-b absolute inset-0" />
 

@@ -22,7 +22,7 @@ export function SectionNav({ items }: { items: { id: string; label: string }[] }
   }, [items]);
 
   return (
-    <nav aria-label="Trip sections" className="sticky top-[4.5rem] z-30 border-b border-line bg-snow/90 backdrop-blur-xl lg:top-20">
+    <nav aria-label="Trip sections" className="sticky top-[4.75rem] z-30 border-b border-line bg-snow/90 backdrop-blur-xl lg:top-[5.25rem]">
       <div className="no-scrollbar mx-auto flex max-w-[90rem] gap-1 overflow-x-auto px-4 sm:px-6">
         {items.map((i) => (
           <a

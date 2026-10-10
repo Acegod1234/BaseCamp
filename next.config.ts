@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
   // single indexed URL changes shape on the day of the switch.
   trailingSlash: true,
   experimental: { viewTransition: true },
+  // Server routes read the imported content at runtime; ship it with them.
+  outputFileTracingIncludes: {
+    "/api/**": ["./src/content/trips.json"],
+    "/wp-content/**": ["./src/content/media-redirects.json"],
+  },
   images: {
     deviceSizes: [640, 828, 1200, 1920],
     imageSizes: [96, 256, 384],

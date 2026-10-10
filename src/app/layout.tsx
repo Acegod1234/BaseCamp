@@ -3,6 +3,7 @@ import { Big_Shoulders, JetBrains_Mono, Manrope, Newsreader } from "next/font/go
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
+import { SmoothScroll } from "@/components/site/smooth-scroll";
 import { Integrations } from "@/components/site/integrations";
 import { WhatsappFab } from "@/components/site/whatsapp-fab";
 import { organizationLd, websiteLd } from "@/lib/seo";
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteFooter />
         <WhatsappFab />
         <Integrations />
+        <SmoothScroll />
         <JsonLd data={[organizationLd(), websiteLd()]} />
       </body>
     </html>

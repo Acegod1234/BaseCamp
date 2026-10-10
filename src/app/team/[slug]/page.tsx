@@ -31,7 +31,7 @@ export default async function MemberPage({ params }: Props) {
 
   return (
     <section className="bg-pine-night relative overflow-hidden pt-32 pb-24 text-white">
-      <div className="contours absolute inset-0" aria-hidden />
+      <div className="aura absolute inset-0" aria-hidden />
       <div className="relative mx-auto grid max-w-[80rem] gap-12 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         <Reveal>
           <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] bg-white/5">

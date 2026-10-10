@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
+import { Portal } from "@/components/portal";
 import type { Img } from "@/lib/types";
 
 /** Opens a full-screen photo viewer. Arrow keys, swipe and Escape all work. */
@@ -48,22 +49,24 @@ export function GalleryButton({ images, title }: { images: Img[]; title: string 
         </button>
       </div>
 
+      <Portal>
       <AnimatePresence>
         {open && index !== null ? (
           <motion.div
+            data-lenis-prevent
             role="dialog"
             aria-modal="true"
             aria-label={`${title} photographs`}
-            className="fixed inset-0 z-[90] flex flex-col bg-pine-night/95 text-white backdrop-blur-md"
+            className="fixed inset-0 z-[200] flex flex-col bg-pine-night/95 text-white backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="flex items-center justify-between p-4 sm:p-6">
+            <div className="flex items-center justify-between p-4 pt-[max(1rem,env(safe-area-inset-top))] sm:p-6">
               <p className="font-mono text-sm text-white/70">
                 {index + 1} / {images.length}
               </p>
-              <button type="button" onClick={() => setIndex(null)} aria-label="Close" className="grid size-11 place-items-center rounded-full bg-white/10 hover:bg-white/20">
+              <button type="button" onClick={() => setIndex(null)} aria-label="Close photos" className="grid size-12 place-items-center rounded-full bg-white/15 hover:bg-white/25">
                 <X className="size-5" aria-hidden />
               </button>
             </div>
@@ -103,6 +106,7 @@ export function GalleryButton({ images, title }: { images: Img[]; title: string 
           </motion.div>
         ) : null}
       </AnimatePresence>
+      </Portal>
     </>
   );
 }

@@ -43,7 +43,7 @@ export function JournalList({
     <>
       <PageHero title={title} accent={accent} eyebrow={`${posts.length} articles`} intro={intro} photo={lead?.cover?.src ?? photo} crumbs={crumbs} />
 
-      <div className="sticky top-[4.5rem] z-30 border-b border-line bg-snow/90 backdrop-blur-xl lg:top-20">
+      <div className="sticky top-[4.75rem] z-30 border-b border-line bg-snow/90 backdrop-blur-xl lg:top-[5.25rem]">
         <nav aria-label="Journal categories" className="no-scrollbar mx-auto flex max-w-[90rem] gap-2 overflow-x-auto px-4 py-4 sm:px-6">
           <Link href="/blogs/" className={cn("shrink-0 rounded-full px-4 py-2 text-sm font-semibold", !activeCategory ? "bg-pine text-white" : "border border-line bg-white hover:border-pine")}>
             All articles

@@ -6,6 +6,5 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .cache
-public/media
 .data
 *.log

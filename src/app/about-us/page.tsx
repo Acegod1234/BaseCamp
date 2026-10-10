@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, HeartHandshake, Leaf, Users } from "lucide-react";
+import { Accreditations } from "@/components/accreditations";
 import { CountUp, Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/page-hero";
 import { Accent, SectionHeading } from "@/components/section-heading";
@@ -67,7 +68,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-pine-night relative overflow-hidden py-24 text-white">
-        <div className="contours absolute inset-0" aria-hidden />
+        <div className="aura absolute inset-0" aria-hidden />
         <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6">
           <SectionHeading tone="dark" eyebrow="How we work" lines={["Four promises", <Accent key="k">we keep.</Accent>]} />
           <Stagger className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -115,13 +116,7 @@ export default function AboutPage() {
             <p className="eyebrow text-pine">Registered in Nepal</p>
             <p className="mt-2 font-mono text-sm text-ink-soft">{site.registration.map((r) => `${r.label} ${r.value}`).join("  ·  ")}</p>
           </div>
-          <ul className="flex flex-wrap items-center gap-6">
-            {site.affiliations.map((a) => (
-              <li key={a.name}>
-                <Image src={a.logo} alt={a.name} title={a.name} width={a.logo.includes("bookmundi") ? 130 : 56} height={56} className="h-12 w-auto object-contain" />
-              </li>
-            ))}
-          </ul>
+          <Accreditations variant="compact" />
           <Link href="/legal-documents/" className="text-pine inline-flex items-center gap-2 font-bold">
             Licences &amp; documents <ArrowRight className="size-4" aria-hidden />
           </Link>
