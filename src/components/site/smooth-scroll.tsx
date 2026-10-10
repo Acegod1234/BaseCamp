@@ -3,51 +3,71 @@
 import Lenis from "lenis";
 import "lenis/dist/lenis.css";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { pinnedOffset, scrollToId } from "@/lib/scroll";
 
 /**
- * Inertial scrolling on desktop mice and trackpads.
+ * Scrolling for the whole site.
  *
- * Off for touch screens (their native scroll is already smooth) and for
- * anyone who asks the OS to reduce motion. When any overlay locks the page
- * by setting `overflow: hidden` on <html>, scrolling pauses with it, so the
- * page behind a menu or the photo viewer never moves.
+ * 1. Inertial scrolling on desktop mice and trackpads (Lenis). Off on touch
+ *    screens, whose native scroll is already smooth, and for reduced motion.
+ *    It pauses whenever an overlay locks the page with `overflow: hidden`.
+ * 2. Every same-page link (#section) glides to its target and stops just
+ *    below the header and any pinned section bar, on every device.
  */
 export function SmoothScroll() {
-  const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fine = window.matchMedia("(pointer: fine)").matches;
-    if (reduce || !fine) return;
+    let observer: MutationObserver | null = null;
 
-    const lenis = new Lenis({
-      autoRaf: true,
-      lerp: 0.11,
-      wheelMultiplier: 1,
-      anchors: { offset: -110 },
-      allowNestedScroll: true,
-    });
-    lenisRef.current = lenis;
+    if (!reduce && fine) {
+      const lenis = new Lenis({ autoRaf: true, lerp: 0.11, allowNestedScroll: true });
+      window.__lenis = lenis;
+      const html = document.documentElement;
+      observer = new MutationObserver(() => (html.style.overflow === "hidden" ? lenis.stop() : lenis.start()));
+      observer.observe(html, { attributes: true, attributeFilter: ["style"] });
+    }
 
-    const html = document.documentElement;
-    const observer = new MutationObserver(() => {
-      if (html.style.overflow === "hidden") lenis.stop();
-      else lenis.start();
-    });
-    observer.observe(html, { attributes: true, attributeFilter: ["style"] });
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest?.("a[href*='#']") as HTMLAnchorElement | null;
+      if (!a) return;
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
+      const id = decodeURIComponent(url.hash.slice(1));
+      if (id === "top") {
+        e.preventDefault();
+        if (window.__lenis) window.__lenis.scrollTo(0, { duration: 1.2 });
+        else window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+        return;
+      }
+      if (scrollToId(id)) e.preventDefault();
+    };
+    document.addEventListener("click", onClick);
 
     return () => {
-      observer.disconnect();
-      lenis.destroy();
-      lenisRef.current = null;
+      document.removeEventListener("click", onClick);
+      observer?.disconnect();
+      window.__lenis?.destroy();
+      window.__lenis = null;
     };
   }, []);
 
-  // A new page starts at the top, without gliding there.
+  // New page: start at the top, or at the #section in the address.
   useEffect(() => {
-    lenisRef.current?.scrollTo(0, { immediate: true });
+    const id = decodeURIComponent(location.hash.slice(1));
+    const t = window.setTimeout(() => {
+      if (id && document.getElementById(id)) {
+        const el = document.getElementById(id)!;
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - pinnedOffset(), behavior: "auto" });
+      } else {
+        window.__lenis?.scrollTo(0, { immediate: true });
+      }
+    }, 60);
+    return () => window.clearTimeout(t);
   }, [pathname]);
 
   return null;

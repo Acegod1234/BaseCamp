@@ -75,6 +75,7 @@ export function HeaderClient({ menu }: { menu: Menu }) {
     <>
       <header className="fixed inset-x-0 top-0 z-50 px-2.5 pt-2.5 sm:px-4 sm:pt-3" onMouseLeave={close}>
         <div
+          data-site-header
           className={cn(
             "relative mx-auto flex h-14 max-w-[86rem] items-center gap-2 rounded-[1.25rem] border pr-2 pl-3 transition-[background-color,box-shadow,border-color] duration-500 lg:h-16 lg:pl-4",
             scrolled || panel

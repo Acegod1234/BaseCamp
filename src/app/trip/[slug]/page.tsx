@@ -156,9 +156,9 @@ export default async function TripPage({ params }: Props) {
         </Stagger>
       </div>
 
-      <div className="mt-10">
-        <SectionNav items={nav} />
-      </div>
+      {/* Direct child of <main>, so it stays pinned for the whole page. */}
+      <div className="h-8" aria-hidden />
+      <SectionNav items={nav} price={trip.price} bookHref={trip.price ? `/booking/?trip=${trip.slug}` : `/contact-us/?trip=${encodeURIComponent(trip.title)}`} />
 
       <div className="mx-auto grid max-w-[90rem] gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-16">
         <article className="min-w-0 space-y-20">

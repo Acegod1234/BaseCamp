@@ -23,11 +23,11 @@ export function WhatsappFab() {
       initial={false}
       animate={show ? { scale: 1, opacity: 1, y: 0 } : { scale: 0.6, opacity: 0, y: 20 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className={`fixed left-4 z-40 grid size-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_14px_30px_-10px_rgba(37,211,102,0.7)] lg:bottom-8 lg:left-8 ${aboveBar ? "bottom-24" : "bottom-5"}`}
+      className={`fixed left-4 z-40 grid size-12 place-items-center sm:size-14 rounded-full bg-[#25D366] text-white shadow-[0_14px_30px_-10px_rgba(37,211,102,0.7)] lg:bottom-8 lg:left-8 ${aboveBar ? "bottom-24" : "bottom-5"}`}
       style={{ pointerEvents: show ? "auto" : "none" }}
     >
       <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-25" aria-hidden />
-      <WhatsappIcon className="relative size-7" />
+      <WhatsappIcon className="relative size-6 sm:size-7" />
     </motion.a>
   );
 }

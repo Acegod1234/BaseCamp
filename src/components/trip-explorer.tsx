@@ -121,8 +121,9 @@ export function TripExplorer({
 
   return (
     <div>
-      <div className="sticky top-[4.75rem] z-30 -mx-4 border-b border-line bg-snow/90 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:top-[5.25rem]">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+      <div data-subnav className="sticky top-[4.6rem] z-30 -mx-1.5 pt-4 sm:-mx-0 lg:top-[5.1rem]">
+        <div className="rounded-2xl border border-line bg-white/92 p-2 shadow-[0_14px_40px_-26px_oklch(0.2_0.04_170/0.45)] backdrop-blur-xl sm:p-2.5">
+        <div className="flex flex-row gap-2 lg:items-center lg:gap-3">
           <form
             role="search"
             onSubmit={(e) => {
@@ -143,17 +144,17 @@ export function TripExplorer({
               }}
               onBlur={() => q !== state.q && set({ q })}
               placeholder="Search Everest, Poon Hill, Island Peak…"
-              className="h-12 w-full rounded-full border border-line bg-white pr-4 pl-11 text-sm outline-none transition focus:border-pine focus:ring-4 focus:ring-pine/10"
+              className="h-11 w-full rounded-xl border border-line bg-snow pr-4 pl-11 text-sm outline-none transition focus:border-pine focus:bg-white focus:ring-4 focus:ring-pine/10"
             />
           </form>
           <div className="hidden lg:block">{controls("f")}</div>
-          <button type="button" onClick={() => setSheet(true)} className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-line bg-white px-5 text-sm font-semibold lg:hidden">
-            <SlidersHorizontal className="size-4" aria-hidden /> Filters &amp; sort {active.length ? <span className="bg-pine grid size-5 place-items-center rounded-full text-[0.7rem] text-white">{active.length}</span> : null}
+          <button type="button" onClick={() => setSheet(true)} aria-label="Filters and sort" className="relative inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-ink px-4 text-sm font-semibold text-white lg:hidden">
+            <SlidersHorizontal className="size-4" aria-hidden /> <span className="hidden sm:inline">Filters</span> {active.length ? <span className="bg-pine grid size-5 place-items-center rounded-full text-[0.7rem] text-white">{active.length}</span> : null}
           </button>
         </div>
 
         {!lockRegion ? (
-          <div className="no-scrollbar -mx-4 mt-4 flex gap-2 overflow-x-auto px-4 sm:-mx-6 sm:px-6" role="group" aria-label="Region">
+          <div className="no-scrollbar mt-2 flex gap-1.5 overflow-x-auto" role="group" aria-label="Region">
             <Chip on={!state.region} onClick={() => set({ region: "" })}>All regions</Chip>
             {regions.map((r) => (
               <Chip key={r.slug} on={state.region === r.slug} onClick={() => set({ region: state.region === r.slug ? "" : r.slug })}>
@@ -162,6 +163,7 @@ export function TripExplorer({
             ))}
           </div>
         ) : null}
+        </div>
       </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
@@ -251,8 +253,8 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
       onClick={onClick}
       aria-pressed={on}
       className={cn(
-        "inline-flex shrink-0 items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-        on ? "bg-pine text-white" : "border border-line bg-white text-ink-soft hover:border-pine hover:text-ink",
+        "inline-flex shrink-0 items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-semibold transition-colors",
+        on ? "bg-pine text-white" : "bg-snow-2/70 text-ink-soft hover:bg-snow-2 hover:text-ink",
       )}
     >
       {children}
@@ -262,7 +264,7 @@ function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; chi
 
 function Select({ id, label, value, onChange, options }: { id: string; label: string; value: string; onChange: (v: string) => void; options: { v: string; l: string }[] }) {
   return (
-    <label htmlFor={id} className="relative flex h-12 items-center gap-2 rounded-full border border-line bg-white pl-4 pr-3 text-sm focus-within:border-pine">
+    <label htmlFor={id} className="relative flex h-11 items-center gap-2 rounded-xl border border-line bg-snow pl-3.5 pr-2.5 text-sm focus-within:border-pine">
       <span className="text-muted">{label}</span>
       <select id={id} value={value} onChange={(e) => onChange(e.target.value)} className="min-w-0 flex-1 cursor-pointer bg-transparent font-semibold outline-none">
         {options.map((o) => (

@@ -43,16 +43,17 @@ export function JournalList({
     <>
       <PageHero title={title} accent={accent} eyebrow={`${posts.length} articles`} intro={intro} photo={lead?.cover?.src ?? photo} crumbs={crumbs} />
 
-      <div className="sticky top-[4.75rem] z-30 border-b border-line bg-snow/90 backdrop-blur-xl lg:top-[5.25rem]">
-        <nav aria-label="Journal categories" className="no-scrollbar mx-auto flex max-w-[90rem] gap-2 overflow-x-auto px-4 py-4 sm:px-6">
-          <Link href="/blogs/" className={cn("shrink-0 rounded-full px-4 py-2 text-sm font-semibold", !activeCategory ? "bg-pine text-white" : "border border-line bg-white hover:border-pine")}>
+      <div className="h-6" aria-hidden />
+      <div data-subnav className="sticky top-[4.6rem] z-30 px-2.5 sm:px-4 lg:top-[5.1rem]">
+        <nav aria-label="Journal categories" className="no-scrollbar mx-auto flex max-w-[86rem] gap-1.5 overflow-x-auto rounded-2xl border border-line bg-white/92 p-1.5 shadow-[0_14px_40px_-26px_oklch(0.2_0.04_170/0.45)] backdrop-blur-xl">
+          <Link href="/blogs/" className={cn("shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors", !activeCategory ? "bg-pine text-white" : "text-ink-soft hover:bg-snow-2 hover:text-ink")}>
             All articles
           </Link>
           {cats.map((c) => (
             <Link
               key={c.slug}
               href={categoryPath(c.slug)}
-              className={cn("shrink-0 rounded-full px-4 py-2 text-sm font-semibold", activeCategory === c.slug ? "bg-pine text-white" : "border border-line bg-white hover:border-pine")}
+              className={cn("shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors", activeCategory === c.slug ? "bg-pine text-white" : "text-ink-soft hover:bg-snow-2 hover:text-ink")}
             >
               {c.name} <span className="font-mono text-xs opacity-60">{c.count}</span>
             </Link>
@@ -60,7 +61,7 @@ export function JournalList({
         </nav>
       </div>
 
-      <section className="mx-auto max-w-[90rem] px-4 py-16 sm:px-6">
+      <section className="mx-auto max-w-[90rem] px-4 pt-10 pb-16 sm:px-6">
         {lead ? (
           <Reveal>
             <Link href={`/${lead.slug}/`} className="group grid gap-8 lg:grid-cols-[1.25fr_1fr] lg:items-center">
