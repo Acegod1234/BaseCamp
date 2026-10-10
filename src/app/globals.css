@@ -41,44 +41,44 @@
 }
 
 :root {
-  --snow: oklch(0.978 0.007 95);
-  --snow-2: oklch(0.955 0.012 92);
-  --ink: oklch(0.21 0.028 168);
-  --ink-soft: oklch(0.34 0.025 168);
-  --muted: oklch(0.5 0.02 160);
-  --line: oklch(0.89 0.012 120);
-  --pine: oklch(0.36 0.07 163);
-  --pine-deep: oklch(0.26 0.052 165);
-  --pine-night: oklch(0.18 0.035 170);
-  --moss: oklch(0.55 0.09 150);
-  --marigold: oklch(0.79 0.155 72);
-  --marigold-soft: oklch(0.95 0.045 85);
-  --glacier: oklch(0.69 0.125 214);
-  --glacier-soft: oklch(0.94 0.03 214);
-  --crimson: oklch(0.53 0.19 25);
-  --card: oklch(1 0 0);
+  /* The prototype's logo palette: teal from the mark, on near-white paper. */
+  --snow: #f7fafb;
+  --snow-2: #edf6f8;
+  --card: #ffffff;
+  --ink: #242a2c;
+  --ink-soft: #4a5357;
+  --muted: #626b70;
+  --line: #d8e3e6;
+  --pine: #007f91;
+  --pine-deep: #006c7c;
+  --pine-night: #1f2527;
+  --moss: #2f8a4a;
+  --marigold: #00afc4;
+  --marigold-soft: #e0f1f4;
+  --glacier: #36c4d5;
+  --glacier-soft: #eaf4f6;
+  --crimson: #d9483b;
   --photo-glow: 0;
 }
 
-/* Night on the mountain: deep blue-green dark, moonlit text, and photographs
-   that cast their own colour onto the page around them (--photo-glow). */
+/* Night: deep slate with teal light, photographs glowing in their own colours. */
 .dark {
-  --snow: oklch(0.155 0.018 205);
-  --snow-2: oklch(0.19 0.02 205);
-  --card: oklch(0.205 0.022 205);
-  --ink: oklch(0.955 0.008 95);
-  --ink-soft: oklch(0.85 0.012 120);
-  --muted: oklch(0.7 0.018 180);
-  --line: oklch(1 0 0 / 0.11);
-  --pine: oklch(0.64 0.11 163);
-  --pine-deep: oklch(0.25 0.04 180);
-  --pine-night: oklch(0.12 0.022 205);
-  --moss: oklch(0.7 0.11 150);
-  --marigold: oklch(0.81 0.15 75);
-  --marigold-soft: oklch(0.3 0.06 75);
-  --glacier: oklch(0.76 0.12 214);
-  --glacier-soft: oklch(0.29 0.05 214);
-  --crimson: oklch(0.64 0.18 25);
+  --snow: #101618;
+  --snow-2: #161e21;
+  --card: #1a2326;
+  --ink: #eef4f5;
+  --ink-soft: #c5d1d4;
+  --muted: #93a2a7;
+  --line: oklch(1 0 0 / 0.1);
+  --pine: #2eb3c6;
+  --pine-deep: #0b5d69;
+  --pine-night: #0b1012;
+  --moss: #58b878;
+  --marigold: #3ccbdc;
+  --marigold-soft: #0f3339;
+  --glacier: #5fd6ea;
+  --glacier-soft: #11313a;
+  --crimson: #ef6b5f;
   --photo-glow: 1;
 }
 
@@ -120,23 +120,35 @@
   /* Display headline: condensed, tight, set like a trail sign. */
   .font-display {
     font-family: var(--font-display);
-    font-variation-settings: "opsz" 72;
-    letter-spacing: -0.01em;
-    line-height: 0.92;
+    font-weight: 700 !important;
+    letter-spacing: -0.045em;
+    line-height: 1;
   }
+  /* Headings are set in sentence case, as in the prototype. */
+  .font-display.uppercase { text-transform: none; }
   /* The one word per heading set in italic serif, as in the prototype. */
   .accent-word {
     font-family: var(--font-serif);
     font-style: italic;
-    font-weight: 400;
-    letter-spacing: -0.02em;
+    font-weight: 400 !important;
+    letter-spacing: -0.03em;
     text-transform: none;
   }
+  /* Photograph seen through the letters, as in the prototype's title. */
+  .photo-text {
+    background-image: var(--photo);
+    background-size: 115% auto;
+    background-position: var(--px, 50%) var(--py, 50%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
   .eyebrow {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
   .tnum { font-variant-numeric: tabular-nums; }
@@ -250,15 +262,13 @@
 .prose-trail > * + * { margin-top: 1.1em; }
 .prose-trail h2 {
   font-family: var(--font-display);
-  font-variation-settings: "opsz" 72;
   color: var(--ink);
-  font-size: clamp(1.75rem, 3vw, 2.35rem);
-  font-weight: 800;
-  line-height: 1;
-  margin-top: 2.2em;
-  scroll-margin-top: 7rem;
-  text-transform: uppercase;
-  letter-spacing: 0;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-top: 2em;
+  scroll-margin-top: 9rem;
+  letter-spacing: -0.03em;
 }
 .prose-trail h3 {
   color: var(--ink);
@@ -306,7 +316,8 @@
 .prose-trail th { background: var(--snow-2); color: var(--ink); font-weight: 700; }
 .prose-trail tr:last-child td { border-bottom: 0; }
 .prose-trail .measurement {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: 0.88em;
   color: var(--pine);
   background: var(--glacier-soft);
@@ -377,4 +388,21 @@
   }
   textarea.input { height: auto; }
   .input:focus { background: var(--card); }
+}
+
+/* The photograph inside the hero title drifts slowly, so the type feels alive. */
+@keyframes hero-drift {
+  0% { background-size: 112% auto; }
+  100% { background-size: 124% auto; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-drift { animation: hero-drift 14s ease-in-out infinite alternate; transition: background-position 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+}
+
+/* Faint blueprint grid for the footer, as on OMH Nepal. */
+.blueprint {
+  background-image:
+    linear-gradient(currentColor 1px, transparent 1px),
+    linear-gradient(90deg, currentColor 1px, transparent 1px);
+  background-size: 64px 64px;
 }

@@ -2,19 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import { placeOf } from "@/lib/itinerary";
 import { cn } from "@/lib/utils";
 
-export type ProfileDay = { day: number; title: string; altitude: number | null };
+export { placeOf };
 
-/** Pulls the overnight stop out of a WordPress itinerary title. */
-export function placeOf(title: string): string {
-  const named = [...title.matchAll(/([A-Z][\w'’.-]+(?:\s(?:[A-Z][\w'’.-]+|La|Ri|Kund))*)\s*\(\s*[\d,]{3,6}\s*m/g)];
-  if (named.length) return named[named.length - 1][1].replace(/^(Trek|Fly|Drive|Hike|Walk|Return|Explore|Day)\s+/i, "");
-  const to = title.match(/\bto\s+([A-Z][\w'’.-]+(?:\s[A-Z][\w'’.-]+)?)/g);
-  if (to) return to[to.length - 1].replace(/^to\s+/, "");
-  if (/kathmandu/i.test(title)) return "Kathmandu";
-  return "";
-}
+export type ProfileDay = { day: number; title: string; altitude: number | null };
 
 /** Fills days without a recorded altitude from their neighbours. */
 function fill(days: ProfileDay[]) {
@@ -45,7 +38,7 @@ export function AltitudeProfile({ days, tone = "dark", className }: { days: Prof
   const boxRef = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15%" });
   const [hover, setHover] = useState<number | null>(null);
-  const [unit, setUnit] = useState<"m" | "ft">("m");
+  const unit = "m" as "m" | "ft";
   const [W, setW] = useState(1000);
 
   useEffect(() => {
@@ -122,22 +115,6 @@ export function AltitudeProfile({ days, tone = "dark", className }: { days: Prof
         <p className={cn("font-mono text-[0.7rem] tracking-wider uppercase", dark ? "text-white/55" : "text-muted")}>
           Highest {fmt(peak.a)} · day {peak.d.day}
         </p>
-        <div className="flex items-center gap-1" role="group" aria-label="Altitude units">
-          {(["m", "ft"] as const).map((u) => (
-            <button
-              key={u}
-              type="button"
-              onClick={() => setUnit(u)}
-              aria-pressed={unit === u}
-              className={cn(
-                "rounded-full px-3 py-1 font-mono text-xs transition-colors",
-                unit === u ? (dark ? "bg-marigold text-pine-night" : "bg-pine text-white") : dark ? "text-white/60 hover:text-white" : "text-muted hover:text-ink",
-              )}
-            >
-              {u === "m" ? "Metres" : "Feet"}
-            </button>
-          ))}
-        </div>
       </div>
 
       <div ref={boxRef} className="w-full">
@@ -240,7 +217,7 @@ export function AltitudeProfile({ days, tone = "dark", className }: { days: Prof
               <line x1={active.x} x2={active.x} y1={active.y} y2={H - PAD.b} stroke="var(--marigold)" strokeDasharray="4 4" />
               <foreignObject x={Math.min(Math.max(active.x - tipW / 2, 4), W - tipW - 4)} y={Math.max(active.y - 82, 0)} width={tipW} height="68">
                 <div className="rounded-xl bg-card px-3 py-2 text-[12px] text-ink shadow-xl">
-                  <p className="font-mono text-[10.5px] text-muted">DAY {active.d.day} · {fmt(active.a)}</p>
+                  <p className="text-[10.5px] font-semibold text-muted">DAY {active.d.day} · {fmt(active.a)} ({Math.round(active.a * 3.28084).toLocaleString("en-US")} ft)</p>
                   <p className="line-clamp-2 font-semibold leading-snug">{placeOf(active.d.title) || active.d.title}</p>
                 </div>
               </foreignObject>

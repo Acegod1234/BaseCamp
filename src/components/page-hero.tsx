@@ -2,26 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
-import { LineReveal, Reveal } from "@/components/motion";
+import { LineReveal, Parallax, Reveal } from "@/components/motion";
 import { breadcrumbLd } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export type Crumb = { name: string; path: string };
 
 /** Breadcrumb trail plus its BreadcrumbList schema. */
-export function Breadcrumbs({ items, tone = "dark" }: { items: Crumb[]; tone?: "dark" | "light" }) {
+export function Breadcrumbs({ items, tone = "light" }: { items: Crumb[]; tone?: "dark" | "light" }) {
   const all = [{ name: "Home", path: "/" }, ...items];
   return (
     <>
       <nav aria-label="Breadcrumb">
-        <ol className={cn("flex flex-wrap items-center gap-1.5 text-sm", tone === "dark" ? "text-white/70" : "text-muted")}>
+        <ol className={cn("flex flex-wrap items-center gap-1.5 text-[0.8rem]", tone === "dark" ? "text-white/70" : "text-muted")}>
           {all.map((c, i) => (
             <li key={c.path} className="flex items-center gap-1.5">
               {i > 0 ? <ChevronRight className="size-3.5 opacity-60" aria-hidden /> : null}
               {i === all.length - 1 ? (
-                <span aria-current="page" className={tone === "dark" ? "text-white" : "text-ink"}>{c.name}</span>
+                <span aria-current="page" className={cn("line-clamp-1", tone === "dark" ? "text-white" : "text-ink")}>{c.name}</span>
               ) : (
-                <Link href={c.path} className="link-draw hover:text-current">{c.name}</Link>
+                <Link href={c.path} className="hover:text-pine">{c.name}</Link>
               )}
             </li>
           ))}
@@ -33,12 +33,13 @@ export function Breadcrumbs({ items, tone = "dark" }: { items: Crumb[]; tone?: "
 }
 
 /**
- * Photo hero for interior pages. The page title is the one H1.
+ * Page heading in the prototype's style: breadcrumbs, a small eyebrow, the
+ * page title (the one H1), then a wide photograph.
  */
 export function PageHero({
   title,
   accent,
-  eyebrow,
+  eyebrow = "Base Camp Adventure",
   intro,
   photo,
   crumbs,
@@ -55,34 +56,38 @@ export function PageHero({
   size?: "md" | "lg";
 }) {
   return (
-    <section className={cn("bg-pine-night relative isolate flex items-end overflow-hidden text-white", size === "lg" ? "min-h-[78svh]" : "min-h-[62svh]")}>
-      <Image src={photo} alt="" fill preload quality={75} sizes="100vw" className="kenburns -z-10 object-cover" />
-      <div className="scrim-hero absolute inset-0 -z-10" />
-      <div className="text-shadow-soft mx-auto w-full max-w-[90rem] px-4 pt-36 pb-14 sm:px-6 lg:pb-20">
-        <Reveal y={10}>
+    <section className="pt-[5.5rem] lg:pt-[6.25rem]">
+      <div className="mx-auto max-w-[90rem] px-4 pt-6 sm:px-6 lg:px-8">
+        <Reveal y={8}>
           <Breadcrumbs items={crumbs} />
         </Reveal>
-        {eyebrow ? (
-          <Reveal y={10} delay={0.05}>
-            <p className="eyebrow text-marigold mt-8 flex items-center gap-3">
-              <span className="bg-marigold inline-block h-px w-8" aria-hidden />
-              {eyebrow}
-            </p>
-          </Reveal>
-        ) : null}
-        <LineReveal
-          as="h1"
-          immediate
-          delay={0.1}
-          lines={accent ? [title, <span key="a" className="accent-word text-marigold">{accent}</span>] : [title]}
-          className="font-display mt-4 max-w-5xl text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-[0.86]"
-        />
-        {intro ? (
-          <Reveal delay={0.3} y={14}>
-            <div className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85">{intro}</div>
-          </Reveal>
-        ) : null}
-        {children ? <Reveal delay={0.4} y={14}>{children}</Reveal> : null}
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+          <div>
+            <Reveal y={8} delay={0.05}>
+              <p className="eyebrow text-pine">{eyebrow}</p>
+            </Reveal>
+            <LineReveal
+              as="h1"
+              immediate
+              delay={0.08}
+              lines={accent ? [<span key="t">{title} <span className="accent-word">{accent}</span></span>] : [title]}
+              className="font-display mt-3 text-[clamp(2.3rem,5.4vw,4.5rem)] leading-[1.02] text-ink"
+            />
+          </div>
+          {intro ? (
+            <Reveal delay={0.2} y={10}>
+              <div className="max-w-xl text-lg leading-relaxed text-ink-soft lg:pb-2">{intro}</div>
+            </Reveal>
+          ) : null}
+        </div>
+        {children ? <Reveal delay={0.25} y={10}>{children}</Reveal> : null}
+      </div>
+      <div className="mx-auto mt-8 max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <Reveal y={20} delay={0.15}>
+          <Parallax className={cn("rounded-xl bg-snow-2", size === "lg" ? "aspect-[16/10] sm:aspect-[21/8]" : "aspect-[16/9] sm:aspect-[21/7]")} amount={6}>
+            <Image src={photo} alt="" fill preload quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover" />
+          </Parallax>
+        </Reveal>
       </div>
     </section>
   );

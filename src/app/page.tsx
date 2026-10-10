@@ -1,25 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Award,
-  BadgeCheck,
-  Clock,
-  HeartHandshake,
-  Route,
-  Star,
-  Users,
-} from "lucide-react";
+import { ArrowRight, Check, Clock, Mountain, Star } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
 import { AltitudeProfile } from "@/components/altitude-profile";
+import { placeOf } from "@/lib/itinerary";
+import { Faq } from "@/components/faq";
+import { FeaturedTrips, type TripGroup } from "@/components/home/featured-trips";
 import { HomeHero } from "@/components/home/hero";
 import { RegionShowcase } from "@/components/home/regions";
 import { TripCarousel } from "@/components/home/trip-carousel";
-import { activityIcons } from "@/components/icons";
 import { Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PhotoGlow } from "@/components/photo-glow";
-import { RegionMarquee } from "@/components/region-marquee";
 import { ReviewsMarquee } from "@/components/reviews-marquee";
 import { Accent, SectionHeading } from "@/components/section-heading";
 import { TripCard } from "@/components/trip-card";
@@ -32,11 +23,12 @@ import {
   getTeam,
   getTrip,
   getTripCards,
+  getTripsIn,
   photo,
   termSummary,
 } from "@/lib/content";
 import { meta } from "@/lib/seo";
-import { activityMeta, regionMeta, site } from "@/lib/site";
+import { regionMeta, site } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
 export const metadata = meta({
@@ -45,49 +37,36 @@ export const metadata = meta({
   description: site.description,
 });
 
-/** The live site's "Why Travel with Us?" list, word for word. */
-const WHY = [
-  { Icon: Users, t: "Small Group Adventures" },
-  { Icon: BadgeCheck, t: "Experienced Local Guides" },
-  { Icon: Route, t: "Tailor-Made Itineraries" },
-  { Icon: Award, t: "Multi-award-winning company" },
-  { Icon: HeartHandshake, t: "No Hidden Fees" },
-  { Icon: Star, t: "Trusted by Travelers" },
-];
-
-/** "Explore More Activities" as on the live homepage. */
-const MORE = [
-  { label: "Nepal Tour", slug: "nepal-tour" },
-  { label: "Nepal Peak Climbing", slug: "nepal-peak-climbing" },
-  { label: "Bhutan Tour", slug: "tours-in-bhutan" },
-  { label: "Tibet Tour", slug: "tours-in-tibet" },
+const FAQ = [
+  { q: "Can I customise my trip?", a: "<p>Yes. We tailor itineraries to your available time, interests, fitness level and travel preferences. Share your plans through our <a href=\"/customize-trip/\">trip-planning page</a>.</p>" },
+  { q: "What information is included with a trek?", a: "<p>Our trip information covers the itinerary, costs, accommodation, equipment and useful travel details. Open a trip page to start planning, or ask us for the full itinerary.</p>" },
+  { q: "Do you offer more than trekking?", a: "<p>We arrange cultural tours, peak climbing, helicopter tours, jungle safaris, rafting and day tours in Nepal, as well as trips to Bhutan and Tibet.</p>" },
+  { q: "How do I choose the right trip?", a: "<p>Tell us how much time you have, what you'd like to see and your trekking experience. We'll help you choose an itinerary around your interests and fitness level.</p>" },
+  { q: "Where can I find your booking terms?", a: "<p>Read our <a href=\"/terms-and-conditions/\">terms and conditions</a> for the full booking information, or contact our Kathmandu team with your questions.</p>" },
 ];
 
 export default function HomePage() {
   const cards = getTripCards();
-  const { destinations, activities } = getLiveTerms();
+  const { destinations } = getLiveTerms();
   const regionNames = Object.fromEntries(destinations.map((d) => [d.slug, d.name]));
   const founder = getTeam().find((m) => m.slug === "shree-ghimire");
   const reviews = getAllReviews();
-  const posts = getPostCards().slice(0, 4);
+  const posts = getPostCards().slice(0, 3);
   const ebc = getTrip("everest-base-camp-trek");
   const featured = getFeaturedTrips();
   const popular = getHomeList("popular");
   const luxury = getHomeList("luxury");
+  const tours = getTripsIn("activities", "nepal-tour").slice(0, 8);
 
-  const slideSources = [
-    { slot: "home-banner", alt: "Trekkers on the trail with Base Camp Adventure" },
-    { slot: "hero-ama-dablam", alt: "Trekkers below Ama Dablam" },
-    { slot: "hero-alpenglow", alt: "Evening light on the Annapurna range" },
-    { slot: "hero-gokyo", alt: "Gokyo Lake and the Ngozumpa glacier" },
-    { slot: "hero-machapuchare", alt: "Machapuchare above the Annapurna foothills" },
-    { slot: "hero-mustang", alt: "A village in Upper Mustang" },
-  ];
-  const slides = slideSources.map(({ slot, alt }) => {
-    const p = photo(slot);
-    const t = p.trip ? getTrip(p.trip) : null;
-    return { src: p.src, alt, trip: t ? { slug: t.slug, title: t.title, days: t.days, maxAltitude: t.maxAltitude } : null };
-  });
+  const byRegion = (slug: string) => cards.filter((c) => c.destinations.includes(slug)).sort((a, b) => (b.rating?.count ?? 0) - (a.rating?.count ?? 0) || (b.price ? 1 : 0) - (a.price ? 1 : 0));
+  const all = [...featured, ...popular.filter((p) => !featured.some((f) => f.slug === p.slug))];
+  const groups: TripGroup[] = [
+    { key: "all", label: "All adventures", trips: all, href: "/trip/" },
+    { key: "everest", label: "Everest", trips: byRegion("everest-region"), href: "/destinations/everest-region/" },
+    { key: "annapurna", label: "Annapurna", trips: byRegion("annapurna-region"), href: "/destinations/annapurna-region/" },
+    { key: "langtang", label: "Langtang", trips: byRegion("langtang-region"), href: "/destinations/langtang-region/" },
+    { key: "manaslu", label: "Manaslu", trips: byRegion("manaslu-region"), href: "/destinations/manaslu-region/" },
+  ].filter((g) => g.trips.length);
 
   const regionOrder = ["everest-region", "annapurna-region", "langtang-region", "manaslu-region", "remote-area-trekking", "bhutan", "tibet"];
   const panels = regionOrder
@@ -95,244 +74,237 @@ export default function HomePage() {
       const d = destinations.find((x) => x.slug === slug);
       if (!d) return null;
       const s = termSummary("destinations", slug);
-      return { slug, name: d.name.replace(" Region", ""), line: s.line, photo: regionMeta[slug]?.photo ?? "/photos/region-everest.webp", trips: d.trips, highest: s.highest };
+      return { slug, name: d.name, line: s.line, photo: regionMeta[slug]?.photo ?? "/photos/region-everest.webp", trips: d.trips, highest: s.highest };
     })
     .filter((x): x is NonNullable<typeof x> => Boolean(x));
 
-  const about = photo("page-about");
+  const slides = [
+    { slot: "region-everest", label: "Everest" },
+    { slot: "hero-alpenglow", label: "Annapurna" },
+    { slot: "hero-gokyo", label: "Gokyo Lakes" },
+    { slot: "hero-ama-dablam", label: "Ama Dablam" },
+    { slot: "hero-mustang", label: "Upper Mustang" },
+  ].map(({ slot, label }) => ({ src: photo(slot).src, label }));
+
+  const about = photo("hero-alpenglow");
+  // Key stops on the classic route, read from the real itinerary.
+  const stops = ebc ? ebc.itinerary.filter((d) => d.altitude && placeOf(d.title)).filter((d, i, a) => a.findIndex((x) => placeOf(x.title) === placeOf(d.title)) === i).slice(0, 8) : [];
 
   return (
     <>
-      <HomeHero
-        slides={slides}
-        regions={destinations.map((d) => ({ slug: d.slug, name: d.name }))}
-        activities={activities.map((a) => ({ slug: a.slug, name: a.name }))}
-        stats={{ trips: cards.length, regions: destinations.length, years: new Date().getFullYear() - site.founded }}
-      />
+      <HomeHero slides={slides} />
 
-      <RegionMarquee />
-
-      {/* About Us */}
-      <section className="relative overflow-hidden py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div className="relative isolate">
-            <PhotoGlow src={about.src} strength="lg" />
-            <Parallax className="aspect-[4/3] rounded-[2rem] bg-pine-night sm:aspect-[4/5]" amount={8}>
-              <Image src={about.src} alt="Evening light over Namche Bazaar" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover" />
-            </Parallax>
-            {founder?.photo ? (
-              <Reveal delay={0.2} className="absolute right-3 -bottom-6 w-36 rounded-[1.2rem] bg-card p-2.5 shadow-2xl sm:-right-6 sm:w-56 sm:p-3">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-xl">
-                  <Image src={founder.photo.src} alt={founder.name} fill sizes="224px" className="object-cover" />
-                </div>
-                <p className="mt-2.5 text-sm font-bold sm:text-base">{founder.name}</p>
-                <p className="text-xs text-muted sm:text-sm">{founder.role}</p>
-              </Reveal>
-            ) : null}
-            <div className="bg-marigold text-pine-night absolute top-4 left-4 rounded-full px-4 py-2 font-mono text-xs font-medium">SINCE {site.founded}</div>
-          </div>
-
-          <div className="pt-6 lg:pt-0">
-            <SectionHeading eyebrow="Base Camp Adventure" lines={["About", <Accent key="u">Us</Accent>]} />
-            <Reveal delay={0.1}>
-              <p className="mt-6 text-lg leading-relaxed text-ink-soft">{site.about}</p>
-              <Link href="/about-us/" className="bg-ink text-snow mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-bold transition-colors hover:bg-pine">
-                Read More <ArrowRight className="size-4" aria-hidden />
-              </Link>
+      {/* 01 / Find your trail */}
+      <section id="find" className="scroll-mt-24 py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <SectionHeading eyebrow="01 / Find your trail" lines={["Where do you", <span key="g">want to <Accent>go?</Accent></span>]} />
+            <Reveal className="max-w-sm">
+              <p className="text-ink-soft">From the foothills to Everest Base Camp. Find a trip that fits your time and your sense of adventure.</p>
+              <Link href="/trip/" className="mt-3 inline-block border-b-2 border-ink pb-1 text-sm font-bold">Explore the full collection</Link>
             </Reveal>
           </div>
+          <FeaturedTrips groups={groups} regionNames={regionNames} regions={destinations.map((d) => ({ slug: d.slug, name: d.name }))} />
         </div>
       </section>
 
-      {/* Featured Trips */}
-      <section id="find" className="bg-snow-2 scroll-mt-20 py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading eyebrow="Handpicked" lines={["Featured", <Accent key="t">Trips</Accent>]} intro={site.featuredIntro} />
-            <Link href="/trip/" className="text-pine inline-flex items-center gap-2 font-bold">
-              View All Trips <ArrowRight className="size-4" aria-hidden />
-            </Link>
+      {/* Nepal tours */}
+      {tours.length ? (
+        <section className="border-t border-line py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <SectionHeading eyebrow="Nepal tours" lines={["Discover Nepal.", <Accent key="b">Beyond the trails.</Accent>]} />
+              <Reveal className="max-w-sm">
+                <p className="text-ink-soft">Explore cultural landmarks, city life and wildlife with our local team.</p>
+              </Reveal>
+            </div>
+            <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+              {tours.map((t) => (
+                <StaggerItem key={t.slug}>
+                  <TripCard trip={t} regionName="Nepal Tour" label={`${t.days} ${t.days === 1 ? "day" : "days"}`} />
+                </StaggerItem>
+              ))}
+            </Stagger>
+            <div className="mt-10 flex justify-center">
+              <Link href="/activities/nepal-tour/" className="bg-pine hover:bg-pine-deep inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-bold text-white transition-colors">
+                View all Nepal tours <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
           </div>
-          <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((t, i) => (
-              <StaggerItem key={t.slug}>
-                <TripCard trip={t} regionName={regionNames[t.destinations[0]]} priority={i < 3} />
-              </StaggerItem>
-            ))}
-          </Stagger>
+        </section>
+      ) : null}
+
+      {/* 02 / Get to know Nepal */}
+      <section className="bg-pine relative overflow-hidden py-20 text-white sm:py-24 lg:py-28 dark:bg-pine-deep">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <SectionHeading tone="dark" eyebrow="02 / Get to know Nepal" lines={["Same country.", <Accent key="d">Different worlds.</Accent>]} />
+            <Reveal className="max-w-sm">
+              <p className="text-white/80">Everest, Annapurna, Langtang, Manaslu. There&apos;s more than one way into the Himalayas.</p>
+            </Reveal>
+          </div>
+          <RegionShowcase regions={panels} />
         </div>
       </section>
+
+      {/* 03 / Day by day: the classic route, from the real itinerary */}
+      {ebc ? (
+        <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start lg:gap-14">
+              <div className="lg:sticky lg:top-28">
+                <SectionHeading eyebrow={`03 / ${ebc.title}`} lines={["Day by", <Accent key="d">day.</Accent>]} />
+                <Reveal delay={0.1}>
+                  <p className="mt-5 text-ink-soft">{ebc.summary}</p>
+                  <dl className="mt-8 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-line bg-line">
+                    {[
+                      { k: "Days", v: String(ebc.days) },
+                      { k: "Highest", v: `${ebc.maxAltitude?.toLocaleString("en-US")} m` },
+                      { k: "From", v: ebc.price ? `US$${ebc.price.amount.toLocaleString("en-US")}` : "Ask us" },
+                    ].map((x) => (
+                      <div key={x.k} className="bg-card p-4">
+                        <dt className="text-[0.62rem] font-bold tracking-[0.14em] text-muted uppercase">{x.k}</dt>
+                        <dd className="font-display mt-1 text-xl text-ink sm:text-2xl">{x.v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <Link href="/trip/everest-base-camp-trek/#itinerary" className="bg-pine hover:bg-pine-deep mt-8 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-bold text-white transition-colors">
+                    See the full itinerary <ArrowRight className="size-4" aria-hidden />
+                  </Link>
+                </Reveal>
+              </div>
+              <Reveal delay={0.1}>
+                <div className="rounded-2xl border border-line bg-card p-4 sm:p-6">
+                  <AltitudeProfile days={ebc.itinerary} tone="light" />
+                </div>
+                <ol className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  {stops.map((d) => (
+                    <li key={d.day} className="rounded-xl border border-line bg-card px-3.5 py-3">
+                      <p className="text-[0.62rem] font-bold tracking-[0.14em] text-pine uppercase">Day {d.day}</p>
+                      <p className="mt-1 truncate text-sm font-semibold">{placeOf(d.title)}</p>
+                      <p className="mt-0.5 inline-flex items-center gap-1 text-xs text-muted">
+                        <Mountain className="size-3" aria-hidden /> {d.altitude?.toLocaleString("en-US")} m
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* Popular Trekking & Tour Packages */}
-      <section className="overflow-hidden py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <SectionHeading eyebrow={`${popular.length} packages`} lines={["Popular Trekking", <span key="p">& Tour <Accent>Packages</Accent></span>]} />
-          <div className="mt-8">
+      <section className="bg-snow-2 overflow-hidden py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow={`${popular.length} packages`} lines={["Popular trekking", <span key="p">& tour <Accent>packages.</Accent></span>]} />
+          <div className="mt-6">
             <TripCarousel trips={popular} regionNames={regionNames} moreHref="/trip/" moreLabel={`All ${cards.length} trips`} />
           </div>
         </div>
       </section>
 
-      {/* Everest Base Camp, day by day, from the real itinerary */}
-      {ebc ? (
-        <section className="bg-pine-night relative overflow-hidden py-20 text-white sm:py-28 lg:py-32">
-          <div className="aura absolute inset-0" aria-hidden />
-          <div className="relative mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.4fr] lg:items-center lg:gap-12">
-            <div>
-              <SectionHeading tone="dark" eyebrow={ebc.title} lines={["Day by", <Accent key="d">day.</Accent>]} intro={ebc.summary} />
-              <Reveal delay={0.2}>
-                <ul className="mt-8 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
-                  <li>
-                    <p className="font-display text-3xl font-black sm:text-4xl">{ebc.days}</p>
-                    <p className="eyebrow text-white/55">Days</p>
-                  </li>
-                  <li>
-                    <p className="font-display text-3xl font-black sm:text-4xl">{ebc.maxAltitude?.toLocaleString("en-US")}</p>
-                    <p className="eyebrow text-white/55">Metres max</p>
-                  </li>
-                  <li>
-                    <p className="font-display text-marigold text-3xl font-black sm:text-4xl">${ebc.price?.amount.toLocaleString("en-US")}</p>
-                    <p className="eyebrow text-white/55">/ Adult</p>
-                  </li>
-                </ul>
-                <Link href="/trip/everest-base-camp-trek/" className="bg-marigold text-pine-night mt-8 inline-flex items-center gap-2 rounded-full px-7 py-4 font-bold transition-colors hover:bg-white">
-                  View Detail <ArrowRight className="size-4" aria-hidden />
-                </Link>
-              </Reveal>
-            </div>
-            <Reveal delay={0.1}>
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.04] p-3 sm:rounded-[1.8rem] sm:p-6">
-                <AltitudeProfile days={ebc.itinerary} tone="dark" />
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      ) : null}
-
-      {/* Explore More Activities */}
-      <section className="py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading eyebrow="Beyond trekking" lines={["Explore More", <Accent key="a">Activities</Accent>]} />
-            <Link href="/activities/" className="text-pine inline-flex items-center gap-2 font-bold">
-              All activities <ArrowRight className="size-4" aria-hidden />
-            </Link>
-          </div>
-          <Stagger className="mt-12 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-            {MORE.map((m) => {
-              const a = activities.find((x) => x.slug === m.slug);
-              const am = activityMeta[m.slug];
-              const Icon = activityIcons[am?.icon ?? "compass"];
-              return (
-                <StaggerItem key={m.slug} className="relative isolate">
-                  {am ? <PhotoGlow src={am.photo} /> : null}
-                  <Link href={`/activities/${m.slug}/`} className="group relative flex aspect-[3/4] flex-col justify-between overflow-hidden rounded-[1.4rem] bg-pine-night p-4 text-white sm:aspect-[4/5] sm:p-6">
-                    {am ? <Image src={am.photo} alt={m.label} fill sizes="(max-width: 1024px) 50vw, 25vw" quality={75} className="object-cover transition-transform duration-[1200ms] group-hover:scale-105" /> : null}
-                    <div className="scrim-b absolute inset-0" />
-                    <span className="glass-dark relative grid size-10 place-items-center rounded-xl sm:size-12 sm:rounded-2xl">
-                      <Icon className="text-marigold size-5 sm:size-6" aria-hidden />
-                    </span>
-                    <div className="relative">
-                      {a ? <p className="font-mono text-[0.68rem] text-white/70 sm:text-xs">{a.trips} trips</p> : null}
-                      <h3 className="font-display mt-1 text-2xl font-black uppercase leading-[0.9] sm:text-4xl">{m.label}</h3>
-                    </div>
-                    <span className="bg-marigold text-pine-night absolute top-4 right-4 grid size-9 place-items-center rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:top-6 sm:right-6 sm:size-11">
-                      <ArrowUpRight className="size-4 sm:size-5" aria-hidden />
-                    </span>
-                  </Link>
-                </StaggerItem>
-              );
-            })}
-          </Stagger>
-        </div>
-      </section>
-
-      {/* Customize Your Trip */}
-      <section className="relative isolate overflow-hidden bg-pine-night py-20 text-white sm:py-28">
-        <Image src={photo("page-customize").src} alt="" fill sizes="100vw" quality={80} className="-z-10 object-cover opacity-55" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-pine-night via-pine-night/80 to-transparent" />
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <div className="max-w-2xl">
-            <SectionHeading tone="dark" eyebrow="Tailor-made" lines={["Customize", <Accent key="y">Your Trip</Accent>]} intro={site.customize} />
-            <Reveal delay={0.2}>
-              <Link href="/customize-trip/" className="bg-marigold text-pine-night mt-8 inline-flex items-center gap-2 rounded-full px-8 py-4 font-bold transition-colors hover:bg-white">
-                Customize Trip <ArrowRight className="size-4" aria-hidden />
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Luxury Trekking & Tour Packages */}
+      {/* Luxury Trekking & Tour Packages, with Customize as the fourth tile */}
       {luxury.length ? (
-        <section className="py-20 sm:py-28 lg:py-32">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-            <SectionHeading eyebrow="In comfort" lines={["Luxury Trekking", <span key="l">& Tour <Accent>Packages</Accent></span>]} />
-            <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <section className="py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+            <SectionHeading eyebrow="In comfort" lines={["Luxury trekking", <span key="l">& tour <Accent>packages.</Accent></span>]} />
+            <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {luxury.map((t) => (
                 <StaggerItem key={t.slug}>
-                  <TripCard trip={t} regionName={regionNames[t.destinations[0]]} />
+                  <TripCard trip={t} regionName={regionNames[t.destinations[0]]} label="Luxury" />
                 </StaggerItem>
               ))}
+              <StaggerItem>
+                <Link href="/customize-trip/" className="bg-pine group relative flex h-full min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.1rem] p-6 text-white">
+                  <span className="text-[0.64rem] font-bold tracking-[0.14em] text-white/70 uppercase">Customize your trip</span>
+                  <span>
+                    <span className="font-display block text-3xl leading-[1.05]">
+                      A route made <span className="accent-word">around you.</span>
+                    </span>
+                    <span className="mt-3 block text-sm text-white/80">{site.customize}</span>
+                    <span className="mt-5 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-bold text-[#006c7c]">
+                      Customize Trip <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                    </span>
+                  </span>
+                </Link>
+              </StaggerItem>
             </Stagger>
           </div>
         </section>
       ) : null}
 
-      {/* Destinations */}
-      <section className="bg-snow-2 py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading eyebrow="Nepal, Bhutan & Tibet" lines={[<Accent key="d">Destinations</Accent>]} />
-            <Link href="/destination/" className="text-pine inline-flex items-center gap-2 font-bold">
-              All destinations <ArrowRight className="size-4" aria-hidden />
-            </Link>
+      {/* 04 / The people behind the journey */}
+      <section className="border-t border-line py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
+          <div className="relative isolate">
+            <PhotoGlow src={about.src} strength="lg" />
+            <Parallax className="aspect-[5/4] rounded-xl bg-snow-2" amount={7}>
+              <Image src={about.src} alt="Evening light on the Annapurna range" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover" />
+            </Parallax>
+            <Reveal delay={0.2} className="bg-glacier-soft absolute top-6 right-4 rotate-[3deg] rounded-md px-5 py-4 text-center shadow-lg sm:-right-4">
+              <p className="text-[0.58rem] font-bold tracking-[0.18em] text-pine uppercase">On the trail since</p>
+              <p className="font-display text-pine text-4xl">2009</p>
+              <p className="text-[0.55rem] font-bold tracking-[0.18em] text-pine uppercase">Kathmandu, Nepal</p>
+            </Reveal>
+            <div className="mt-3 flex justify-between text-[0.6rem] font-bold tracking-[0.16em] text-muted uppercase">
+              <span>The place we call home</span>
+              <span>Nepal / Annapurna</span>
+            </div>
           </div>
-          <div className="mt-12">
-            <RegionShowcase regions={panels} />
+
+          <div>
+            <SectionHeading eyebrow="04 / The people behind the journey" lines={["Local roots.", <Accent key="o">Open horizons.</Accent>]} />
+            <Reveal delay={0.1}>
+              <p className="mt-6 text-xl leading-snug text-ink">
+                Founded by a local guide.
+                <br />
+                Built on a love of Nepal.
+              </p>
+              <p className="mt-5 text-ink-soft">{site.about}</p>
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-line py-5">
+                {founder?.photo ? (
+                  <div className="flex items-center gap-3">
+                    <span className="relative size-12 overflow-hidden rounded-full">
+                      <Image src={founder.photo.src} alt={founder.name} fill sizes="48px" className="object-cover" />
+                    </span>
+                    <span>
+                      <span className="block font-bold">{founder.name}</span>
+                      <span className="accent-word block text-sm text-muted">Founder &amp; Managing Director</span>
+                    </span>
+                  </div>
+                ) : null}
+                <Link href="/our-team/" className="border-b-2 border-ink pb-1 text-sm font-bold">Meet our team</Link>
+              </div>
+              <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">
+                {["Small groups", "Local guides", "No hidden fees"].map((t) => (
+                  <li key={t} className="inline-flex items-center gap-1.5">
+                    <Check className="text-pine size-4" aria-hidden /> {t}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Our Affiliations */}
-      <section className="pt-20 sm:pt-28">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <SectionHeading eyebrow="Licensed & trusted" lines={["Our", <Accent key="a">Affiliations</Accent>]} />
+      {/* Our affiliation */}
+      <section id="affiliations" className="scroll-mt-24 border-t border-line pt-16">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Licensed & trusted" lines={["Our", <Accent key="a">affiliation.</Accent>]} />
         </div>
-        <div className="mt-6">
+        <div className="mt-4">
           <Accreditations />
-        </div>
-      </section>
-
-      {/* Why Travel with Us? */}
-      <section className="py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading eyebrow="Base Camp Adventure" lines={["Why Travel", <span key="w">with <Accent>Us?</Accent></span>]} />
-            <Link href="/why-book-with-us/" className="text-pine inline-flex items-center gap-2 font-bold">
-              Why Travel With Us? <ArrowRight className="size-4" aria-hidden />
-            </Link>
-          </div>
-          <Stagger className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-            {WHY.map(({ Icon, t }) => (
-              <StaggerItem key={t} className="group flex flex-col gap-4 rounded-[1.4rem] border border-line bg-card p-5 transition-colors hover:border-pine/40 sm:flex-row sm:items-center sm:p-7">
-                <span className="bg-pine/10 text-pine group-hover:bg-pine grid size-12 shrink-0 place-items-center rounded-2xl transition-colors group-hover:text-white sm:size-14">
-                  <Icon className="size-6" aria-hidden />
-                </span>
-                <span className="text-base font-bold leading-snug sm:text-lg">{t}</span>
-              </StaggerItem>
-            ))}
-          </Stagger>
         </div>
       </section>
 
       {/* Testimonials */}
       {reviews.length ? (
-        <section className="bg-snow-2 overflow-hidden py-20 sm:py-28 lg:py-32">
-          <div className="mx-auto mb-12 flex max-w-[90rem] flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading eyebrow="From our travellers" lines={[<Accent key="t">Testimonials</Accent>]} />
-            <Link href="/testimonials/" className="inline-flex items-center gap-3 self-start rounded-full border border-line bg-card px-5 py-3 lg:self-auto">
-              <Star className="fill-marigold text-marigold size-5" aria-hidden />
+        <section className="bg-snow-2 overflow-hidden py-20 sm:py-24">
+          <div className="mx-auto mb-10 flex max-w-[90rem] flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
+            <SectionHeading eyebrow="Testimonials" lines={["In their", <Accent key="w">own words.</Accent>]} />
+            <Link href="/testimonials/" className="inline-flex items-center gap-2 self-start rounded-lg border border-line bg-card px-4 py-2.5 text-sm lg:self-auto">
+              <Star className="fill-marigold text-marigold size-4" aria-hidden />
               <span className="font-bold">{reviews.length} reviews</span>
               <ArrowRight className="size-4" aria-hidden />
             </Link>
@@ -341,47 +313,48 @@ export default function HomePage() {
         </section>
       ) : null}
 
-      {/* Blogs */}
-      <section className="py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading eyebrow="Travel journal" lines={["Read Our", <Accent key="b">Blogs</Accent>]} />
-            <Link href="/blogs/" className="text-pine inline-flex items-center gap-2 font-bold">
-              All articles <ArrowRight className="size-4" aria-hidden />
-            </Link>
+      {/* 05 / Before you go */}
+      <section className="py-20 sm:py-24 lg:py-28">
+        <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div>
+            <SectionHeading eyebrow="05 / Before you go" lines={["A few things", <span key="k">worth <Accent>knowing.</Accent></span>]} />
+            <Reveal delay={0.1}>
+              <p className="mt-5 text-ink-soft">
+                Start with the essentials.
+                <br />
+                Ask us about the rest.
+              </p>
+              <Link href="/contact-us/" className="mt-6 inline-block border-b-2 border-ink pb-1 text-sm font-bold">Talk through your plans</Link>
+            </Reveal>
           </div>
-          <Stagger className="mt-12 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-6">
-            {posts[0] ? (
-              <StaggerItem className="relative isolate">
-                {posts[0].cover ? <PhotoGlow src={posts[0].cover.src} /> : null}
-                <Link href={`/${posts[0].slug}/`} className="group block">
-                  <div className="zoom-img relative aspect-[16/11] overflow-hidden rounded-[1.6rem] bg-snow-2">
-                    {posts[0].cover ? <Image src={posts[0].cover.src} alt={posts[0].cover.alt} fill sizes="(max-width: 1024px) 100vw, 55vw" quality={78} className="object-cover" /> : null}
+          <Reveal delay={0.1}>
+            <Faq items={FAQ} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* From the journal */}
+      <section className="border-t border-line py-20 sm:py-24">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <SectionHeading eyebrow="Journal" lines={["Notes from", <Accent key="t">the trail.</Accent>]} />
+            <Link href="/blogs/" className="border-b-2 border-ink pb-1 text-sm font-bold">Read our blogs</Link>
+          </div>
+          <Stagger className="grid gap-6 md:grid-cols-3">
+            {posts.map((p) => (
+              <StaggerItem key={p.slug} className="relative isolate">
+                {p.cover ? <PhotoGlow src={p.cover.src} strength="sm" /> : null}
+                <Link href={`/${p.slug}/`} className="group block">
+                  <div className="zoom-img relative aspect-[16/10] overflow-hidden rounded-xl bg-snow-2">
+                    {p.cover ? <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(max-width: 768px) 100vw, 33vw" quality={75} className="object-cover" /> : null}
                   </div>
-                  <p className="eyebrow text-pine mt-5">{formatDate(posts[0].published)} · {posts[0].readingMinutes} min read</p>
-                  <h3 className="font-display mt-2 text-3xl font-black uppercase leading-[0.92] group-hover:text-pine sm:text-4xl">{posts[0].title}</h3>
-                  <p className="mt-3 line-clamp-2 text-ink-soft">{posts[0].excerpt}</p>
+                  <p className="mt-4 flex items-center gap-2 text-[0.64rem] font-bold tracking-[0.14em] text-muted uppercase">
+                    {formatDate(p.published)} <span aria-hidden>·</span> <Clock className="size-3" aria-hidden /> {p.readingMinutes} min
+                  </p>
+                  <h3 className="font-display mt-2 text-xl leading-snug group-hover:text-pine">{p.title}</h3>
                 </Link>
               </StaggerItem>
-            ) : null}
-            <div className="flex flex-col gap-6">
-              {posts.slice(1).map((p) => (
-                <StaggerItem key={p.slug}>
-                  <Link href={`/${p.slug}/`} className="group grid grid-cols-[7.5rem_1fr] gap-4 sm:grid-cols-[11rem_1fr] sm:gap-5">
-                    <div className="zoom-img relative aspect-[4/3] overflow-hidden rounded-2xl bg-snow-2">
-                      {p.cover ? <Image src={p.cover.src} alt={p.cover.alt} fill sizes="176px" className="object-cover" /> : null}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="eyebrow text-muted flex items-center gap-1.5">
-                        <Clock className="size-3" aria-hidden /> {p.readingMinutes} min
-                      </p>
-                      <h3 className="mt-1.5 text-base leading-snug font-bold group-hover:text-pine sm:text-lg">{p.title}</h3>
-                      <p className="mt-1 hidden line-clamp-2 text-sm text-muted sm:block">{p.excerpt}</p>
-                    </div>
-                  </Link>
-                </StaggerItem>
-              ))}
-            </div>
+            ))}
           </Stagger>
         </div>
       </section>

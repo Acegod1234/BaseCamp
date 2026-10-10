@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Big_Shoulders, JetBrains_Mono, Manrope, Newsreader } from "next/font/google";
+import { DM_Sans, JetBrains_Mono, Manrope, Newsreader } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site/footer";
 import { SiteHeader } from "@/components/site/header";
@@ -12,15 +12,13 @@ import { site } from "@/lib/site";
 import "./globals.css";
 
 /**
- * Four faces, each with one job:
- * Big Shoulders  headlines, condensed like a trail sign at a pass
- * Newsreader     the single italic word that gives a headline its voice
- * Manrope        everything people read
- * JetBrains Mono altitudes, codes and figures that line up
+ * The prototype's type: Manrope for headlines, DM Sans for reading, and a
+ * serif italic (Newsreader) for the one word that gives a headline its voice.
+ * JetBrains Mono is kept for small figures that line up.
  */
-const display = Big_Shoulders({ variable: "--font-display-face", subsets: ["latin"], display: "swap", axes: ["opsz"] });
+const display = Manrope({ variable: "--font-display-face", subsets: ["latin"], display: "swap" });
 const serif = Newsreader({ variable: "--font-serif-face", subsets: ["latin"], style: ["italic"], display: "swap", axes: ["opsz"] });
-const sans = Manrope({ variable: "--font-sans-face", subsets: ["latin"], display: "swap" });
+const sans = DM_Sans({ variable: "--font-sans-face", subsets: ["latin"], display: "swap" });
 const mono = JetBrains_Mono({ variable: "--font-mono-face", subsets: ["latin"], display: "swap", weight: ["400", "500"] });
 
 export const metadata: Metadata = {
@@ -37,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#14261f",
+  themeColor: "#007f91",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

@@ -51,15 +51,15 @@ export function TripCarousel({ trips, regionNames, moreHref, moreLabel }: { trip
         className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pt-2 pb-8 sm:-mx-6 sm:scroll-px-6 sm:px-6"
       >
         {trips.map((t) => (
-          <div key={t.slug} className="w-[78vw] shrink-0 snap-start sm:w-[22rem]">
+          <div key={t.slug} className="w-[74vw] shrink-0 snap-start sm:w-[17.5rem]">
             <TripCard trip={t} regionName={regionNames[t.destinations[0]]} />
           </div>
         ))}
         <Link
           href={moreHref}
-          className={cn("bg-pine-night aura relative flex w-[60vw] shrink-0 snap-start flex-col items-start justify-end overflow-hidden rounded-[1.6rem] p-7 text-white sm:w-[18rem]")}
+          className={cn("bg-pine relative flex w-[60vw] shrink-0 snap-start flex-col items-start justify-end overflow-hidden rounded-[1.1rem] p-6 text-white sm:w-[15rem]")}
         >
-          <span className="font-display text-4xl font-black uppercase leading-[0.9]">{moreLabel}</span>
+          <span className="font-display text-3xl leading-[1.05]">{moreLabel}</span>
           <span className="bg-marigold text-pine-night mt-5 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
             Browse <ArrowRight className="size-4" aria-hidden />
           </span>

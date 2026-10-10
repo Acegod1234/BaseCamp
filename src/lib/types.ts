@@ -33,6 +33,8 @@ export type ItineraryDay = {
   altitude: number | null;
   meals: string[];
   overnight: string | null;
+  hours?: number | null;
+  distanceKm?: number | null;
 };
 
 export type Review = {

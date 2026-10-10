@@ -63,7 +63,7 @@ export function SectionNav({
   }, [active]);
 
   return (
-    <div ref={navRef} data-subnav className="sticky top-[4.5rem] z-30 px-2.5 sm:px-4 lg:top-[5rem]">
+    <div ref={navRef} data-subnav className="sticky top-[4.5rem] z-30 px-2.5 sm:px-4 lg:top-[5.25rem]">
       <nav
         aria-label="Trip sections"
         className={cn(

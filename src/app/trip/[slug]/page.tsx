@@ -23,12 +23,11 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { Breadcrumbs } from "@/components/page-hero";
 import { Accent, SectionHeading } from "@/components/section-heading";
 import { BookingCard, MobileBookingBar } from "@/components/trip/booking-card";
-import { GalleryButton } from "@/components/trip/gallery";
+import { PlanTripButton, TripSlider } from "@/components/trip/trip-slider";
 import { Itinerary } from "@/components/trip/itinerary";
 import { SectionNav } from "@/components/trip/section-nav";
 import { TripModals } from "@/components/trip/trip-modals";
 import { TripCard } from "@/components/trip-card";
-import { UnitToggle } from "@/components/unit-toggle";
 import { getActivity, getDestination, getGuidesForRegion, getRelatedTrips, getTrip, getTrips } from "@/lib/content";
 import { meta, tripLd } from "@/lib/seo";
 import { difficultyLabel } from "@/lib/site";
@@ -91,84 +90,70 @@ export default async function TripPage({ params }: Props) {
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-pine-night relative isolate flex min-h-[82svh] items-end overflow-hidden text-white">
-        {sharpest ? <Image src={sharpest.src} alt={sharpest.alt || trip.title} fill preload quality={85} sizes="100vw" className="kenburns -z-10 object-cover" /> : null}
-        <div className="scrim-hero absolute inset-0 -z-10" />
-        <div className="text-shadow-soft mx-auto w-full max-w-[90rem] px-4 pt-36 pb-28 sm:px-6">
-          <Reveal y={10}>
+      {/* Heading, in the prototype's layout */}
+      <section className="pt-[5.5rem] lg:pt-[6.25rem]">
+        <div className="mx-auto max-w-[90rem] px-4 pt-6 sm:px-6 lg:px-8">
+          <Reveal y={8}>
             <Breadcrumbs
               items={[
-                { name: "Trips", path: "/trip/" },
+                { name: "Our trips", path: "/trip/" },
                 ...(region ? [{ name: region.name, path: `/destinations/${region.slug}/` }] : []),
                 { name: trip.title, path: `/trip/${trip.slug}/` },
               ]}
             />
           </Reveal>
-          <Reveal y={10} delay={0.05}>
-            <p className="eyebrow text-marigold mt-8 flex flex-wrap items-center gap-3">
-              <span className="bg-marigold inline-block h-px w-8" aria-hidden />
-              {[region?.name, activity?.name].filter(Boolean).join(" · ")}
-            </p>
+          <Reveal y={8} delay={0.05}>
+            <p className="eyebrow text-pine mt-7">{[region?.name, activity?.name].filter(Boolean).join(" · ")}</p>
           </Reveal>
-          <Reveal y={24} delay={0.1}>
-            <h1 className="font-display mt-4 max-w-5xl text-[clamp(2.8rem,7.5vw,6.8rem)] font-black uppercase leading-[0.86]">{trip.title}</h1>
-          </Reveal>
-          <Reveal y={14} delay={0.2}>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85">{trip.summary}</p>
-          </Reveal>
-          <Reveal y={14} delay={0.3}>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <span className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold">
-                <Clock className="text-marigold size-4" aria-hidden /> {trip.days} days
-              </span>
-              {trip.maxAltitude ? (
-                <span className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-2.5 font-mono text-sm">
-                  <Mountain className="text-glacier size-4" aria-hidden /> {trip.maxAltitude.toLocaleString("en-US")} m
-                </span>
-              ) : null}
+          <div className="mt-3 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <Reveal y={16} delay={0.1}>
+              <h1 className="font-display max-w-4xl text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.03] text-ink">{trip.title}</h1>
+            </Reveal>
+            <Reveal y={10} delay={0.2} className="flex shrink-0 flex-wrap items-center gap-3">
               {trip.rating ? (
-                <a href="#reviews" className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold">
+                <a href="#reviews" className="inline-flex items-center gap-1.5 rounded-lg border border-line px-3.5 py-2.5 text-sm font-semibold">
                   <Star className="fill-marigold text-marigold size-4" aria-hidden /> {trip.rating.value.toFixed(1)} · {trip.rating.count} reviews
                 </a>
               ) : null}
-              <GalleryButton images={photos} title={trip.title} />
-            </div>
+              <PlanTripButton priced={Boolean(trip.price)} />
+            </Reveal>
+          </div>
+        </div>
+        <div className="mx-auto mt-7 max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <Reveal y={20} delay={0.1}>
+            <TripSlider images={[...(sharpest ? [sharpest] : []), ...photos.filter((p) => p.src !== sharpest?.src)]} title={trip.title} />
           </Reveal>
+        </div>
+
+        {/* Facts */}
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <Stagger className="grid grid-cols-2 gap-x-6 gap-y-5 border-b border-line py-6 sm:grid-cols-3 lg:grid-cols-6">
+            {facts.slice(0, 6).map((f) => {
+              const Icon = FACT_ICONS[f.label.toLowerCase().trim()] ?? Info;
+              return (
+                <StaggerItem key={f.label} className="flex min-w-0 items-start gap-3">
+                  <span className="bg-glacier-soft text-pine grid size-9 shrink-0 place-items-center rounded-lg">
+                    <Icon className="size-[1.1rem]" aria-hidden />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[0.72rem] text-muted">{f.label}</span>
+                    <span className="mt-0.5 block text-[0.95rem] font-bold leading-snug">{f.value}</span>
+                  </span>
+                </StaggerItem>
+              );
+            })}
+          </Stagger>
         </div>
       </section>
 
-      {/* Facts */}
-      <div className="relative z-10 mx-auto -mt-16 max-w-[90rem] px-4 sm:px-6">
-        <Stagger className="grid grid-cols-2 gap-px overflow-hidden rounded-[1.6rem] border border-line bg-line shadow-[0_30px_60px_-40px_oklch(0.2_0.04_170/0.6)] sm:grid-cols-3 lg:grid-cols-6">
-          {facts.slice(0, 6).map((f) => {
-            const Icon = FACT_ICONS[f.label.toLowerCase().trim()] ?? Info;
-            return (
-              <StaggerItem key={f.label} className="flex flex-col items-start gap-2.5 bg-card p-4 sm:flex-row sm:gap-3 sm:p-5">
-                <span className="bg-pine/10 text-pine grid size-10 shrink-0 place-items-center rounded-xl">
-                  <Icon className="size-5" aria-hidden />
-                </span>
-                <span className="min-w-0">
-                  <span className="eyebrow block text-[0.62rem] tracking-[0.08em] text-muted sm:text-[0.7rem] sm:tracking-[0.16em]">{f.label}</span>
-                  <span className="mt-1 block font-semibold leading-snug">{f.value}</span>
-                </span>
-              </StaggerItem>
-            );
-          })}
-        </Stagger>
-      </div>
-
       {/* Direct child of <main>, so it stays pinned for the whole page. */}
-      <div className="h-8" aria-hidden />
+      <div className="h-6" aria-hidden />
       <SectionNav items={nav} price={trip.price} />
 
-      <div className="mx-auto grid max-w-[90rem] gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-16">
+      <div className="mx-auto grid max-w-[90rem] gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_23rem] lg:gap-16 lg:px-8">
         <article className="min-w-0 space-y-20">
           <section id="overview" className="scroll-mt-40">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <p className="eyebrow text-pine">Overview</p>
-              <UnitToggle />
-            </div>
+            <p className="eyebrow text-pine">Overview</p>
             {trip.highlights.length ? (
               <Reveal className="mt-6 rounded-[1.4rem] bg-marigold-soft p-6">
                 <h2 className="font-display text-3xl font-black uppercase">Highlights</h2>
@@ -333,7 +318,7 @@ export default async function TripPage({ params }: Props) {
                 All trips <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {related.map((t) => (
                 <TripCard key={t.slug} trip={t} regionName={region?.name} />
               ))}

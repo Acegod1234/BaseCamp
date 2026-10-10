@@ -5,8 +5,8 @@ import { ReadingProgress, Reveal } from "@/components/motion";
 import { PageHero, type Crumb } from "@/components/page-hero";
 import { PostCard } from "@/components/post-card";
 import { TripCard } from "@/components/trip-card";
-import { UnitToggle } from "@/components/unit-toggle";
 import { abs } from "@/lib/seo";
+import { site } from "@/lib/site";
 import type { PostCard as PCard, TocItem, TripCard as TCard } from "@/lib/types";
 
 /**
@@ -48,13 +48,13 @@ export function ArticleLayout({
       <ReadingProgress />
       <PageHero title={title} eyebrow={eyebrow} intro={intro} photo={photo} crumbs={crumbs}>
         {meta ? (
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted">
             {meta.author ? (
-              <span className="inline-flex items-center gap-2"><PenLine className="text-marigold size-4" aria-hidden /> {meta.author}</span>
+              <span className="inline-flex items-center gap-2"><PenLine className="text-pine size-4" aria-hidden /> {meta.author}</span>
             ) : null}
             {meta.date ? <span>{meta.date}</span> : null}
             {meta.minutes ? (
-              <span className="inline-flex items-center gap-2"><Clock className="text-marigold size-4" aria-hidden /> {meta.minutes} min read</span>
+              <span className="inline-flex items-center gap-2"><Clock className="text-pine size-4" aria-hidden /> {meta.minutes} min read</span>
             ) : null}
           </div>
         ) : null}
@@ -79,9 +79,6 @@ export function ArticleLayout({
         </aside>
 
         <article className="min-w-0">
-          <div className="mb-6 flex justify-end">
-            <UnitToggle />
-          </div>
           <Reveal>
             <div className="prose-trail mx-auto" dangerouslySetInnerHTML={{ __html: html }} />
           </Reveal>
@@ -95,12 +92,12 @@ export function ArticleLayout({
 
         <aside className="min-w-0">
           <div className="sticky top-32 space-y-5">
-            <div className="bg-pine-deep aura relative overflow-hidden rounded-[1.6rem] p-6 text-white">
-              <p className="eyebrow text-marigold">Ready to go?</p>
-              <p className="font-display mt-2 text-3xl font-black uppercase leading-[0.95]">Let&apos;s plan it with you.</p>
-              <p className="mt-2 text-sm text-white/75">Tell us your dates and fitness. A local guide will draft the route.</p>
+            <div className="bg-pine relative overflow-hidden rounded-xl p-6 text-white">
+              <p className="eyebrow text-glacier">Base Camp Adventure</p>
+              <p className="font-display mt-2 text-2xl leading-tight">Customize Your Trip</p>
+              <p className="mt-2 text-sm text-white/80">{site.customize}</p>
               <Link href="/customize-trip/" className="bg-marigold text-pine-night mt-5 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
-                Plan my trip <ArrowRight className="size-4" aria-hidden />
+                Customize Trip <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
             {trips.slice(0, 2).map((t) => (
@@ -113,8 +110,8 @@ export function ArticleLayout({
       {related.length ? (
         <section className="bg-snow-2 py-20">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
-            <h2 className="font-display text-5xl font-black uppercase">
-              Keep <span className="accent-word text-marigold">reading.</span>
+            <h2 className="font-display text-4xl">
+              Keep <span className="accent-word">reading.</span>
             </h2>
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {related.map((p) => (

@@ -52,33 +52,27 @@ export function CollectionPage({
         crumbs={crumbs}
         size="lg"
       >
-        <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-white/15 pt-8">
-          <div>
-            <dt className="eyebrow text-white/60">Trips</dt>
-            <dd><CountUp to={trips.length} className="font-display text-5xl font-black" /></dd>
+        <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-4">
+          <div className="bg-card p-4">
+            <dt className="text-[0.62rem] font-bold tracking-[0.14em] text-muted uppercase">Trips</dt>
+            <dd><CountUp to={trips.length} className="font-display mt-1 block text-2xl text-ink sm:text-3xl" /></dd>
           </div>
-          {prices.length ? (
-            <div>
-              <dt className="eyebrow text-white/60">From</dt>
-              <dd className="font-display text-marigold text-5xl font-black">${Math.min(...prices).toLocaleString("en-US")}</dd>
-            </div>
-          ) : null}
-          {days.length ? (
-            <div>
-              <dt className="eyebrow text-white/60">Duration</dt>
-              <dd className="font-display text-5xl font-black">{Math.min(...days)}–{Math.max(...days)}<span className="text-2xl"> days</span></dd>
-            </div>
-          ) : null}
-          {top ? (
-            <div>
-              <dt className="eyebrow text-white/60">Highest point</dt>
-              <dd className="font-display text-5xl font-black">{top.toLocaleString("en-US")}<span className="text-2xl"> m</span></dd>
-            </div>
-          ) : null}
+          <div className="bg-card p-4">
+            <dt className="text-[0.62rem] font-bold tracking-[0.14em] text-muted uppercase">From</dt>
+            <dd className="font-display mt-1 text-2xl text-pine sm:text-3xl">{prices.length ? `US$${Math.min(...prices).toLocaleString("en-US")}` : "Ask us"}</dd>
+          </div>
+          <div className="bg-card p-4">
+            <dt className="text-[0.62rem] font-bold tracking-[0.14em] text-muted uppercase">Duration</dt>
+            <dd className="font-display mt-1 text-2xl text-ink sm:text-3xl">{days.length ? `${Math.min(...days)}–${Math.max(...days)} days` : "–"}</dd>
+          </div>
+          <div className="bg-card p-4">
+            <dt className="text-[0.62rem] font-bold tracking-[0.14em] text-muted uppercase">Highest point</dt>
+            <dd className="font-display mt-1 text-2xl text-ink sm:text-3xl">{top ? `${top.toLocaleString("en-US")} m` : "–"}</dd>
+          </div>
         </dl>
       </PageHero>
 
-      <section className="mx-auto max-w-[90rem] px-4 pb-24 sm:px-6">
+      <section className="mx-auto max-w-[90rem] px-4 pb-24 sm:px-6 lg:px-8">
         <Suspense fallback={<TripGrid trips={trips} regionNames={regionNames} />}>
           <TripExplorer
             trips={trips}

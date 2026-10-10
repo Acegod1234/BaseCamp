@@ -1,146 +1,167 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUp, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUp, Mail, MapPin, Phone } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
 import { Logo } from "@/components/brand/logo";
-import { FacebookIcon, InstagramIcon, PaymentMarks, WhatsappIcon, XIcon } from "@/components/icons";
-import { getLiveTerms } from "@/lib/content";
+import { FacebookIcon, InstagramIcon, WhatsappIcon, XIcon } from "@/components/icons";
 import { site, whatsappHref } from "@/lib/site";
 
+const PAYMENTS = [
+  { src: "/brand/payments/mastercard.png", w: 53, alt: "Mastercard" },
+  { src: "/brand/payments/visa.png", w: 64, alt: "Visa" },
+  { src: "/brand/payments/american-express.png", w: 42, alt: "American Express" },
+  { src: "/brand/payments/union-pay.png", w: 67, alt: "UnionPay" },
+  { src: "/brand/payments/jcb.png", w: 54, alt: "JCB" },
+];
+
+/** The prototype's closing call and footer. */
 export function SiteFooter() {
-  const { destinations, activities } = getLiveTerms();
   const year = new Date().getFullYear();
-
   return (
-    <footer className="bg-pine-night relative overflow-hidden text-white">
-      <div className="aura pointer-events-none absolute inset-0" aria-hidden />
-      <div className="prayer-flags h-1.5 w-full opacity-90" aria-hidden />
-
-      {/* The last ask on every page. */}
-      <div className="relative mx-auto max-w-[90rem] px-4 pt-20 pb-14 sm:px-6 lg:pt-28">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+    <footer>
+      {/* Let's make a plan. */}
+      <section className="border-t border-line bg-snow">
+        <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-20">
           <div>
-            <p className="eyebrow text-marigold">Available 24/7 - Call Us Anytime</p>
-            <h2 className="font-display mt-4 text-[clamp(3rem,9vw,8.5rem)] font-black uppercase leading-[0.85]">
-              Customize <br />
-              <span className="accent-word text-marigold">Your Trip</span>
+            <p className="eyebrow text-pine">Your time. Your interests. Your trip.</p>
+            <h2 className="font-display mt-3 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] text-ink">
+              Let&apos;s make
+              <br />
+              <span className="accent-word">a plan.</span>
             </h2>
           </div>
-          <div className="flex flex-col gap-4 lg:items-end">
-            <p className="max-w-md text-lg text-white/75 lg:text-right">
-              {site.customize}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/customize-trip/" className="bg-marigold text-pine-night inline-flex items-center gap-2 rounded-full px-7 py-4 font-bold transition-transform hover:-translate-y-0.5">
-                Customize Trip <ArrowRight className="size-4" aria-hidden />
+          <div className="max-w-sm">
+            <p className="text-ink-soft">Choose an itinerary or talk to our local team about a journey built around you.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/contact-us/" className="rounded-lg bg-[#00afc4] px-6 py-3.5 text-sm font-bold text-[#0f2a30] transition-colors hover:bg-pine hover:text-white">
+                Plan your trip
               </Link>
-              <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-4 font-semibold hover:bg-white/10">
+              <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-line px-5 py-3.5 text-sm font-semibold">
                 <WhatsappIcon className="size-4 text-[#25D366]" /> WhatsApp
               </a>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="relative mx-auto max-w-[90rem] border-t border-white/10 px-4 py-14 sm:px-6">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
-          <div>
-            <span className="inline-block rounded-2xl bg-white p-3"><Logo tone="light" /></span>
-            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/65">
-              {site.description}
-            </p>
-            <address className="mt-6 space-y-3 text-sm not-italic text-white/80">
-              <p className="flex gap-3">
-                <MapPin className="text-marigold mt-0.5 size-4 shrink-0" aria-hidden />
-                <span>{site.address.street}, {site.address.city}, Nepal<br />{site.address.poBox}</span>
-              </p>
-              <p className="flex gap-3">
-                <Phone className="text-marigold mt-0.5 size-4 shrink-0" aria-hidden />
-                <span>
-                  <a className="link-draw" href={`tel:${site.phone.replace(/[^+\d]/g, "")}`}>{site.phone}</a> (office)<br />
-                  <a className="link-draw" href={`tel:${site.mobileHref}`}>{site.mobile}</a> (24/7)
-                </span>
-              </p>
-              <p className="flex gap-3">
-                <Mail className="text-marigold mt-0.5 size-4 shrink-0" aria-hidden />
-                <a className="link-draw" href={`mailto:${site.email}`}>{site.email}</a>
-              </p>
-            </address>
-            <div className="mt-6 flex gap-2">
-              {[
-                { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
-                { href: site.social.instagram, label: "Instagram", Icon: InstagramIcon },
-                { href: site.social.x, label: "X", Icon: XIcon },
-              ].map(({ href, label, Icon }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="hover:bg-marigold hover:text-pine-night grid size-10 place-items-center rounded-full bg-white/10 transition-colors">
-                  <Icon className="size-4" />
-                </a>
-              ))}
+      <div className="relative overflow-hidden bg-[#1c2224] text-white/75">
+        <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.05]" />
+        <div aria-hidden className="absolute -top-40 right-[-10%] size-[36rem] rounded-full bg-[#00afc4]/15 blur-[120px]" />
+        <div className="relative mx-auto max-w-[90rem] px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-20">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+            <div>
+              <Logo className="hidden w-[132px] dark:block" />
+              <span className="inline-block rounded-md bg-white p-2.5 dark:hidden">
+                <Logo tone="light" className="w-[116px]" />
+              </span>
+              <p className="mt-5 max-w-xs text-sm leading-relaxed">{site.description}</p>
+              <ul className="mt-6 flex items-center gap-2">
+                {[
+                  { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
+                  { href: site.social.instagram, label: "Instagram", Icon: InstagramIcon },
+                  { href: site.social.x, label: "X", Icon: XIcon },
+                ].map(({ href, label, Icon }) => (
+                  <li key={label}>
+                    <a href={href} target="_blank" rel="me noopener noreferrer" aria-label={`Base Camp Adventure on ${label}`} className="grid size-10 place-items-center rounded-full border border-white/20 transition-colors hover:border-[#3ccbdc] hover:text-[#3ccbdc]">
+                      <Icon className="size-4" />
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Base Camp Adventure" className="grid size-10 place-items-center rounded-full border border-white/20 transition-colors hover:border-[#25D366] hover:text-[#25D366]">
+                    <WhatsappIcon className="size-4" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="eyebrow text-[#3ccbdc]">Explore</p>
+              <ul className="mt-5 space-y-2.5 text-sm">
+                {[
+                  { href: "/trip/", label: "Find a trip" },
+                  { href: "/destination/", label: "Destinations" },
+                  { href: "/activities/", label: "Activities" },
+                  { href: "/gallery/", label: "Gallery" },
+                  { href: "/blogs/", label: "Read Our Blogs" },
+                  { href: "/customize-trip/", label: "Customize Trip" },
+                ].map((l) => (
+                  <li key={l.href}><Link href={l.href} className="link-draw hover:text-white">{l.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="eyebrow text-[#3ccbdc]">About Us</p>
+              <ul className="mt-5 space-y-2.5 text-sm">
+                {[
+                  { href: "/about-us/", label: "Our story" },
+                  { href: "/our-team/", label: "Our Team" },
+                  { href: "/why-book-with-us/", label: "Why Travel With Us?" },
+                  { href: "/legal-documents/", label: "Legal Documents" },
+                  { href: "/terms-and-conditions/", label: "Terms and Conditions" },
+                  { href: "/online-payment/", label: "Online Payment" },
+                ].map((l) => (
+                  <li key={l.href}><Link href={l.href} className="link-draw hover:text-white">{l.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className="eyebrow text-[#3ccbdc]">Get in touch</p>
+              <ul className="mt-5 space-y-3 text-sm">
+                <li>
+                  <a href={`tel:${site.mobileHref}`} className="flex items-start gap-2.5 hover:text-white">
+                    <Phone className="mt-0.5 size-4 shrink-0" aria-hidden /> +977 9851029616 [Available 24/7]
+                  </a>
+                </li>
+                <li>
+                  <a href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} className="flex items-start gap-2.5 hover:text-white">
+                    <Phone className="mt-0.5 size-4 shrink-0 opacity-60" aria-hidden /> {site.phone}
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${site.email}`} className="flex items-start gap-2.5 hover:text-white">
+                    <Mail className="mt-0.5 size-4 shrink-0" aria-hidden /> {site.email}
+                  </a>
+                </li>
+                <li className="flex items-start gap-2.5 text-white/60">
+                  <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden /> {site.address.street}, {site.address.city}, Nepal · {site.address.poBox}
+                </li>
+              </ul>
+              <p className="eyebrow mt-7 text-[#3ccbdc]">We Accept</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {PAYMENTS.map((p) => (
+                  <span key={p.alt} className="grid h-9 place-items-center rounded-md bg-white px-2">
+                    <Image src={p.src} alt={p.alt} width={p.w} height={42} className="h-6 w-auto" />
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
-          <FooterCol title="Destinations" links={destinations.map((d) => ({ href: `/destinations/${d.slug}/`, label: d.name }))} />
-          <FooterCol title="Activities" links={activities.map((a) => ({ href: `/activities/${a.slug}/`, label: a.name }))} />
-          <FooterCol
-            title="Company"
-            links={[
-              { href: "/about-us/", label: "About Us" },
-              { href: "/our-team/", label: "Our Team" },
-              { href: "/why-book-with-us/", label: "Why Travel With Us?" },
-              { href: "/testimonials/", label: "Testimonials" },
-              { href: "/blogs/", label: "Read Our Blogs" },
-              { href: "/gallery/", label: "Gallery" },
-              { href: "/online-payment/", label: "Online Payment" },
-              { href: "/nepal-travel-information/", label: "Nepal travel info" },
-              { href: "/nepal-visa-information/", label: "Visa information" },
-              { href: "/contact-us/", label: "Contact Us" },
-            ]}
-          />
+          <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 lg:flex-row lg:items-center lg:justify-between">
+            <Accreditations variant="compact" />
+            <p className="text-xs leading-relaxed text-white/50 lg:text-right">
+              Government Reg. No: 68517/066/067 · VAT No: 303970392
+              <br />
+              NMA Membership No: 776 · TAAN Member: 2010-868
+            </p>
+          </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 lg:flex-row lg:items-center lg:justify-between">
-          <Accreditations variant="compact" />
-          <PaymentMarks className="flex flex-wrap gap-2" />
-        </div>
-
-        <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[0.7rem] tracking-wider text-white/50 uppercase">
-          <span>Registered in Nepal</span>
-          {site.registration.map((r) => (
-            <span key={r.label}>
-              {r.label} {r.value}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-6 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {site.legalName}. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link className="link-draw hover:text-white" href="/privacy-policy/">Privacy</Link>
-            <Link className="link-draw hover:text-white" href="/terms-and-conditions/">Booking terms</Link>
-            <Link className="link-draw hover:text-white" href="/legal-documents/">Legal documents</Link>
-            <Link className="link-draw hover:text-white" href="/gallery/">Gallery</Link>
-            <a href="#top" className="inline-flex items-center gap-1.5 hover:text-white">
-              Back to top <ArrowUp className="size-3.5" aria-hidden />
-            </a>
+        <div className="relative border-t border-white/10">
+          <div className="mx-auto flex max-w-[90rem] flex-col gap-3 px-4 py-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+            <p>© {year} {site.legalName}. All rights reserved.</p>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              <Link href="/privacy-policy/" className="hover:text-white">Privacy Policy</Link>
+              <Link href="/terms-and-conditions/" className="hover:text-white">Terms</Link>
+              <Link href="/contact-us/" className="hover:text-white">Contact Us</Link>
+              <a href="#top" className="inline-flex items-center gap-1 hover:text-white">Back to top <ArrowUp className="size-3" aria-hidden /></a>
+            </div>
           </div>
         </div>
       </div>
     </footer>
-  );
-}
-
-function FooterCol({ title, links }: { title: string; links: { href: string; label: string }[] }) {
-  return (
-    <div>
-      <p className="eyebrow text-marigold">{title}</p>
-      <ul className="mt-5 space-y-2.5 text-sm text-white/75">
-        {links.map((l) => (
-          <li key={l.href}>
-            <Link href={l.href} className="link-draw hover:text-white">
-              {l.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }

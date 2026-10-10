@@ -508,6 +508,18 @@ def altitude_in(text: str) -> int | None:
 TOWNS = {"kathmandu": 1400, "pokhara": 822, "lukla": 2860, "besisahar": 760, "syabrubesi": 1503, "jomsom": 2720, "chitwan": 150, "lhasa": 3656, "paro": 2200, "thimphu": 2334}
 
 
+def hours_in(text: str) -> float | None:
+    """Walking time written in a day title, e.g. '3-4 hours' -> 4."""
+    m = re.search(r"(\d+(?:\.\d+)?)(?:\s*[-–]\s*(\d+(?:\.\d+)?))?\s*(?:hrs?|hours?)", text or "", re.I)
+    return float(m.group(2) or m.group(1)) if m else None
+
+
+def km_in(text: str) -> float | None:
+    """Distance written in the day's text, e.g. '12 km'."""
+    m = re.search(r"(\d+(?:\.\d+)?)\s?(?:km|kilomet(?:er|re)s?)", text or "", re.I)
+    return float(m.group(1)) if m and 0 < float(m.group(1)) < 80 else None
+
+
 def town_altitude(title: str) -> int | None:
     """Days spent in a known town, so the altitude chart starts and ends on the ground."""
     t = title.lower()
@@ -564,6 +576,8 @@ for d, pkgs, html in zip(details, packages, pages_html):
             "altitude": int(alt) if alt and alt >= 300 else (altitude_in(title) or town_altitude(title)),
             "meals": day.get("meals_included") or [],
             "overnight": overnight.get("location") or None,
+            "hours": (num(day.get("period")) if (day.get("unit") or "hour").startswith("hour") else None) or hours_in(title),
+            "distanceKm": km_in(f"{title} {text_of(day.get('content') or '')}"),
         })
 
     sections = []

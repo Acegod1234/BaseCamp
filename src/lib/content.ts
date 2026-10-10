@@ -24,9 +24,20 @@ import type {
 
 const dir = path.join(process.cwd(), "src", "content");
 
+/**
+ * Altitudes in the imported text arrive wrapped as
+ * <span class="measurement" data-meters="5364">5,364 m</span>. They are shown
+ * as plain text with both units, e.g. "5,364 m (17,598 ft)".
+ */
+const MEASURE = /<span class="measurement" data-meters="(\d+)">[^<]*<\/span>/g;
+const withFeet = (s: string) =>
+  s.replace(MEASURE, (_m, m: string) => `${Number(m).toLocaleString("en-US")} m / ${Math.round(Number(m) * 3.28084).toLocaleString("en-US")} ft`);
+
 function load<T>(name: string, fallback: T): T {
   try {
-    return JSON.parse(readFileSync(path.join(dir, `${name}.json`), "utf8")) as T;
+    return JSON.parse(readFileSync(path.join(dir, `${name}.json`), "utf8"), (_k, v) =>
+      typeof v === "string" && v.includes('class="measurement"') ? withFeet(v) : v,
+    ) as T;
   } catch {
     return fallback;
   }
