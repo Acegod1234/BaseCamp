@@ -1,0 +1,19 @@
+taxonomies…
+trips…
+  120 published trips
+  built 120 trips
+posts…
+  built 161 posts
+pages…
+  built 48 pages
+team…
+  built 13 team members
+images… 1292 files from 1391 references
+  1389 available
+  wrote src/content/trips.json
+  wrote src/content/posts.json
+  wrote src/content/pages.json
+  wrote src/content/team.json
+  wrote src/content/taxonomies.json
+done.
+exit 0

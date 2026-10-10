@@ -1,0 +1,40 @@
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import { rateLimited, record, reference } from "@/lib/server/store";
+
+const schema = z.object({
+  kind: z.enum(["contact", "custom-trip"]).default("contact"),
+  name: z.string().trim().min(2, "Please tell us your name").max(120),
+  email: z.email("That email address doesn't look right").max(200),
+  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  country: z.string().trim().max(80).optional().or(z.literal("")),
+  trip: z.string().trim().max(200).optional().or(z.literal("")),
+  date: z.string().trim().max(40).optional().or(z.literal("")),
+  travellers: z.string().trim().max(40).optional().or(z.literal("")),
+  duration: z.string().trim().max(40).optional().or(z.literal("")),
+  budget: z.string().trim().max(40).optional().or(z.literal("")),
+  interests: z.array(z.string().max(60)).max(20).optional(),
+  fitness: z.string().trim().max(60).optional().or(z.literal("")),
+  message: z.string().trim().max(5000).optional().or(z.literal("")),
+  // Honeypot: real people never see this field.
+  website: z.string().max(0).optional().or(z.literal("")),
+});
+
+export async function POST(req: Request) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+  if (rateLimited(`enquiry:${ip}`)) {
+    return NextResponse.json({ ok: false, error: "Too many messages from this connection. Please try again in a few minutes, or WhatsApp us." }, { status: 429 });
+  }
+
+  const parsed = schema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) {
+    return NextResponse.json({ ok: false, error: parsed.error.issues[0]?.message ?? "Please check the form" }, { status: 400 });
+  }
+  if (parsed.data.website) return NextResponse.json({ ok: true, reference: "BCA-OK" });
+
+  const ref = reference("ENQ");
+  const { website: _honeypot, ...data } = parsed.data;
+  void _honeypot;
+  await record("enquiries", { reference: ref, ip, ...data });
+  return NextResponse.json({ ok: true, reference: ref });
+}

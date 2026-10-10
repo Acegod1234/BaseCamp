@@ -1,0 +1,66 @@
+import "server-only";
+
+/**
+ * WeTravel Partner API: payment links.
+ *
+ *   POST {base}/payment_links   header X-Api-Key
+ *   production https://api.wetravel.com/v2
+ *   sandbox    https://api.demo.wetravel.to/v2
+ *
+ * The key lives on the server only (WETRAVEL_API_KEY). The admin's
+ * Integrations screen will own it later. Without a key the site runs in
+ * "request" mode: the booking is recorded and the office sends the link.
+ */
+
+const BASE = process.env.WETRAVEL_ENV === "production" ? "https://api.wetravel.com/v2" : "https://api.demo.wetravel.to/v2";
+
+export const wetravelEnabled = () => Boolean(process.env.WETRAVEL_API_KEY);
+
+export async function createPaymentLink(input: {
+  reference: string;
+  title: string;
+  startDate: string;
+  days: number;
+  amount: number;
+  deposit?: number;
+}): Promise<{ url: string } | { error: string }> {
+  const key = process.env.WETRAVEL_API_KEY;
+  if (!key) return { error: "WeTravel is not configured" };
+
+  const start = new Date(`${input.startDate}T00:00:00Z`);
+  const end = new Date(start);
+  end.setUTCDate(end.getUTCDate() + Math.max(0, input.days - 1));
+
+  const body = {
+    data: {
+      trip: {
+        title: `${input.title} · ${input.reference}`,
+        trip_id: input.reference,
+        start_date: start.toISOString().slice(0, 10),
+        end_date: end.toISOString().slice(0, 10),
+        currency: "USD",
+        participant_fees: "none",
+      },
+      pricing: {
+        price: Math.round(input.amount * 100) / 100,
+        ...(input.deposit ? { payment_plan: { deposit: Math.round(input.deposit * 100) / 100, allow_partial_payment: true } } : {}),
+      },
+    },
+  };
+
+  try {
+    const res = await fetch(`${BASE}/payment_links?publish_immediately=true`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json", "X-Api-Key": key },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(15_000),
+    });
+    const json = (await res.json().catch(() => ({}))) as Record<string, unknown>;
+    if (!res.ok) return { error: `WeTravel ${res.status}` };
+    const data = (json.data ?? json) as Record<string, unknown>;
+    const url = (data.url ?? data.link ?? (data.trip as Record<string, unknown> | undefined)?.url) as string | undefined;
+    return url ? { url } : { error: "WeTravel returned no link" };
+  } catch {
+    return { error: "WeTravel could not be reached" };
+  }
+}

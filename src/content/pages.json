@@ -1,0 +1,1455 @@
+[
+ {
+  "id": 5803,
+  "slug": "thanking-you",
+  "parent": null,
+  "title": "Thanking You",
+  "html": "<p> <strong>Thank you for booking the trip. Please check your email for confirmation.</strong> </p>",
+  "toc": [],
+  "excerpt": "Thank you for booking the trip. Please check your email for confirmation.",
+  "modified": "2025-06-11T05:34:14",
+  "cover": null,
+  "seo": {
+   "title": "Thanking You - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 5799,
+  "slug": "search-result",
+  "parent": null,
+  "title": "Trip Search Result",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2025-06-11T05:30:55",
+  "cover": null,
+  "seo": {
+   "title": "Trip Search Result - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 5797,
+  "slug": "wishlist",
+  "parent": null,
+  "title": "Wishlist",
+  "html": "<p><strong> \n<h3 id=\"ohhh-your-wishlist-is-empty\">Ohhh... Your Wishlist is Empty</h3>\n<p>But it doesn't have to be.</p>\n<a class=\"wpte-button\" href=\"/trip\">Explore Trips</a> \n</strong> </p>",
+  "toc": [
+   {
+    "id": "ohhh-your-wishlist-is-empty",
+    "text": "Ohhh... Your Wishlist is Empty",
+    "level": 3
+   }
+  ],
+  "excerpt": "Ohhh... Your Wishlist is Empty But it doesn't have to be. Explore Trips",
+  "modified": "2025-06-11T05:37:19",
+  "cover": null,
+  "seo": {
+   "title": "Wishlist  - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 5795,
+  "slug": "user-dashboard",
+  "parent": null,
+  "title": "User Dashboard",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2025-06-11T05:36:07",
+  "cover": null,
+  "seo": {
+   "title": "User Dashboard - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 3187,
+  "slug": "online-payment",
+  "parent": null,
+  "title": "Online Payment",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-10-10T11:23:36",
+  "cover": null,
+  "seo": {
+   "title": "Online Payment - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2930,
+  "slug": "enquiry-received",
+  "parent": null,
+  "title": "Enquiry Received",
+  "html": "<p>Thank you for contacting us! We’ve received your message and will get back to you as soon as possible. We look forward to helping you plan your next adventure.</p>",
+  "toc": [],
+  "excerpt": "Thank you for contacting us! We’ve received your message and will get back to you as soon as possible. We look forward to helping you plan your next adventure.",
+  "modified": "2026-07-28T08:15:22",
+  "cover": null,
+  "seo": {
+   "title": "Enquiry Received - Base Camp Adventure",
+   "description": "Thank you for contacting us! We’ve received your message and will get back to you as soon as possible. We look forward to helping you plan your next adventure.",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2912,
+  "slug": "privacy-policy",
+  "parent": null,
+  "title": "Privacy Policy",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-10-10T07:06:22",
+  "cover": null,
+  "seo": {
+   "title": "Privacy Policy - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2795,
+  "slug": "why-book-with-us",
+  "parent": null,
+  "title": "Why Travel With Us?",
+  "html": "<p><strong>Outstanding Service</strong></p>\n<p>We take pride in the level of service we produce, which we produce through constant deliverance. We<br/>\ngain this through educating our service providers constantly on how they can better themselves. We<br/>\nreview our actions and seek the ones that would create the greatest impact for you. Moreover, these<br/>\nactions go through constant quality checks which help us perfect it. We take pretty much everything into<br/>\nconsideration; different kinds of service practices for different clients, a general admiration and respect<br/>\nfor people of all cultures and attention to detail. Moreover, we make sure that little details are not looked<br/>\nover such as time management, our general causal interactions with clients in the field and practice to<br/>\nmaintain a sense of professionalism always.</p>\n<p><strong>Competent &amp; professional local guide</strong></p>\n<p>Our guides are from the local areas that you will be venturing into. Hiring local guides restores<br/>\nauthenticity, brings you a personnel that knows the local lingo, promotes an ecosystem empowering rural<br/>\ncommunities by offering them jobs. Moreover, these guides are then selected on the basis of credentials,<br/>\ntheir years of experience, level of professionalism and competence. We also conduct training programs<br/>\nthrough our company to keep them updated with recent trekking practices. Moreover, in addition to<br/>\ntraining them for on-the-field skills, we also help them sharpen their soft skills to make them better<br/>\ncommunicators. Our trekkers hold a a great deal of responsibility from the navigation to protecting our<br/>\nclients through any unforeseeable circumstances then we make it a priority to make them well-rounded<br/>\nguides able to handle any activity and challenge with ease.</p>\n<p><strong>The real experience of Nepal</strong></p>\n<p>As mentioned earlier we put a great deal of effort into providing you with an in-depth knowledge of the<br/>\ncountry. Our guides, itineraries, and facilities are all geared towards providing you with the most<br/>\nauthentic experience possible. This starts from the beginning, we are not about adding frills to<br/>\ninformation that most travel companies do, instead, we give you honest real information on what you<br/>\nmight expect from. This honesty has garnered a lot of respect for us as well. When in the journey our<br/>\nbond with the local communities and our local guides give an unforgettable experience filled with local<br/>\nknowledge on the way of living, food and more. The best thing about it is along with the experience, your<br/>\ninteractions with local communities and settlement also add to the knowledge. Over the years we have<br/>\nmanaged to study the areas well enough to become a go-to company for the required knowledge you<br/>\nneed about it.</p>\n<p><strong>Customized Trips</strong></p>\n<p>Traveling in Nepal is quite diverse, there is something for everyone here. Hence, our company has taken<br/>\ngreat efforts to make sure that every kind of traveling that one wants to experience here can do so with<br/>\nthe help of our customized trip options. Before the start of our trip, our team will get in touch with to the<br/>\naccess the kind of traveling you are looking into, based on your expectations we gear up a line of<br/>\ncustomizable trip options you can enjoy. This feature has allowed for many of our clients to maximize<br/>\ntheir fun, to effective budget and make their experience as individualistic as possible.</p>\n<p><strong>Health and Safety</strong></p>\n<p>Traveling to the Himalayas means working through tricky trails and powering forward to the peaks. The<br/>\nclimate, interesting landscape and lack of infrastructure could all be reason enough to put special focus<br/>\non health and safety and this is exactly what we do. Firstly, we provide our trekkers with insurance, safe<br/>\ngears to make sure that they are well guarded through it all. We have a responsibility towards them and<br/>\nwe plan to deliver. Secondly, by providing accurate information, latest travel gear and staff that is trained<br/>\nto help keep you safe we make sure all of our clients well taken care of. Moreover, our on-field staff is<br/>\ntrained to spot any inconveniences or emergency situations easily that the Himalayas may bring. This<br/>\nmakes them fast reactors and always on-guard to protect you throughout your journey.</p>\n<p><strong>Small to average group</strong></p>\n<p>The flexibility in our itineraries also extends to groups of people we take with us. Our small group trips<br/>\nwho want privacy as they travel can do so with our one or two people group trips. In this type of trips,<br/>\nthe clients can intimately experience the Himalayas in solitude. This type of groups is especially common<br/>\nbetween families and couple who plan to experience the majestic views together. Moreover, for those<br/>\npeople on a budget and willing to experience the grandiose views with a vibrant group of people, we<br/>\nhave the average group tours that hold a 12 people. Traveling this way is common among bigger<br/>\nfamilies, friends, and even strangers. It is a great way to meet friends and collect friends along the way.</p>",
+  "toc": [],
+  "excerpt": "Outstanding Service We take pride in the level of service we produce, which we produce through constant deliverance. We gain this through educating our service providers constantly on how they can…",
+  "modified": "2026-07-26T10:32:24",
+  "cover": null,
+  "seo": {
+   "title": "Why Travel With Us? - Base Camp Adventure",
+   "description": "Outstanding Service We take pride in the level of service we produce, which we produce through constant deliverance. We gain this through educating our service providers constantly on how they can better themselves. We review our actions and seek the ones that would create the …",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2679,
+  "slug": "testimonials",
+  "parent": null,
+  "title": "Testimonials",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2020-07-29T06:15:27",
+  "cover": null,
+  "seo": {
+   "title": "Testimonials - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2678,
+  "slug": "our-team",
+  "parent": null,
+  "title": "Our Team",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2024-11-18T07:27:10",
+  "cover": null,
+  "seo": {
+   "title": "Our Team - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2675,
+  "slug": "cancel",
+  "parent": null,
+  "title": "Cancel",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-08-24T07:07:40",
+  "cover": null,
+  "seo": {
+   "title": "Cancel - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2674,
+  "slug": "success",
+  "parent": null,
+  "title": "Success",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-08-24T07:07:40",
+  "cover": null,
+  "seo": {
+   "title": "Success - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2673,
+  "slug": "booking",
+  "parent": null,
+  "title": "Booking",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-08-24T07:07:40",
+  "cover": null,
+  "seo": {
+   "title": "Booking - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2642,
+  "slug": "review-listing-page",
+  "parent": null,
+  "title": "Review Listing Page",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-08-10T11:25:33",
+  "cover": null,
+  "seo": {
+   "title": "Review Listing Page - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2623,
+  "slug": "customize-trip",
+  "parent": null,
+  "title": "Customize Trip",
+  "html": "<p>We understand that your preferences and interests may be different. Tell us about your requirements and what you expect from the trip, and we will help you design a trip package with comfortable itinerary to best meet your needs. Please submit your details. We will contact you within 24 hours with necessary travel information.</p>",
+  "toc": [],
+  "excerpt": "We understand that your preferences and interests may be different. Tell us about your requirements and what you expect from the trip, and we will help you design a trip package with comfortable…",
+  "modified": "2019-06-30T08:17:29",
+  "cover": null,
+  "seo": {
+   "title": "Customize Trip - Base Camp Adventure",
+   "description": "We understand that your preferences and interests may be different. Tell us about your requirements and what you expect from the trip, and we will help you design a trip package with comfortable itinerary to best meet your needs. Please submit your details. We will …",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2351,
+  "slug": "contact-us",
+  "parent": null,
+  "title": "Contact Us",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-08-10T11:41:38",
+  "cover": null,
+  "seo": {
+   "title": "Contact Us - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2343,
+  "slug": "legal-documents",
+  "parent": null,
+  "title": "Legal Documents",
+  "html": "<figure><img src=\"/media/2026/07/company-registar-cirtificate.webp\" alt=\"Company Registration\" width=\"1700\" height=\"2338\" loading=\"lazy\" decoding=\"async\"/><figcaption>Company Registration</figcaption></figure>\n<figure><img src=\"/media/2026/07/tourism-licence.webp\" alt=\"Tourism Licence\" width=\"1920\" height=\"2716\" loading=\"lazy\" decoding=\"async\"/><figcaption>Tourism Licence</figcaption></figure>\n<figure><img src=\"/media/2026/07/pan-certificate.webp\" alt=\"Pan Certificate\" width=\"1700\" height=\"2338\" loading=\"lazy\" decoding=\"async\"/><figcaption>Pan Certificate</figcaption></figure>\n<figure><img src=\"/media/2026/07/gharelu.webp\" alt=\"Gharelu\" width=\"1920\" height=\"2716\" loading=\"lazy\" decoding=\"async\"/><figcaption>Gharelu Certificate</figcaption></figure>\n<figure><img src=\"/media/2026/07/taan.webp\" alt=\"TAAN\" width=\"1920\" height=\"2716\" loading=\"lazy\" decoding=\"async\"/><figcaption>Associated with TAAN</figcaption></figure>",
+  "toc": [],
+  "excerpt": "Company Registration Tourism Licence Pan Certificate Gharelu Certificate Associated with TAAN",
+  "modified": "2026-07-31T06:40:22",
+  "cover": null,
+  "seo": {
+   "title": "Legal Documents - Base Camp Adventure",
+   "description": null,
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2026/07/Company-Registar-Cirtificate.jpeg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 2331,
+  "slug": "about-us",
+  "parent": null,
+  "title": "About Us",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2019-06-30T08:21:40",
+  "cover": null,
+  "seo": {
+   "title": "About Us - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2318,
+  "slug": "who-we-are",
+  "parent": null,
+  "title": "Who We Are?",
+  "html": "<p><strong>About Base Camp Adventure Pvt. Ltd.</strong></p>\n<p>Base Camp Adventure Pvt. Ltd. is a leading travel and trekking company in Nepal, established in 2009 with a strong commitment to providing memorable, authentic, and adventurous travel experiences in Nepal, Tibet, and Bhutan.</p>\n<p>The company is duly registered and licensed with the relevant authorities of the <strong>Government of Nepal</strong>, including the <strong>Office of the Company Registrar</strong>, <strong>Ministry of Industry, Commerce and Supplies</strong> (Registration No. <strong>68517/066/067</strong>), the <strong>Ministry of Culture, Tourism and Civil Aviation, Tourism Office Kathmandu</strong> (Registration No.<strong> 1099</strong>), and the <strong>Ministry of Finance, Inland Revenue Department</strong> (PAN/VAT No.<strong> 303970392</strong>).</p>\n<p>Base Camp Adventure Pvt. Ltd. is also an active member of the <strong>Trekking Agencies’ Association of Nepal (TAAN)</strong> (Membership No. <strong>2010-868</strong>) and the <strong>Nepal Mountaineering Association (NMA)</strong> (Membership No.<strong> 667</strong>).</p>\n<p>Founded by a competent and professional local trekking guide, our company is built on first-hand Himalayan knowledge, practical experience, professional expertise, and a genuine passion for adventure travel. We are dedicated to delivering safe, reliable, and personalized journeys while sharing the natural beauty, rich culture, and extraordinary landscapes of the Himalayas with travelers from around the world.</p>\n<p>We are dedicated to providing exciting and meaningful travel experiences that take you to the places you have always dreamed of seeing with your own eyes. Our experienced team combines local expertise, professional service, and personal attention to ensure that every journey is safe, enjoyable, and unforgettable.</p>\n<p>We specialize in a wide range of adventure and travel experiences, including trekking, scenic and cultural tours, historical tours, jungle safaris, overland adventures, private and group day tours, family holidays, helicopter tours, expeditions, and group-joining treks and tours. We also offer fully customized trips, tailoring each journey to suit your interests, schedule, preferences, and expectations.</p>\n<p>Our main goal is to make your journey comfortable, enjoyable, and rewarding while taking you to some of the most spectacular and thrilling destinations in Nepal. Whether you are traveling alone, as a couple, with family and friends, or as part of a group, we offer carefully designed holiday packages to suit different interests and travel styles.</p>\n<p>Based in Thamel, Kathmandu, with operations in Nepal, Tibet, and Bhutan, we offer in-depth local knowledge and first-hand expertise of the destinations we cover. We are committed to designing flexible and well-planned itineraries that suit our clients’ interests, schedules, and preferences. Many of our featured trips can be fully customized to meet your specific requirements. Our small-group adventures are led by experienced local mountain guides, with groups generally limited to 6–10 participants, ensuring personalized service, flexibility, and individual attention throughout your journey</p>\n<p><strong>Safety First<br/>\n</strong>Your safety is our highest priority on every trek and adventure. Our trips are carefully planned, but mountain travel can sometimes be affected by changing weather, natural disasters, trail conditions, or the health and fitness of participants. For this reason, our team leaders and guides have the authority to adjust the itinerary when necessary to ensure the safety and well-being of the group.</p>\n<p>We take great pride in providing a high level of customer service, including personal care, attention to detail, flexibility, and customized support. From the moment you begin planning your trip until you return home, our team is committed to making your experience smooth, enjoyable, and memorable.</p>\n<p><strong>Our Commitment<br/>\n</strong>Our utmost priority is to make every necessary preparation and provide reliable services to ensure the highest level of customer satisfaction. We believe that a successful journey is not only about reaching a destination but also about enjoying the people, culture, landscapes, and experiences along the way.</p>\n<p>Whether you are looking for an adventurous Himalayan trek, a cultural journey, a family holiday, a private tour, or a customized expedition, Base Camp Adventure Pvt. Ltd. is here to turn your travel dreams into unforgettable experiences.</p>\n<p>We are ready to serve you, share our experience, and help you discover the Himalayas in the most authentic and memorable way.</p>\n<p>Feel the Himalayas with Base Camp Adventure.</p>",
+  "toc": [],
+  "excerpt": "About Base Camp Adventure Pvt. Ltd. Base Camp Adventure Pvt. Ltd. is a leading travel and trekking company in Nepal, established in 2009 with a strong commitment to providing memorable, authentic…",
+  "modified": "2026-08-25T06:17:20",
+  "cover": null,
+  "seo": {
+   "title": "Who We Are? - Base Camp Adventure",
+   "description": "About Base Camp Adventure Pvt. Ltd. Base Camp Adventure Pvt. Ltd. is a leading travel and trekking company in Nepal, established in 2009 with a strong commitment to providing memorable, authentic, and adventurous travel experiences in Nepal, Tibet, and Bhutan. The company is duly registered …",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2284,
+  "slug": "blogs",
+  "parent": null,
+  "title": "Nepal Travel Guide by Base Camp Adventure",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2021-06-04T02:59:16",
+  "cover": null,
+  "seo": {
+   "title": "Nepal Travel Guide by Base Camp Adventure - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 2281,
+  "slug": "home",
+  "parent": null,
+  "title": "Base Camp Adventure",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2023-07-12T08:19:38",
+  "cover": null,
+  "seo": {
+   "title": "Base Camp Adventure - Tours and Trekking Company in Nepal",
+   "description": "Base Camp Adventure is a leading trekking and tour company in Nepal. We provide quality trek and tour services with highly professional & experienced team.",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 223,
+  "slug": "transportation-in-nepal",
+  "parent": null,
+  "title": "Transportation in Nepal",
+  "html": "<h2 id=\"getting-around-by-air\">Getting Around by Air</h2>\n<p>A network of domestic flights radiates from Kathmandu, and links major towns, from Luklu and Pokhara to Simikot, Jomsom, Janakpur and Bharatpur,Bhadrapur and other areas. Many of these flights offer spectacular views across the mountains. But because of the ever-changing weather conditions, there are often last-minute delays and cancellations. Always give yourself plenty of time to catch connecting flights.</p>\n<p>Royal Nepal Airlines (NA) operates an extensive range of scheduled internal flights including to the trailheads for the main trekking routes. Other domestic airlines, including Yeti Airlines (OY), Buddha Air (BHA), Guna Airlines and Agni Air (AG) provide regular and charter services to popular destinations. <a href=\"https://nepalhelicoptercharter.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Helicopter Charter in Nepal</a> is becoming more common these days for various purposes.<br/>\nNote: Air fares must be paid in foreign currency by foreign nationals. Only Nepalese and Indian nationals are allowed to pay in Nepalese Rupees.</p>\n<h2 id=\"getting-around-by-train\">Getting Around by Train</h2>\n<p>Nepal Railways Corporation Ltd operates a freight and passenger service in the eastern Terai. However, tourists aren’t allowed to cross the border on the passenger train.</p>\n<h2 id=\"getting-around-by-road\">Getting Around by Road</h2>\n<p>Traffic drives on the left. The interior parts of the country are linked with a number of motorable roads. The road system is of unpredictable quality. Many of the mountain and hill roads are impassable during the monsoon season (June to September).<br/>\nBus: There are regular bus services to Kathmandu from all the border points. Tickets may be booked in advance from hotels or travel agents in Thamel. Buses for the different parts of the country are available at the Gongabu bus terminal, which is located near Balaju. Services are operated by the Transport Corporation of Nepal and by private operators. Deluxe tourist buses are available from Kathmandu to Pokhara and Chitwan. Most of them depart at 07:00 am from near by Thamel. Six-seater sumo tato vans, 12-seater vans and air-conditioned minibuses are also available for long distance travel. Visitors should, however, be aware that multiple-fatality accidents on buses are common.<br/>\n<strong>Bicycles and motorcycles: </strong>These can be hired cheaply from Thamel, Rani Pokhari and Jhochhen Freak Street. Motorcyclists require a driving licence. Cyclists should make sure they have a working bell and a scarf to cover their mouth and nose from powerful exhaust fumes.<br/>\n<strong>Car hire:</strong> There are no self-drive hire cars in Nepal. Instead, hire a car and driver or negotiate a daily rate with a taxi driver.<br/>\n<strong>Regulations:</strong> The minimum driving age is 18.</p>\n<p>Documentation: An International Driving Permit is valid in Nepal for 15 days, after which a local licence is required. A temporary licence is available from local authorities on presentation of a valid national driving licence.</p>\n<h2 id=\"travelling-in-and-around-towns-and-cities\">Travelling in and around Towns and Cities</h2>\n<p>There are bus services in the populous areas around Kathmandu, which include the neighbouring cities of Patan and Bhaktapur. A trolleybus route provides frequent journeys over the 11km (7-mile) Kathmandu- Bhaktapur road. Private minibuses feed the trolleybus route from nearby villages. On buses and trolleybuses belonging to the Transport Corporation of Nepal <strong>(tel: (</strong>2) 12972), a four-stage fare system applies, with colour-coded tickets issued by conductors. ‘Microbuses’ also operate.<br/>\n<strong>Taxi:</strong> Metered taxis are plentiful in Kathmandu; at night, the meter reading plus 50% is standard. Private taxis are more expensive and fares should be agreed before departure.<br/>\n<strong>Tempos: </strong>These are metered three-wheel scooters, which work out slightly cheaper than taxis.<br/>\n<strong>Rickshaws:</strong> These operate throughout Kathmandu. Fares should be negotiated in advance.</p>",
+  "toc": [
+   {
+    "id": "getting-around-by-air",
+    "text": "Getting Around by Air",
+    "level": 2
+   },
+   {
+    "id": "getting-around-by-train",
+    "text": "Getting Around by Train",
+    "level": 2
+   },
+   {
+    "id": "getting-around-by-road",
+    "text": "Getting Around by Road",
+    "level": 2
+   },
+   {
+    "id": "travelling-in-and-around-towns-and-cities",
+    "text": "Travelling in and around Towns and Cities",
+    "level": 2
+   }
+  ],
+  "excerpt": "Getting Around by Air A network of domestic flights radiates from Kathmandu, and links major towns, from Luklu and Pokhara to Simikot, Jomsom, Janakpur and Bharatpur,Bhadrapur and other areas. Many…",
+  "modified": "2021-05-25T06:36:56",
+  "cover": {
+   "src": "/media/2018/07/transportation-in-nepal.webp",
+   "w": 920,
+   "h": 690,
+   "alt": "Transportation in Nepal"
+  },
+  "seo": {
+   "title": "Transportation in Nepal - Travelling from Air and Land",
+   "description": "When you are traveling around Nepal, you can take two route, either air or land. Looking at present situation, air wouldn't be a preferred option.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Transportation-in-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 219,
+  "slug": "terms-and-conditions",
+  "parent": null,
+  "title": "Terms & Conditions",
+  "html": "<h3 id=\"1-the-contract\">1. THE CONTRACT:</h3>\n<p>The following Terms &amp; Conditions govern the relationship between you (the “client”) and BASE CAMP ADVENTURE  PVT. LTD. (hereinafter referred as “the Company”) (Register Company Number 68517/066/067). Please go thoroughly through the contract, and note that by booking a trip, you are consenting to be bound by the Terms &amp; Conditions as well as Cancellation Policy and certain conditions of liability. To resolve any legal or other conflicts, both the Company and you agree to these Terms &amp; Conditions.</p>\n<h3 id=\"2-booking-a-trip\">2. BOOKING A TRIP:</h3>\n<p>A ’Trip’ implies to any itinerary or activity you book with us. It includes the tours, trekking, expeditions, or any other adventurous programs.</p>\n<p>When the Company sends a confirmation invoice or mail, a booking becomes valid from that very day. From this point, the contract between the Company and the client comes into existence.</p>\n<p>Before the confirmation and validation of the contract, the Company reserves the right to raise or reduce the trip prices.</p>\n<p>Please note that the Company would not be responsible for any warranty, collateral agreement, prior agreement, description of services, or conditions other than as stated in the contract.</p>\n<h3 id=\"3-deposit-requirement\">3. DEPOSIT REQUIREMENT:</h3>\n<p><strong>(a) Nepal Trips:</strong></p>\n<p>At the time of booking a trip, you have to pay a non-refundable deposit of 30% of the trip cost to the Company or its representative. The remaining amount can be paid after your arrival in Kathmandu and before the beginning of the trip.</p>\n<p>Some packages offered by the Company may require a higher deposit or full payment at the time of booking.  You will be notified by the Company in case the deposit requirement is different from the described clause.</p>\n<p><strong>(b) Tibet &amp; Bhutan Trips:</strong></p>\n<p>In order to book a trip, a non-refundable deposit of 35% along with other unpaid airfares (if the client wants the Company to arrange the flight tickets) is due prior to 21 days of trip departure. If you’re booking later than 21 days before trip departure, full payment is due.</p>\n<h4>Payment Methods:</h4>\n<p>The deposit can be made via Credit Card, Bank transfer, or Debit Card (Visa, American Express, MasterCard, Union Pay, and JCP).  Please follow the information given in the booking form.</p>\n<p><strong>(1) Payment by Credit Card and Debit Card (Visa, MasterCard, American Express, JCP, and Union Pay only)</strong></p>\n<p>Click here to download the form (PDF version). Make sure to fill all the necessary information in the form carefully, including credit card details and signature (same as in your credit card or passport). Email the filled form to the Company. On the behalf of Base Camp Adventure Pvt. Ltd., your credit card will be charged by Himalayan Bank Ltd. (with 4% extra charge).</p>\n<p><strong>(2)</strong> Online Payment: If you wish to pay deposit through online then click <a href=\"/online-payment-form/\">Online Payment Form</a>.</p><p><strong>(3) Payment via Wire/Bank Transfer</strong></p>\n<p>Our Bank Details for wire Transfer:</p>\n<p><strong>Pay to [Company Name]:</strong> BASE CAMP ADVENTURE PVT. LTD.<br/>\n<strong>Company Street Address:</strong> Tridevi Marg (Street), Thamel, Kathmandu, Nepal<br/>\n<strong>Company Contact info:</strong> +977 1  4517875<br/>\n<strong>Current A/c No:</strong> 01902697600024<br/>\n<strong>Paying Bank:</strong> Himalayan Bank Ltd<br/>\n<strong>Banking Branch:</strong> Thamel<br/>\n<strong>Account Type:</strong> Current Account USD<br/>\n<strong>Bank Street Address:</strong> Tridevi Marg, Thamel, Kathmandu, Nepal<br/>\n<strong>SWIFT CODE:</strong> HIMANPKA</p>\n<p>Please be informed that the Company is not responsible for any delay or loss during the transfer process. In case the money received by the Company is less than the amount supposed to be paid, you are requested to make the due payment after your arrival in order to fulfill the package cost.</p>\n<p>After making a bank transfer, e-mail us the bank reference number or a copy of remittance advice slip. Sometimes bank transmits the money with a changed name and if we have the reference number or remittance advice slip and sender details, it will be easy for us to review the bank transfer.</p>\n<h3 id=\"4-final-payment-acceptance-of-booking-client-details\">4. FINAL PAYMENT/ACCEPTANCE OF BOOKING/CLIENT DETAILS:</h3>\n<p><strong>(a) Nepal Trips</strong></p>\n<p>You can pay the final amount after arriving in Nepal. Payment can be made by cash, bank transfer, credit card, or debit card (Visa, MasterCard, American Express, JCP, and Union Pay). When the payment is made by card, there will be 4% extra charge, and this applies to all cards, final balances, deposits, miscellaneous purchases and trip extension.</p>\n<p>(b) Tibet and Bhutan Trips:</p>\n<p>Final payment should be made 21 days prior to the beginning of the trip to India/Tibet/Bhutan.</p>\n<h3 id=\"5-cancellation-by-the-client\">5. CANCELLATION BY THE CLIENT:</h3>\n<p>The client must make any cancellation by writing and it should be acknowledged by the Company. Application of cancellation charge will be determined by the Company after getting trip cancellation request from the client.</p>\n<p>30% percent from the total amount of the trip package is applied upon cancellation of a trip. If the cancellation is done less than 7 days prior to the departure, 100% of the service cost would be lost.</p>\n<p>It is strongly advised to acquire cancellation insurance at the time of booking a trip. If you voluntarily leave the tour for any reason after the beginning of the trip or in case any included service (transport, sightseeing, accommodation, meals) is not utilized, refund will not be made.</p>\n<h3 id=\"6-cancellation-of-a-tour-by-the-company\">6. CANCELLATION OF A TOUR BY THE COMPANY:</h3>\n<p>The Company reserves the right to cancel any trip you’ve booked with us, unless guaranteed to run. If there is any situation that is past the control of the Company (i.e. flight cancellation, natural disaster, weather condition, strikes, wars, riots, industrial action, government intervention, sickness, or any other occurrences), the company reserves all rights to cancel the trip. In such circumstances, company  will refund the trip price only. If the Company cancels a trip which is guaranteed to run, you will get the trip price, or you can take an alternative trip of the same value.</p>\n<p>Please also note that significant changes do not include a change of airline carrier, flight time and arrival dates. Similarly, adjustment of itineraries and change in cabin class or hotel accommodation are also not involved.</p>\n<p>In case of any incidental expenses or losses that the client may have gone through during the booking such as non-refundable flights, visa, vaccinations, and loss of earnings or enjoyment, non-refundable car parking or other fees, the Company will be not responsible for it.</p>\n<h3 id=\"7-medical-conditions-and-special-requirements\">7. MEDICAL CONDITIONS AND SPECIAL REQUIREMENTS:</h3>\n<p>The traveler must have a good physical condition and sound health, and he/she must let us know if they have any kind of pre-existing medical conditions prior to the departure. Most of our trips are organized in remote areas where you may not find access to good medical services or hospitals, and in case of evacuation, the process may get prolonged, difficult and expensive. In case of any medical emergency and evacuation, the traveler will be responsible for all the expenses.</p>\n<p>In case of any medical condition, physical or mental, which can affect the health of the traveler, the Company should be notified in written form at the time of booking. Failure to notify the Company may result in the dismissal of the traveler and can also result in 100% cancellation of the refund of the travel expenses.</p>\n<p>Medical facilities differ from country to country and the Company makes no representations and gives no warranties in relation to the standard of such treatment.</p>\n<p>Signing in the agreement confirms that you accept the authority of the trip leader, who will be representing the company . If your physical condition and behavior is not acceptable, the leader has all the rights to request you to leave the trip for the safety, health, and well-being of other group members. If you are dismissed by the leader, you won’t get any refund.</p>\n<h3 id=\"8-travel-insurance\">8. TRAVEL INSURANCE:</h3>\n<p>Adequate and valid travel insurance is mandatory for all travelers. Your travel insurance must cover accidents, illness, injury, death, and other medical expenses including any related to pre-existing medical conditions, emergency repatriation (helicopter rescue and air ambulance where applicable), and personal liability. It is also advised that your insurance cover trip cancellation, loss of luggage and curtailment. You are advised to carry your insurance proof with yourself in case you need to show it to the Company. If you are unable to show your insurance proof, the Company reserves the right to cancel or suspend you from the trip any time with no refund.</p>\n<h3 id=\"9-flight-delays-and-changes-in-the-itinerary\">9. FLIGHT DELAYS AND CHANGES IN THE ITINERARY:</h3>\n<p>Mountainous adventures are always full of surprise and unpredictable events. Bad weather can cause flight delays, and in that case, the company will make sure to present your accommodation and food, but remember you will be responsible for all additional expenses including additional accommodation and food costs. If you want to have an alternative arrangement like Helicopter flight to save your time, then you will be responsible for the expenses. BASE CAMP ADVENTURE does not hold any responsibility for additional costs as a result of your missed international flight, but would definitely assist you to arrange an alternative if possible. Your itinerary may incur few changes according to the future circumstances.</p>\n<h3 id=\"10-trip-amendment\">10. TRIP AMENDMENT:</h3>\n<p>In case of trip amendment, if the company receives a request 21 days or more prior to your trip beginning, then the company will make requested changes without any extra charge. But, if you need to make changes within 21 days prior to the trip beginning, there will be some charges depending upon the company’s arrangements with other parties (hotels, guest houses, airlines).</p>\n<h3 id=\"11-visa-passport\">11. VISA &amp; PASSPORT:</h3>\n<p>To travel with BASE CAMP ADVENTURE, you must carry a valid passport, which has its due date for 6 months ahead of the duration of the trip. Nepal’s visa is available on arrival and arrangements for Tibet &amp; Bhutan’s visa can be done upon your request. However, for India, you have to get your visa from your home country.</p>\n<p>The company is not responsible if you are forbidden to enter the country or places because of lacking the correct visa documentation. So, it is your responsibility to make sure all the documents are accurate for the countries you are traveling to.</p>\n<h3 id=\"12-injuries-and-evacuation\">12. INJURIES AND EVACUATION:</h3>\n<p>In case of any health conditions, injury, emotional or other conditions undergone by the traveler during the trip, BASE CAMP ADVENTURE will not be responsible for it. Also, our tour packages do not include any medical insurance. So, it is highly recommended to get health insurance package including medical emergencies and evacuation by helicopter.</p>\n<h3 id=\"13-services-missed-or-unused\">13. SERVICES MISSED OR UNUSED:</h3>\n<p>There will be no discount or refund in case of missed or unused services. This includes voluntary or involuntary end or departure from the tour (due to sickness, the death of family member, etc), late arrival on the tour, or premature departure.</p>\n<p><strong>Complaints</strong></p>\n<p>If you have any complain, the company will consider it if you submit a written document within 15 days of the end of the trip.</p>\n<p><strong>Jurisdiction</strong></p>\n<p>Under the control of the government of Nepal, the contract between the company and you shall be governed by the laws of Nepal.</p>\n<h3 id=\"14-updating-of-terms-and-conditions\">14. UPDATING OF TERMS AND CONDITIONS:</h3>\n<p>BASE CAMP ADVENTURE  PVT. LTD. reserves the right to update and change these Terms &amp; Conditions any time. So, it becomes client responsibility to keep updated with any changes. You can always find current Terms &amp; Conditions on the website www.basecampadventure.com.</p>",
+  "toc": [
+   {
+    "id": "1-the-contract",
+    "text": "1. THE CONTRACT:",
+    "level": 3
+   },
+   {
+    "id": "2-booking-a-trip",
+    "text": "2. BOOKING A TRIP:",
+    "level": 3
+   },
+   {
+    "id": "3-deposit-requirement",
+    "text": "3. DEPOSIT REQUIREMENT:",
+    "level": 3
+   },
+   {
+    "id": "4-final-payment-acceptance-of-booking-client-details",
+    "text": "4. FINAL PAYMENT/ACCEPTANCE OF BOOKING/CLIENT DETAILS:",
+    "level": 3
+   },
+   {
+    "id": "5-cancellation-by-the-client",
+    "text": "5. CANCELLATION BY THE CLIENT:",
+    "level": 3
+   },
+   {
+    "id": "6-cancellation-of-a-tour-by-the-company",
+    "text": "6. CANCELLATION OF A TOUR BY THE COMPANY:",
+    "level": 3
+   },
+   {
+    "id": "7-medical-conditions-and-special-requirements",
+    "text": "7. MEDICAL CONDITIONS AND SPECIAL REQUIREMENTS:",
+    "level": 3
+   },
+   {
+    "id": "8-travel-insurance",
+    "text": "8. TRAVEL INSURANCE:",
+    "level": 3
+   },
+   {
+    "id": "9-flight-delays-and-changes-in-the-itinerary",
+    "text": "9. FLIGHT DELAYS AND CHANGES IN THE ITINERARY:",
+    "level": 3
+   },
+   {
+    "id": "10-trip-amendment",
+    "text": "10. TRIP AMENDMENT:",
+    "level": 3
+   },
+   {
+    "id": "11-visa-passport",
+    "text": "11. VISA & PASSPORT:",
+    "level": 3
+   },
+   {
+    "id": "12-injuries-and-evacuation",
+    "text": "12. INJURIES AND EVACUATION:",
+    "level": 3
+   },
+   {
+    "id": "13-services-missed-or-unused",
+    "text": "13. SERVICES MISSED OR UNUSED:",
+    "level": 3
+   },
+   {
+    "id": "14-updating-of-terms-and-conditions",
+    "text": "14. UPDATING OF TERMS AND CONDITIONS:",
+    "level": 3
+   }
+  ],
+  "excerpt": "1. THE CONTRACT: The following Terms & Conditions govern the relationship between you (the “client”) and BASE CAMP ADVENTURE PVT. LTD. (hereinafter referred as “the Company”) (Register Company Number…",
+  "modified": "2023-06-29T10:07:51",
+  "cover": null,
+  "seo": {
+   "title": "Terms & Conditions Agreement",
+   "description": "The following Terms & Conditions govern the relationship between you (the “client”) and Base Camp Adventure Treks and Expedition.",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 216,
+  "slug": "seasons-in-nepal",
+  "parent": null,
+  "title": "Seasons in Nepal",
+  "html": "<p>Nepal is, undoubtedly, a naturally beautiful country that enjoys pleasant weather round the year. Its geographical diversity has divided the <strong>Seasons in Nepal</strong> into five weather zones — tropical, tropical zone, temperate zone, cold zone, sub artic zone and the artic zone.</p>\n<p>The country enjoys different seasons of spring, summer, monsoons, autumn, and winter. However, the spring and autumn season offer the ideal time to visit the country when it is neither too hot, nor too cold.</p>\n<h3 id=\"spring-season-in-nepal\">Spring season in Nepal</h3>\n<p>Spring season in Nepal continues from March till May. It also offers the best time to visit the beautiful country of Nepal. In this particular season, the country attracts large number of tourists. The months of March-April are considered the second <a class=\"external\" href=\"http://wikitravel.org/en/Trekking_in_Nepal\" rel=\"noopener noreferrer\" target=\"_blank\">best season for trekking</a>, the best time being October-November.</p>\n<h3 id=\"summer-in-nepal\">Summer in Nepal</h3>\n<p>The month of June heralds the arrival of summers which lasts till August. During the summer months, the average temperature lingers around 28 C. However, the terai and hilly areas experience much higher temperature due to scorching sun.</p>\n<p><a href=\"/media/2015/11/rain-in-nepal.webp\"><img src=\"/media/2015/11/rain-in-nepal.webp\" alt=\"Monsoon Season in Nepal.\" width=\"1920\" height=\"1189\" loading=\"lazy\" decoding=\"async\"/></a></p>\n<h3 id=\"monsoon-in-nepal\">Monsoon in Nepal</h3>\n<p>Nepal receives monsoons from June that continues till September, with 2,500 millimeters of rain every year. After monsoons, starts the dry season from October till November which offers enjoyable weather, as countryside gets lush green after the rains.</p>\n<h3 id=\"autumn-in-nepal\">Autumn in Nepal</h3>\n<p>As the natives get a little relief from scorching summers and heavy rains, then comes autumn which lasts from September to November. This is certainly the best time to visit Nepal, as the surrounds get clear by summer monsoons. During autumn months, the weather remains pleasant, not much affected by cold.</p>\n<h3 id=\"winter-season-in-nepal\">Winter season in Nepal</h3>\n<p><a href=\"/media/2015/11/winter-in-nepal.webp\"><img src=\"/media/2015/11/winter-in-nepal.webp\" alt=\"Winter Season in Nepal\" width=\"640\" height=\"480\" loading=\"lazy\" decoding=\"async\"/></a></p>\n<p>Nepal enjoys winter season during December-February. The temperature reaches almost the freezing point during these months, while hilly regions experience rough weather and heavy snowfall.</p>\n<p>Locally, seasons in Nepal is also categorized into 6 divides. Each lasting 2 months.</p>\n<ol>\n<li>Basanta Ritu (Spring)</li>\n<li>Grishma Ritu (Early Summer)</li>\n<li>Barkha Ritu (Summer Monsoon season)</li>\n<li>Sharad Ritu (Early Autumn)</li>\n<li>Hemanta Ritu (late autumn)</li>\n<li>Shishir Ritu (Winter)</li>\n</ol>",
+  "toc": [
+   {
+    "id": "spring-season-in-nepal",
+    "text": "Spring season in Nepal",
+    "level": 3
+   },
+   {
+    "id": "summer-in-nepal",
+    "text": "Summer in Nepal",
+    "level": 3
+   },
+   {
+    "id": "monsoon-in-nepal",
+    "text": "Monsoon in Nepal",
+    "level": 3
+   },
+   {
+    "id": "autumn-in-nepal",
+    "text": "Autumn in Nepal",
+    "level": 3
+   },
+   {
+    "id": "winter-season-in-nepal",
+    "text": "Winter season in Nepal",
+    "level": 3
+   }
+  ],
+  "excerpt": "Nepal is, undoubtedly, a naturally beautiful country that enjoys pleasant weather round the year. Its geographical diversity has divided the Seasons in Nepal into five weather zones — tropical…",
+  "modified": "2018-07-03T11:42:44",
+  "cover": {
+   "src": "/media/2018/07/seasons-in-nepal.webp",
+   "w": 1638,
+   "h": 690,
+   "alt": "Seasons in Nepal"
+  },
+  "seo": {
+   "title": "Seasons in Nepal - Nepal Climate | Base Camp Adventure",
+   "description": "Spring and Autumn offer best Seasons in Nepal for visiting the country. Geographical diversity divides the weather into 5 weather zones.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Seasons-in-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 213,
+  "slug": "religion-of-tibet",
+  "parent": null,
+  "title": "Religion of Tibet",
+  "html": "<p>The main religion practiced today in Tibetan society is Tibetan Buddhism. Almost two third Tibetan people dedicate their lives to Buddhism and have so deep faith in it that religion means everything to them. Buddhism, as an official religion of Tibet, continues to play fundamental role in sociological and cultural development of Tibet and Tibetan people.</p>\n<p>It is believed that Buddhism was first introduced in Tibet in the 7<sup>th</sup> century when the then king of Tibet unified the country and took two Buddhist wives; Princess Bhrikuti Devi from Nepal and Princess Wencheng from China. Immediately he established a network of 108 Buddhist temples across the region and started promoting Buddhism in his state. Gradually, Buddhism in Tibet grew to become a special branch different from Han Buddhism and other small religion. Today, it has four sects of belief like Nyingma, Sagya, Gagyu and Gulung. It is also well known to the world through the office of Dalai Lama, the spiritual and political leader of Tibet.</p>\n<p>Before Tibetan Buddhism was introduced in Tibet, the earliest religion was a type of animistic tribal belief system where the elements like water, earth and wind were worshipped. Later, bon was introduced during the time of early Tibetan Kings in around 247 BC. Soon after its introduction, it dramatically started getting acceptance from number of people and many people started following Bon shifting from animistic belief system. However, the religion was banned by King Trisong Detsen in the 7<sup>th</sup> century as he thought numerous animal sacrifices in the name of religion caused economic hardship to the people. It was after the ban of Bon religion that Tibetan Buddhism started getting acceptance.</p>\n<p>Besides Buddhism there are many more religions practiced in Tibet. However, other religions have not been able to take deep root in Tibet. While Tibetans primarily believe in Buddhism, a small Muslim community also resides in certain parts of the region. Approximately there are about 2000 people following Islam. Furthermore, a very small group of people follow Christianity. There is only one Catholic Church in Yanjin Village on the Sichuan Yunnan border where about 17 people serves as priests or missionaries. Apart from that, there are few people following Hinduism as well. Most importantly, Tibetan people live in harmony with each other regardless of their religious preferences and are very proud of their religion.</p>\n<p>Though Tibetan follow different religions, freedom of religion is not guaranteed in Tibet. Since Tibet is a part of People’s Republic of China, Tibetan people consider that china wishes to control and limit Tibetan Buddhism in order to weaken Tibetan identity and strengthen its control over Tibet. Most importantly, china’s interference and restriction has not diminished the deep faith and belief people have in their religion in any way. They live harmoniously with each other and respect each and every religion prevalent in Tibet.</p>",
+  "toc": [],
+  "excerpt": "The main religion practiced today in Tibetan society is Tibetan Buddhism. Almost two third Tibetan people dedicate their lives to Buddhism and have so deep faith in it that religion means everything…",
+  "modified": "2018-07-03T11:40:39",
+  "cover": {
+   "src": "/media/2018/07/religion-of-tibet.webp",
+   "w": 920,
+   "h": 690,
+   "alt": "Religion of Tibet"
+  },
+  "seo": {
+   "title": "Religion of Tibet",
+   "description": "The main religion practiced today in Tibetan society is Tibetan Buddhism. They live harmoniously with each other and respect each and every religion",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Religion-of-Tibet.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 210,
+  "slug": "religion-of-bhutan",
+  "parent": null,
+  "title": "Religion of Bhutan",
+  "html": "<p>Bhutan is the only kingdom in the world with <strong>Mahayana Buddhism</strong> as its official religion. Almost two thirds of Bhutanese believe in the Buddhism and is practiced throughout the country. When any of the Buddhist festival approaches, the whole country immerge in the grand celebrating atmosphere.</p>\n<p>It is believed that ‘Buddhism’ was first introduced in Bhutan in the 7<sup>th</sup> century when the then king built two Buddhist temples in central Bhutan and in Paro valley. Since then, hundreds of Buddhist monasteries, and convents have been established in the country. Such monasteries are common throughout the country and have been so for centuries. Later, the government of Bhutan made Buddhism as its official religion. As a state religion, Buddhism is supported financially by government of Bhutan through annual subsidies that extend to Buddhist monasteries, monks, shrines and nuns as well.</p>\n<p>Besides Buddhism, there are many more religion throughout the whole country. Hinduism, closely related to Buddhism is the country’s second religion practiced by about 25 percent of the population. It is also supported by the kind who has declared some major Hindu festivals as national holidays. Similarly, Christianity and Islam is also present in the country but in very small numbers. Only about 1 percent of the population of Bhutan are Muslim and Christian. In addition, many people also follow the traditional animistic tradition of Bon which was once the main religion in the Himalayan area prior to the introduction of Buddhism. Most importantly, Bhutanese live in harmony with each other regardless of their religious preferences.</p>\n<p>However, Buddhism, the official state religion, continues to play a fundamental role in the sociological, and cultural development of Bhutan and its people. The people of Bhutan are very protective regarding their religion and does not allow any foreign interference in their religious belief, tradition and customs.</p>",
+  "toc": [],
+  "excerpt": "Bhutan is the only kingdom in the world with Mahayana Buddhism as its official religion. Almost two thirds of Bhutanese believe in the Buddhism and is practiced throughout the country. When any of…",
+  "modified": "2018-07-03T11:36:32",
+  "cover": {
+   "src": "/media/2018/07/religion-of-bhutan.webp",
+   "w": 1228,
+   "h": 690,
+   "alt": "Religion of Bhutan"
+  },
+  "seo": {
+   "title": "Religion of Bhutan",
+   "description": "Bhutan is the only kingdom in the world with Mahayana Buddhism as its official religion. Almost two thirds of Bhutanese believe in the Buddhism",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Religion-of-Bhutan.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 207,
+  "slug": "religion-in-nepal",
+  "parent": null,
+  "title": "Religion in Nepal",
+  "html": "<p><strong>Religion in Nepal</strong> occupies an integral position in Nepalese life and society. In the early 1990s, Nepal was the only constitutionally declared Hindu state in the world; there was, however, a great deal of intermingling of Hindu and Buddhist beliefs. Many of the people regarded as Hindus in the 1981 census could, with as much justification, be called Buddhists.</p>\n<p>The fact that Hindus worshipped at Buddhist temples and Buddhists worshipped at Hindu temples has been one of the principal reasons adherents of the two dominant groups in Nepal have never engaged in any overt religious conflicts. Because of such dual faith practices (or mutual respect), the differences between Hindus and Buddhists have been in general very subtle and academic in nature. However, in 1991, approximately 89.5 percent of the Nepalese people identified themselves as Hindus. Buddhists and Muslims comprised only 5.3 and 2.7 percent, respectively.</p>\n<p>The remainder followed other religions, including Christianity.<br/>\nThe geographical distribution of religious groups revealed a preponderance of Hindus, accounting for at least 87 percent of the population in every region. The largest concentrations of Buddhists were found in the eastern hills, the Kathmandu Valley, and the central Terai; in each area about 10 percent of the people were Buddhist. Buddhism was relatively more common among the Newar and Tibeto-Nepalese groups. Among the Tibet-Nepalese, those most influenced by Hinduism were the Magar, Sunwar, and Rai peoples. Hindu influence was less prominent among the Gurung, Limbu, Bhote, and Thakali groups, who continued to employ Buddhist monks for their religious ceremonies.</p>\n<h3 id=\"hinduism\">Hinduism</h3>\n<p>Hinduism generally is regarded as the oldest formal religion in the world. The origins of Hinduism go back to the <a class=\"external\" href=\"https://en.wikipedia.org/wiki/Indo-Aryan_migration_theory\" rel=\"noopener noreferrer\" target=\"_blank\">pastoral Aryan tribes</a>, spilling over the Hindu Kush from Inner Asia, and mixing with the urban civilization of the Indus Valley and with the tribal cultures of hunting and gathering peoples in the area. Unlike other world religions, Hinduism had no single founder and has never been missionary in orientation. It is believed that about 1200 B.C., or even earlier by some accounts, the Vedas, a body of hymns originating in northern India were produced; these texts form the theological and philosophical precepts of Hinduism.</p>\n<p>Hindus believe that the absolute (the totality of existence, including God, man, and universe) is too vast to be contained within a single set of beliefs. A highly diverse and complex religion, Hinduism embraces six philosophical doctrines (darshanas). From these doctrines, individuals select one that is congenial, or conduct their worship simply on a convenient level of morality and observance. Religious practices differ from group to group. The average Hindu does not need any systematic formal creed in order to practice his or her religion Hindus only to comply with the customs of their family and social groups.</p>\n<p>One basic concept in Hinduism is that of dharma, natural law and the social and religious obligations it imposes. It holds that individuals should play their proper role in society as determined or prescribed by their dharma. The caste system, although not essential to philosophical Hinduism, has become an integral part of its social or dharmic expression. Under this system, each person is born into a particular caste, whose traditional occupation– although members do not necessarily practice it–is graded according to the degree of purity and impurity inherent in it.</p>\n<p>Other fundamental ideas common to all Hindus concern the nature and destiny of the soul, and the basic forces of the universe. The souls of human beings are seen as separated portions of an all embracing world soul (<a class=\"external\" href=\"http://www.ancient.eu/Brahma/\" rel=\"noopener noreferrer\" target=\"_blank\">Brahma</a>); man’s ultimate goal is reunion with this absolute.</p>\n<p>Karma (universal justice) is the belief that the consequence of every good or bad action must be fully realized. Another basic concept is that of <a class=\"external\" href=\"https://en.wikipedia.org/wiki/Sa%E1%B9%83s%C4%81ra\" rel=\"noopener noreferrer\" target=\"_blank\">samsara</a>, the transmigration of souls; rebirth is required by karma in order that the consequences of action be fulfilled. The role an individual must play throughout his or her life is fixed by his or her good and evil actions in previous existences. It is only when the individual soul sees beyond the veil of Maya (illusion or earthly desires)–the forces leading to belief in the appearances of things–that it is able to realize its identity with the impersonal, transcendental reality (world soul) and to escape from the otherwise endless cycle of rebirth to be absorbed into the world soul. This release is known as <a class=\"external\" href=\"http://www.britannica.com/topic/moksha-Indian-religion\" rel=\"noopener noreferrer\" target=\"_blank\">Moksha</a>.</p>\n<p>Veneration for the cow has come to be intimately associated with all orthodox Hindu sects. Because the cow is regarded as the symbol of motherhood and fruitfulness, the killing of a cow, even accidentally, is regarded as one of the most serious of religious transgressions.</p>\n<p>Hinduism is polytheistic. It incorporates many gods and goddesses with different functions and powers; but in the most important and widely held doctrine, the Vedanta (end of the Vedas), gods and goddesses are considered merely different manifestations or aspects of a single underlying divinity. This single divinity is expressed as a Hindu triad comprising the religion’s three major gods: Brahma, Vishnu, and Shiva, personifying creation, preservation, and destruction, respectively. Vishnu and Shiva, or some of their numerous avatars (incarnations), are most widely followed.</p>\n<p>Buddha, the founder of Buddhism, is regarded as the ninth avatar of Vishnu. Some Hindus identify Christ as the tenth avatar; others regard <a class=\"external\" href=\"http://www.stephen-knapp.com/kalki_the_next_avatar_of_God.htm\" rel=\"noopener noreferrer\" target=\"_blank\">Kalki</a> as the final avatar who is yet to come. These avatars are believed to descend upon earth to restore peace, order, and justice, or to save humanity from injustice. The Mahabharata (compiled by the sage Vyasa, probably before A.D. 400), describes the great civil war between the Pandavas (the good) and the Kauravas (the bad)–two factions of the same clan. It is believed that the war was created by Krishna. Perhaps the flashiest and craftiest avatar of Vishnu, Krishna, as a part of his Lila (sport or act), is believed motivated to restore justice–the good over the bad.</p>\n<h3 id=\"buddhism\">Buddhism</h3>\n<p>Buddhism (another of the important religion in Nepal) had its origin in the teachings of Siddhartha Gautama, a Kshatriya caste prince of the Shakya clan; he was born in <a class=\"external\" href=\"http://whc.unesco.org/en/list/666\" rel=\"noopener noreferrer\" target=\"_blank\">Lumbini</a>, in the central Terai Region, about 563 B.C. His father was the ruler of a minor principality in the region. Born a Hindu and educated in the Hindu tradition, Siddhartha Gautama renounced worldly life at about the age of twenty-nine and spent the next six years in meditation. At the end of this time, he attained enlightenment; thereafter, known as the Buddha, or the Enlightened One, he devoted the remainder of his life to preaching his doctrine.</p>\n<p>The Buddha accepted or reinterpreted the basic concepts of Hinduism, such as karma, samsara, dharma, and moksha, but he generally refused to commit himself to specific metaphysical theories. He said they were essentially irrelevant to his teachings and could only distract attention from them. He was interested in restoring a concern with morality to religious life, which he believed had become stifled in details of ritual, external observances, and legalisms.</p>\n<p>The Four Noble Truths summarize the Buddha’s analysis of the human situation and the solution he found for the problems of life.</p>\n<p>The first truth is that life, in a world of unceasing change, is inherently imperfect and sorrowful, and that misery is not merely a result of occasional frustration of desire or misfortune, but is a quality permeating all experience.</p>\n<p>The second truth is that the cause of sorrow is desire, the emotional involvement with existence that led from rebirth to rebirth through the operation of karma.</p>\n<p>The third truth is that the sorrow can be ended by eliminating desire.</p>\n<p>The fourth truth sets forth the Eight-fold Path leading to elimination of desire, rebirth, and sorrow, and to the attainment of nirvana or <a class=\"external\" href=\"http://www.buddhanet.net/nutshell10.htm\" rel=\"noopener noreferrer\" target=\"_blank\">nibbana</a>, a state of bliss and selfless enlightenment. It rejoins right or perfect understanding, aspiration, speech, action, livelihood, effort, thought, and contemplation.</p>",
+  "toc": [
+   {
+    "id": "hinduism",
+    "text": "Hinduism",
+    "level": 3
+   },
+   {
+    "id": "buddhism",
+    "text": "Buddhism",
+    "level": 3
+   }
+  ],
+  "excerpt": "Religion in Nepal occupies an integral position in Nepalese life and society. In the early 1990s, Nepal was the only constitutionally declared Hindu state in the world; there was, however, a great…",
+  "modified": "2018-07-03T11:33:50",
+  "cover": {
+   "src": "/media/2018/07/religion-in-nepal.webp",
+   "w": 970,
+   "h": 690,
+   "alt": "Religion in Nepal"
+  },
+  "seo": {
+   "title": "Religion in Nepal - Types of Religion Followed in Nepal",
+   "description": "Religion in Nepal occupies an integral position in Nepalese life and society. People in Nepal mainly follow Hinduism and Buddhism.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Religion-in-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 204,
+  "slug": "preparing-to-go",
+  "parent": null,
+  "title": "Trekking Checklist",
+  "html": "<p>Planning to trek the base camp of the highest summit of the world? Well, you need to get your stuffs ready before you even start moving. So what are the things you need?</p>\n<p>After being in the business for over a decade, we know what exactly is needed during base camp trek. So here are the most common things you need when you are preparing to go:</p>\n<h2 id=\"sleeping-bags-accessories\">SLEEPING BAGS &amp; ACCESSORIES</h2>\n<p>A must on all camping &amp; budget lodging tours! All types of sleeping bag are available, from light weight synthetic bags for summers in the desert southwest, to heavy weight down feather jacket to keep you extra warm in the Himalayas.</p>\n<h2 id=\"footwear\">FOOTWEAR</h2>\n<p>We recommend a comfortable pair of “trail walkers/cross trainers” for hiking and activities, plus a good pair of sandals for use around camp. Take a look and find the footwear that will be most appropriate for you while on tour.</p>\n<h2 id=\"headlamps-torches\">HEADLAMPS &amp; TORCHES</h2>\n<p>Nothing worse than searching around in the dark of night for that loo-role! A good torch is another essential on any camping tour. Why not opt for an environmentally friendly wind-up torch, or the new style Petzl headlamp torches are your best bet to keep your hands free.</p>\n<h2 id=\"rucksacks-backpacksm\">RUCKSACKS &amp; BACKPACKSM</h2>\n<p>Although not essential, we do recommend a small backpack to carry everything you need throughout the day (camera, I-pod, water bottle, sunglasses). For trekkers on longer journeys we recommend investing in a full-sized rucksack as well.</p>\n<h2 id=\"drinking-bottles\">DRINKING BOTTLES</h2>\n<p>Another “must have” item on tour! While exploring the national parks and desert wilderness you’ll wonder how you could ever have lived without one. ‘Greener’ than store-bought bottled water, cheap to buy and essential to carry!</p>\n<h2 id=\"active-outdoor-clothing\">ACTIVE OUTDOOR CLOTHING</h2>\n<p>Pack light, pack right! As is the case on any journey through varied climates or terrains, we recommend layers of light-weight, quick-dry clothing. Check out this comprehensive range of clothing from North Face, Berghaus and more.</p>\n<h2 id=\"other-travel-accessories\">OTHER TRAVEL ACCESSORIES</h2>\n<p>Obviously, the list above is just a start, but check out our complete packing list and other essential travel items; including everything from insect repellent to power adapters; and from money belts to toiletries and wash kits.</p>\n<h2 id=\"sun-glass-and-suns-cream\">SUN GLASS AND SUN’S CREAM</h2>\n<p>It is very important to carry sun’s cream to protect your skin from sun and as well as sunglass which makes easier to walk you in sunny day.</p>",
+  "toc": [
+   {
+    "id": "sleeping-bags-accessories",
+    "text": "SLEEPING BAGS & ACCESSORIES",
+    "level": 2
+   },
+   {
+    "id": "footwear",
+    "text": "FOOTWEAR",
+    "level": 2
+   },
+   {
+    "id": "headlamps-torches",
+    "text": "HEADLAMPS & TORCHES",
+    "level": 2
+   },
+   {
+    "id": "rucksacks-backpacksm",
+    "text": "RUCKSACKS & BACKPACKSM",
+    "level": 2
+   },
+   {
+    "id": "drinking-bottles",
+    "text": "DRINKING BOTTLES",
+    "level": 2
+   },
+   {
+    "id": "active-outdoor-clothing",
+    "text": "ACTIVE OUTDOOR CLOTHING",
+    "level": 2
+   },
+   {
+    "id": "other-travel-accessories",
+    "text": "OTHER TRAVEL ACCESSORIES",
+    "level": 2
+   },
+   {
+    "id": "sun-glass-and-suns-cream",
+    "text": "SUN GLASS AND SUN’S CREAM",
+    "level": 2
+   }
+  ],
+  "excerpt": "Planning to trek the base camp of the highest summit of the world? Well, you need to get your stuffs ready before you even start moving. So what are the things you need? After being in the business…",
+  "modified": "2018-07-20T08:22:28",
+  "cover": {
+   "src": "/media/2018/07/trekking-checklist.webp",
+   "w": 1162,
+   "h": 690,
+   "alt": "Trekking Checklist"
+  },
+  "seo": {
+   "title": "Trekking Checklist - Stuffs you need when preparing to Go to Nepal",
+   "description": "Here are some of the lists of Travel Accessories if you are preparing to go Nepal. Planning travel backpack requirements lists are very essential.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Trekking-Checklist.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 201,
+  "slug": "people-of-tibet",
+  "parent": null,
+  "title": "People of Tibet",
+  "html": "<p>Tibet, the autonomous state of People Republic of China is widely reputed for its unique culture and tradition. Hardly influenced by western civilization, it has its environment, culture and tradition intact for centuries which makes you imagine captured hundreds of years back while visiting Tibet. This is also enhanced by the people of Tibet who are less influenced by western culture and known for their optimistic and bold nature.</p>\n<p>Talking about the people of Tibet, the inhabitants of Tibet includes Menpa, Luopa, Sherpa and the Tibetans. It is believed that the ancestors of the present Tibetans lived around Tsangpo River and earned their living mainly from agriculture. It is also home to several nomadic people who keeps moving from one place to another place herding their yak and sheep. Altogether, it is estimated that there are around 260,0000 people residing in this high land plateau.</p>\n<p>One thing that makes people of Tibet so special is that they always seem very happy with whatever they have. No matter where they live, wear or eat, they are always satisfied and happy and cherish each and every moment of their life. This special quality of Tibetan is the reason that makes their lifestyle very special. More importantly, the people of Tibet loves their guests as much as they love themselves. Even a day in Tibet with these wonderful people teaches you to learn simple courtesies and gives you many reasons to love yourself.</p>\n<p>Tibetan people have very strong belief and optimism in their religion. Nowhere else on earth you can find people so much devoted to protect their religion. Most people are devotees of Buddhism while few trace of Christianity and Islam can be seen in the cities like Lhasa and Yanging. It is amazing to see the deep belief these people have on their religion. With one third of people being Monk, Tibet is clearly the state with largest number of monks in the world.</p>\n<p>As far as the occupation of the Tibetans is concerned, majority of people are still confined to agriculture sector. However, the number is declining as the educated people are increasingly moving out into big cities in search of better job. Apart from that, many people earn their living making traditional wooden handicrafts.</p>\n<p>The local people of Tibet are very interested in entertainment activities. They take part in some of the most interesting activities like wrestling, tug of war, horse riding among others and are very proud of their culture. Apart from that, they are equally interested in singing and dancing.  They have earned the reputation of ‘sea of dances and songs’ for their land.</p>\n<p>Hence, Tibet is the residence of optimistic, straightforward and courageous people who are known as ‘Happy people’. So, take a trip to Tibet and get to know these wonderful people from whom you can lean a lot about life, religion and culture.</p>",
+  "toc": [],
+  "excerpt": "Tibet, the autonomous state of People Republic of China is widely reputed for its unique culture and tradition. Hardly influenced by western civilization, it has its environment, culture and…",
+  "modified": "2018-07-03T11:28:44",
+  "cover": {
+   "src": "/media/2018/07/people-of-tibet.webp",
+   "w": 1213,
+   "h": 690,
+   "alt": "People of Tibet"
+  },
+  "seo": {
+   "title": "People of Tibet",
+   "description": "Tibet is the residence of optimistic, straightforward and courageous people who are known as ‘Happy people’. So, take a trip to Tibet",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/People-of-Tibet.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 198,
+  "slug": "people-of-nepal",
+  "parent": null,
+  "title": "People of Nepal",
+  "html": "<p>Perched on the Southern slopes of the Himalayan Mountains, the Kingdom of Nepal is ethnically diverse. The Nepalese are descendants of three major migrations. These migrations have taken place from India, Tibet, and Central Asia. Among the earliest inhabitants were the Newar of the Kathmandu Valley and aboriginal Tharu in the southern Tarai region.</p>\n<p>The ancestors of the Brahman and Chetri caste groups came from India, while other ethnic groups trace their origins to Central Asia and Tibet, including the Gurung and Magar in the west, Rai and Limbu in the east, and Sherpa and Bhotia in the north. The People of Nepal are friendly and celebrate vast culture and traditons.</p>\n<p>In the Tarai, which is a part of the Ganges basin, much of the population is physically and culturally similar to the Indo-Aryan people of northern India. People of Indo-Aryan and Mongoloid stock live in the hill region. The mountainous highlands are sparsely populated. Kathmandu Valley, in the middle hill region, constitutes a small fraction of the nation’s area but is the most densely populated, with almost 5% of the population.</p>\n<p>Nepal’s 2001 census enumerated 103 distinct caste/ethnic groups including an “unidentified group”. The caste system of Nepal is rooted in the Hindu religion while the ethnic system is rooted in mutually exclusive origin myths, historical mutual seclusion and the occasional state intervention.</p>",
+  "toc": [],
+  "excerpt": "Perched on the Southern slopes of the Himalayan Mountains, the Kingdom of Nepal is ethnically diverse. The Nepalese are descendants of three major migrations. These migrations have taken place from…",
+  "modified": "2018-07-03T11:23:58",
+  "cover": {
+   "src": "/media/2018/07/people-of-nepal.webp",
+   "w": 1036,
+   "h": 690,
+   "alt": "People of Nepal"
+  },
+  "seo": {
+   "title": "People of Nepal | The Kingdom of Nepal  | Diverse Ethinicity",
+   "description": "The Kingdom of Nepal is ethnically diverse. The People of Nepal are friendly and celebrate vast culture. The mountainous highlands are sparsely populated.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/People-of-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 195,
+  "slug": "people-of-bhutan",
+  "parent": null,
+  "title": "People of Bhutan",
+  "html": "<p>Bhutan, the Himalayan Kingdom reputed for mystery and magic is no ordinary place. This is a country which is hardly influenced by western civilization and has its environment, culture and tradition unspoilt and intact for centuries. It is for that reason, you can imagine yourself captured hundreds of years back while visiting Bhutan. This is also enhanced by the people of Bhutan who are less influenced by western culture and lead a calm, simple, peaceful and traditional lifestyle even today.</p>\n<p>There are four major ethnics groups in Bhutan; Bhutia, Sharchops, Lepcha and Nepali. These groups are distinguished by religion, language and socioeconomic characteristics. The most popular is the Bhutia who mostly live in Northern and Central Bhutan. Similarly, Sharchops are thought to be the earliest inhabitants of Bhutan. Likewise, Nepali people also constitute a significant portion of Bhutan’s population.  They are the recent settlers in Bhutan who are mainly from Rai, Gurung, and Limbu ethnic groups. All the ethnic groups live together with peace and harmony.</p>\n<p>One very common attribute of all Bhutanese, which is also the identity of Bhutan, is the sense of hospitality. It is a rare incident in Bhutan where any stranger is unwelcomed by a Bhutanese. They are deeply religious and hold a strong belief that being good to others brings them a good karma too. This unique principle is a great social thread that contributes to strengthening the country’s social harmony.</p>\n<p>Bhutanese people are deeply traditional and still wear their traditional dresses- Gho for Men and Kira for women- in schools, offices and other public places. They wear it with pride and carry it off with style. So, take a trip to Bhutan to explore this beautiful country full of caring, religious and welcoming people all around.</p>",
+  "toc": [],
+  "excerpt": "Bhutan, the Himalayan Kingdom reputed for mystery and magic is no ordinary place. This is a country which is hardly influenced by western civilization and has its environment, culture and tradition…",
+  "modified": "2018-07-03T11:19:05",
+  "cover": {
+   "src": "/media/2018/07/people-of-bhutan.webp",
+   "w": 1035,
+   "h": 690,
+   "alt": "People of Bhutan"
+  },
+  "seo": {
+   "title": "People of Bhutan",
+   "description": "Bhutanese people are deeply traditional. There are four major ethnics groups in Bhutan; Bhutia, Sharchops, Lepcha and Nepali.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/People-of-Bhutan.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 192,
+  "slug": "nepal-visa-information",
+  "parent": null,
+  "title": "Nepal Visa Information",
+  "html": "<h3 id=\"what-do-i-need-to-get-my-visa\">What do I need to get my visa?</h3>\n<p>You need a valid passport; two passport size photos and money (cash in US Dollars).</p>\n<h3 id=\"do-i-need-a-visa-to-enter-nepal\">Do I need a visa to enter Nepal?</h3>\n<p>All foreign nationals, except Indian Citizens, need visas to enter Nepal.</p>\n<h3 id=\"where-do-i-apply-to-get-my-visa\">Where do I apply to get my visa?</h3>\n<p>Tourist entry visa can be obtained for the following duration from Nepal Embassy/ Consulate or Mission offices abroad, or purchase a tourist <em>visa</em> upon arrival at Tribhuvan International Airport, Kathmandu.</p>\n<p>or, at the following land border points of entry.</p>\n<ul>\n<li>Kakarvitta, Jhapa (Eastern Nepal)</li>\n<li>Birganj, Parsa (Central Nepal)</li>\n<li>Kodari, Sindhupalchowk (Northern Border)</li>\n<li>Belhiya, Bhairahawa (Rupandehi, Western Nepal)</li>\n<li>Jamuna, Nepalgunj (Banke, Mid Western Nepal)</li>\n<li>Mohana, Dhangadhi (Kailali, Far Western Nepal)</li>\n<li>Gaddachauki, Mahendranagar (Kanchanpur, Far Western Nepal)</li>\n</ul>\n<h3 id=\"tourist-visa-cost-visa-facility-duration-fees\">Tourist Visa cost:<br/>\nVisa Facility Duration Fees</h3>\n<p>Multiple entry 15 days US$ 25 or equivalent convertible currency<br/>\nMultiple entry 30 days US$ 40 or equivalent convertible currency<br/>\nMultiple entry 90 days US$ 100 or equivalent convertible currency</p>\n<h3 id=\"tourist-visa-extension\">Tourist Visa Extension</h3>\n<p>Visa extension fee for 15 days or less is US $ 30 or equivalent convertible currency and visa extension fee for more than 15 days is US$ 2 per day<br/>\nTourist visa can be extended for a maximum period of 150 days in a single visa year (January – December).</p>\n<h3 id=\"gratis-free-visa\">Gratis (Free) Visa</h3>\n<p>Gratis visa for 30 days available only for tourists of SAARC countries. Indian nationals do not require visa to enter into Nepal.<br/>\nNote: According to new rule if you have already visited Nepal within the same calendar year of your visit then you do not have to pay for visa fee.</p>\n<h3 id=\"transit-visa\">Transit Visa</h3>\n<p>Transit visa for one day can be obtained from Nepal’s immigration offices at the entry points upon the production of departure flight ticket via Tribhuvan International Airport in Nepal, by paying US $ 5 or equivalent convertible currency.</p>\n<h3 id=\"business-visa\">Business visa</h3>\n<p>Business visa with multiple entry facility for the period of one year and five years can be obtained from the Department of Immigration on the recommendation of Ministry of Industry by paying the equivalent of US$100 and US$250 respectively in the Nepalese currency for the foreign investors</p>\n<p>Below we have an official format of visa application form. You could save time when you arrive to Kathmandu airport. Print out the visa application form provided below, fill in before you arrive and go straight to the head of the line. Carry US dollar cash for the visa you want.</p>\n<p>Important: This application is for use when you arrive at Tribhuvan Airport in Kathmandu. It is not the correct form to submit if you are applying to a Nepal embassy or consulate abroad<br/>\nNote: Any child below the 10 years of age has visa fee exemption. So the visa fee for your nine-year old child is free.<br/>\nFor further information please visit Nepal government’s official site: http://www.immi.gov.np.</p>",
+  "toc": [
+   {
+    "id": "what-do-i-need-to-get-my-visa",
+    "text": "What do I need to get my visa?",
+    "level": 3
+   },
+   {
+    "id": "do-i-need-a-visa-to-enter-nepal",
+    "text": "Do I need a visa to enter Nepal?",
+    "level": 3
+   },
+   {
+    "id": "where-do-i-apply-to-get-my-visa",
+    "text": "Where do I apply to get my visa?",
+    "level": 3
+   },
+   {
+    "id": "tourist-visa-cost-visa-facility-duration-fees",
+    "text": "Tourist Visa cost: Visa Facility Duration Fees",
+    "level": 3
+   },
+   {
+    "id": "tourist-visa-extension",
+    "text": "Tourist Visa Extension",
+    "level": 3
+   },
+   {
+    "id": "gratis-free-visa",
+    "text": "Gratis (Free) Visa",
+    "level": 3
+   },
+   {
+    "id": "transit-visa",
+    "text": "Transit Visa",
+    "level": 3
+   },
+   {
+    "id": "business-visa",
+    "text": "Business visa",
+    "level": 3
+   }
+  ],
+  "excerpt": "What do I need to get my visa? You need a valid passport; two passport size photos and money (cash in US Dollars). Do I need a visa to enter Nepal? All foreign nationals, except Indian Citizens, need…",
+  "modified": "2018-07-03T11:14:50",
+  "cover": {
+   "src": "/media/2018/07/nepal-visa-information.webp",
+   "w": 921,
+   "h": 690,
+   "alt": "Nepal Visa Information"
+  },
+  "seo": {
+   "title": "Nepal Visa Information | Nepal Visa Requirements",
+   "description": "Nepal Visa Requirements: Valid passport & 2 photos. Check in to nepalese embassy or purchase a tourist visa upon arrival at the Tribhuvan Airport.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Nepal-Visa-Information.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 189,
+  "slug": "nepal-travel-information",
+  "parent": null,
+  "title": "Nepal Travel Information",
+  "html": "<p>Nepal is a big country if you compare it with the ones in Central and Eastern Europe and Indo-China region. It has vivid features and it is safe to ponder on a fact or two before visiting this mesmerizing place. Traveling tips for Nepal will tell you about various aspects and features of Nepal. Try and spend some time going through these tips, they might prove handy to you.</p>\n<p>First of all, Nepal has a vivid relief. The Northern and Eastern part is completely covered by the grater Himalayas while the southern part is Terai or field. The temperature varies according to the relief. In the Northern areas, it can dip as low as -5 C in winters while in the Southern Terai areas, summers are as hot as 42 c. Try to bring clothes according to your visit plan and season. If you are on for trekking then bring some really warm clothes. Start with perfect trekking suits and keep good gloves as well. For Terai, light cotton clothes will do.</p>\n<p>In terms of communication, Kathmandu, the capital city is well connected to the rest of the world by Air service. Regular flights are available from major cities from Eurasia and Americas. As for the local transport your best bet are cabs. These radio cabs are very comfortable and are good for local as well as long distance tours. If you are less on cash then opt for buses. There are quite a few luxury buses and they ply on normally all the major routes.</p>\n<p>Nepal provides the facility of travel police who are very co-operative and helpful. Take their help if you find yourself in trouble. Don’t get involved with drug peddlers and pimps, of whom there is no scarcity in Nepal. Avoid going out at nights in the rebel-infested areas of Terai. Avoid political processions and conglomerations completely and avoid talking about internal politics to the strangers.</p>\n<p>As for food and drinks, try to dine at good hotels and avoid roadside joints unless very necessary. Of course you can enjoy authentic street foods from good and hygienic kiosks. Keep these things in mind and Nepal will welcome you with open arms.</p>",
+  "toc": [],
+  "excerpt": "Nepal is a big country if you compare it with the ones in Central and Eastern Europe and Indo-China region. It has vivid features and it is safe to ponder on a fact or two before visiting this…",
+  "modified": "2018-07-03T11:12:30",
+  "cover": {
+   "src": "/media/2018/07/nepal-travel-information.webp",
+   "w": 1034,
+   "h": 690,
+   "alt": "Nepal Travel Information"
+  },
+  "seo": {
+   "title": "Nepal Travel Information - Brief Information about Travelling in Nepal",
+   "description": "If you are traveling to Nepal for first time, this small information section can help you . Know geographical structure to cultural propaganda in one read",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Nepal-Travel-Information.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 186,
+  "slug": "foods-in-nepal",
+  "parent": null,
+  "title": "Nepalese Food",
+  "html": "<p>The most prevalent Nepali dish is ‘Daal, Bhaat and Tarkaari’ (lentils, rice, vegetable curry respectively). This is the main course served in the most Nepalese houses irrespective of the economic conditions, that too in both lunch as well as dinner. Nepali food is much less spicy than Indian food, and many dishes are Tibetan in origin. It seems that Indian influence is only confined to Southwestern part of Nepal. The rest of Nepal has more of Tibetan and Chinese influence in their cuisines.</p>\n<p>Two of the most exclusive and authentic Nepalese delicacies include ‘Moos’, a meat or vegetable filled dumpling that is similar to Chinese pot-stickers and Tibetan Bread and Honey; a puffy fried bread with heavy raw honey. Both of these items are good for a light breakfast but are insufficient for a full meal. One delicacy that you do not want to miss while in Nepal is the dried meat. It makes a deadly combo with beer or any other alcoholic beverages. Newars, an ethnic group, are considered connoisseur of great foods. Watch out for Newari Restaurants. Surely it will be a great way to enjoy good food. In the Everest region try the local Sherpa dish of potato pancakes that are called Rikikul. They are delicious eaten straight off the griddle and covered with yak butter or cheese.</p>\n<p>The food in Nepal differs from the one culture to another. However, here’s a typical sample of food from different cultures in Nepal.<br/>\n<strong>Dal, Bhat and Tarkari –</strong> translated as Lentils, Rice and Curried vegetable. It is the main staple diet of most Nepali people.</p>\n<h3 id=\"nepali-appetizers-snacks\">Nepali Appetizers (Snacks)</h3>\n<p><strong>Chatamari –</strong> (Newari) food resembles Pizza or Dosa (south Indian). rice flour flat bread cooked over heat with toppings such as minced meat (with or without some vegetable), egg, sugar or no toppings.</p>\n<p><strong>Choyla –</strong>(Newari) grilled /roasted spicy meat. Usually eaten as appetizer with liquor</p>\n<p><strong>Gundruk –</strong> dried and fermented green vegetables leaves. When made to soup gives a slightly sour, slightly tangy.</p>\n<p><strong>Kwati – </strong>(Newari) Soup with many beans. (In Jaiai Purnima Festival specialty)</p>\n<p><strong>Momo(cha) – </strong>(Newari) a dumplings filled with minced meat (usually buffalo in Nepal, Turkey elsewhere), served steamed or fried. very popular appetizer, afternoon snack or evening meal.</p>\n<p><strong>Samay Baji – </strong>(Newari) beaten rice with roasted meat, smoked fish, boiled-then-fried egg, black soybeans and diced ginger.usually a ritual food co</p>\n<p><strong>Sekuwa – </strong>grilled meat usually made from mutton, duck, chicken, buff, wild boar.</p>\n<p><strong>Sel –</strong> donoght-like shaped dessert/snack made from rice flour</p>\n<p><strong>Sukuti – </strong>spicy dried meat roasted over a charcoal fire.</p>\n<p><strong>Aloo Tama –</strong> Potato made with bamboo shoots.</p>\n<p><strong>Tawkhaa –</strong> (Newari) Jello of meat soup served cold.</p>\n<p><strong>Wo –</strong> (Newari) flour patty made of lentils with or without meat/egg topping. used in ritual or festival or used as snack.</p>\n<h3 id=\"nepali-main-dish\">Nepali Main Dish</h3>\n<p><strong>Aloo Tama – </strong>Bamboo shoot and potato.</p>\n<p><strong>Dal – </strong>lentil soup usually eaten with rice. Most popular lentils used as Dal in Nepal are black, red and yellow.</p>\n<p><strong>Sag –</strong> Green Vegetables – Spinach, mustard greens or broad-leaved mustard- A standard accompaniment to plain rice for lunch or dinner.</p>\n<p><strong>Masu –</strong> meat with spices (curry) and gravy. (Usually served with rice) Most Nepalese eat chicken, mutton. Some eat buffalo and pork. Almost no one eats cow. Killing cow is prohibited in Nepal</p>\n<p><strong>Bhat</strong> – steamed rice</p>\n<p><strong>Tarkari – </strong>Any kinds of vegetable or group of vegetables as curry, usually broth. can be made in thousand s ways.</p>\n<h3 id=\"relishes\">RELISHES</h3>\n<p><strong>Achar –</strong> a sour, spice or seet pickle. It can be made in thousand ways. The most poplar way is made of tomatoes, sliced radish, coriander, boiled or diced potatoes.<br/>\n<strong>Sanya Khuna –</strong> (Newari) hot, spicy, salty jellotype food made from fish soup.</p>\n<h3 id=\"nepali-desserts\">Nepali Desserts</h3>\n<p><strong>Dahi –</strong> Yogurt/Curd<br/>\n<strong>Juju Dhau –</strong> (Bhaktapur special curd) Juju literally means ‘‘king”.<br/>\n<strong>Sikarni –</strong> curd mixed with dried fruits.</p>\n<h3 id=\"nepali-drinks\">Nepali Drinks</h3>\n<p><strong>Rakshi – </strong>liquor (can mean local liquor)<br/>\n<strong>Thon (Newari) or Chhyang (Tibetan) – </strong>the milky white beer/liquor made from fermented rice.<br/>\n<strong>Tongba –</strong> It is especially popular alcoholic liquid in the hilly and mountain regions. It is specially made by pouring hot water into a pot of fermented millet and drunk with a bamboo straw.</p>",
+  "toc": [
+   {
+    "id": "nepali-appetizers-snacks",
+    "text": "Nepali Appetizers (Snacks)",
+    "level": 3
+   },
+   {
+    "id": "nepali-main-dish",
+    "text": "Nepali Main Dish",
+    "level": 3
+   },
+   {
+    "id": "relishes",
+    "text": "RELISHES",
+    "level": 3
+   },
+   {
+    "id": "nepali-desserts",
+    "text": "Nepali Desserts",
+    "level": 3
+   },
+   {
+    "id": "nepali-drinks",
+    "text": "Nepali Drinks",
+    "level": 3
+   }
+  ],
+  "excerpt": "The most prevalent Nepali dish is ‘Daal, Bhaat and Tarkaari’ (lentils, rice, vegetable curry respectively). This is the main course served in the most Nepalese houses irrespective of the economic…",
+  "modified": "2018-07-03T11:08:45",
+  "cover": {
+   "src": "/media/2018/07/nepalese-food.webp",
+   "w": 920,
+   "h": 690,
+   "alt": "Nepalese Food"
+  },
+  "seo": {
+   "title": "Nepalese Food - List of Best Nepalese Cuisine",
+   "description": "Nepalese Food also known as nepali cuisine offers a significant cultural and geographical diversity. It's most notable is 'Daal, Bhaat and Tarkaari.'",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Nepalese-Food.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 183,
+  "slug": "flora-and-fauna-in-nepal",
+  "parent": null,
+  "title": "Flora and Fauna in Nepal",
+  "html": "<p>Ranging from the subtropical forests of the Terai to the great peaks of the Himalayas in the north, Nepal abounds with some of the most spectacular sceneries in the whole of Asia, with a variety of fauna and flora also unparalleled elsewhere in the region. Between Nepal’s geographical extremes, one may find every vegetational type, from the treeless steppes of the Trans-Himalayan region in the extreme north and the birch, silver fir, larch and hemlock of the higher valleys to the oak, pine and rhododendron of the intermediate altitudes and the great sal and sissau forests of the south.</p>\n<p>The rolling densely forested hills and broad Dun valleys of the Terai along with other parts of the country were formerly, renowned for their abundance and variety o wildlife. Though somewhat depleted as a result of agricultural settlements, deforestation, poaching and other causes, Nepal can still boast richer and more varied flora and fauna than any other area in Asia. For practical purposes, Nepal’s flora and fauna can be divided into four regions:-</p>\n<h3 id=\"1-tropical-deciduous-monsoon-forest\">1. Tropical Deciduous Monsoon Forest:</h3>\n<p>This includes the Terai plains and the broad flat valleys or Duns found between successive hill ranges. The dominant tree species of this area are Sal (Shorea Robusta), sometimes associated with Semal (Bombax malabricum), Asna (Terminalia termentosa), Dalbergia spp and other species, and Pinus rosburghi occurring on the higher ridges of the Churia hills, which in places reach an altitude of <span class=\"measurement\" data-meters=\"1800\">1,800 m</span> Tall coarse two-meter high elephant grass originally covered much of the Dun valleys but has now been largely replaced by agricultural settlements. The pipal (ficus religiosa) and the ?banyan? (ficus bengalensis) are to be noticed with their specific natural characteristics. This tropical zone is Nepal?s richest area for wildlife, with gaurs, buffaloes, four species of deer, tigers, leopards and other animals found in the forest areas rhinoceros, swamp deer and hot deer found in the valley grasslands and two species of crocodile and the Gangetic dolphin inhabiting the rivers. The principal birds are the peacock, jungle fowl and black partridge, while migratory duck and geese swarm on the ponds and lakes and big rivers of Terai. Terai forests are full of jasmin, minosa, accecia reeds and bamboo.</p>\n<h3 id=\"2-subtropical-mixed-evergreen-forest\">2. Subtropical Mixed Evergreen Forest:</h3>\n<p>This includes the Mahabharat Lekh, which rises to a height of about <span class=\"measurement\" data-meters=\"2400\">2,400 m</span> and comprises the outer wall of the Himalayan range. Great rivers such as the Karnali, Narayani, and Sapta Koshi flow through this area into the broad plains of the Terai. This zone also includes the so-called ?middle hills? which extend northwards in a somewhat confused maze of ridges and valleys to the foot of the great Himalayas. Among the tree species characteristic of this region are Castenopsis indica in association with Schima wallichii, and other species such as Alnus nepalensis, Acer oblongum and various species of oak and rhododendron which cover the higher slopes where deforestation has not yet taken place. Orchids clothe the stems of trees and gigantic climbers smother their heads. The variety and abundance of the flora and fauna increase progressively with decreasing altitude and increasing luxurance of the vegetation. This zone is generally poor in wildlife. The only mammals, which are at all widely distributed, are wild boar, barking deer, serow, ghoral and bears. Different varieties of birds are also found in this zone. Different varieties of birds are also found in this zone.</p>\n<h3 id=\"3-temperate-evergreen-forest\">3. Temperate Evergreen Forest:</h3>\n<p>Northward, on the lower slopes and spurs of the great Himalayas, oaks and pines are the dominant species up to an altitude of about <span class=\"measurement\" data-meters=\"2400\">2,400 m</span> above which are found dense conifer forests including Picea, Tusga, Larix and Abies spp. The latter is usually confined to higher elevations with Betula typically marking the upper limit of the tree line. At about 3600 to <span class=\"measurement\" data-meters=\"3900\">3,900 m</span>, rhododendron, bamboo and maples are commonly associated with the coniferous zone. Composition of he forest varies considerably with coniferous predominating in the west and eracaceous in the east. The wildlife of this region includes the Himalayan bear, serow, ghoral, barking deer and wildboar, with Himalayan tahr sometimes being seen on steep rocky faces above <span class=\"measurement\" data-meters=\"2400\">2,400 m</span> The red panda is among the more interesting of the mammals found in this zone; it appears to be fairly distributed in suitable areas of the forest above <span class=\"measurement\" data-meters=\"1800\">1,800 m</span> The rich and varied avifauna of this region includes several spectacular and beautiful pheasants, including the Danfe pheasant, Nepal’s national bird.</p>\n<h3 id=\"4-subalpine-and-alpine-zone\">4. Subalpine and Alpine Zone:</h3>\n<p>Above the tree line, rhododendron, juniper scrub and other procumbent woody vegetation may extend to about <span class=\"measurement\" data-meters=\"4200\">4,200 m</span> where it is then succeeded by t a tundra-like association of short grasses, sedge mosses and alpine plants wherever there is sufficient soil. This continues up to the lower limit of perpetual snow and ice at about <span class=\"measurement\" data-meters=\"5100\">5,100 m</span> The mammalian faun is sparse and unlikely to include any species other than Himalayan marmots, mouse hare, tahr, musk deer, snow leopard and occasionally blue sheep. In former times, the wild Yak and great Tibetan sheep could also be sighted in this region and it is possible that a few may still be surviving in areas such as Dolpa and Humla. The bird life at such as lammergeyer, snowcock, snowpatridge, choughs and bunting, with redstarts and dippers often seen along the streams and rivulets. Yaks are the only livestock, which thrive at high altitude. They serve both back and draught animals. The cheeses prepared out of the milk are edible for months. The female Yak provides milk to the Sherpas.<br/>\nOf the wonderful flora and fauna must suffice to indicate what a paradise Nepal is to the lovers of wild animal and bird life, to the naturalists and to the foresters.</p>",
+  "toc": [
+   {
+    "id": "1-tropical-deciduous-monsoon-forest",
+    "text": "1. Tropical Deciduous Monsoon Forest:",
+    "level": 3
+   },
+   {
+    "id": "2-subtropical-mixed-evergreen-forest",
+    "text": "2. Subtropical Mixed Evergreen Forest:",
+    "level": 3
+   },
+   {
+    "id": "3-temperate-evergreen-forest",
+    "text": "3. Temperate Evergreen Forest:",
+    "level": 3
+   },
+   {
+    "id": "4-subalpine-and-alpine-zone",
+    "text": "4. Subalpine and Alpine Zone:",
+    "level": 3
+   }
+  ],
+  "excerpt": "Ranging from the subtropical forests of the Terai to the great peaks of the Himalayas in the north, Nepal abounds with some of the most spectacular sceneries in the whole of Asia, with a variety of…",
+  "modified": "2018-07-20T08:14:47",
+  "cover": {
+   "src": "/media/2018/07/flora-and-fauna-of-nepal.webp",
+   "w": 920,
+   "h": 690,
+   "alt": "Flora and Fauna of Nepal"
+  },
+  "seo": {
+   "title": "Flaura and Fauna of Nepal",
+   "description": "Nepal abounds with some of the most spectacular sceneries in the whole of Asia, with a variety of fauna and flora also unparalleled elsewhere in the region",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Flora-and-Fauna-of-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 180,
+  "slug": "festivals-in-nepal",
+  "parent": null,
+  "title": "Festivals in Nepal",
+  "html": "<p><strong>Festivals in Nepal</strong> begins with something religious and moves with spontaneous spirit into a pleasant family feast as for a Nepalese religion has been influenced and has always been the core of Nepali culture.</p>\n<p>Festivals are manifestation of cultural sensibility of any particular society at its beat. Festivals, through acts and performance of rites and rituals and rituals, are fact not only a way of appeasing of gods and goddesses, but also for warding off evil, for pastoral and agricultural prosperity, longevity, happiness and good health of human life. it also helps in strengthening familial and societal ties by way of gathering, merry-making and socializing.</p>\n<p>We all the Nepalese believe that in Kathmandu they are celebrating festival every next day. Most festivals honor a deity with worshippers crowding around a shrine to worship. Great processions win through the streets of the three old cities, kathmandu, Bhaktapur and Patan and other cities of Nepal. These processions are accompanied by bands of Newar musicians and masked dancers. Some time idols of Gods and paraded in gigantic wooden chariot Rath unique to Nepal. Festivals are an important part of Nepalis society. It is the essence of their everyday life.</p>\n<p><strong>These are the most commonly celebrated festivals in Nepal:</strong></p>\n<h3 id=\"maghe-sankranti\">Maghe sankranti</h3>\n<p>In the holy month of Magh the sun enters the southern hemisphere, and the days begin to grow longer and warmer. Lord Vishnu the preserver is thanked for his efforts. On maghe sankranti people take an early morning bath in holy river, visit the shrines of Vishnu,and present flowers, incense and food to him. They read the Bhagwad,Gita also known as the song of the Gods, apply mustard oil over their bodies, and enjoy feast rice cooked with lentils, yams or tarul-a must-and til ko laddu, sweets oade of seasame and jaggery (sugarcane paste).<br/>\nPeople from many parts of the country rush tp Devghat, a confluence of three rivers, to take holy bath in the river on this day.</p>\n<h3 id=\"lhosar\">Lhosar</h3>\n<p>Sherpas and Tibetans welcome their New year with feasts, family visits and dancing. Families put on their finest clothes and jewelry and exchange gifts. Buddhist mon in th ks offer prayers for good health and prosperity, and perform dances at the monasteries. Colorful prayer flags decorate streets and rooftops, and the colors seem especially brilliant at the Bouddha and Swayambhu stupas. Crowds of celebrants at Boudha bring in the new year by throwing tsampa (roasted barley flour) into the air.</p>\n<h3 id=\"basanta-panchmi-shree-panchami\">Basanta panchmi (shree panchami)</h3>\n<p>Basanta panchami of Shree panchmi honors the deities of knowledge and learning. Hindus honor the goddess Saraswati and Buddhists the god Manjushre. Basanta panchami announces the advent of spring, with official ceremonies at Hanuman Dhaka. The day is also considered one of the auspicious in the year to get married. On this day upper caste Hindu boys are given their first initiation as it is dedicated to learning. Most popular is the especially school children, line up from sunrise. People also flock to the kunda in patan. Ceremonies associated with the instruments of art and learning books, pans, brusher, etc. take place at home. Traditionally, children are given their first alphabet lesson this day.</p>\n<h3 id=\"maha-shivaratari\">Maha Shivaratari</h3>\n<p>All year pashupatinath attracts pilgrims sadhus, devotees and mendicants, but on this day the visitors are in the reans of thousands, many are from India or the terai ane begin arriving a few days before, some camping out in the vicinity of the temple. Shiva’s sacred day begins at midnight but devotees don’t really begin streaming in, past a tremendous Variety of sadhus, mendicants of various types and deformities, devotees performing roadside penances (standing with a small trident thrust through the tongue, being buried up to the neck etc.)And metro the scared lingam inside the temple and then bathe, or at least splash a little, in the river. The royal family takes part in afternoon rites at Tundikhel parade ground, receiving a 31-gun a salute at the end. The king and his entourage pay homage to Shiva in the evening, when the whole tempo of the activity there has picked up, especially the musical side. Hundreds sadhus reside in attendanced camps in the courtyards of the temples situated at the opposite bank, where non Hindus are also free to wander. The curious can witness some rather interesting yogic demonstrations there.</p>\n<p>It gets chilly in the evening, but there are usually several fires and lively scenes going at least till midnight, when the consecrated time elapses. In Bhaktapur, devotees honor Shiva by playing a visit to the Dattatreya Temple in Tachapal and people in other towns and villages of the valley celebrate it with bonfires and vigils.</p>\n<h3 id=\"fagu-poornima-holi\">Fagu Poornima (Holi)</h3>\n<p>Holi celebrates the death of the demoness Holika. This wicked woman, who was supposed to be invulnerable to fire, tried many times to kill her nephew, an ardent devotee of lord Vishnu. In the end she put the boy on her lap and set fire beneath them, thinking he would be burned up and she would escape. But instead the boy remained unharmed and Holika, to her surpise, immolated herself. The rites of this festival celebrate her end.</p>\n<p>Fagu poornima begins the first day with the raising of the Chir pole about noon in front of kumari house in basantapur. Holi is known as ‘playing with color ‘festival. Young and old, especially the children throw bags of water or handful of colored powder at each other and make it pleasure. In Terai region, they celebrate it the next day when people of valley celebrate it.</p>\n<h3 id=\"chaite-dashain\">Chaite Dashain</h3>\n<p>Hindus celebrate Dashain twice a year in Nepal. Chaite Dashain is one of these. The most public of the ceremonies are the ritual animal sacrifices performed by the army in the courtyard of the police station at Hanuman Dhoka. This commences from 8:00 a.m. and is performed before the banners and insignia of various military units. Goats and buffaloes are the victims, beheaded by a single stroke of the sword. In previous years anyone in the audience could volunteer to dispatch one of the animals, but this custom has lapsed. Western visitors are slowed to view from a balcony overlooking the courtyard, with a splendid view of all the gore. The rites last about two hours and are concluded after the military commander smears each of the banners with the sacrificial blood.</p>\n<h3 id=\"ram-nawami\">Ram Nawami</h3>\n<p>Hindus worship God ram as a victory day, all Hindus worship Ram at various temple in janakpur. Sacrificing of roosters, goats, and buffaloes at temples are main activities of this day.</p>\n<h3 id=\"bisket-jatra\">Bisket Jatra</h3>\n<p>The old kingdom of Bhaktapur and its neighhoring areas replay a drama passed on over the centuries during this important festival. Images of wrathful and somewhat demonic deities are placed on tottering chariots Raths. They are offered blood sacrifices, flowers, and coins. Men brimming with youthful vigor and rice beer, drag the chariots across brick-paved streets of the town, and where ever these raths stop, lamps are lit and devotees overflow into the surrounding alleys. Other gods and goddesses too are put on palanquins and carried around so that they may see the sights. There is a tongue-boring ceremony at Bode village, Thimi in which there is a belief that the dedicated will be reserve a place in heaven.</p>\n<h3 id=\"mothers-day\">Mother’s Day</h3>\n<p>Mother’s day symbolizes love, affection for living mother and memory for dead mother. It is also the day of ‘looking at Mother’ face’. For the living it is a reminder to pray for their souls. In this day, a special Mela is organized at Mata Tirtha. There are two pools at Mata Tirtha, the lower one is bigger and used for bathing. The smaller upper one is called the pond of “Looking at Mother’s Face”, for it is believed, or was believed, one could see the face of one’s mother in the pool’s reflection.</p>\n<h3 id=\"buddha-jayanti\">Buddha Jayanti</h3>\n<p>Buddha jayanti is the special occasion for both Hindu and Buddhists. They celebrate this day as the day of the Buddha Siddartha’s birth, enlightenment and death. His birthplace-Lumbini Grove is in the Terai region of Nepal. Buddhists of all persuasions throughout the valley, as well as pilgrims for abroad honor the Buddha on this day, most particularly at the two great stupas and the largely Buddhist city of patan. Activity at the main Buddhist stupas and shrines begins at down. Swayambhunath and Budhanath are the busiest sites for the day of the day of Buddha jayanti.</p>\n<p>king of serpents is asked for blessing, and his jeweled vest is shown to the public.</p>\n<h3 id=\"nag-panchami\">Nag panchami</h3>\n<p>This day honors the Nagas, the snake-gods, who in Nepal are associated with rain. The festival honors an ancient victory of a king, who was also a Tantric master. Over the nags, who had been withholding the rain. The king forced their submission by casting magic spells over them. Worship of the Nags on this day, a compromise the conqueror graciously bestowed, insures there will be on brought. Nepalese Nag portraits from the street stalls the day before and on the morning of Nag Panchami attach these over their doorways. They then perform a small puja and leave a food offering in the yards and paddies for the snakes.</p>\n<h3 id=\"janai-purnima-rakshya-bandban\">Janai Purnima (Rakshya Bandban)</h3>\n<p>Janai Purima the day when Hindu change the janai, the sacred thread the men were on their chests. This full moon day sees floks of Brahmins ( hindu priests) at the holy riverbanks. They take ritual dips in the water and offer ablution to gods. They then change their sacred threads and also tie yellow sacred threads around the wrists of the faithful. Newars of the Kathmandu valley call this festival Gunhi punhi, a soup of different sprouted beans known as kwati, is prepared as the special menu of the day.</p>\n<p>At kumbherswar in patan, richly decorated limgam, the phallic symbol of load shiva, it placed on a raised platform in the middle of the kumbherswar (knowanti) pond to received homage form devotees. Another ceremony that takes place here is Byan –ja nakegu, in which rice is offered to frogs in gratitude for a good rain. In baktapur, as a preclude to saparu the next day, a jujuya ghinatanghishi (kings carnibal)goes around town. The participants dress in outlandish costumes and gambol to the tune of traditional music.</p>\n<h3 id=\"gai-jatra\">Gai Jatra</h3>\n<p>On the day of gai jatra, families how have lost a member during the year pared a decorated cow around the city. Other dress up kids as cows or ascetics and walk in procession along the festival route. The sacred animal help departed soul to cross the cosmic ocean in their journey into the after-world.</p>\n<p>There is also a cosmic aspect to the festival. Humorous and satirical items are included to help be received families get over there grief. There are street shows making fun of government officials. People also roam the city dressed of like lunatics. News papers bring out special mad editions on the day.</p>\n<p>In Kathmandu, the bereaved families proceed along the festival rout individually. In patan, all the participants first gather at durbar square and then move out together. The celebration in Baktapur is the must interesting. Tall bamboo contraptions, wrapped in cloth and toppea with horns fashioned of straw, are carried around the city in memory of the dead. People of Bahtapur proceed along the festival rout performing spectacular ghinda-ghini twakka dance.</p>\n<h3 id=\"krishnastami\">Krishnastami</h3>\n<p>Lord Krishna, the dark god who taught warrior Arjuna the value of karma in the Bhagwad Gita, was born at midnight on the eight day of the dark moon of August. To celebrate the birthday of this much-loved Hindu god, devotees flock to the Krishna mandir in patan on the preceding day. There, men and woman from far away gather around the 17th century temple and sit in vigil waiting for the midnight fill the air, and small oil lamps are lit as a mark of felicitation and devotion to the deity. Images of lord Krishna are also carried around the city in a procession accompanied by joyous crowds of followers and musical bands.</p>\n<h3 id=\"fathers-day\">Father’s day</h3>\n<p>Gokarna aunsi is a special day set apart for the veneration of one’s fathers alive or dead. On this auspicious day, son and daughter offer ritual food, sweets, meat and other gifts to there father. The streets are a happy scene with married daughter with loads of goodies making their way to their parents ‘houses. Ceremony is also known as looking upon father’s face.’ Those whose father are no more make this day by visiting gokran and other sacred sports and worship the deities. Their day performs anniversary rituals in honor of their departed father and offer aims of rice, pulses and coins to the priests.</p>\n<h3 id=\"teej\">Teej</h3>\n<p>Dancing, flock song, and the red color of woman’s wedding sarees dominate the day of teej, a hindu festival of womanhood. The day recalls the heavenly occasion when parbati, daughter of the himalaya, won the hand of lord shiva after serve meditation and fasting.</p>\n<p>On the first day mother send gift of food and sarees to their daughter’s houses, and groups of woman’s gather together to feast. At midnight, the woman begins a fast in emulation of parabati. The second day is for worship, in the early morning of the third day, woman in red flock to the pasupatinath temple, the grate temple of load shiva.the married ones asked for a happy and productive marriage an a long life for the their husbands, and those at to tie the nuptial knot asked for an ideal husbands.</p>\n<h3 id=\"dashain\">Dashain</h3>\n<p>The grate harvest festival of nepa, dashain is a time of family reunion,the exchange of gifts and blessings, profuse pujas , ritual bathing and animal sacrifices. Dashai honors the goddess durga, hor was crated out of the shakti energy of all the gods, armed with weapons from each of them. Goddess Durga, symbolizing valor and prowess, is worshipped and offered animal sacrifices for the devotees’ progress prosperity.</p>\n<p>During the first ten days, pilgrims throng various river confluences early in the morning and sacred shrines in the evening. Ghatasthapan, phool pati, mahaastami, nawami and vijaya dasami are series of the events under dashain. On dasmi, men ane woman in their fineries visit there elders to seektika (a dab of red vermilion mixed with yougort and rice). Sword precessions (paayaa) are also held in various part of the Kathmandu valley.the last day known as kojagrat purnima, is the full moon. From this day onwards. Hindu woman being a month – long fast, many in residence at pasupatnath. New clothes visits, grand feasts, kite flying and village swings are the highlight of dashain.</p>\n<h3 id=\"tihar-diwali\">Tihar ( Diwali)</h3>\n<p>This festival is a time of light and tinsel decorations, fancy sweets and juicy fruits. The calibrations being with the adoration of cows and dogs. Leaf dishes of rice, incense and light are set out for the dark messenger, while dogs are worshiped and offered goodies. In the period of tiher laxmi, the goddess of wealth is worshipped. Rows of lamps are placed on windows and doors, with the strong hop that laxmi, the goddess of walth is worshipped. Rows of lamp are placed on windows and door with strong hop the laxmi pleased to reside in light. The following day belong to the cow, representative of laxmi. Laxmi pooja, gobardan pooja and Bhai tika are the series of event under tihar. In the day of Bhai tika sister and brothers get together and accept tika from each other. This day is called brothers day. Bother and sister honor each other on this day and sister pray to yama, the god of death, for their brother’s progress, prosperity and longevity.</p>\n<h3 id=\"chhath-parva\">Chhath parva</h3>\n<p>The worship of surya, the sun god, attracts thousands of pilgrims to the holy town of janakpur in southeastern Nepal devotees from Nepal and India throng the ancient city to worship at the janaki temple and take ritual baths in the rivers and ponds. Devotees light lamps, sing song and spend the night before chhath parva at banks of rivers and ponds to grate the coming of the god. As the fiscal rays of the sun blaze from the sky, devotees scramble to offer prayer holy water, fruits, coconuts and sacred threads. Thy pray to the sun protection from skin diseases.</p>\n<h3 id=\"mani-rimdu\">Mani Rimdu</h3>\n<p>Mani Rimdu is grates festival of the sherpas of the khumbu in the Everest region. The celebrations take place of the tengboche monastery and last for three days. The ceremonies start with the blowing of horns by Buddhist monks. Then the chief lama and other monks arrive in the procession. Prayers are chant and gratitude is extended to all those who has contributed for the function. The crowd then rises of to symbols, horns, flutes and conch shells announce the start of the second day’s events. Then follow the sacred dance in which monks wearing masks perform routines symbolizing the destruction of evil forces.</p>\n<h3 id=\"bala-chaturdasi\">Bala Chaturdasi</h3>\n<p>Another special day for the deceased, this festivals rites are designed to appease the souls of the death any wrong committed against them wile they were still alive. The rites of this chaturdasi are in honor of bala, a burning ghat laborer how accidentally at a piece of bourn flesh become a demon addicted to cannibalism. Several different stories narrate the tale but motif common to all is that bala was trcked by a gesture of friendship and killed. His vanquisher then began the custom of scattering grains for the dead this day, to atone for the fatal subterfuge. The mela begins at dusk evening, prior with devotees assembling in the vicinity of pasupatnath for all night vigils. Ceremonies ritual bating being at dawn, followed by a long, 2-3 hour procession though a rough course over which the participants scatterbrains. This continues until a horn sounds the termination in the evening.</p>\n<h3 id=\"tamu-lhosar\">Tamu lhosar</h3>\n<p>Nepal’s Tamang, Magar, Gurung and other Himalayan communities celebrate lhosar to commemorate the beginning of the Tamu lhosar lunar new year. As part of the festivities, Buddhist monks hold prayer meetings at monasteries, which are specially decorated for the event. People raise holy flogs atop their homes, and relatives and friends exchange greeting. The festival is an occasion for people to come together for singing and dancing, dressing up for many days. Cultural performances are also held.</p>\n<h3 id=\"christmas\">Christmas</h3>\n<p>Chrstiam communities of the country celebrate Christmas and teenagers and others from different religion join in as well. All the major hotel and restaurants organize special parties for to occasion.</p>\n<h3 id=\"new-year-eve\">New Year Eve</h3>\n<p>Chistiam New Year celebrated in all major cities, specially in themal of Kathmandu and lake side of pokhara. All the major hotels and restaurants</p>",
+  "toc": [
+   {
+    "id": "maghe-sankranti",
+    "text": "Maghe sankranti",
+    "level": 3
+   },
+   {
+    "id": "lhosar",
+    "text": "Lhosar",
+    "level": 3
+   },
+   {
+    "id": "basanta-panchmi-shree-panchami",
+    "text": "Basanta panchmi (shree panchami)",
+    "level": 3
+   },
+   {
+    "id": "maha-shivaratari",
+    "text": "Maha Shivaratari",
+    "level": 3
+   },
+   {
+    "id": "fagu-poornima-holi",
+    "text": "Fagu Poornima (Holi)",
+    "level": 3
+   },
+   {
+    "id": "chaite-dashain",
+    "text": "Chaite Dashain",
+    "level": 3
+   },
+   {
+    "id": "ram-nawami",
+    "text": "Ram Nawami",
+    "level": 3
+   },
+   {
+    "id": "bisket-jatra",
+    "text": "Bisket Jatra",
+    "level": 3
+   },
+   {
+    "id": "mothers-day",
+    "text": "Mother’s Day",
+    "level": 3
+   },
+   {
+    "id": "buddha-jayanti",
+    "text": "Buddha Jayanti",
+    "level": 3
+   },
+   {
+    "id": "nag-panchami",
+    "text": "Nag panchami",
+    "level": 3
+   },
+   {
+    "id": "janai-purnima-rakshya-bandban",
+    "text": "Janai Purnima (Rakshya Bandban)",
+    "level": 3
+   },
+   {
+    "id": "gai-jatra",
+    "text": "Gai Jatra",
+    "level": 3
+   },
+   {
+    "id": "krishnastami",
+    "text": "Krishnastami",
+    "level": 3
+   },
+   {
+    "id": "fathers-day",
+    "text": "Father’s day",
+    "level": 3
+   },
+   {
+    "id": "teej",
+    "text": "Teej",
+    "level": 3
+   },
+   {
+    "id": "dashain",
+    "text": "Dashain",
+    "level": 3
+   },
+   {
+    "id": "tihar-diwali",
+    "text": "Tihar ( Diwali)",
+    "level": 3
+   },
+   {
+    "id": "chhath-parva",
+    "text": "Chhath parva",
+    "level": 3
+   },
+   {
+    "id": "mani-rimdu",
+    "text": "Mani Rimdu",
+    "level": 3
+   },
+   {
+    "id": "bala-chaturdasi",
+    "text": "Bala Chaturdasi",
+    "level": 3
+   },
+   {
+    "id": "tamu-lhosar",
+    "text": "Tamu lhosar",
+    "level": 3
+   },
+   {
+    "id": "christmas",
+    "text": "Christmas",
+    "level": 3
+   },
+   {
+    "id": "new-year-eve",
+    "text": "New Year Eve",
+    "level": 3
+   }
+  ],
+  "excerpt": "Festivals in Nepal begins with something religious and moves with spontaneous spirit into a pleasant family feast as for a Nepalese religion has been influenced and has always been the core of Nepali…",
+  "modified": "2018-07-03T10:57:53",
+  "cover": {
+   "src": "/media/2018/07/festivals-in-nepal.webp",
+   "w": 918,
+   "h": 690,
+   "alt": "Festivals in Nepal"
+  },
+  "seo": {
+   "title": "Festivals in Nepal - List of Common Festivals in Nepal",
+   "description": "Nepal is well-known for its natural heritage and diversity in culture. This diversity brings many notable festivals that are widely celebrated in Nepal.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Festivals-in-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 177,
+  "slug": "facts-about-nepal",
+  "parent": null,
+  "title": "Facts about Nepal",
+  "html": "<p>Nepal is a Kingdom of high Himalayan Mountains, artistic monuments exotic wild life and diverse culture. It is the land where Lord Buddha was born over 2,500 years ago. Roughly rectangular in shape the kingdom of Nepal is situated between China to the north and India to the south. The land extends approximately 885 km. East to west, and 193 km north to south. Nepal is primarily an agricultural country. Tourism, Carpets and Garments are the major industries. Here are some facts about Nepal.</p>\n<h3 id=\"1-the-land\">1. The Land</h3>\n<p>The terrain rises from the terai, the southern plains covered with tropical jungles and fertile farmland at almost sea level, to the high Himalayan mountains in the north with the valleys and lush green hills in between within a distance of less then 200 km. Eight of the 10 highest peaks in the world lie in Nepal.</p>\n<h3 id=\"2-the-people\">2. The People</h3>\n<p>Nepal’s many ethnic groups are as varied as its land with their own languages and cultures. In the Kathmandu valley are Newars, whose artistry have earned them an international reputation. The Sherpas of the Himalayas are known as tough mountain climbers. Brahmins and Chhettris are scattered over the hills and valleys, and Tamang are found in the districts around Kathmandu valley. The Rais, Limbus, Magars and Gurungs of the mid hills have earned as <a class=\"external\" href=\"https://en.wikipedia.org/wiki/Gurkha\" rel=\"noopener noreferrer\" target=\"_blank\">Gurkha soldiers</a>. Lowland ethnic group s such as the Maithali, Bhojpuri and Tharu enhance the colorful mosaic, the population of Nepal is about 23 million.</p>\n<h3 id=\"3-the-climate\">3. <a class=\"external\" href=\"http://www.dhm.gov.np/\" rel=\"noopener noreferrer\" target=\"_blank\">The Climate</a></h3>\n<p><a href=\"/media/2015/11/weather-in-nepal.webp\"><img src=\"/media/2015/11/weather-in-nepal.webp\" alt=\"Weather in Nepal- Fewa Lake\" width=\"935\" height=\"440\" loading=\"lazy\" decoding=\"async\"/></a></p>\n<p>Nepal contains a variety of climatic conditions ranging from the tropical heat of the Terai plains to the freezing cold of the high Himalayas. The mid hills, particularly the Kathmandu valley, are pleasant with warm summer and cool winter. Temperature range between a maximum of 37 and a minimum of 8 degree Celsius in the plains, 28 and 2 degree Celsius in Kathmandu valley, and between, 6 and 16 degree Celsius in the mountains. The rainy season lasts from June to August.</p>\n<h3 id=\"4-what-to-wear\">4. <a href=\"/blog/what-to-wear-in-nepal/\" rel=\"noopener\" target=\"_blank\">What to wear</a></h3>\n<p>Medium weight and easy to wash cottons can be a good choice year around in the Kathmandu valley. From October to February, woolen sweaters, Jackets or similar other outfits are necessary. Short or long sleeved shirts are good from March through May. From June to September, light and loose garments are advisable.</p>\n<h3 id=\"5-wild-life\">5. <a class=\"external\" href=\"http://nepal.saarctourism.org/wildlife-in-nepal.html\" rel=\"noopener noreferrer\" target=\"_blank\">Wild Life</a></h3>\n<p><a href=\"/media/2015/11/rhino-in-nepal.webp\"><img src=\"/media/2015/11/rhino-in-nepal.webp\" alt=\"Wildlife in Nepal\" width=\"768\" height=\"477\" loading=\"lazy\" decoding=\"async\"/></a></p>\n<p>Nepal provides shelter to over 30 species of large wild animals and approximately 180 species of mammals. The rhinoceros, tigers, crocodiles, snow leopard, red panda, Himalayan black dear, and many others beasts are found Nepal’s jungles.<br/>\nNepal is also a haven for birds and over 800 species, representing approximately 10% of the world’s population are found here. There are more then 650 species of butterflies and over 6,000 species of months.</p>\n<h3 id=\"6-language\">6. Language</h3>\n<p>Nepali, written in the Devanagari script, is national language as well as the lingau Franca for Nepal ’diverse communities. Many languages and dialects are the spoken in the Kingdom, however, only 8 (Nepali, Maithali, Bhojpuri, Tharu, Tamang, Gurung, Rais, Limbus, Newari, Sherpas and Nepalbhasa) are spoken by more then half million people. English and Hindi are widely understood in the urban centers and places frequented by tourists.</p>\n<h3 id=\"7-currency\">7. Currency</h3>\n<p>Nepalese Currency is the rupee (Aubrey. RS wish is divided into 100 paisa; bank notes come in denominations of 1000, and 500, 250, 50, 25, 20, 10, 5, 2 and 1 rupees.</p>",
+  "toc": [
+   {
+    "id": "1-the-land",
+    "text": "1. The Land",
+    "level": 3
+   },
+   {
+    "id": "2-the-people",
+    "text": "2. The People",
+    "level": 3
+   },
+   {
+    "id": "3-the-climate",
+    "text": "3. The Climate",
+    "level": 3
+   },
+   {
+    "id": "4-what-to-wear",
+    "text": "4. What to wear",
+    "level": 3
+   },
+   {
+    "id": "5-wild-life",
+    "text": "5. Wild Life",
+    "level": 3
+   },
+   {
+    "id": "6-language",
+    "text": "6. Language",
+    "level": 3
+   },
+   {
+    "id": "7-currency",
+    "text": "7. Currency",
+    "level": 3
+   }
+  ],
+  "excerpt": "Nepal is a Kingdom of high Himalayan Mountains, artistic monuments exotic wild life and diverse culture. It is the land where Lord Buddha was born over 2,500 years ago. Roughly rectangular in shape…",
+  "modified": "2018-07-03T10:52:52",
+  "cover": {
+   "src": "/media/2018/07/facts-about-nepal.webp",
+   "w": 1385,
+   "h": 690,
+   "alt": "Facts about Nepal"
+  },
+  "seo": {
+   "title": "7 Amazing Facts about Nepal You Must Know- Nepal Facts",
+   "description": "7 Amazing facts about Nepal- the country of Mighty Himalayas and the birthplace of Lord Buddha. Read about what this amazing country has on offer for you.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Facts-about-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 174,
+  "slug": "embassies-in-nepal",
+  "parent": null,
+  "title": "Embassies in Nepal",
+  "html": "<h2 id=\"canadian-embassy-in-nepal\"><strong>Canadian Embassy in Nepal</strong></h2>\n<p><strong>Address:</strong> Lazimpat, Kathmandu<br/>\n<strong>Email: </strong>cco@ktmdu.mos.com.np<br/>\n<strong>Telephone:</strong> 4415389, 4415861<br/>\n<strong>Fax: </strong>00977-1-4410422<br/>\n<strong>Others: </strong>Working Hours: Monday to Friday: 900 hrs-1700 hrs</p>\n<h2 id=\"department-for-international-development-dfid-nepal\">Department for International Development (DFID) Nepal</h2>\n<p><strong>Telephone:</strong> 5542980/5542981<br/>\n<strong>Fax: </strong>00977-1-5542979<br/>\n<strong>Others:</strong> Working Hours: Monday to Friday: 900 hrs-1700 hrs</p>\n<h2 id=\"embassy-of-bangladesh-in-nepal\">Embassy of Bangladesh in Nepal</h2>\n<p><strong>Address:</strong> Chancery: PO Box 789, Chakrapath, Maharajgunj, Kathmandu<br/>\n<strong>Telephone:</strong> 4372843 Fax: 00977-1-4373265<br/>\n<strong>Others: </strong>Working Hours: Monday to Thursday 0900-1315 hrs, 1400-1700 hrs Friday: 0900- 1200 hrs, 1400-1700 hrs<br/>\n<strong>Telex:</strong> 2420 Dot NP</p>\n<h2 id=\"embassy-of-india-in-nepal\">Embassy of India in Nepal</h2>\n<p><strong>Address: </strong>Chancery, Lainchaur,Kathmandu<br/>\n<strong>Email:</strong> indemb@mos.com.np<br/>\n<strong>Telephone:</strong> 4410900, 4414990<br/>\n<strong>Fax: </strong>00977-1-4413132<br/>\n<strong>Others:</strong> Working hours: Monday to Friday: 0900 hrs- 1300 hrs, 1330 hrs-1730 hrs</p>\n<h2 id=\"embassy-of-australia-in-nepal\">Embassy of Australia in Nepal</h2>\n<p><strong>Address:</strong> Chancery, Suraj Niwas,<br/>\nPost Box 879, Bansbari, Kathmandu<br/>\n<strong>Telephone: </strong>4371678<br/>\n<strong>Fax:</strong> 00977-1-4371533<br/>\n<strong>Others:</strong> Working Hours: Monday to Thursday: 0830 hrs—1315 hrs, 1330 hrs-1700 hrs Friday: 0830 hrs-1315 hrs</p>\n<h2 id=\"embassy-of-china-in-nepal\">Embassy of China in Nepal</h2>\n<p><strong>Address:</strong> Chancery: PO Box: 6327, Baluwatar, Kathmandu<br/>\n<strong>Telephone: </strong>4411740,4411958<br/>\n<strong>Fax: </strong>00977-1-414045<br/>\n<strong>Others:</strong></p>\n<h2 id=\"economic-commercial-counselors-office\">Economic &amp; Commercial Counselor’s Office:</h2>\n<p><strong>PO Box:</strong> 4234, Naxal, Kathmandu<br/>\n<strong>Tel: </strong>4 434472,4 434972,<br/>\n<strong>Fax:</strong> 4434792<br/>\n<strong>Working Hours:</strong> Monday to Friday: 0900 hrs-1200 hrs, 1500 hrs-1700 hrs</p>\n<h2 id=\"embassy-of-denmark-in-nepal\">Embassy of Denmark in Nepal</h2>\n<p><strong>Address: </strong>Chancery: Lalita Niwas Road, Baluwatar<br/>\nPO Box 6332, Kathmandu<br/>\n<strong>Email: </strong>danemb@wlink.com.np<br/>\n<strong>Telephone:</strong> 4413010, 4413020<br/>\n<strong>Fax: </strong>00977-1-4411409<br/>\n<strong>Others: </strong>Working Hours: Monday to Thursday: 0900 hrs-1700 hrs Friday: 0900 hrs-1400 hrs Consular Hours: Monday to Friday: 1000 hrs-1200 hrs</p>\n<h2 id=\"embassy-of-egypt-in-nepal\">Embassy of Egypt in Nepal</h2>\n<p><strong>Address:</strong> Chancery: Pulchowk, Lalitpur,<br/>\n<strong>PO Box: </strong>792, Kathmandu<br/>\n<strong>Telephone:</strong> 5524812, 5520083<br/>\n<strong>Fax:</strong> 00977-1-5522975<br/>\n<strong>Others:</strong> Working Hours: Monday to Friday: 0900 hrs-1500 hrs Consular Section: 1200 hrs-1500 hrs<br/>\n<strong>Telex: </strong>2225 BUSTAN NP</p>\n<h2 id=\"embassy-of-finland-in-nepal\">Embassy of Finland in Nepal</h2>\n<p><strong>Address:</strong> Chancery: Lazimpat<br/>\nPO Box 2126, Kathmandu<br/>\n<strong>Email: </strong>finembka@mos.com.np<br/>\n<strong>Telephone: </strong>4416636, 4417221<br/>\n<strong>Fax: </strong>00977-1-4416703<br/>\n<strong>Others:</strong> Working Hours: Monday to Friday: 0830 hrs- 1615 hrs</p>\n<h2 id=\"embassy-of-france-in-nepal\">Embassy of France in Nepal</h2>\n<p><strong>Address: </strong>Chancery: Lazimpat, Kathmandu<br/>\n<strong>Email: </strong>ambafr@mos.com.np<br/>\n<strong>Telephone: </strong>4413332, 4413839<br/>\n<strong>Fax:</strong> 00977-1-4419968</p>\n<h2 id=\"embassy-of-germany-in-nepal\">Embassy of Germany in Nepal</h2>\n<p><strong>Address: </strong>Chancery: Gyaneshwor,<br/>\nPO Box 226, Kathmandu<br/>\n<strong>Telephone:</strong> 4412786<br/>\n<strong>Fax: </strong>00977-1-4416899<br/>\n<strong>Telex:</strong> 2213 aa kath np</p>\n<h2 id=\"embassy-of-israel-in-nepal\">Embassy of Israel in Nepal</h2>\n<p><strong>Address:</strong> Chancery: Bishramalaya House, Lazimpat, Kathmandu<br/>\n<strong>Email:</strong> israelem@mos.com.np<br/>\n<strong>Telephone: </strong>4411811, 4413419<br/>\n<strong>Fax: </strong>00977-1-4413920<br/>\n<strong>Others:</strong> Working hours: Monday to Thursday: 0815 hrs-1545 hrs Friday: 0815 hrs-1345 hrs</p>\n<h2 id=\"embassy-of-japan-in-nepal\">Embassy of Japan in Nepal</h2>\n<p><strong>Address:</strong> Chancery: PO Box 264, Panipokhari, Kathmandu<br/>\n<strong>Telephone: </strong>4426680<br/>\n<strong>Fax:</strong> 00977-1-4414101<br/>\n<strong>Others: </strong>Working Hours: Monday to Friday: 0900 hrs- 1300 hrs, 1430 hrs- 1700 hrs Visa Section: Tuesday to Friday: 0930 hrs-1130 hrs</p>\n<h3 id=\"embassy-of-korea-democratic-peoples-republic\">EMBASSY OF KOREA, DEMOCRATIC PEOPLE’S REPUBLIC</h3>\n<p><strong>Address: </strong>Chancery: Jhamsikhel, Lalitpur, Nepal<br/>\n<strong>Telephone:</strong> 5521855, 5535871<br/>\n<strong>Fax:</strong> 00977-1-5525394<br/>\n<strong>Others: </strong>Working hours: Monday to Friday: 0900-1300 hrs, 1400-1800 hrs</p>\n<h3 id=\"embassy-of-korea-republic-of\">EMBASSY OF KOREA, REPUBLIC OF</h3>\n<p><strong>Address: </strong>Chancery: PO Box 1058, Himshail, Red Cross Marg Tahachal Kathmandu.<br/>\n<strong>Email: </strong>koreaemb@mos.com.np<br/>\n<strong>Telephone:</strong> 4270172, 4270417<br/>\n<strong>Fax:</strong> 00977-1-4272041<br/>\n<strong>Others: </strong>Working Hours: Monday to Friday: 0900 hrs-1200 hrs, 1400 hrs-1700 hrs</p>\n<h2 id=\"embassy-of-myanmar-in-nepal\">Embassy of Myanmar in Nepal</h2>\n<p><strong>Address: </strong>Chancery: Chakupat, Patan Gate, Lalitpur<br/>\n<strong>Telephone: </strong>5521788, 5524788<br/>\n<strong>Fax:</strong> 00977-1-5523402<br/>\n<strong>Others: </strong>Working Hours: Monday to Friday: 0930 hrs- 1300 hrs, 1400 hrs-1630 hrs</p>\n<h2 id=\"embassy-of-pakistan-in-nepal\">Embassy of Pakistan in Nepal</h2>\n<p><strong>Address:</strong> Chancery: Pushpanjali, Narayan Gopal Chowk, Ring Road, Maharajgunj,<br/>\nPO Box 202, Kathmandu<br/>\n<strong>Telephone: </strong>4374024<br/>\n<strong>Fax: </strong>00977-1-4374012<br/>\n<strong>Others:</strong> Working Hours: Monday to Friday: 0900 hrs- 1730 hrs</p>\n<h2 id=\"embassy-of-russia-in-nepal\">Embassy of Russia in Nepal</h2>\n<p><strong>Address: </strong>Chancery: PO Box 123, Baluwatar, Kathmandu<br/>\n<strong>Telephone: </strong>4412155, 4411063<br/>\n<strong>Fax: </strong>00977-1-4416571</p>\n<h2 id=\"embassy-of-sri-lanka-in-nepal\">Embassy of Sri Lanka in Nepal</h2>\n<p><strong>Address: </strong>Chancery: PO Box 8802, Baluwatar, Kathmandu<br/>\n<strong>Email:</strong> embassy@srilanka.wlink.com.np<br/>\n<strong>Telephone: </strong>4419289, 4413623<br/>\n<strong>Fax:</strong> 00977-1-4435428<br/>\n<strong>Others: </strong>Working Hours: Monday to Friday: 0900 hrs-1700 hrs</p>\n<h2 id=\"embassy-of-thailand-in-nepal\">Embassy of Thailand in Nepal</h2>\n<p><strong>Address:</strong> Chancery: PO Box 106, Lainchaur, Kathmandu<br/>\n<strong>Telephone: </strong>4371410, 4371411<br/>\n<strong>Fax:</strong> 00977-1-4371408, 37<br/>\n<strong>Others: </strong>Working Hours: Monday to Friday: 0830-1230 hrs, 1330-1630 hrs Consular Section: 0930 hrs- 1230 hrs</p>\n<h2 id=\"embassy-of-the-united-kingdom-in-nepal\">Embassy of the United Kingdom in Nepal</h2>\n<p><strong>Address:</strong> Chancery: PO Box 106, Lainchaur, Kathmandu<br/>\n<strong>Telephone:</strong> 4410583, 4411281<br/>\n<strong>Fax:</strong> 00977-1-4411789, 41<br/>\n<strong>Others:</strong> Working Hours: Monday to Thursday: 0815 hrs-1230 hrs, 1330 hrs-1700 hrs Friday: 0815 hrs-1230 hrs, 1330 hrs-1515 hrs</p>\n<h3 id=\"embassy-of-united-states-of-america\">EMBASSY OF UNITED STATES OF AMERICA</h3>\n<p><strong>Address:</strong> Chancery: Panipokhari, Kathmandu<br/>\n<strong>Telephone:</strong> 4411179, 4413890<br/>\n<strong>Fax:</strong> 00977-1-4419963<br/>\n<strong>Others: </strong>Working Hours: Monday to Friday: 0800 hrs-1700 hrs</p>\n<h3 id=\"european-union\">EUROPEAN UNION</h3>\n<p><strong>Address: </strong>Chancery: Baluwatar, Kathmandu<br/>\n<strong>Email:</strong> eudelnep@mos.com.np<br/>\n<strong>Telephone:</strong> 4423569, 4429445<br/>\n<strong>Fax: </strong>00977-1-4423541<br/>\n<strong>Others:</strong> Working Hours: Monday to Friday: 900 hrs-1700 hrs</p>\n<h3 id=\"saarc-secretariat\">SAARC SECRETARIAT</h3>\n<p><strong>Address:</strong> Chancery: SAARC Secretariat Tridevi Marg, Kathmandu<br/>\n<strong>Email: </strong>saarc@mos.com.np<br/>\n<strong>Telephone:</strong> 4221785, 4226350<br/>\n<strong>Fax: </strong>00977-1-4227033<br/>\n<strong>Others:</strong> Working hours Monday to Friday:0900 hrs-1700 hrs</p>",
+  "toc": [
+   {
+    "id": "canadian-embassy-in-nepal",
+    "text": "Canadian Embassy in Nepal",
+    "level": 2
+   },
+   {
+    "id": "department-for-international-development-dfid-nepal",
+    "text": "Department for International Development (DFID) Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-bangladesh-in-nepal",
+    "text": "Embassy of Bangladesh in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-india-in-nepal",
+    "text": "Embassy of India in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-australia-in-nepal",
+    "text": "Embassy of Australia in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-china-in-nepal",
+    "text": "Embassy of China in Nepal",
+    "level": 2
+   },
+   {
+    "id": "economic-commercial-counselors-office",
+    "text": "Economic & Commercial Counselor’s Office:",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-denmark-in-nepal",
+    "text": "Embassy of Denmark in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-egypt-in-nepal",
+    "text": "Embassy of Egypt in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-finland-in-nepal",
+    "text": "Embassy of Finland in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-france-in-nepal",
+    "text": "Embassy of France in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-germany-in-nepal",
+    "text": "Embassy of Germany in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-israel-in-nepal",
+    "text": "Embassy of Israel in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-japan-in-nepal",
+    "text": "Embassy of Japan in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-korea-democratic-peoples-republic",
+    "text": "EMBASSY OF KOREA, DEMOCRATIC PEOPLE’S REPUBLIC",
+    "level": 3
+   },
+   {
+    "id": "embassy-of-korea-republic-of",
+    "text": "EMBASSY OF KOREA, REPUBLIC OF",
+    "level": 3
+   },
+   {
+    "id": "embassy-of-myanmar-in-nepal",
+    "text": "Embassy of Myanmar in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-pakistan-in-nepal",
+    "text": "Embassy of Pakistan in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-russia-in-nepal",
+    "text": "Embassy of Russia in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-sri-lanka-in-nepal",
+    "text": "Embassy of Sri Lanka in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-thailand-in-nepal",
+    "text": "Embassy of Thailand in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-the-united-kingdom-in-nepal",
+    "text": "Embassy of the United Kingdom in Nepal",
+    "level": 2
+   },
+   {
+    "id": "embassy-of-united-states-of-america",
+    "text": "EMBASSY OF UNITED STATES OF AMERICA",
+    "level": 3
+   },
+   {
+    "id": "european-union",
+    "text": "EUROPEAN UNION",
+    "level": 3
+   },
+   {
+    "id": "saarc-secretariat",
+    "text": "SAARC SECRETARIAT",
+    "level": 3
+   }
+  ],
+  "excerpt": "Canadian Embassy in Nepal Address: Lazimpat, Kathmandu Email: cco@ktmdu.mos.com.np Telephone: 4415389, 4415861 Fax: 00977-1-4410422 Others: Working Hours: Monday to Friday: 900 hrs-1700 hrs…",
+  "modified": "2018-07-03T10:50:42",
+  "cover": null,
+  "seo": {
+   "title": "Embassies in Nepal - List of Countries with Embassy in Nepal",
+   "description": "Finding respective nation's embassy can be hectic when you are in different country. That's why we have created a list of countries with address in Nepal",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 168,
+  "slug": "culture-of-tibet",
+  "parent": null,
+  "title": "Culture of Tibet",
+  "html": "<p>The culture, custom and tradition of Tibet has been set as example to the world as one of the last remaining authentic cultures in the world. Be it traditional folk dance performances or art, Tibetan culture is simply amazing and unique. Its rich and unique culture is reflected through art architecture, dresses, archery, traditional ceremonies and the everyday life of Tibetan people. In fact, Tibet has got everything from tolerance to communal harmony to peaceful existence that makes their culture so rich and meaningful.</p>\n<p>Tibet has developed very distinct and unique culture over the years. The specific geographic condition along with relation with neighboring countries have influenced the development of such vast Tibetan culture. Among many, one of the most significant part of Tibetan culture is its performing arts including music, drama and dance. Also known as the Ocean of Songs and Dances, Tibetan singing and dancing is widely spread throughout the region. In fact, dancing and singing are the integral part of every Tibetan’s daily life.</p>\n<p>Tibetan clothing is yet another significant part of their culture. Generally, Tibetans wear extremely conventional clothing consisting of a robe and shirt. With the advancement of Tibet and import of fashionable clothes from other parts of the world, traditional attire is turning out to be more uncommon in towns, however, it is still ordinary in more remote territories and villages.</p>\n<p>Tibetans are believed to be the most courteous people. They use extremely polite language while addressing seniors, people with higher social status or even the people of same age or same statues. They have the practice of adding ‘La’ after the name of people they are calling to show their respect. Similarly, they have the tradition of giving ‘Khata’, a scarf that symbolizes goodwill good luck and compassion to their guests. The Khata is considered as highly versatile gift, which is presented at any celebration including weddings, birthdays, graduation and many more. This unique culture make Tibetan most friendly and welcoming people.</p>\n<p>One of the most uncommon practice that the Tibetans still follow whole heartedly is Sky Burial practice. It is the funeral practice whereby a dead body of human is cut into small pieces in certain location usually remote mountains and placed on a mountain top, exposing it to birds.  The corpse is often offered to vultures considering vultures as angels who take the soul into the heavens. To foreign eye, this mystical tradition may seem unsympathetic, yet Tibetan have been following this tradition for centuries and have deep faith in it.</p>\n<p>Hence, the Tibetan culture is the most unique culture that have evolved with time. So, if you want to taste the unique Tibetan culture, you can do so by registering yourself for base camp adventure’s ‘Tour to Tibet’. During the  <a href=\"https://www.affordable-papers.net/\" rel=\"noopener noreferrer\" target=\"_blank\">visit</a>  to Tibet, we make sure that you get the genuine flavor of Tibetan culture through live performances shows held during festivals and fairs. So, don’t let the opportunity go by and come to Tibet and find new path towards happy live and learn new ways of life.</p>",
+  "toc": [],
+  "excerpt": "The culture, custom and tradition of Tibet has been set as example to the world as one of the last remaining authentic cultures in the world. Be it traditional folk dance performances or art, Tibetan…",
+  "modified": "2020-09-01T11:02:34",
+  "cover": {
+   "src": "/media/2018/07/culture-of-tibet.webp",
+   "w": 1403,
+   "h": 690,
+   "alt": "Culture of Tibet"
+  },
+  "seo": {
+   "title": "Tibet Culture - Cultural and Traditional Values of Tibet",
+   "description": "Tibet culture is rich with Buddhism values. It's arts and traditional customs sets a tone of artistic merit among the world having positive effect on Nepal.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Culture-of-Tibet.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 166,
+  "slug": "culture-of-nepal",
+  "parent": null,
+  "title": "Culture of Nepal",
+  "html": "<p><strong>Culture of Nepal</strong> is greatly influenced by its music, architecture, religion and literature. Your first sight of Nepal may leave you speechless, the great quantities of temples, churches, monasteries and other religious buildings, the hurly-burly in the streets and the number of people and animals socializing on every corner of the narrow cobble-stone lanes.<br/>\nNepal has about thirty-six different ethnic groups and multiple religions and languages. Its music is similarly varied, with pop, religious, classical and folk music being popular. Musical genres from Tibet and Hindustan have greatly influenced Nepalese music. Usually, women, even of the musician castes, do not play music except for specific situations, such as at the traditional all-female wedding parties.</p>\n<p>The architecture of Nepal is another art that has become an important part of the country’s culture. Nepal’s architecture can be divided into three broad groups, the stupa style, the pagoda style and the shikhara style.</p>\n<p>Nepal is constitutionally a Hindu kingdom with legal provisions of no prejudice against other religions. The Hindu inhabitant in the country has been constantly over 80 percent since the 1950s. The second largest religion of Nepal is Buddhism, it is practiced by about 11 percent, while Islam comprises of about 4.2 percent of the population. The Kirat religion makes up nearly 3.6 percent of the population.</p>\n<p>Nepal has many customs and beliefs that might be difficult to understand and not so easy to obey but this is the way of life to them and you should respect it when you are in their territory.<br/>\nDo not feel offended if any Nepalese hesitates to shake hands with you because it hasn’t been very long since the western traditions were introduced to them. Most Nepalese greet one another by a “Namaste”, a common act done by putting the palms together in a prayer like gesture.<br/>\nIt is customary to eat and deal with food with your right hand. They use their left hand to wash themselves after being to the toilet. Note that most Nepalese eat with their hands, forks and spoons are not very common.</p>\n<p>Note that men and woman should always dress appropriately. Men should not walk or trek bare-chested, shorts are acceptable but it’s recommended to rather wear long pants. Women are recommended to wear long skirts that cover the ankles, because exposure of a woman’s legs can draw unnecessary attention.<br/>\nShowing affection between men and woman in public is not acceptable. So avoid kissing, hugging, cuddling or even holding hands in public.</p>",
+  "toc": [],
+  "excerpt": "Culture of Nepal is greatly influenced by its music, architecture, religion and literature. Your first sight of Nepal may leave you speechless, the great quantities of temples, churches, monasteries…",
+  "modified": "2018-07-03T10:42:13",
+  "cover": {
+   "src": "/media/2018/07/culture-of-nepal.webp",
+   "w": 1034,
+   "h": 690,
+   "alt": "Culture of Nepal"
+  },
+  "seo": {
+   "title": "Culture of Nepal - Understanding the DiveArsity of Ethnic Groups",
+   "description": "Culture of Nepal is greatly influenced by its music, architecture, religion and literature. Nepal has about 36 different ethnic groups.",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Culture-of-Nepal.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 164,
+  "slug": "culture-of-bhutan",
+  "parent": null,
+  "title": "Culture of Bhutan",
+  "html": "<p>Situated between two giant countries- India and China, Bhutan might be a small country, yet it has a strong cultural identity and unity. Its rich and unique culture is reflected through the magnificent architecture, dresses, archery, traditional ceremonies and the everyday way of life of the Bhutanese. They strongly believe that protection of their unique culture would assist in protecting their sovereignty, due to which Bhutanese have managed to guard its culture and traditions from outside influence and have not seen their culture diminished in any way.</p>\n<p>Bhutan still has the culture of wearing the traditional dress as a formal dress in any public places including schools and offices which is called Gho for men and Kira for women. Similarly, on birth names, the Bhutanese uses two traditional names selected by the child’s parents or grandparents rather including their family name. Regarding eating habits, the Bhutanese have a unique culture of eating with their legs crossed on the wooden floors and food being served first to the eldest member of the family. Furthermore, one of the most unique practice of Bhutanese include the installation of prayer flags on the hillside as well as on the roofs of the houses to offer prayers for all human beings and the god of the locality.</p>\n<p>In order to preserve, support and promote the rich culture of Bhutan, the government as well as people of Bhutan has been giving an earnest efforts. Today, government supports traditional arts and crafts projects and also funds projects for restoration of historic sites. Similarly, the people of Bhutan have been guarding long standing cultural and spiritual events, ceremonies and other traditions with respect and reverence. However, additional help is also needed from the global community to continue these efforts so that Bhutan’s identity is not lost.</p>",
+  "toc": [],
+  "excerpt": "Situated between two giant countries- India and China, Bhutan might be a small country, yet it has a strong cultural identity and unity. Its rich and unique culture is reflected through the…",
+  "modified": "2018-07-03T10:39:18",
+  "cover": {
+   "src": "/media/2018/07/culture-of-bhutan.webp",
+   "w": 921,
+   "h": 690,
+   "alt": "Culture of Bhutan"
+  },
+  "seo": {
+   "title": "Discover the Diversity in Bhutan's Culture | Base Camp Adventure",
+   "description": "Though Bhutan seems small in terms of geographical stature, But it still possess rich culture heritage, and traditional approach that is unique & remarkable",
+   "ogImage": "https://basecampadventure.com/wp-content/uploads/2018/07/Culture-of-Bhutan.jpg",
+   "noindex": false
+  }
+ },
+ {
+  "id": 13,
+  "slug": "travelers-information",
+  "parent": null,
+  "title": "TRAVELERS INFORMATION",
+  "html": "<p>No Traveler Information!!</p>",
+  "toc": [],
+  "excerpt": "No Traveler Information!!",
+  "modified": "2025-06-11T05:35:39",
+  "cover": null,
+  "seo": {
+   "title": "TRAVELERS INFORMATION - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 11,
+  "slug": "checkout",
+  "parent": null,
+  "title": "CHECKOUT",
+  "html": "<p>Sorry, you may not have selected the number of travellers for this trip. Please select number of travellers and confirm your booking. Thank you.</p>",
+  "toc": [],
+  "excerpt": "Sorry, you may not have selected the number of travellers for this trip. Please select number of travellers and confirm your booking. Thank you.",
+  "modified": "2025-06-11T05:37:12",
+  "cover": null,
+  "seo": {
+   "title": "CHECKOUT - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 10,
+  "slug": "thank-you",
+  "parent": null,
+  "title": "THANK YOU",
+  "html": "Thank you for booking the trip. Please check your email for confirmation.",
+  "toc": [],
+  "excerpt": "Thank you for booking the trip. Please check your email for confirmation.",
+  "modified": "2026-07-09T07:53:01",
+  "cover": null,
+  "seo": {
+   "title": "THANK YOU - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 9,
+  "slug": "enquiry-thankyou-page",
+  "parent": null,
+  "title": "Thank you for your inquiry",
+  "html": "<p>Thank you for the enquiry. We will soon get in touch with you.</p>",
+  "toc": [],
+  "excerpt": "Thank you for the enquiry. We will soon get in touch with you.",
+  "modified": "2026-07-09T08:21:30",
+  "cover": null,
+  "seo": {
+   "title": "Thank you for your inquiry - Base Camp Adventure",
+   "description": "Thank you for the enquiry. We will soon get in touch with you.",
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 8,
+  "slug": "activities",
+  "parent": null,
+  "title": "Activities",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-06-26T05:40:18",
+  "cover": null,
+  "seo": {
+   "title": "Activities - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 7,
+  "slug": "destination",
+  "parent": null,
+  "title": "Destination",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-06-26T05:40:18",
+  "cover": null,
+  "seo": {
+   "title": "Destination - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ },
+ {
+  "id": 6,
+  "slug": "trip-types",
+  "parent": null,
+  "title": "Trip Types",
+  "html": "",
+  "toc": [],
+  "excerpt": "",
+  "modified": "2018-06-26T05:40:18",
+  "cover": null,
+  "seo": {
+   "title": "Trip Types - Base Camp Adventure",
+   "description": null,
+   "ogImage": null,
+   "noindex": false
+  }
+ }
+]
