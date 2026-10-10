@@ -53,7 +53,7 @@ export function Checkout({ trips }: { trips: CheckoutTrip[] }) {
     setBusy(true);
     setError("");
     try {
-      const res = await fetch("/api/booking", {
+      const res = await fetch("/api/booking/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ trip: trip.slug, date, pax, plan, ...form }),

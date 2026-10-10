@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 async function send(payload: Record<string, unknown>) {
-  const res = await fetch("/api/enquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+  const res = await fetch("/api/enquiry/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
   const json = await res.json().catch(() => ({ ok: false }));
   if (!json.ok) throw new Error(json.error ?? "Something went wrong. Please try again or WhatsApp us.");
   return json.reference as string;
