@@ -15,9 +15,10 @@ declare global {
  * at every screen size.
  */
 export function pinnedOffset(gap = 16) {
-  let bottom = 0;
-  const header = document.querySelector<HTMLElement>("[data-site-header]");
-  if (header) bottom = header.getBoundingClientRect().bottom;
+  // The header's top line folds away as soon as the page scrolls, so the
+  // pinned height is the main bar alone.
+  const bar = document.querySelector<HTMLElement>("[data-header-bar]");
+  let bottom = bar ? bar.offsetHeight : 0;
   document.querySelectorAll<HTMLElement>("[data-subnav]").forEach((el) => {
     const top = parseFloat(getComputedStyle(el).top) || 0;
     bottom = Math.max(bottom, top + el.offsetHeight);

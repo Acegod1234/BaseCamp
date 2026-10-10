@@ -18,7 +18,7 @@ All content comes from the live WordPress site through its public REST API:
 
 ```bash
 npm run import:wp      # trips, posts, pages, team, taxonomies, images -> src/content, public/media
-npm run fetch:photos   # licensed landscape photos and partner logos -> public/photos, public/brand
+python scripts/prepare-photos.py   # hero photos chosen from the company's own uploads -> public/photos
 ```
 
 `src/lib/content.ts` is the only place that reads it. When the admin

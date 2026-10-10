@@ -71,7 +71,7 @@ export function Checkout({ trips }: { trips: CheckoutTrip[] }) {
 
   if (done) {
     return (
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-2xl rounded-[2rem] border border-line bg-white p-8 text-center sm:p-12">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-2xl rounded-[2rem] border border-line bg-card p-8 text-center sm:p-12">
         <span className="bg-moss/15 text-moss mx-auto grid size-16 place-items-center rounded-full">
           {done.paymentUrl ? <Loader2 className="size-8 animate-spin" aria-hidden /> : <CircleCheckBig className="size-8" aria-hidden />}
         </span>
@@ -121,7 +121,7 @@ export function Checkout({ trips }: { trips: CheckoutTrip[] }) {
 
         <AnimatePresence mode="wait">
           {step === 1 ? (
-            <motion.div key="s1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6 rounded-[1.8rem] border border-line bg-white p-6 sm:p-8">
+            <motion.div key="s1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6 rounded-[1.8rem] border border-line bg-card p-6 sm:p-8">
               <h2 className="font-display text-4xl font-black uppercase">Your trip</h2>
               <Field label="Trip" htmlFor="ck-trip">
                 <select id="ck-trip" value={slug} onChange={(e) => setSlug(e.target.value)} className="input">
@@ -136,9 +136,9 @@ export function Checkout({ trips }: { trips: CheckoutTrip[] }) {
                 </Field>
                 <Field label="Travellers" htmlFor="ck-pax">
                   <div className="flex h-[3.25rem] items-center justify-between rounded-xl border border-line bg-snow px-2">
-                    <button type="button" aria-label="One fewer traveller" onClick={() => setPax((p) => Math.max(1, p - 1))} className="grid size-10 place-items-center rounded-lg hover:bg-white"><Minus className="size-4" aria-hidden /></button>
+                    <button type="button" aria-label="One fewer traveller" onClick={() => setPax((p) => Math.max(1, p - 1))} className="grid size-10 place-items-center rounded-lg hover:bg-card"><Minus className="size-4" aria-hidden /></button>
                     <output id="ck-pax" className="font-display text-2xl font-black">{pax}</output>
-                    <button type="button" aria-label="One more traveller" onClick={() => setPax((p) => Math.min(30, p + 1))} className="grid size-10 place-items-center rounded-lg hover:bg-white"><Plus className="size-4" aria-hidden /></button>
+                    <button type="button" aria-label="One more traveller" onClick={() => setPax((p) => Math.min(30, p + 1))} className="grid size-10 place-items-center rounded-lg hover:bg-card"><Plus className="size-4" aria-hidden /></button>
                   </div>
                 </Field>
               </div>
@@ -173,7 +173,7 @@ export function Checkout({ trips }: { trips: CheckoutTrip[] }) {
                 e.preventDefault();
                 if (canPay && !busy) submit();
               }}
-              className="space-y-6 rounded-[1.8rem] border border-line bg-white p-6 sm:p-8"
+              className="space-y-6 rounded-[1.8rem] border border-line bg-card p-6 sm:p-8"
             >
               <h2 className="font-display text-4xl font-black uppercase">Lead traveller</h2>
               <div className="grid gap-6 sm:grid-cols-2">
@@ -227,7 +227,7 @@ export function Checkout({ trips }: { trips: CheckoutTrip[] }) {
 
       {/* Summary */}
       <aside className="lg:sticky lg:top-28 lg:self-start">
-        <div className="overflow-hidden rounded-[1.8rem] border border-line bg-white">
+        <div className="overflow-hidden rounded-[1.8rem] border border-line bg-card">
           <div className="relative aspect-[16/9] bg-pine-night">
             {trip.cover ? <Image src={trip.cover.src} alt={trip.cover.alt || trip.title} fill sizes="400px" className="object-cover" /> : null}
             <div className="scrim-b absolute inset-0" />

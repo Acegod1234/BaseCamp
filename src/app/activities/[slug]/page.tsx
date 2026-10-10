@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CollectionPage } from "@/components/collection-page";
-import { getActivity, getLiveTerms, getPostCards, getTripsIn } from "@/lib/content";
+import { getActivity, getLiveTerms, getPostCards, getTripsIn, termSummary } from "@/lib/content";
 import { meta } from "@/lib/seo";
 import { activityMeta } from "@/lib/site";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props) {
   return meta({
     path: `/activities/${slug}/`,
     title: term.name,
-    description: `${trips.length} ${term.name.toLowerCase()} trips with Base Camp Adventure. ${activityMeta[slug]?.line ?? ""}. Itineraries, prices and licensed local guides.`,
+    description: `${trips.length} ${term.name} trips with Base Camp Adventure. ${termSummary("activities", slug).line}`,
     seo: term.seo,
     image: activityMeta[slug]?.photo,
   });
@@ -39,8 +39,8 @@ export default async function ActivityPage({ params }: Props) {
       term={term}
       kind="activity"
       trips={trips}
-      photo={m?.photo ?? trips[0]?.cover?.src ?? "/photos/ama-dablam.webp"}
-      line={m?.line ?? term.name}
+      photo={m?.photo ?? trips[0]?.cover?.src ?? "/photos/page-activities.webp"}
+      line={termSummary("activities", slug).line}
       crumbs={[
         { name: "Activities", path: "/activities/" },
         { name: term.name, path: `/activities/${slug}/` },

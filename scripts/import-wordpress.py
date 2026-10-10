@@ -48,8 +48,8 @@ MEDIA = ROOT / "public" / "media"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/128 Safari/537.36 BaseCampMigration/1.0"
 
 WITH_IMAGES = "--no-images" not in sys.argv
-MAX_WIDTH = 1920
-QUALITY = 78
+MAX_WIDTH = 2400
+QUALITY = 82
 
 for d in (CACHE, IMG_CACHE, CONTENT, MEDIA):
     d.mkdir(parents=True, exist_ok=True)
@@ -736,6 +736,31 @@ team.sort(key=lambda m: (order.index(m["slug"]) if m["slug"] in order else 99, m
 print(f"  built {len(team)} team members")
 
 
+# --------------------------------------------------------------------------- menu
+
+print("menu…")
+menu = []
+home_html = fetch(f"{SITE}/")
+if home_html:
+    home = BeautifulSoup(home_html, "html.parser")
+    root_ul = home.select_one("ul#primary-menu")
+
+    def walk(ul):
+        out = []
+        for li in ul.find_all("li", recursive=False):
+            a = li.find("a", recursive=False)
+            href = re.sub(r"^https?://(www\.)?basecampadventure\.com", "", (a.get("href") if a else "") or "") or "/"
+            item = {"label": re.sub(r"\s+", " ", a.get_text(" ", strip=True)) if a else "", "href": href}
+            sub = li.find("ul", recursive=False)
+            if sub:
+                item["children"] = walk(sub)
+            out.append(item)
+        return out
+
+    menu = walk(root_ul) if root_ul else []
+print(f"  {len(menu)} top-level items")
+
+
 # --------------------------------------------------------------------------- images
 
 taxonomies = {
@@ -801,6 +826,7 @@ write("posts", posts)
 write("pages", pages)
 write("team", team)
 write("taxonomies", taxonomies)
+write("menu", menu)
 (CONTENT / "media-redirects.json").write_text(
     json.dumps({urllib.parse.urlparse(k).path: v["src"] for k, v in sorted(media_map.items())}, indent=1),
     encoding="utf8",

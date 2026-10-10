@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const { destinations, activities } = getLiveTerms();
 
   return [
-    { url: abs("/"), lastModified: date(latest(trips.map((t) => t.modified))), changeFrequency: "weekly", priority: 1, images: [abs("/photos/ama-dablam.webp")] },
+    { url: abs("/"), lastModified: date(latest(trips.map((t) => t.modified))), changeFrequency: "weekly", priority: 1, images: [abs("/photos/home-banner.webp")] },
     { url: abs("/trip/"), lastModified: date(latest(trips.map((t) => t.modified))), changeFrequency: "weekly", priority: 0.9 },
     { url: abs("/destination/"), changeFrequency: "monthly", priority: 0.7 },
     { url: abs("/activities/"), changeFrequency: "monthly", priority: 0.7 },

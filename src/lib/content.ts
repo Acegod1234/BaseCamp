@@ -3,8 +3,9 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 import type {
+  MenuItem,
   Page,
-  PhotoCredit,
+  Photo,
   Post,
   PostCard,
   Taxonomies,
@@ -44,7 +45,8 @@ const data = cache(() => ({
     categories: [],
     tags: [],
   }),
-  credits: load<PhotoCredit[]>("photo-credits", []),
+  menu: load<MenuItem[]>("menu", []),
+  photos: load<Record<string, Photo>>("photos", {}),
 }));
 
 export function toCard(t: Trip): TripCard {
@@ -83,29 +85,83 @@ export const getTripCards = () => data().trips.map(toCard);
 export const getTrip = (slug: string) => data().trips.find((t) => t.slug === slug) ?? null;
 
 export function getTripsIn(field: "destinations" | "activities", slug: string): TripCard[] {
-  return data().trips.filter((t) => t[field].includes(slug)).map(toCard);
+  const tagged = data().trips.filter((t) => t[field].includes(slug));
+  if (tagged.length) return tagged.map(toCard);
+  // Some menu categories (Expedition in Nepal, Bhutan Trek) list their trips
+  // in the WordPress menu without tagging them; use the menu's list.
+  const base = field === "destinations" ? "/destinations/" : "/activities/";
+  return tripSlugsUnder(`${base}${slug}/`)
+    .map((s) => data().trips.find((t) => t.slug === s))
+    .filter((t): t is Trip => Boolean(t))
+    .map(toCard);
+}
+
+/* ------------------------------------------------------------------ menu */
+
+export const getMenu = () => data().menu;
+
+function findMenu(items: MenuItem[], href: string): MenuItem | null {
+  for (const it of items) {
+    if (it.href === href) return it;
+    const hit = it.children ? findMenu(it.children, href) : null;
+    if (hit) return hit;
+  }
+  return null;
+}
+
+/** Every trip linked anywhere under a menu entry, in menu order. */
+export function tripSlugsUnder(href: string): string[] {
+  const node = findMenu(data().menu, href);
+  const out: string[] = [];
+  const walk = (items: MenuItem[] = []) =>
+    items.forEach((i) => {
+      const m = i.href.match(/^\/trip\/([^/]+)\/$/);
+      if (m && !out.includes(m[1])) out.push(m[1]);
+      walk(i.children);
+    });
+  if (node) walk(node.children);
+  return out;
+}
+
+/* ------------------------------------------------------------------ homepage lists */
+
+type HomeLists = { featured: string[]; popular: string[]; luxury: string[] };
+const homeLists = cache(() => load<HomeLists>("home", { featured: [], popular: [], luxury: [] }));
+
+/** The live homepage's own trip lists, in the order the office set them. */
+export function getHomeList(name: keyof HomeLists): TripCard[] {
+  const trips = data().trips;
+  return homeLists()[name]
+    .map((s) => trips.find((t) => t.slug === s))
+    .filter((t): t is Trip => Boolean(t))
+    .map(toCard);
+}
+
+/**
+ * One honest line about a destination or activity: the first sentence of its
+ * WordPress description, or failing that the names of its first trips.
+ */
+export function termSummary(kind: "destinations" | "activities", slug: string) {
+  const term = (kind === "destinations" ? data().taxonomies.destinations : data().taxonomies.activities).find((t) => t.slug === slug);
+  const trips = getTripsIn(kind, slug);
+  const text = (term?.description ?? "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  const first = text.match(/^(.{40,180}?[.!?])\s/)?.[1] ?? "";
+  const names = trips.slice(0, 3).map((t) => t.title.replace(/\s*[-–]\s*\d+\s*Days?$/i, "")).join(" · ");
+  const highest = Math.max(0, ...trips.map((t) => t.maxAltitude ?? 0));
+  return { line: first || names, trips: trips.length, highest: highest || null };
+}
+
+/* ------------------------------------------------------------------ photos */
+
+/** Hero photographs by slot (see scripts/prepare-photos.py). */
+export function photo(slot: string): Photo {
+  return data().photos[slot] ?? { src: "/photos/home-banner.webp", w: 1600, h: 1200, trip: null };
 }
 
 /** Trips handpicked for the homepage, in the order the office ranks them. */
-const FEATURED = [
-  "everest-base-camp-trek",
-  "everest-base-camp-and-gokyo-trek",
-  "annapurna-base-camp-trek",
-  "gokyo-valley-trek",
-  "ghorepani-poon-hill-trek",
-  "mustang-trek",
-  "everest-three-passes-trek",
-  "langtang-valley-trek",
-  "manaslu-circuit-trek",
-  "annapurna-circuit-trek",
-  "island-peak-climbing",
-  "everest-base-camp-trek-with-helicopter-return",
-];
-
+/** The live homepage's "Featured Trips", in its order. */
 export function getFeaturedTrips(): TripCard[] {
-  const all = data().trips;
-  const picked = FEATURED.map((s) => all.find((t) => t.slug === s)).filter(Boolean) as Trip[];
-  return picked.map(toCard);
+  return getHomeList("featured");
 }
 
 export function getRelatedTrips(trip: Trip, limit = 3): TripCard[] {
@@ -171,7 +227,6 @@ export const getPage = (slug: string) => data().pages.find((p) => p.slug === slu
 export const getTeam = () => data().team;
 export const getMember = (slug: string) => data().team.find((m) => m.slug === slug) ?? null;
 export const getTaxonomies = () => data().taxonomies;
-export const getCredits = () => data().credits;
 
 export function getDestination(slug: string) {
   return data().taxonomies.destinations.find((d) => d.slug === slug) ?? null;
@@ -191,8 +246,15 @@ export function getLiveTerms() {
     terms
       .map((t) => ({ ...t, trips: trips.filter((x) => x[field].includes(t.slug)).length }))
       .filter((t) => t.trips > 0);
+  // Activities that only exist as menu categories still get a page.
+  const menuCount = (slug: string) => tripSlugsUnder(`/activities/${slug}/`).length;
   return {
     destinations: withCount(destinations, "destinations"),
-    activities: withCount(activities, "activities"),
+    activities: activities
+      .map((t) => {
+        const tagged = trips.filter((x) => x.activities.includes(t.slug)).length;
+        return { ...t, trips: tagged || menuCount(t.slug) };
+      })
+      .filter((t) => t.trips > 0),
   };
 }

@@ -35,12 +35,12 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
               <span
                 className={cn(
                   "absolute top-2.5 left-0 grid size-[2.3rem] place-items-center rounded-full border-2 font-mono text-xs font-medium transition-colors",
-                  isOpen ? "bg-pine border-pine text-white" : "border-line bg-white text-ink",
+                  isOpen ? "bg-pine border-pine text-white" : "border-line bg-card text-ink",
                 )}
               >
                 {String(d.day).padStart(2, "0")}
               </span>
-              <div className={cn("rounded-2xl border transition-colors", isOpen ? "border-pine/30 bg-white shadow-[0_18px_40px_-30px_oklch(0.2_0.04_170/0.5)]" : "border-transparent hover:bg-white/60")}>
+              <div className={cn("rounded-2xl border transition-colors", isOpen ? "border-pine/30 bg-card shadow-[0_18px_40px_-30px_oklch(0.2_0.04_170/0.5)]" : "border-transparent hover:bg-white/60")}>
                 <h3>
                   <button type="button" onClick={() => toggle(d.day)} aria-expanded={isOpen} className="flex w-full items-start justify-between gap-4 p-4 text-left">
                     <span>

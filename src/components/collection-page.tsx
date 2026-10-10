@@ -92,7 +92,7 @@ export function CollectionPage({
       </section>
 
       {hasDescription ? (
-        <section className="border-t border-line bg-white py-20">
+        <section className="border-t border-line bg-card py-20">
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
             <SectionHeading eyebrow={`About ${term.name}`} lines={["Know the", <Accent key="g">ground.</Accent>]} />
             <Reveal>
@@ -114,7 +114,7 @@ export function CollectionPage({
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {guides.map((p) => (
                 <Link key={p.slug} href={`/${p.slug}/`} className="group">
-                  <div className="zoom-img relative aspect-[16/10] overflow-hidden rounded-[1.2rem] bg-white">
+                  <div className="zoom-img relative aspect-[16/10] overflow-hidden rounded-[1.2rem] bg-card">
                     {p.cover ? <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /> : null}
                   </div>
                   <h3 className="mt-4 text-lg font-bold leading-snug group-hover:text-pine">{p.title}</h3>

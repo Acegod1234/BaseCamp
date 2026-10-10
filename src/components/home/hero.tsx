@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -12,10 +13,14 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { CalendarRange, MapPin, Search, Wallet } from "lucide-react";
+import { ArrowUpRight, CalendarRange, Compass, MapPin, Search, Wallet } from "lucide-react";
 import { CountUp, EASE, Magnetic } from "@/components/motion";
 
-export type HeroSlide = { src: string; place: string; altitude: number; coords: string; credit: string };
+export type HeroSlide = {
+  src: string;
+  alt: string;
+  trip: { slug: string; title: string; days: number; maxAltitude: number | null } | null;
+};
 
 /** Deterministic ridge line, so server and client draw the same mountains. */
 function ridge(seed: number, base: number, rough: number, points = 48) {
@@ -34,16 +39,19 @@ function ridge(seed: number, base: number, rough: number, points = 48) {
 export function HomeHero({
   slides,
   regions,
+  activities,
   stats,
 }: {
   slides: HeroSlide[];
   regions: { slug: string; name: string }[];
+  activities: { slug: string; name: string }[];
   stats: { trips: number; regions: number; years: number };
 }) {
   const reduce = useReducedMotion();
   const router = useRouter();
   const [i, setI] = useState(0);
   const [region, setRegion] = useState("");
+  const [activity, setActivity] = useState("");
   const [days, setDays] = useState("");
   const [budget, setBudget] = useState("");
 
@@ -69,12 +77,18 @@ export function HomeHero({
   const textOpacity = useTransform(scrollY, [0, 500], [1, 0]);
   const ridgeY = useTransform(scrollY, [0, 900], [0, -60]);
 
-  const paths = useMemo(
-    () => ({ back: ridge(11, 160, 70), mid: ridge(29, 215, 58), front: ridge(53, 268, 38) }),
-    [],
-  );
-
+  const paths = useMemo(() => ({ back: ridge(11, 160, 70), mid: ridge(29, 215, 58), front: ridge(53, 268, 38) }), []);
   const slide = slides[i];
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const q = new URLSearchParams();
+    if (region) q.set("region", region);
+    if (activity) q.set("activity", activity);
+    if (days) q.set("days", days);
+    if (budget) q.set("budget", budget);
+    router.push(`/trip/${q.size ? `?${q}` : ""}`);
+  };
 
   return (
     <section
@@ -85,29 +99,22 @@ export function HomeHero({
         my.set(e.clientY / window.innerHeight - 0.5);
       }}
     >
-      {/* Photographs */}
       <motion.div className="absolute inset-0 -z-20" style={reduce ? undefined : { y: photoY }}>
         <AnimatePresence initial={false}>
-          <motion.div
-            key={slide.src}
-            className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.6, ease: "easeInOut" }}
-          >
-            <Image src={slide.src} alt={slide.place} fill preload={i === 0} quality={80} sizes="100vw" className="kenburns object-cover" />
+          <motion.div key={slide.src} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.6, ease: "easeInOut" }}>
+            <Image src={slide.src} alt={slide.alt} fill preload={i === 0} quality={85} sizes="100vw" className="kenburns object-cover" />
           </motion.div>
         </AnimatePresence>
         <div className="scrim-hero absolute inset-0" />
+        {/* Moonlight: a cool wash from above that only shows in dark mode. */}
+        <div className="absolute inset-0 hidden bg-[radial-gradient(70rem_40rem_at_70%_-10%,oklch(0.76_0.12_214/0.28),transparent_60%)] dark:block" />
       </motion.div>
 
-      {/* Ridge silhouettes in three depths */}
       <motion.svg
         viewBox="0 0 1600 400"
         preserveAspectRatio="none"
         aria-hidden
-        className="pointer-events-none absolute inset-x-[-4%] bottom-0 -z-10 h-[22vh] w-[108%] md:h-[38vh]"
+        className="pointer-events-none absolute inset-x-[-4%] bottom-0 -z-10 h-[18vh] w-[108%] md:h-[38vh]"
         style={reduce ? undefined : { y: ridgeY }}
       >
         <motion.path d={paths.back} fill="oklch(0.22 0.04 170 / 0.35)" style={{ x: back, y: tiltY }} />
@@ -116,167 +123,136 @@ export function HomeHero({
       </motion.svg>
 
       <motion.div
-        className="relative mx-auto flex w-full max-w-[90rem] flex-1 flex-col justify-center px-4 pt-32 pb-16 sm:px-6 md:pb-40 lg:pt-36"
+        className="relative mx-auto flex w-full max-w-[90rem] flex-1 flex-col justify-center px-4 pt-28 pb-12 sm:px-6 md:pb-40 lg:pt-36"
         style={reduce ? undefined : { y: textY, opacity: textOpacity }}
       >
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
-          className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1 text-white/80"
-        >
+        <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: EASE }} className="eyebrow flex items-center gap-3 text-white/85">
           <span className="bg-marigold inline-block h-px w-10" aria-hidden />
-          Est. 2009 · Thamel, Kathmandu<span className="hidden sm:inline"> · 27.7154° N 85.3123° E</span>
+          Find Your Trip
         </motion.p>
 
-        <h1 className="font-display mt-6 font-black uppercase">
+        <h1 className="font-display mt-5 font-black uppercase">
           <span className="block overflow-hidden">
-            <motion.span
-              className="block text-[clamp(4.2rem,15vw,13.5rem)] leading-[0.82] tracking-[-0.01em]"
-              initial={reduce ? false : { y: "105%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.1, delay: 0.2, ease: EASE }}
-            >
+            <motion.span className="block text-[clamp(3.6rem,15vw,13.5rem)] leading-[0.82]" initial={reduce ? false : { y: "105%" }} animate={{ y: 0 }} transition={{ duration: 1.1, delay: 0.2, ease: EASE }}>
               Base Camp
             </motion.span>
           </span>
           <span className="block overflow-hidden">
-            <motion.span
-              className="accent-word text-marigold -mt-1 block text-[clamp(3.2rem,10vw,9rem)] leading-[0.95]"
-              initial={reduce ? false : { y: "105%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.1, delay: 0.34, ease: EASE }}
-            >
+            <motion.span className="accent-word text-marigold -mt-1 block text-[clamp(2.8rem,10vw,9rem)] leading-[0.95]" initial={reduce ? false : { y: "105%" }} animate={{ y: 0 }} transition={{ duration: 1.1, delay: 0.34, ease: EASE }}>
               Adventure
             </motion.span>
           </span>
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.6, ease: EASE }}
-          className="mt-6 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl"
-        >
-          Trekking &amp; tours with the people who call Nepal home. Small groups, licensed local guides, and an office in Thamel that answers at any hour.
+        <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.6, ease: EASE }} className="mt-5 max-w-xl text-lg leading-relaxed text-white/90 sm:text-xl">
+          Start planning your journey to experience the Himalayas.
         </motion.p>
 
-        {/* Trip finder */}
+        {/* Trip finder, with the live site's search fields */}
         <motion.form
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.78, ease: EASE }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            const q = new URLSearchParams();
-            if (region) q.set("region", region);
-            if (days) q.set("days", days);
-            if (budget) q.set("budget", budget);
-            router.push(`/trip/${q.size ? `?${q}` : ""}`);
-          }}
-          className="glass-dark mt-10 grid w-full max-w-4xl gap-1 rounded-[1.6rem] border border-white/15 p-2 sm:grid-cols-[1fr_1fr_1fr_auto]"
+          onSubmit={submit}
+          className="glass-dark mt-8 grid w-full max-w-5xl grid-cols-2 gap-1 rounded-[1.4rem] border border-white/15 p-1.5 sm:mt-10 md:grid-cols-[1fr_1fr_1fr_1fr_auto] md:p-2"
           aria-label="Find a trip"
         >
           <Field icon={<MapPin className="text-marigold size-4" aria-hidden />} label="Destination" htmlFor="hf-region">
-            <select id="hf-region" value={region} onChange={(e) => setRegion(e.target.value)} className="w-full bg-transparent font-semibold outline-none [&>option]:text-ink">
+            <select id="hf-region" value={region} onChange={(e) => setRegion(e.target.value)} className="w-full truncate bg-transparent font-semibold outline-none [&>option]:text-ink">
               <option value="">Anywhere</option>
               {regions.map((r) => (
                 <option key={r.slug} value={r.slug}>{r.name}</option>
               ))}
             </select>
           </Field>
-          <Field icon={<CalendarRange className="text-marigold size-4" aria-hidden />} label="Time on the trail" htmlFor="hf-days">
-            <select id="hf-days" value={days} onChange={(e) => setDays(e.target.value)} className="w-full bg-transparent font-semibold outline-none [&>option]:text-ink">
+          <Field icon={<Compass className="text-marigold size-4" aria-hidden />} label="Activities" htmlFor="hf-activity">
+            <select id="hf-activity" value={activity} onChange={(e) => setActivity(e.target.value)} className="w-full truncate bg-transparent font-semibold outline-none [&>option]:text-ink">
+              <option value="">Any activity</option>
+              {activities.map((a) => (
+                <option key={a.slug} value={a.slug}>{a.name}</option>
+              ))}
+            </select>
+          </Field>
+          <Field icon={<CalendarRange className="text-marigold size-4" aria-hidden />} label="Duration" htmlFor="hf-days">
+            <select id="hf-days" value={days} onChange={(e) => setDays(e.target.value)} className="w-full truncate bg-transparent font-semibold outline-none [&>option]:text-ink">
               <option value="">Any duration</option>
               <option value="short">Up to 7 days</option>
               <option value="mid">8–14 days</option>
               <option value="long">15 days or more</option>
             </select>
           </Field>
-          <Field icon={<Wallet className="text-marigold size-4" aria-hidden />} label="Budget per person" htmlFor="hf-budget">
-            <select id="hf-budget" value={budget} onChange={(e) => setBudget(e.target.value)} className="w-full bg-transparent font-semibold outline-none [&>option]:text-ink">
+          <Field icon={<Wallet className="text-marigold size-4" aria-hidden />} label="Budget" htmlFor="hf-budget">
+            <select id="hf-budget" value={budget} onChange={(e) => setBudget(e.target.value)} className="w-full truncate bg-transparent font-semibold outline-none [&>option]:text-ink">
               <option value="">Any budget</option>
               <option value="1000">Under US$1,000</option>
               <option value="1500">Under US$1,500</option>
               <option value="2000">Under US$2,000</option>
             </select>
           </Field>
-          <Magnetic className="w-full sm:w-auto">
-            <button type="submit" className="bg-marigold text-pine-night flex h-full min-h-14 w-full items-center justify-center gap-2 rounded-[1.2rem] px-7 font-bold transition-colors hover:bg-white">
-              <Search className="size-5" aria-hidden /> Find my trip
+          <Magnetic className="col-span-2 w-full md:col-span-1 md:w-auto">
+            <button type="submit" className="bg-marigold text-pine-night flex h-full min-h-13 w-full items-center justify-center gap-2 rounded-[1.1rem] px-7 font-bold transition-colors hover:bg-white">
+              <Search className="size-5" aria-hidden /> Search
             </button>
           </Magnetic>
         </motion.form>
       </motion.div>
 
-      {/* Bottom rail: stats, slide caption, progress */}
-      <div className="text-ink bg-snow relative mx-auto flex w-full max-w-[90rem] flex-col gap-6 px-4 pt-6 pb-8 sm:px-6 md:-mt-28 md:flex-row md:items-end md:justify-between md:bg-transparent md:pt-0">
-        <dl className="grid grid-cols-4 gap-6 sm:gap-10">
+      {/* Bottom rail: numbers, and the trip the current photograph comes from */}
+      <div className="text-ink bg-snow relative mx-auto flex w-full max-w-[90rem] flex-col gap-5 px-4 pt-6 pb-7 sm:px-6 md:-mt-28 md:flex-row md:items-end md:justify-between md:bg-transparent md:pt-0 md:pb-8">
+        <dl className="grid grid-cols-4 gap-3 sm:gap-10">
           {[
             { n: stats.trips, s: "", l: "Trips" },
             { n: stats.regions, s: "", l: "Regions" },
             { n: stats.years, s: "", l: "Years" },
-            { n: 24, s: "/7", l: "Support" },
+            { n: 24, s: "/7", l: "Available" },
           ].map((x) => (
             <div key={x.l}>
               <dt className="sr-only">{x.l}</dt>
               <dd>
-                <CountUp to={x.n} suffix={x.s} className="font-display block text-4xl font-black sm:text-5xl" />
-                <span className="eyebrow text-muted">{x.l}</span>
+                <CountUp to={x.n} suffix={x.s} className="font-display block text-[2.1rem] font-black leading-none sm:text-5xl" />
+                <span className="eyebrow text-[0.62rem] text-muted sm:text-[0.7rem]">{x.l}</span>
               </dd>
             </div>
           ))}
         </dl>
 
-        <div className="flex items-end gap-5">
+        <div className="flex items-end justify-between gap-5 md:justify-end">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={slide.place}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.5 }}
-              className="text-right"
-            >
-              <p className="font-display text-2xl font-extrabold uppercase">{slide.place}</p>
-              <p className="font-mono text-xs text-muted">
-                {slide.altitude.toLocaleString("en-US")} m · {slide.coords}
-              </p>
+            <motion.div key={slide.src} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.5 }} className="min-w-0 md:text-right">
+              {slide.trip ? (
+                <Link href={`/trip/${slide.trip.slug}/`} className="group inline-flex max-w-full flex-col md:items-end">
+                  <span className="eyebrow text-muted">On this trip</span>
+                  <span className="font-display flex items-center gap-1.5 truncate text-xl font-extrabold uppercase group-hover:text-pine sm:text-2xl">
+                    {slide.trip.title} <ArrowUpRight className="size-5 shrink-0" aria-hidden />
+                  </span>
+                  <span className="font-mono text-xs text-muted">
+                    {slide.trip.days} days{slide.trip.maxAltitude ? ` · ${slide.trip.maxAltitude.toLocaleString("en-US")} m max` : ""}
+                  </span>
+                </Link>
+              ) : (
+                <span className="eyebrow text-muted">{slide.alt}</span>
+              )}
             </motion.div>
           </AnimatePresence>
-          <div className="flex gap-1.5" role="tablist" aria-label="Photographs">
+          <div className="flex shrink-0 gap-1.5" role="tablist" aria-label="Photographs">
             {slides.map((s, n) => (
-              <button
-                key={s.src}
-                type="button"
-                role="tab"
-                aria-selected={n === i}
-                aria-label={s.place}
-                onClick={() => setI(n)}
-                className="relative h-10 w-1.5 overflow-hidden rounded-full bg-ink/15"
-              >
+              <button key={s.src} type="button" role="tab" aria-selected={n === i} aria-label={`Photo ${n + 1}`} onClick={() => setI(n)} className="relative h-10 w-1.5 overflow-hidden rounded-full bg-ink/15">
                 {n === i ? (
-                  <motion.span
-                    className="bg-pine absolute inset-x-0 top-0 block"
-                    initial={{ height: "0%" }}
-                    animate={{ height: "100%" }}
-                    transition={{ duration: reduce ? 0 : 7, ease: "linear" }}
-                  />
+                  <motion.span className="bg-pine absolute inset-x-0 top-0 block" initial={{ height: "0%" }} animate={{ height: "100%" }} transition={{ duration: reduce ? 0 : 7, ease: "linear" }} />
                 ) : null}
               </button>
             ))}
           </div>
         </div>
       </div>
-
     </section>
   );
 }
 
 function Field({ icon, label, htmlFor, children }: { icon: React.ReactNode; label: string; htmlFor: string; children: React.ReactNode }) {
   return (
-    <label htmlFor={htmlFor} className="flex cursor-pointer flex-col gap-1 rounded-[1.2rem] px-4 py-3 transition-colors hover:bg-white/10">
-      <span className="flex items-center gap-2 text-[0.7rem] font-semibold tracking-wider text-white/65 uppercase">
+    <label htmlFor={htmlFor} className="flex min-w-0 cursor-pointer flex-col gap-1 rounded-[1.1rem] px-3.5 py-2.5 transition-colors hover:bg-white/10 sm:px-4 sm:py-3">
+      <span className="flex items-center gap-2 text-[0.68rem] font-semibold tracking-wider text-white/70 uppercase">
         {icon}
         {label}
       </span>

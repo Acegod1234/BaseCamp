@@ -25,7 +25,7 @@ export default function BookingPage() {
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-ink-soft">Choose your dates and group size. You&apos;ll pay on WeTravel&apos;s encrypted checkout, and our team confirms every detail by email.</p>
         <div className="mt-12">
-          <Suspense fallback={<div className="h-96 animate-pulse rounded-[1.8rem] bg-white" />}>
+          <Suspense fallback={<div className="h-96 animate-pulse rounded-[1.8rem] bg-card" />}>
             <Checkout trips={trips} />
           </Suspense>
         </div>

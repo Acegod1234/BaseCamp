@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "import:wp": "python scripts/import-wordpress.py",
-    "fetch:photos": "python scripts/fetch-photos.py"
+    "photos": "python scripts/prepare-photos.py"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4",

@@ -23,7 +23,7 @@ export function TermIndex({
   path: string;
   title: string;
   accent: string;
-  intro: string;
+  intro?: string;
   photo: string;
   crumb: string;
   items: Item[];

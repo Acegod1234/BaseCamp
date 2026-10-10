@@ -130,13 +130,13 @@ export function ArticleLayout({
 
 /** Region photography by topic, for pages without their own cover. */
 export function topicPhoto(slug: string) {
-  if (/bhutan/.test(slug)) return "/photos/bhutan.webp";
-  if (/tibet/.test(slug)) return "/photos/tibet.webp";
-  if (/culture|religion|people|festival|food/.test(slug)) return "/photos/kathmandu-boudhanath.webp";
-  if (/flora|fauna/.test(slug)) return "/photos/chitwan.webp";
-  if (/season|weather/.test(slug)) return "/photos/gokyo-lake.webp";
-  if (/visa|travel|transport|embass|prepar|facts/.test(slug)) return "/photos/prayer-flags.webp";
-  return "/photos/ama-dablam.webp";
+  if (/bhutan/.test(slug)) return "/photos/region-bhutan.webp";
+  if (/tibet/.test(slug)) return "/photos/region-tibet.webp";
+  if (/culture|religion|people|festival|food/.test(slug)) return "/photos/activity-tour.webp";
+  if (/flora|fauna/.test(slug)) return "/photos/region-nepal.webp";
+  if (/season|weather/.test(slug)) return "/photos/hero-gokyo.webp";
+  if (/visa|travel|transport|embass|prepar|facts/.test(slug)) return "/photos/page-contact.webp";
+  return "/photos/region-everest.webp";
 }
 
 /** The image to use for a page's hero. */

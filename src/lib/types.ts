@@ -155,3 +155,9 @@ export type PhotoCredit = {
   w: number;
   h: number;
 };
+
+/** One entry of the live site's main menu, as imported. */
+export type MenuItem = { label: string; href: string; children?: MenuItem[] };
+
+/** A hero photograph chosen from the company's own uploads. */
+export type Photo = { src: string; w: number; h: number; trip: string | null };

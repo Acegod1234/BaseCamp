@@ -42,7 +42,7 @@ export function UnitToggle({ className }: { className?: string }) {
   };
 
   return (
-    <div className={cn("inline-flex rounded-full border border-line bg-white p-1", className)} role="group" aria-label="Altitude units">
+    <div className={cn("inline-flex rounded-full border border-line bg-card p-1", className)} role="group" aria-label="Altitude units">
       {(["m", "ft"] as const).map((u) => (
         <button
           key={u}

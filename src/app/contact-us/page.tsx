@@ -17,27 +17,26 @@ export const metadata = meta({
 export default function ContactPage() {
   const trips = getTrips().map((t) => t.title);
   const cards = [
-    { Icon: Phone, title: "Speak with Shree", lines: [site.mobile, "Available 24/7"], href: `tel:${site.mobileHref}` },
-    { Icon: WhatsappIcon, title: "WhatsApp", lines: ["Message us any time", "Usually answered within minutes"], href: whatsappHref() },
-    { Icon: Mail, title: "Email", lines: [site.email, "Replies within a few hours"], href: `mailto:${site.email}` },
-    { Icon: Clock, title: "Office", lines: [site.phone, "Office line, Thamel"], href: `tel:${site.phone.replace(/[^+\d]/g, "")}` },
+    { Icon: Phone, title: "Mobile (24/7)", lines: ["+977 9851 029616 [Shree]", "Available 24/7 - Call Us Anytime"], href: `tel:${site.mobileHref}` },
+    { Icon: WhatsappIcon, title: "WhatsApp", lines: [site.mobile], href: whatsappHref() },
+    { Icon: Mail, title: "Email", lines: [site.email], href: `mailto:${site.email}` },
+    { Icon: Clock, title: "Phone", lines: [site.phone], href: `tel:${site.phone.replace(/[^+\d]/g, "")}` },
   ];
 
   return (
     <>
       <PageHero
-        title="It starts with"
-        accent="a conversation."
-        eyebrow="Let's make a plan"
-        intro="A route in mind? Or just the idea of Nepal? Tell us a little about your trip and a local guide will write back."
-        photo="/photos/pokhara-lake.webp"
+        title="Contact"
+        accent="Us"
+        eyebrow="Available 24/7 - Call Us Anytime"
+        photo="/photos/page-contact.webp"
         crumbs={[{ name: "Contact us", path: "/contact-us/" }]}
       />
       <section className="mx-auto grid max-w-[90rem] gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="space-y-4">
           {cards.map(({ Icon, title, lines, href }, i) => (
             <Reveal key={title} delay={i * 0.06}>
-              <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="group flex gap-4 rounded-[1.4rem] border border-line bg-white p-5 transition-colors hover:border-pine">
+              <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="group flex gap-4 rounded-[1.4rem] border border-line bg-card p-5 transition-colors hover:border-pine">
                 <span className="bg-pine/10 text-pine group-hover:bg-pine grid size-12 shrink-0 place-items-center rounded-2xl transition-colors group-hover:text-white">
                   <Icon className="size-5" aria-hidden />
                 </span>
@@ -52,11 +51,11 @@ export default function ContactPage() {
           ))}
           <Reveal delay={0.3}>
             <div className="bg-pine-deep aura relative overflow-hidden rounded-[1.4rem] p-6 text-white">
-              <p className="eyebrow text-marigold">Come say namaste</p>
-              <p className="font-display mt-2 text-3xl font-black uppercase">Find us in Kathmandu</p>
+              <p className="eyebrow text-marigold">Contact Info</p>
+              <p className="font-display mt-2 text-3xl font-black uppercase">{site.legalName}</p>
               <p className="mt-3 flex gap-2 text-white/80">
                 <MapPin className="text-marigold mt-1 size-4 shrink-0" aria-hidden />
-                <span>{site.legalName}<br />{site.address.street}, {site.address.city}, Nepal<br />{site.address.poBox}</span>
+                <span>{site.address.street}, {site.address.city}, Nepal<br />{site.address.poBox}</span>
               </p>
               <a href={`https://www.google.com/maps/search/?api=1&query=${site.geo.lat},${site.geo.lng}`} target="_blank" rel="noopener noreferrer" className="bg-marigold text-pine-night mt-5 inline-flex rounded-full px-5 py-2.5 text-sm font-bold">
                 Open in Google Maps
@@ -65,9 +64,8 @@ export default function ContactPage() {
           </Reveal>
         </div>
         <Reveal>
-          <div className="rounded-[2rem] border border-line bg-white p-6 sm:p-10">
-            <h2 className="font-display text-4xl font-black uppercase">Your trip, your details</h2>
-            <p className="mt-2 mb-8 text-ink-soft">We reply within a few hours, usually much sooner.</p>
+          <div className="rounded-[2rem] border border-line bg-card p-6 sm:p-10">
+            <h2 className="font-display mb-8 text-4xl font-black uppercase">Send Us A Message</h2>
             <Suspense fallback={<div className="h-96" />}>
               <ContactForm trips={trips} />
             </Suspense>

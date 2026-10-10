@@ -13,6 +13,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { difficultyLabel } from "@/lib/site";
+import { PhotoGlow } from "@/components/photo-glow";
 import type { TripCard as Card } from "@/lib/types";
 import { cn, usd } from "@/lib/utils";
 
@@ -64,8 +65,9 @@ export function TripCard({
         py.set(0.5);
       }}
       style={tilt ? { rotateX: rx, rotateY: ry, transformPerspective: 1000 } : undefined}
-      className={cn("group relative", className)}
+      className={cn("group relative isolate", className)}
     >
+      {trip.cover ? <PhotoGlow src={trip.cover.src} /> : null}
       <Link
         href={`/trip/${trip.slug}/`}
         className={cn(
@@ -137,7 +139,7 @@ export function TripCard({
                   <span className="block text-[0.65rem] tracking-wide text-white/60 uppercase">per person</span>
                 </>
               ) : (
-                <span className="inline-flex items-center gap-1 rounded-full bg-white px-3.5 py-2 text-xs font-bold text-pine-deep">
+                <span className="inline-flex items-center gap-1 rounded-full bg-white px-3.5 py-2 text-xs font-bold text-[#1e3d33]">
                   View trip <ArrowUpRight className="size-3.5" aria-hidden />
                 </span>
               )}

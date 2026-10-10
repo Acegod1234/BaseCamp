@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, HeartHandshake, Leaf, Users } from "lucide-react";
+import { ArrowRight, Award, BadgeCheck, HeartHandshake, Route, Star, Users } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
 import { CountUp, Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/page-hero";
@@ -26,11 +26,11 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        title="Local roots."
-        accent="Open horizons."
-        eyebrow="Our story"
-        intro="Founded in 2009 by a local guide, and still run from Thamel by the people who walk the trails."
-        photo="/photos/annapurna-pokhara.webp"
+        title="About"
+        accent="Us"
+        eyebrow="Base Camp Adventure"
+        intro={site.description}
+        photo="/photos/page-about-group.webp"
         crumbs={[{ name: "About us", path: "/about-us/" }]}
         size="lg"
       />
@@ -39,11 +39,11 @@ export default function AboutPage() {
         <Stagger className="grid grid-cols-2 gap-px overflow-hidden rounded-[1.6rem] border border-line bg-line lg:grid-cols-4">
           {[
             { n: years, s: "", l: "Years on the trail" },
-            { n: getTrips().length, s: "", l: "Itineraries" },
+            { n: getTrips().length, s: "", l: "Trips" },
             { n: team.length, s: "", l: "Guides & staff" },
-            { n: 24, s: "/7", l: "Support in Nepal" },
+            { n: 24, s: "/7", l: "Available" },
           ].map((x) => (
-            <StaggerItem key={x.l} className="bg-white p-8">
+            <StaggerItem key={x.l} className="bg-card p-8">
               <CountUp to={x.n} suffix={x.s} className="font-display block text-6xl font-black" />
               <p className="eyebrow mt-2 text-muted">{x.l}</p>
             </StaggerItem>
@@ -54,11 +54,11 @@ export default function AboutPage() {
       <section className="mx-auto grid max-w-[90rem] gap-14 px-4 pb-24 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <div className="lg:sticky lg:top-32">
           <Parallax className="aspect-[4/5] rounded-[2rem] bg-pine-night" amount={8}>
-            <Image src="/photos/namche.webp" alt="Namche Bazaar from above" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
+            <Image src="/photos/page-about.webp" alt="Evening light over Namche Bazaar" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" />
           </Parallax>
         </div>
         <div>
-          <SectionHeading eyebrow="Who we are" lines={["Founded by a guide.", <Accent key="b">Built on a love of Nepal.</Accent>]} />
+          <SectionHeading eyebrow="Who we are" lines={["Base Camp", <Accent key="b">Adventure</Accent>]} />
           {p ? (
             <Reveal>
               <div className="prose-trail mt-8" dangerouslySetInnerHTML={{ __html: p.html }} />
@@ -70,27 +70,31 @@ export default function AboutPage() {
       <section className="bg-pine-night relative overflow-hidden py-24 text-white">
         <div className="aura absolute inset-0" aria-hidden />
         <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6">
-          <SectionHeading tone="dark" eyebrow="How we work" lines={["Four promises", <Accent key="k">we keep.</Accent>]} />
-          <Stagger className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <SectionHeading tone="dark" eyebrow="Base Camp Adventure" lines={["Why Travel", <span key="w">with <span className="accent-word text-marigold">Us?</span></span>]} />
+          <Stagger className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
             {[
-              { Icon: Users, t: "Small groups", d: "Private trips or small groups, so the pace is yours and the teahouse has room." },
-              { Icon: BadgeCheck, t: "Licensed local guides", d: "Government-licensed, first-aid trained, from the valleys you walk through." },
-              { Icon: HeartHandshake, t: "Fair to the crew", d: "Wages, insurance, gear and meals for every guide and porter are in the price." },
-              { Icon: Leaf, t: "Leave no trace", d: "Partners of KEEP Nepal. Refill water, pack out waste, respect the monasteries." },
-            ].map(({ Icon, t, d }) => (
-              <StaggerItem key={t} className="rounded-[1.4rem] border border-white/10 bg-white/5 p-6">
-                <Icon className="text-marigold size-7" aria-hidden />
-                <p className="mt-4 text-lg font-bold">{t}</p>
-                <p className="mt-2 text-sm text-white/70">{d}</p>
+              { Icon: Users, t: "Small Group Adventures" },
+              { Icon: BadgeCheck, t: "Experienced Local Guides" },
+              { Icon: Route, t: "Tailor-Made Itineraries" },
+              { Icon: Award, t: "Multi-award-winning company" },
+              { Icon: HeartHandshake, t: "No Hidden Fees" },
+              { Icon: Star, t: "Trusted by Travelers" },
+            ].map(({ Icon, t }) => (
+              <StaggerItem key={t} className="flex flex-col gap-3 rounded-[1.4rem] border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:p-6">
+                <Icon className="text-marigold size-7 shrink-0" aria-hidden />
+                <p className="font-bold sm:text-lg">{t}</p>
               </StaggerItem>
             ))}
           </Stagger>
+          <Link href="/why-book-with-us/" className="bg-marigold text-pine-night mt-10 inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-bold">
+            Why Travel With Us? <ArrowRight className="size-4" aria-hidden />
+          </Link>
         </div>
       </section>
 
       <section className="mx-auto max-w-[90rem] px-4 py-24 sm:px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading eyebrow="The people behind the journey" lines={["Meet the", <Accent key="t">team.</Accent>]} />
+          <SectionHeading eyebrow="Base Camp Adventure" lines={["Our", <Accent key="t">Team</Accent>]} />
           <Link href="/our-team/" className="text-pine inline-flex items-center gap-2 font-bold">
             Everyone <ArrowRight className="size-4" aria-hidden />
           </Link>
@@ -110,7 +114,7 @@ export default function AboutPage() {
         </Stagger>
       </section>
 
-      <section className="border-t border-line bg-white py-16">
+      <section className="border-t border-line bg-card py-16">
         <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="eyebrow text-pine">Registered in Nepal</p>

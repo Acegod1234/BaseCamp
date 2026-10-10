@@ -1,0 +1,194 @@
+{
+ "home-banner": {
+  "src": "/photos/home-banner.webp",
+  "w": 1600,
+  "h": 1200,
+  "trip": null
+ },
+ "hero-ama-dablam": {
+  "src": "/photos/hero-ama-dablam.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "pikey-peak-trek"
+ },
+ "hero-alpenglow": {
+  "src": "/photos/hero-alpenglow.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "panchase-trek"
+ },
+ "hero-gokyo": {
+  "src": "/photos/hero-gokyo.webp",
+  "w": 2400,
+  "h": 1350,
+  "trip": null
+ },
+ "hero-machapuchare": {
+  "src": "/photos/hero-machapuchare.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "ghorepani-poon-hill-trek"
+ },
+ "hero-mustang": {
+  "src": "/photos/hero-mustang.webp",
+  "w": 1600,
+  "h": 1066,
+  "trip": null
+ },
+ "region-everest": {
+  "src": "/photos/region-everest.webp",
+  "w": 1920,
+  "h": 810,
+  "trip": null
+ },
+ "region-annapurna": {
+  "src": "/photos/region-annapurna.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "panchase-trek"
+ },
+ "region-langtang": {
+  "src": "/photos/region-langtang.webp",
+  "w": 1920,
+  "h": 1280,
+  "trip": null
+ },
+ "region-manaslu": {
+  "src": "/photos/region-manaslu.webp",
+  "w": 2400,
+  "h": 1080,
+  "trip": "short-manaslu-circuit-trek"
+ },
+ "region-remote": {
+  "src": "/photos/region-remote.webp",
+  "w": 1600,
+  "h": 1066,
+  "trip": null
+ },
+ "region-nepal": {
+  "src": "/photos/region-nepal.webp",
+  "w": 1920,
+  "h": 1276,
+  "trip": null
+ },
+ "region-bhutan": {
+  "src": "/photos/region-bhutan.webp",
+  "w": 1380,
+  "h": 690,
+  "trip": "punakha-domoche-trekking"
+ },
+ "region-tibet": {
+  "src": "/photos/region-tibet.webp",
+  "w": 2048,
+  "h": 1536,
+  "trip": "kathmandu-lhasa-everest-base-camp-tour"
+ },
+ "activity-trekking": {
+  "src": "/photos/activity-trekking.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "annapurna-circuit-trek"
+ },
+ "activity-peak": {
+  "src": "/photos/activity-peak.webp",
+  "w": 2400,
+  "h": 1800,
+  "trip": "nar-phu-valley-and-thorang-la-pass-trek"
+ },
+ "activity-tour": {
+  "src": "/photos/activity-tour.webp",
+  "w": 2400,
+  "h": 1800,
+  "trip": "buddhist-tour-in-nepal"
+ },
+ "activity-rafting": {
+  "src": "/photos/activity-rafting.webp",
+  "w": 1024,
+  "h": 690,
+  "trip": "karnali-river-rafting"
+ },
+ "activity-day": {
+  "src": "/photos/activity-day.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "everest-base-camp-trek-with-helicopter-return"
+ },
+ "activity-bhutan": {
+  "src": "/photos/activity-bhutan.webp",
+  "w": 1380,
+  "h": 690,
+  "trip": "bhutan-heritage-tour"
+ },
+ "activity-tibet": {
+  "src": "/photos/activity-tibet.webp",
+  "w": 2048,
+  "h": 1152,
+  "trip": "kathmandu-lhasa-everest-base-camp-tour"
+ },
+ "page-about": {
+  "src": "/photos/page-about.webp",
+  "w": 1600,
+  "h": 1067,
+  "trip": null
+ },
+ "page-about-group": {
+  "src": "/photos/page-about-group.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "ghorepani-poon-hill-trek"
+ },
+ "page-trips": {
+  "src": "/photos/page-trips.webp",
+  "w": 1920,
+  "h": 1280,
+  "trip": null
+ },
+ "page-destinations": {
+  "src": "/photos/page-destinations.webp",
+  "w": 1920,
+  "h": 1079,
+  "trip": "mohare-hill-trek"
+ },
+ "page-activities": {
+  "src": "/photos/page-activities.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "everest-base-camp-trek-with-helicopter-return"
+ },
+ "page-team": {
+  "src": "/photos/page-team.webp",
+  "w": 2400,
+  "h": 1080,
+  "trip": "short-manaslu-circuit-trek"
+ },
+ "page-reviews": {
+  "src": "/photos/page-reviews.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "langtang-valley-trek"
+ },
+ "page-contact": {
+  "src": "/photos/page-contact.webp",
+  "w": 1920,
+  "h": 1079,
+  "trip": "mohare-hill-trek"
+ },
+ "page-customize": {
+  "src": "/photos/page-customize.webp",
+  "w": 1600,
+  "h": 1200,
+  "trip": "mardi-himal-trek"
+ },
+ "page-gallery": {
+  "src": "/photos/page-gallery.webp",
+  "w": 2400,
+  "h": 1348,
+  "trip": "mohare-hill-trek"
+ },
+ "page-404": {
+  "src": "/photos/page-404.webp",
+  "w": 2400,
+  "h": 1600,
+  "trip": "ghorepani-poon-hill-trek"
+ }
+}

@@ -1,0 +1,548 @@
+[
+ {
+  "label": "Home",
+  "href": "/"
+ },
+ {
+  "label": "Everest Region",
+  "href": "/destinations/everest-region/",
+  "children": [
+   {
+    "label": "Everest Base Camp Packages",
+    "href": "#",
+    "children": [
+     {
+      "label": "Everest Base Camp Trek – 14 Days",
+      "href": "/trip/everest-base-camp-trek/"
+     },
+     {
+      "label": "Everest Base Camp Trek with Helicopter Return – 09 Days",
+      "href": "/trip/everest-base-camp-trek-with-helicopter-return/"
+     },
+     {
+      "label": "3 Days Everest Base Camp Trek",
+      "href": "/trip/3-days-everest-base-camp-trek/"
+     },
+     {
+      "label": "Everest Base Camp Group Trek",
+      "href": "/trip/everest-base-camp-group-trek/"
+     },
+     {
+      "label": "Short Everest Base Camp Trek- 10 Days",
+      "href": "/trip/short-everest-base-camp-trek/"
+     },
+     {
+      "label": "Jiri to Everest Base Camp Trek – 20 Days",
+      "href": "/trip/jiri-everest-base-camp-trek/"
+     },
+     {
+      "label": "Everest Three Passes Trek- 17 Days",
+      "href": "/trip/everest-three-passes-trek/"
+     },
+     {
+      "label": "Everest Base Camp Luxury Lodge Trek – 14 Days",
+      "href": "/trip/everest-base-camp-luxury-lodge-trek/"
+     },
+     {
+      "label": "EBC Trek with Island Peak Climbing – 17 Days",
+      "href": "/trip/everest-base-camp-trek-with-island-peak-climbing/"
+     },
+     {
+      "label": "EBC and Gokyo Lakes Trek – 16 Days",
+      "href": "/trip/everest-base-camp-and-gokyo-trek/"
+     }
+    ]
+   },
+   {
+    "label": "Everest View Trek – 9 Days",
+    "href": "/trip/everest-view-trek/"
+   },
+   {
+    "label": "Everest Gokyo Trek – 12 Days",
+    "href": "/trip/everest-gokyo-trek/"
+   },
+   {
+    "label": "Tengboche Monastery Trek – 7 Days",
+    "href": "/trip/tengboche-monastery-trek/"
+   },
+   {
+    "label": "Gokyo Valley Trek – 13 Days",
+    "href": "/trip/gokyo-valley-trek/"
+   },
+   {
+    "label": "Rolwaling Trek – 17 Days",
+    "href": "/trip/rolwaling-trek/"
+   },
+   {
+    "label": "Gokyo Valley with Renjo La Pass Trek – 13 Days",
+    "href": "/trip/gokyo-valley-with-renjo-la-pass-trek/"
+   },
+   {
+    "label": "Amphu Lapcha Pass with Mera Peak Climb",
+    "href": "/trip/amphu-lapcha-pass-with-mera-peak-climb/"
+   }
+  ]
+ },
+ {
+  "label": "Trekking",
+  "href": "/activities/trekking-in-nepal/",
+  "children": [
+   {
+    "label": "Annapurna Region",
+    "href": "/destinations/annapurna-region/",
+    "children": [
+     {
+      "label": "Annapurna Base Camp Trek – 13 Days",
+      "href": "/trip/annapurna-base-camp-trek/"
+     },
+     {
+      "label": "Short Annapurna Base Camp Trek – 5 Days",
+      "href": "/trip/short-annapurna-base-camp-trek-5-days/"
+     },
+     {
+      "label": "Mardi Himal Trek -9 Days",
+      "href": "/trip/mardi-himal-trek/"
+     },
+     {
+      "label": "Annapurna Panorama Trek – 10 Days",
+      "href": "/trip/annapurna-panorama-trek/"
+     },
+     {
+      "label": "Annapurna Circuit Trek – 18 Days",
+      "href": "/trip/annapurna-circuit-trek/"
+     },
+     {
+      "label": "Ghorepani Poon Hill Trek – 8 Days",
+      "href": "/trip/ghorepani-poon-hill-trek/"
+     },
+     {
+      "label": "Jomsom Muktinath Trek – 12 Days",
+      "href": "/trip/jomsom-muktinath-trek/"
+     },
+     {
+      "label": "Manang Trek – 9 Days",
+      "href": "/trip/manang-trek/"
+     },
+     {
+      "label": "Ghalegaun Home Stay Trek – 3 Days",
+      "href": "/trip/ghalegaun-home-stay-trek/"
+     },
+     {
+      "label": "Panchase Trekking – 4 Days",
+      "href": "/trip/panchase-trek/"
+     },
+     {
+      "label": "Narphu Valley Trek – 17 Days",
+      "href": "/trip/nar-phu-valley-and-thorang-la-pass-trek/"
+     },
+     {
+      "label": "Tilicho Lake Trekking – 17 Days",
+      "href": "/trip/tilicho-lake-trekking/"
+     },
+     {
+      "label": "Damodar Kund Trek – 19 Days",
+      "href": "/trip/damodar-kund-trek/"
+     }
+    ]
+   },
+   {
+    "label": "Langtang Region",
+    "href": "/destinations/langtang-region/",
+    "children": [
+     {
+      "label": "Langtang Valley Trek – 10 Days",
+      "href": "/trip/langtang-valley-trek/"
+     },
+     {
+      "label": "Langtang Gosainkunda Trek – 14 Days",
+      "href": "/trip/langtang-gosainkunda-trek/"
+     },
+     {
+      "label": "Langtang Circuit Trek – 15 Days",
+      "href": "/trip/langtang-circuit-trek/"
+     },
+     {
+      "label": "Tamang Heritage Trek – 10 Days",
+      "href": "/trip/tamang-heritage-trek/"
+     },
+     {
+      "label": "Langtang Gosainkunda Helambu Trek – 17 Days",
+      "href": "/trip/langtang-gosainkunda-helambu-trek/"
+     },
+     {
+      "label": "Gosainkunda Helambu Trek – 9 Days",
+      "href": "/trip/gosainkunda-helambu-trek/"
+     },
+     {
+      "label": "Ganjala Pass Trek- 22 Days",
+      "href": "/trip/ganjala-pass-trek/"
+     }
+    ]
+   },
+   {
+    "label": "Manaslu Region",
+    "href": "/destinations/manaslu-region/",
+    "children": [
+     {
+      "label": "Manaslu Circuit Trek – 13 Days",
+      "href": "/trip/manaslu-circuit-trek/"
+     },
+     {
+      "label": "Short Manaslu Circuit Trek – 10 Days",
+      "href": "/trip/short-manaslu-circuit-trek/"
+     },
+     {
+      "label": "Tsum Valley and Manaslu Trek – 18 Days",
+      "href": "/trip/tsum-valley-and-manaslu-trek/"
+     }
+    ]
+   },
+   {
+    "label": "Other Treks",
+    "href": "/destinations/remote-area-trekking/",
+    "children": [
+     {
+      "label": "Makalu Base Camp Trek – 16 Days",
+      "href": "/trip/makalu-base-camp-trek/"
+     },
+     {
+      "label": "Upper Dolpo Trekking – 24 Days",
+      "href": "/trip/upper-dolpo-trek/"
+     },
+     {
+      "label": "Arun Valley Trekking – 15 Days",
+      "href": "/trip/arun-valley-trekking/"
+     },
+     {
+      "label": "Upper Mustang Trek – 14 Days",
+      "href": "/trip/mustang-trek/"
+     },
+     {
+      "label": "Mustang Tiji Festival Trek – 15 Days",
+      "href": "/trip/mustang-tiji-festival-trek/"
+     },
+     {
+      "label": "Ganesh Himal Trekking – 9 Days",
+      "href": "/trip/ganesh-himal-trekking/"
+     },
+     {
+      "label": "Dolpo Trek – 23 Days",
+      "href": "/trip/dolpo-trek/"
+     },
+     {
+      "label": "Jumla Rara Lake Trek – 14 Days",
+      "href": "/trip/jumla-rara-lake-trek/"
+     },
+     {
+      "label": "Dhaulagiri Round Trek – 17 Days",
+      "href": "/trip/dhaulagiri-round-trek/"
+     },
+     {
+      "label": "Kanchenjunga Base Camp Trek",
+      "href": "/trip/kanchenjunga-base-camp-trek/"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "Nepal Tour",
+  "href": "/activities/nepal-tour/",
+  "children": [
+   {
+    "label": "Nepal Cultural Tour – 9 Days",
+    "href": "/trip/nepal-cultural-tour/"
+   },
+   {
+    "label": "Kathmandu City Tour – 4 Days",
+    "href": "/trip/kathmandu-city-tour/"
+   },
+   {
+    "label": "Buddhist Tour in Nepal – 7 Days",
+    "href": "/trip/buddhist-tour-in-nepal/"
+   },
+   {
+    "label": "Nepal Luxury Tour Package – 9 Days",
+    "href": "/trip/nepal-luxury-tour-package/"
+   },
+   {
+    "label": "Everest Base Camp Helicopter Tour – 1 Day",
+    "href": "/trip/everest-base-camp-helicopter-tour/"
+   },
+   {
+    "label": "Weekend Hiking Tour – 6 Days",
+    "href": "/trip/weekend-hiking-tour/"
+   },
+   {
+    "label": "Kathmandu Chitwan Pokhara Tours – 7 Days",
+    "href": "/trip/kathmandu-chitwan-pokhara-tours/"
+   },
+   {
+    "label": "Nepal Family Tour Package – 9 Days",
+    "href": "/trip/nepal-family-tour-package/"
+   },
+   {
+    "label": "Kathmandu and Nagarkot Tour – 4 Days",
+    "href": "/trip/kathmandu-and-nagarkot-tour/"
+   },
+   {
+    "label": "Nepal Heritage Tour – 9 Days",
+    "href": "/trip/nepal-heritage-tour/"
+   },
+   {
+    "label": "Nepal Historical Tours – 8 Days",
+    "href": "/trip/nepal-historical-tours/"
+   },
+   {
+    "label": "Helicopter Tours in Nepal – 1 Day",
+    "href": "/trip/helicopter-tours-in-nepal/"
+   },
+   {
+    "label": "Nepal Jungle Safari Tours – 3 Days",
+    "href": "/trip/nepal-jungle-safari-tours/"
+   },
+   {
+    "label": "Day Tours",
+    "href": "/activities/day-tours/",
+    "children": [
+     {
+      "label": "Kathmandu City Day Tour",
+      "href": "/trip/kathmandu-city-day-tour/"
+     },
+     {
+      "label": "Nagarkot Hiking Day Tour",
+      "href": "/trip/nagarkot-hiking-day-tour/"
+     },
+     {
+      "label": "Helicopter Tour",
+      "href": "/trip/helicopter-tour/"
+     },
+     {
+      "label": "Trishuli River Rafting Day Tour",
+      "href": "/trip/trishuli-river-rafting-day-tour/"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "Peak Climbing",
+  "href": "/activities/nepal-peak-climbing/",
+  "children": [
+   {
+    "label": "Island Peak Climbing – 17 Days",
+    "href": "/trip/island-peak-climbing/"
+   },
+   {
+    "label": "Mera Peak Climbing – 16 Days",
+    "href": "/trip/mera-peak-climbing/"
+   },
+   {
+    "label": "Chulu West Peak Climbing – 27 Days",
+    "href": "/trip/chulu-west-peak-climbing/"
+   },
+   {
+    "label": "Lobuche Peak Climbing – 20 Days",
+    "href": "/trip/lobuche-peak-climbing/"
+   },
+   {
+    "label": "Pisang Peak Climbing – 22 Days",
+    "href": "/trip/pisang-peak-climbing/"
+   },
+   {
+    "label": "Yala Peak Climbing – 10 Days",
+    "href": "/trip/yala-peak-climbing/"
+   },
+   {
+    "label": "Everest Base Camp Trek with Island Peak Climbing -17 Days",
+    "href": "/trip/everest-base-camp-trek-with-island-peak-climbing/"
+   },
+   {
+    "label": "Amphu Lapcha Pass with Mera Peak Climb – 23 Days",
+    "href": "/trip/amphu-lapcha-pass-with-mera-peak-climb/"
+   },
+   {
+    "label": "Paldor Peak Climbing – 17 Days",
+    "href": "/trip/paldor-peak-climbing/"
+   },
+   {
+    "label": "Singu Chuli Peak Climbing – 21 Days",
+    "href": "/trip/singu-chuli-peak-climbing/"
+   },
+   {
+    "label": "Tent (Tharpu Chuli) Peak Climbing – 21 Days",
+    "href": "/trip/tent-peak-climbing/"
+   }
+  ]
+ },
+ {
+  "label": "Activities",
+  "href": "#",
+  "children": [
+   {
+    "label": "Expedition in Nepal",
+    "href": "/activities/expedition-in-nepal/",
+    "children": [
+     {
+      "label": "Mt Everest Expedition",
+      "href": "/trip/mt-everest-expedition/"
+     },
+     {
+      "label": "Mt. Ama Dablam Expedition",
+      "href": "/trip/mt-ama-dablam-expedition/"
+     }
+    ]
+   },
+   {
+    "label": "Jungle Safari",
+    "href": "#",
+    "children": [
+     {
+      "label": "Nepal Jungle Safari Tours",
+      "href": "/trip/nepal-jungle-safari-tours/"
+     },
+     {
+      "label": "Chitwan National Park",
+      "href": "/trip/chitwan-national-park/"
+     },
+     {
+      "label": "Bardia National Park",
+      "href": "/trip/bardia-national-park/"
+     }
+    ]
+   },
+   {
+    "label": "River rafting in Nepal",
+    "href": "/activities/river-rafting-in-nepal/",
+    "children": [
+     {
+      "label": "Bhotekoshi River Rafting",
+      "href": "/trip/bhotekoshi-river-rafting/"
+     },
+     {
+      "label": "Marshyangdi River Rafting",
+      "href": "/trip/marshyangdi-river-rafting/"
+     },
+     {
+      "label": "Kali Gandaki River Rafting",
+      "href": "/trip/kali-gandaki-river-rafting/"
+     },
+     {
+      "label": "Sun Koshi River Rafting",
+      "href": "/trip/sun-koshi-river-rafting/"
+     },
+     {
+      "label": "Seti River Rafting",
+      "href": "/trip/seti-river-rafting/"
+     },
+     {
+      "label": "Karnali River Rafting",
+      "href": "/trip/karnali-river-rafting/"
+     },
+     {
+      "label": "Trishuli River Rafting Day Tour",
+      "href": "/trip/trishuli-river-rafting-day-tour/"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "Intl Tours",
+  "href": "#",
+  "children": [
+   {
+    "label": "Bhutan",
+    "href": "/destinations/bhutan/",
+    "children": [
+     {
+      "label": "Tours in Bhutan",
+      "href": "/activities/tours-in-bhutan/",
+      "children": [
+       {
+        "label": "Bhutan Heritage Tour",
+        "href": "/trip/bhutan-heritage-tour/"
+       },
+       {
+        "label": "Bhutan Highlight Tour",
+        "href": "/trip/bhutan-highlight-tour/"
+       },
+       {
+        "label": "Bhutan Cultural Tours",
+        "href": "/trip/bhutan-cultural-tours/"
+       }
+      ]
+     },
+     {
+      "label": "Bhutan Trek",
+      "href": "/activities/bhutan-trek/",
+      "children": [
+       {
+        "label": "Druk Path Trekking",
+        "href": "/trip/druk-path-trekking/"
+       },
+       {
+        "label": "Chomolhari Trekking",
+        "href": "/trip/chomolhari-trekking/"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "label": "Tibet",
+    "href": "/destinations/tibet/",
+    "children": [
+     {
+      "label": "Tours in Tibet",
+      "href": "/activities/tours-in-tibet/",
+      "children": [
+       {
+        "label": "Mount Kailash Tour",
+        "href": "/trip/mount-kailash-tour/"
+       },
+       {
+        "label": "Everest Base Camp Tour From Lhasa",
+        "href": "/trip/everest-base-camp-tour-from-lhasa/"
+       },
+       {
+        "label": "Kathmandu – Lhasa – Everest Base Camp Tour",
+        "href": "/trip/kathmandu-lhasa-everest-base-camp-tour/"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "label": "About Us",
+  "href": "/about-us/",
+  "children": [
+   {
+    "label": "Our Team",
+    "href": "/our-team/"
+   },
+   {
+    "label": "Legal Documents",
+    "href": "/legal-documents/"
+   },
+   {
+    "label": "Why Travel With Us?",
+    "href": "/why-book-with-us/"
+   },
+   {
+    "label": "Privacy Policy",
+    "href": "/privacy-policy/"
+   },
+   {
+    "label": "Terms & Conditions",
+    "href": "/terms-and-conditions/"
+   }
+  ]
+ },
+ {
+  "label": "Contact",
+  "href": "/contact-us/"
+ }
+]

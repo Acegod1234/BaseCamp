@@ -271,7 +271,7 @@ function ChipGroup({ label, options, selected, onToggle }: { label: string; opti
         {options.map((o) => {
           const on = selected.includes(o);
           return (
-            <button key={o} type="button" onClick={() => onToggle(o)} aria-pressed={on} className={cn("inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold transition-all", on ? "bg-pine scale-[1.03] text-white" : "border border-line bg-white hover:border-pine")}>
+            <button key={o} type="button" onClick={() => onToggle(o)} aria-pressed={on} className={cn("inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold transition-all", on ? "bg-pine scale-[1.03] text-white" : "border border-line bg-card hover:border-pine")}>
               {on ? <Check className="size-4" aria-hidden /> : null}
               {o}
             </button>

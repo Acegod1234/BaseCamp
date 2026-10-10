@@ -121,7 +121,7 @@ export function TripExplorer({
 
   return (
     <div>
-      <div data-subnav className="sticky top-[4.6rem] z-30 -mx-1.5 pt-4 sm:-mx-0 lg:top-[5.1rem]">
+      <div data-subnav className="sticky top-[4.5rem] z-30 -mx-1.5 pt-4 sm:-mx-0 lg:top-[5rem]">
         <div className="rounded-2xl border border-line bg-white/92 p-2 shadow-[0_14px_40px_-26px_oklch(0.2_0.04_170/0.45)] backdrop-blur-xl sm:p-2.5">
         <div className="flex flex-row gap-2 lg:items-center lg:gap-3">
           <form
@@ -207,7 +207,7 @@ export function TripExplorer({
           <h2 className="font-display mt-4 text-4xl font-black uppercase">A different route?</h2>
           <p className="mt-2 max-w-md text-ink-soft">Try a wider budget or duration, or let us put together a trip for you.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <button type="button" onClick={() => { setQ(""); router.replace(pathname, { scroll: false }); }} className="rounded-full border border-line bg-white px-6 py-3 font-semibold">Show all trips</button>
+            <button type="button" onClick={() => { setQ(""); router.replace(pathname, { scroll: false }); }} className="rounded-full border border-line bg-card px-6 py-3 font-semibold">Show all trips</button>
             <Link href="/customize-trip/" className="bg-pine inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold text-white">
               Plan a custom trip <ArrowRight className="size-4" aria-hidden />
             </Link>

@@ -26,6 +26,7 @@ import { BookingCard, MobileBookingBar } from "@/components/trip/booking-card";
 import { GalleryButton } from "@/components/trip/gallery";
 import { Itinerary } from "@/components/trip/itinerary";
 import { SectionNav } from "@/components/trip/section-nav";
+import { TripModals } from "@/components/trip/trip-modals";
 import { TripCard } from "@/components/trip-card";
 import { UnitToggle } from "@/components/unit-toggle";
 import { getActivity, getDestination, getGuidesForRegion, getRelatedTrips, getTrip, getTrips } from "@/lib/content";
@@ -67,6 +68,7 @@ export default async function TripPage({ params }: Props) {
   const activity = trip.activities[0] ? getActivity(trip.activities[0]) : null;
   const related = getRelatedTrips(trip, 3);
   const guides = region ? getGuidesForRegion(region.slug, 3) : [];
+  const sharpest = [trip.cover, ...trip.gallery].filter((x): x is NonNullable<typeof x> => Boolean(x) && x!.w >= x!.h).sort((a, b) => b.w - a.w)[0] ?? trip.cover;
   const photos = [trip.cover, ...trip.gallery].filter((x, i, a): x is NonNullable<typeof x> => Boolean(x) && a.findIndex((y) => y?.src === x?.src) === i);
   const altitudeDays = trip.itinerary.filter((d) => d.altitude).length >= 3 ? trip.itinerary : [];
 
@@ -91,7 +93,7 @@ export default async function TripPage({ params }: Props) {
     <>
       {/* Hero */}
       <section className="bg-pine-night relative isolate flex min-h-[82svh] items-end overflow-hidden text-white">
-        {trip.cover ? <Image src={trip.cover.src} alt={trip.cover.alt || trip.title} fill preload quality={80} sizes="100vw" className="kenburns -z-10 object-cover" /> : null}
+        {sharpest ? <Image src={sharpest.src} alt={sharpest.alt || trip.title} fill preload quality={85} sizes="100vw" className="kenburns -z-10 object-cover" /> : null}
         <div className="scrim-hero absolute inset-0 -z-10" />
         <div className="text-shadow-soft mx-auto w-full max-w-[90rem] px-4 pt-36 pb-28 sm:px-6">
           <Reveal y={10}>
@@ -142,7 +144,7 @@ export default async function TripPage({ params }: Props) {
           {facts.slice(0, 6).map((f) => {
             const Icon = FACT_ICONS[f.label.toLowerCase().trim()] ?? Info;
             return (
-              <StaggerItem key={f.label} className="flex flex-col items-start gap-2.5 bg-white p-4 sm:flex-row sm:gap-3 sm:p-5">
+              <StaggerItem key={f.label} className="flex flex-col items-start gap-2.5 bg-card p-4 sm:flex-row sm:gap-3 sm:p-5">
                 <span className="bg-pine/10 text-pine grid size-10 shrink-0 place-items-center rounded-xl">
                   <Icon className="size-5" aria-hidden />
                 </span>
@@ -158,7 +160,7 @@ export default async function TripPage({ params }: Props) {
 
       {/* Direct child of <main>, so it stays pinned for the whole page. */}
       <div className="h-8" aria-hidden />
-      <SectionNav items={nav} price={trip.price} bookHref={trip.price ? `/booking/?trip=${trip.slug}` : `/contact-us/?trip=${encodeURIComponent(trip.title)}`} />
+      <SectionNav items={nav} price={trip.price} />
 
       <div className="mx-auto grid max-w-[90rem] gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-16">
         <article className="min-w-0 space-y-20">
@@ -194,7 +196,7 @@ export default async function TripPage({ params }: Props) {
           {altitudeDays.length ? (
             <section id="altitude" className="scroll-mt-40">
               <SectionHeading eyebrow="Altitude profile" lines={["How high,", <Accent key="w">and when.</Accent>]} intro="Every overnight stop on the route. Rest days at the same height are where your body adjusts." />
-              <div className="mt-8 rounded-[1.6rem] border border-line bg-white p-4 sm:p-6">
+              <div className="mt-8 rounded-[1.6rem] border border-line bg-card p-4 sm:p-6">
                 <AltitudeProfile days={altitudeDays} tone="light" />
               </div>
             </section>
@@ -205,7 +207,7 @@ export default async function TripPage({ params }: Props) {
               <SectionHeading eyebrow="Cost details" lines={["What's", <Accent key="i">included.</Accent>]} />
               <div className="mt-8 grid gap-5 md:grid-cols-2">
                 {trip.includes.length ? (
-                  <div className="rounded-[1.4rem] border border-line bg-white p-6">
+                  <div className="rounded-[1.4rem] border border-line bg-card p-6">
                     <h3 className="text-lg font-bold">The price includes</h3>
                     <ul className="mt-4 space-y-3">
                       {trip.includes.map((x) => (
@@ -243,7 +245,7 @@ export default async function TripPage({ params }: Props) {
           {trip.map ? (
             <section id="route-map" className="scroll-mt-40">
               <SectionHeading eyebrow="Route map" lines={["The way", <Accent key="t">there.</Accent>]} />
-              <a href={trip.map.src} target="_blank" rel="noopener" className="mt-8 block overflow-hidden rounded-[1.4rem] border border-line bg-white">
+              <a href={trip.map.src} target="_blank" rel="noopener" className="mt-8 block overflow-hidden rounded-[1.4rem] border border-line bg-card">
                 <Image src={trip.map.src} alt={trip.map.alt || `${trip.title} map`} width={trip.map.w} height={trip.map.h} sizes="(max-width: 1024px) 100vw, 60vw" className="h-auto w-full" />
               </a>
             </section>
@@ -263,7 +265,7 @@ export default async function TripPage({ params }: Props) {
               <div className="flex flex-wrap items-end justify-between gap-6">
                 <SectionHeading eyebrow="Reviews" lines={["From the", <Accent key="t">trail.</Accent>]} />
                 {trip.rating ? (
-                  <div className="flex items-center gap-4 rounded-2xl border border-line bg-white px-5 py-4">
+                  <div className="flex items-center gap-4 rounded-2xl border border-line bg-card px-5 py-4">
                     <span className="font-display text-5xl font-black">{trip.rating.value.toFixed(1)}</span>
                     <span>
                       <span className="flex gap-0.5">
@@ -278,7 +280,7 @@ export default async function TripPage({ params }: Props) {
               </div>
               <Stagger className="mt-8 grid gap-4 md:grid-cols-2">
                 {trip.reviews.map((r, i) => (
-                  <StaggerItem key={i} className="rounded-[1.4rem] border border-line bg-white p-6">
+                  <StaggerItem key={i} className="rounded-[1.4rem] border border-line bg-card p-6">
                     <div className="flex gap-0.5" aria-label={`${r.rating} out of 5`}>
                       {Array.from({ length: 5 }).map((_, s) => (
                         <Star key={s} className={s < Math.round(r.rating) ? "fill-marigold text-marigold size-4" : "size-4 text-line"} aria-hidden />
@@ -342,6 +344,7 @@ export default async function TripPage({ params }: Props) {
 
       <div className="h-20 lg:hidden" aria-hidden />
       <MobileBookingBar slug={trip.slug} title={trip.title} price={trip.price} />
+      <TripModals trip={{ slug: trip.slug, title: trip.title, days: trip.days, price: trip.price, cover: trip.cover }} />
       <JsonLd data={tripLd(trip)} />
     </>
   );

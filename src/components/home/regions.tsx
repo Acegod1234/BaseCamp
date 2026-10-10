@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Mountain } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type RegionPanel = { slug: string; name: string; line: string; photo: string; trips: number; peak: string; altitude: number };
+export type RegionPanel = { slug: string; name: string; line: string; photo: string; trips: number; highest: number | null };
 
 /**
  * "Same country. Different worlds." — an accordion of regions. On desktop the
@@ -55,12 +55,14 @@ export function RegionShowcase({ regions }: { regions: RegionPanel[] }) {
                   <div>
                     <p className="font-mono text-xs text-white/60">{String(i + 1).padStart(2, "0")} / {String(regions.length).padStart(2, "0")}</p>
                     <h3 className="font-display mt-2 text-5xl font-black uppercase leading-[0.9] sm:text-6xl">{r.name}</h3>
-                    <p className="mt-3 max-w-md text-white/80">{r.line}</p>
+                    <p className="mt-3 line-clamp-2 max-w-md text-white/80">{r.line}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-xs">
-                      <Mountain className="text-glacier size-4" aria-hidden /> {r.peak} · {r.altitude.toLocaleString("en-US")} m
-                    </span>
+                    {r.highest ? (
+                      <span className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-xs">
+                        <Mountain className="text-glacier size-4" aria-hidden /> up to {r.highest.toLocaleString("en-US")} m
+                      </span>
+                    ) : null}
                     <Link
                       href={`/destinations/${r.slug}/`}
                       className="bg-marigold text-pine-night inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition-colors hover:bg-white"

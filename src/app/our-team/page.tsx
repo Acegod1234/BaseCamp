@@ -17,11 +17,10 @@ export default function TeamPage() {
   return (
     <>
       <PageHero
-        title="The people"
-        accent="behind the journey."
+        title="Our"
+        accent="Team"
         eyebrow={`${team.length} guides & staff`}
-        intro="Licensed guides from the regions you'll walk, a climbing Sherpa, cultural guides for the valley, and the office in Thamel that keeps it all moving."
-        photo="/photos/cho-la-trekkers.webp"
+        photo="/photos/page-team.webp"
         crumbs={[{ name: "Our team", path: "/our-team/" }]}
       />
       <section className="mx-auto max-w-[90rem] px-4 py-20 sm:px-6">

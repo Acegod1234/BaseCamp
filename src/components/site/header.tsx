@@ -1,28 +1,58 @@
-import { getLiveTerms, getTrips } from "@/lib/content";
-import { activityMeta, regionMeta } from "@/lib/site";
-import { HeaderClient, type Menu } from "./header-client";
+import { getMenu } from "@/lib/content";
+import type { MenuItem } from "@/lib/types";
+import { HeaderClient, type NavColumn, type NavTop } from "./header-client";
 
-const ORDER = ["everest-region", "annapurna-region", "langtang-region", "manaslu-region", "remote-area-trekking", "nepal", "bhutan", "tibet"];
+const leaf = (i: MenuItem) => ({ label: i.label, href: i.href });
 
-/** Builds the menus from live content, so a new trip appears without a code change. */
+/**
+ * Turns the live site's menu into header columns.
+ *
+ * A child with its own children becomes a titled column (Annapurna Region,
+ * Day Tours, Bhutan…); loose trip links are collected into a column named
+ * after the menu item. Long lists split in two so a panel never runs down
+ * the screen.
+ */
+function columnsFor(item: MenuItem): NavColumn[] {
+  const cols: NavColumn[] = [];
+  const loose: { label: string; href: string }[] = [];
+  for (const child of item.children ?? []) {
+    if (child.children?.length) {
+      const nested = child.children.some((g) => g.children?.length);
+      cols.push({
+        title: child.label,
+        href: child.href !== "#" ? child.href : null,
+        sections: nested
+          ? child.children.map((g) => ({ title: g.label, href: g.href !== "#" ? g.href : null, links: (g.children ?? []).map(leaf) }))
+          : [{ title: null, href: null, links: child.children.map(leaf) }],
+      });
+    } else {
+      loose.push(leaf(child));
+    }
+  }
+  if (loose.length) {
+    const half = loose.length > 9 ? Math.ceil(loose.length / 2) : loose.length;
+    cols.push({ title: item.label, href: item.href !== "#" ? item.href : null, sections: [{ title: null, href: null, links: loose.slice(0, half) }] });
+    if (loose.length > half) cols.push({ title: " ", href: null, sections: [{ title: null, href: null, links: loose.slice(half) }] });
+  }
+  // Long single columns split too (e.g. 13 Annapurna treks stay readable).
+  return cols.flatMap((c) => {
+    const links = c.sections.length === 1 ? c.sections[0].links : null;
+    if (!links || links.length <= 10) return [c];
+    const half = Math.ceil(links.length / 2);
+    return [
+      { ...c, sections: [{ ...c.sections[0], links: links.slice(0, half) }] },
+      { title: " ", href: null, sections: [{ title: null, href: null, links: links.slice(half) }] },
+    ];
+  });
+}
+
 export function SiteHeader() {
-  const { destinations, activities } = getLiveTerms();
-
-  const menu: Menu = {
-    total: getTrips().length,
-    regions: [...destinations]
-      .sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug))
-      .map((r) => ({
-        slug: r.slug,
-        name: r.name,
-        count: r.trips,
-        photo: regionMeta[r.slug]?.photo ?? "/photos/ama-dablam.webp",
-        line: regionMeta[r.slug]?.line ?? "",
-      })),
-    activities: [...activities]
-      .sort((a, b) => b.trips - a.trips)
-      .map((a) => ({ slug: a.slug, name: a.name, count: a.trips, icon: activityMeta[a.slug]?.icon ?? "compass" })),
-  };
-
-  return <HeaderClient menu={menu} />;
+  const items: NavTop[] = getMenu()
+    .filter((i) => i.label !== "Home")
+    .map((i) => ({
+      label: i.label,
+      href: i.href !== "#" ? i.href : null,
+      columns: i.children?.length ? columnsFor(i) : null,
+    }));
+  return <HeaderClient items={items} />;
 }

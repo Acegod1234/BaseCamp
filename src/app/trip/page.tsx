@@ -22,11 +22,11 @@ export default function TripsPage() {
   return (
     <>
       <PageHero
-        title="Every trail"
-        accent="we know by heart."
+        title="Find Your"
+        accent="Trip"
         eyebrow={`${trips.length} trips · 8 regions · 3 countries`}
-        intro="Teahouse treks, high passes, trekking peaks, heritage tours and river days. Filter by region, time and budget, or ask us to draw a route around you."
-        photo="/photos/cho-la-trekkers.webp"
+        intro="Start planning your journey to experience the Himalayas."
+        photo="/photos/page-trips.webp"
         crumbs={[{ name: "All trips", path: "/trip/" }]}
       />
       <section className="mx-auto max-w-[90rem] px-4 pb-24 sm:px-6">

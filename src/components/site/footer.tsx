@@ -19,22 +19,22 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-[90rem] px-4 pt-20 pb-14 sm:px-6 lg:pt-28">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
-            <p className="eyebrow text-marigold">Your time · your interests · your trip</p>
-            <h2 className="font-display mt-4 text-[clamp(3.2rem,9vw,8.5rem)] font-black uppercase leading-[0.85]">
-              Let&apos;s make <br />
-              <span className="accent-word text-marigold">a plan.</span>
+            <p className="eyebrow text-marigold">Available 24/7 - Call Us Anytime</p>
+            <h2 className="font-display mt-4 text-[clamp(3rem,9vw,8.5rem)] font-black uppercase leading-[0.85]">
+              Customize <br />
+              <span className="accent-word text-marigold">Your Trip</span>
             </h2>
           </div>
           <div className="flex flex-col gap-4 lg:items-end">
             <p className="max-w-md text-lg text-white/75 lg:text-right">
-              Choose an itinerary or talk to our local team about a journey built around you.
+              {site.customize}
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/customize-trip/" className="bg-marigold text-pine-night inline-flex items-center gap-2 rounded-full px-7 py-4 font-bold transition-transform hover:-translate-y-0.5">
-                Plan your trip <ArrowRight className="size-4" aria-hidden />
+                Customize Trip <ArrowRight className="size-4" aria-hidden />
               </Link>
               <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-4 font-semibold hover:bg-white/10">
-                <WhatsappIcon className="size-4 text-[#25D366]" /> WhatsApp Shree
+                <WhatsappIcon className="size-4 text-[#25D366]" /> WhatsApp
               </a>
             </div>
           </div>
@@ -44,9 +44,9 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-[90rem] border-t border-white/10 px-4 py-14 sm:px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <span className="inline-block rounded-2xl bg-white p-3"><Logo /></span>
+            <span className="inline-block rounded-2xl bg-white p-3"><Logo tone="light" /></span>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/65">
-              Founded in {site.founded} by a local guide. Trekking, tours and climbs across Nepal, Bhutan and Tibet.
+              {site.description}
             </p>
             <address className="mt-6 space-y-3 text-sm not-italic text-white/80">
               <p className="flex gap-3">
@@ -83,14 +83,16 @@ export function SiteFooter() {
           <FooterCol
             title="Company"
             links={[
-              { href: "/about-us/", label: "Our story" },
-              { href: "/our-team/", label: "Our team" },
-              { href: "/why-book-with-us/", label: "Why travel with us" },
-              { href: "/testimonials/", label: "Reviews" },
-              { href: "/blogs/", label: "Travel journal" },
+              { href: "/about-us/", label: "About Us" },
+              { href: "/our-team/", label: "Our Team" },
+              { href: "/why-book-with-us/", label: "Why Travel With Us?" },
+              { href: "/testimonials/", label: "Testimonials" },
+              { href: "/blogs/", label: "Read Our Blogs" },
+              { href: "/gallery/", label: "Gallery" },
+              { href: "/online-payment/", label: "Online Payment" },
               { href: "/nepal-travel-information/", label: "Nepal travel info" },
               { href: "/nepal-visa-information/", label: "Visa information" },
-              { href: "/contact-us/", label: "Contact us" },
+              { href: "/contact-us/", label: "Contact Us" },
             ]}
           />
         </div>
@@ -115,7 +117,7 @@ export function SiteFooter() {
             <Link className="link-draw hover:text-white" href="/privacy-policy/">Privacy</Link>
             <Link className="link-draw hover:text-white" href="/terms-and-conditions/">Booking terms</Link>
             <Link className="link-draw hover:text-white" href="/legal-documents/">Legal documents</Link>
-            <Link className="link-draw hover:text-white" href="/photo-credits/">Photo credits</Link>
+            <Link className="link-draw hover:text-white" href="/gallery/">Gallery</Link>
             <a href="#top" className="inline-flex items-center gap-1.5 hover:text-white">
               Back to top <ArrowUp className="size-3.5" aria-hidden />
             </a>

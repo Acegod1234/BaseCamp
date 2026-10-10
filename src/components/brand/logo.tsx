@@ -2,20 +2,21 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 /**
- * The company's original logo, the same file the WordPress site uses
- * (132×76). It is shown at its native size, on a light surface, so it stays
- * crisp. Swap /brand/logo.png for a vector master when the designer sends one.
+ * The company's original logo (the same 132×76 file the WordPress site uses).
+ *
+ * `auto` follows the theme: in dark mode the grey lettering is shown light,
+ * from logo-dark.png, so the mark reads on the night background. `light`
+ * always shows the original, for use on white chips.
  */
-export function Logo({ className, priority = false }: { className?: string; priority?: boolean }) {
+export function Logo({ className, priority = false, tone = "auto" }: { className?: string; priority?: boolean; tone?: "auto" | "light" }) {
+  const size = cn("h-auto w-[116px] sm:w-[132px]", className);
+  if (tone === "light") {
+    return <Image src="/brand/logo.png" alt="Base Camp Adventure" width={132} height={76} preload={priority} unoptimized className={size} />;
+  }
   return (
-    <Image
-      src="/brand/logo.png"
-      alt="Base Camp Adventure"
-      width={132}
-      height={76}
-      preload={priority}
-      unoptimized
-      className={cn("h-auto w-[116px] sm:w-[132px]", className)}
-    />
+    <>
+      <Image src="/brand/logo.png" alt="Base Camp Adventure" width={132} height={76} preload={priority} unoptimized className={cn(size, "dark:hidden")} />
+      <Image src="/brand/logo-dark.png" alt="Base Camp Adventure" width={132} height={76} unoptimized className={cn(size, "hidden dark:block")} />
+    </>
   );
 }

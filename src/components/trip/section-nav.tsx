@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { openTripModal } from "@/components/trip/trip-modals";
 import { pinnedOffset, scrollToId } from "@/lib/scroll";
 import type { Price } from "@/lib/types";
 import { cn, usd } from "@/lib/utils";
@@ -19,11 +19,9 @@ import { cn, usd } from "@/lib/utils";
 export function SectionNav({
   items,
   price,
-  bookHref,
 }: {
   items: { id: string; label: string }[];
   price: Price | null;
-  bookHref: string;
 }) {
   const [active, setActive] = useState(items[0]?.id);
   const [stuck, setStuck] = useState(false);
@@ -65,7 +63,7 @@ export function SectionNav({
   }, [active]);
 
   return (
-    <div ref={navRef} data-subnav className="sticky top-[4.6rem] z-30 px-2.5 sm:px-4 lg:top-[5.1rem]">
+    <div ref={navRef} data-subnav className="sticky top-[4.5rem] z-30 px-2.5 sm:px-4 lg:top-[5rem]">
       <nav
         aria-label="Trip sections"
         className={cn(
@@ -118,9 +116,9 @@ export function SectionNav({
                   <span className="font-display block text-2xl font-black">{usd(price.amount)}</span>
                 </span>
               ) : null}
-              <Link href={bookHref} className="bg-marigold text-pine-night hover:bg-pine inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-bold transition-colors hover:text-white">
-                {price ? "Book now" : "Enquire"} <ArrowRight className="size-4" aria-hidden />
-              </Link>
+              <button type="button" onClick={() => openTripModal(price ? "book" : "enquire")} className="bg-marigold text-pine-night hover:bg-pine inline-flex items-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-bold transition-colors hover:text-white">
+                {price ? "Book Now" : "Send Us A Message"} <ArrowRight className="size-4" aria-hidden />
+              </button>
             </motion.div>
           ) : null}
         </AnimatePresence>

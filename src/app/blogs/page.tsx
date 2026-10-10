@@ -12,9 +12,9 @@ export default function BlogsPage() {
   return (
     <JournalList
       posts={getPostCards()}
-      title="Travel journal"
-      accent="from the trail."
-      intro="Seasons, permits, difficulty and packing, written by the people who walk these routes every month."
+      title="Our"
+      accent="Blogs"
+      intro="Read Our Blogs"
       crumbs={[{ name: "Journal", path: "/blogs/" }]}
     />
   );

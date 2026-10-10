@@ -239,7 +239,7 @@ export function AltitudeProfile({ days, tone = "dark", className }: { days: Prof
             <g pointerEvents="none">
               <line x1={active.x} x2={active.x} y1={active.y} y2={H - PAD.b} stroke="var(--marigold)" strokeDasharray="4 4" />
               <foreignObject x={Math.min(Math.max(active.x - tipW / 2, 4), W - tipW - 4)} y={Math.max(active.y - 82, 0)} width={tipW} height="68">
-                <div className="rounded-xl bg-white px-3 py-2 text-[12px] text-ink shadow-xl">
+                <div className="rounded-xl bg-card px-3 py-2 text-[12px] text-ink shadow-xl">
                   <p className="font-mono text-[10.5px] text-muted">DAY {active.d.day} · {fmt(active.a)}</p>
                   <p className="line-clamp-2 font-semibold leading-snug">{placeOf(active.d.title) || active.d.title}</p>
                 </div>

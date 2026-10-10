@@ -28,7 +28,7 @@ export function FeaturedTrips({ groups, regionNames }: { groups: TripGroup[]; re
               onClick={() => setKey(g.key)}
               className={cn(
                 "relative shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors",
-                g.key === key ? "text-white" : "text-ink-soft hover:text-ink border border-line bg-white",
+                g.key === key ? "text-white" : "text-ink-soft hover:text-ink border border-line bg-card",
               )}
             >
               {g.key === key ? (

@@ -49,7 +49,7 @@ const nextConfig: NextConfig = {
   images: {
     deviceSizes: [640, 828, 1200, 1920],
     imageSizes: [96, 256, 384],
-    qualities: [70, 80],
+    qualities: [70, 75, 80, 85],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 2_678_400,
   },
@@ -60,8 +60,7 @@ const nextConfig: NextConfig = {
       { source: "/trips/", destination: "/trip/", permanent: true },
       { source: "/blog/", destination: "/blogs/", permanent: true },
       // WP Travel Engine and plugin pages that have no meaning outside WordPress.
-      { source: "/online-payment/", destination: "/booking/", permanent: true },
-      { source: "/online-payment-form/", destination: "/booking/", permanent: true },
+      { source: "/online-payment-form/", destination: "/online-payment/", permanent: true },
       { source: "/checkout/", destination: "/booking/", permanent: true },
       { source: "/travelers-information/", destination: "/booking/", permanent: true },
       { source: "/search-result/", destination: "/trip/", permanent: true },
@@ -79,6 +78,7 @@ const nextConfig: NextConfig = {
       { source: "/difficulty/:path*", destination: "/trip/", permanent: true },
       { source: "/trip_tag/:path*", destination: "/trip/", permanent: true },
       { source: "/destinations/", destination: "/destination/", permanent: true },
+      { source: "/photo-credits/", destination: "/gallery/", permanent: true },
     ];
   },
   async headers() {

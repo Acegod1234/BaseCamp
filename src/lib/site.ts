@@ -6,9 +6,16 @@ export const site = {
   name: "Base Camp Adventure",
   legalName: "Base Camp Adventure Pvt. Ltd.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://basecampadventure.com").replace(/\/$/, ""),
-  tagline: "Trekking & tours with the people who call Nepal home.",
+  tagline: "Start planning your journey to experience the Himalayas.",
+  /** The live site's own About Us text. */
+  about:
+    "Founded in 2009 by an experienced local guide, Base Camp Adventure has been creating authentic and enriching travel experiences throughout Nepal. Our local expertise enables travelers to explore breathtaking Himalayan landscapes, vibrant cultures, and centuries-old traditions beyond the typical tourist trail. Whatever your journey demands, we are committed to making it happen with care and precision. We specialize in adventures inspired by the heart of Nepal, thoughtfully designed to immerse you in every destination. Since day one, we have continually expanded our knowledge, sharpened the skills these mountains demand, and refined every detail to deliver safe, memorable, and rewarding adventures.",
+  customize:
+    "Create your perfect Nepal adventure with flexible itineraries tailored to your available time, interests, fitness level, and travel preferences. Our local experts will help design a journey that matches your dream experience.",
+  featuredIntro:
+    "Explore our handpicked selection of Nepal’s most popular treks and tours, carefully designed to showcase breathtaking landscapes, rich cultures, and unforgettable experiences.",
   description:
-    "Base Camp Adventure is a Kathmandu trekking and tour company founded in 2009 by a local guide. Everest, Annapurna, Langtang, Manaslu, peak climbing, Bhutan and Tibet.",
+    "Founded in 2009 by an experienced local guide, Base Camp Adventure has been creating authentic and enriching travel experiences throughout Nepal.",
   founded: 2009,
   address: {
     street: "Tridevi Marg, Thamel",
@@ -55,26 +62,28 @@ export const site = {
 export const whatsappHref = (text = "Namaste Base Camp Adventure, I would like to ask about a trip.") =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
 
-/** Region photography and the short line each region is known for. */
-export const regionMeta: Record<string, { photo: string; line: string; peak: string; altitude: number }> = {
-  "everest-region": { photo: "/photos/ama-dablam.webp", line: "Base camp, Gokyo Lakes & the three high passes", peak: "Kala Patthar", altitude: 5545 },
-  "annapurna-region": { photo: "/photos/machapuchare.webp", line: "The sanctuary, the circuit & Poon Hill sunrises", peak: "Thorong La", altitude: 5416 },
-  "langtang-region": { photo: "/photos/langtang-sunrise.webp", line: "Glacier valleys & Tamang heritage, close to Kathmandu", peak: "Tserko Ri", altitude: 4984 },
-  "manaslu-region": { photo: "/photos/manaslu.webp", line: "The quiet circuit around the eighth-highest peak", peak: "Larkya La", altitude: 5106 },
-  "remote-area-trekking": { photo: "/photos/mustang.webp", line: "Mustang, Dolpo, Makalu & Kanchenjunga", peak: "Kanchenjunga BC", altitude: 5143 },
-  nepal: { photo: "/photos/kathmandu-boudhanath.webp", line: "Temples, jungle safaris & lakeside Pokhara", peak: "Nagarkot", altitude: 2175 },
-  bhutan: { photo: "/photos/bhutan.webp", line: "Tiger's Nest, dzongs & the Druk Path", peak: "Jimilang Tsho", altitude: 3880 },
-  tibet: { photo: "/photos/tibet.webp", line: "Lhasa, Kailash & Everest's north face", peak: "Everest North BC", altitude: 5200 },
+/** Region photography, chosen from the company's own uploads (scripts/prepare-photos.py). */
+export const regionMeta: Record<string, { photo: string }> = {
+  "everest-region": { photo: "/photos/region-everest.webp" },
+  "annapurna-region": { photo: "/photos/region-annapurna.webp" },
+  "langtang-region": { photo: "/photos/region-langtang.webp" },
+  "manaslu-region": { photo: "/photos/region-manaslu.webp" },
+  "remote-area-trekking": { photo: "/photos/region-remote.webp" },
+  nepal: { photo: "/photos/region-nepal.webp" },
+  bhutan: { photo: "/photos/region-bhutan.webp" },
+  tibet: { photo: "/photos/region-tibet.webp" },
 };
 
-export const activityMeta: Record<string, { photo: string; icon: string; line: string }> = {
-  "trekking-in-nepal": { photo: "/photos/cho-la-trekkers.webp", icon: "footprints", line: "Teahouse treks from 3 to 24 days" },
-  "nepal-peak-climbing": { photo: "/photos/island-peak.webp", icon: "mountain-snow", line: "Trekking peaks from 5,500 to 6,500 m" },
-  "nepal-tour": { photo: "/photos/kathmandu-boudhanath.webp", icon: "landmark", line: "Heritage, culture & wildlife" },
-  "river-rafting-in-nepal": { photo: "/photos/rafting.webp", icon: "waves", line: "Trishuli, Bhotekoshi, Kali Gandaki & more" },
-  "day-tours": { photo: "/photos/pokhara-lake.webp", icon: "sun", line: "City tours, hikes & scenic flights" },
-  "tours-in-bhutan": { photo: "/photos/bhutan.webp", icon: "castle", line: "The last Himalayan kingdom" },
-  "tours-in-tibet": { photo: "/photos/tibet.webp", icon: "tent", line: "Lhasa, Kailash & the high plateau" },
+export const activityMeta: Record<string, { photo: string; icon: string }> = {
+  "trekking-in-nepal": { photo: "/photos/activity-trekking.webp", icon: "footprints" },
+  "nepal-peak-climbing": { photo: "/photos/activity-peak.webp", icon: "mountain-snow" },
+  "nepal-tour": { photo: "/photos/activity-tour.webp", icon: "landmark" },
+  "river-rafting-in-nepal": { photo: "/photos/activity-rafting.webp", icon: "waves" },
+  "day-tours": { photo: "/photos/activity-day.webp", icon: "sun" },
+  "tours-in-bhutan": { photo: "/photos/activity-bhutan.webp", icon: "castle" },
+  "bhutan-trek": { photo: "/photos/region-bhutan.webp", icon: "footprints" },
+  "tours-in-tibet": { photo: "/photos/activity-tibet.webp", icon: "tent" },
+  "expedition-in-nepal": { photo: "/photos/activity-peak.webp", icon: "mountain-snow" },
 };
 
 export const difficultyLabel: Record<string, string> = {

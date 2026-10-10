@@ -35,7 +35,7 @@ export function meta({
   const finalTitle = bareTitle(seo?.title) || title;
   const finalDescription = seo?.description || description || site.description;
   const imgSrc = typeof image === "string" ? image : image?.src;
-  const og = imgSrc ?? "/photos/ama-dablam.webp";
+  const og = imgSrc ?? "/photos/home-banner.webp";
   return {
     title: { absolute: finalTitle.length > 48 ? finalTitle : `${finalTitle} | ${site.name}` },
     description: finalDescription,
@@ -65,7 +65,7 @@ export function organizationLd() {
     legalName: site.legalName,
     url: `${site.url}/`,
     logo: abs("/brand/logo-512.png"),
-    image: abs("/photos/ama-dablam.webp"),
+    image: abs("/photos/home-banner.webp"),
     description: site.description,
     foundingDate: String(site.founded),
     telephone: site.phone,

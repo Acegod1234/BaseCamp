@@ -1,5 +1,5 @@
 import { TermIndex } from "@/components/term-index";
-import { getLiveTerms } from "@/lib/content";
+import { getLiveTerms, termSummary } from "@/lib/content";
 import { meta } from "@/lib/seo";
 import { regionMeta } from "@/lib/site";
 
@@ -14,7 +14,7 @@ const ORDER = ["everest-region", "annapurna-region", "langtang-region", "manaslu
 export default function DestinationsIndex() {
   const items = [...getLiveTerms().destinations]
     .sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug))
-    .map((d) => ({ slug: d.slug, name: d.name, trips: d.trips, photo: regionMeta[d.slug]?.photo ?? "/photos/ama-dablam.webp", line: regionMeta[d.slug]?.line ?? "" }));
+    .map((d) => ({ slug: d.slug, name: d.name, trips: d.trips, photo: regionMeta[d.slug]?.photo ?? "/photos/region-everest.webp", line: termSummary("destinations", d.slug).line }));
   return (
     <TermIndex
       base="destinations"
@@ -22,8 +22,7 @@ export default function DestinationsIndex() {
       crumb="Destinations"
       title="A place for"
       accent="every journey."
-      intro="Same country, different worlds. Glaciers and Sherpa villages, rhododendron forests, the walled city of Lo Manthang, and two kingdoms over the border."
-      photo="/photos/kala-patthar.webp"
+      photo="/photos/page-destinations.webp"
       items={items}
     />
   );

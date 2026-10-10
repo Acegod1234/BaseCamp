@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CollectionPage } from "@/components/collection-page";
-import { getDestination, getGuidesForRegion, getLiveTerms, getTripsIn } from "@/lib/content";
+import { getDestination, getGuidesForRegion, getLiveTerms, getTripsIn, termSummary } from "@/lib/content";
 import { meta } from "@/lib/seo";
 import { regionMeta } from "@/lib/site";
 
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props) {
   return meta({
     path: `/destinations/${slug}/`,
     title: `${term.name} Trips & Treks`,
-    description: `${trips.length} ${term.name} trips with Base Camp Adventure: ${regionMeta[slug]?.line ?? "itineraries, prices and expert local guides"}.`,
+    description: `${trips.length} ${term.name} trips with Base Camp Adventure. ${termSummary("destinations", slug).line}`,
     seo: term.seo,
     image: regionMeta[slug]?.photo,
   });
@@ -38,8 +38,8 @@ export default async function DestinationPage({ params }: Props) {
       term={term}
       kind="destination"
       trips={trips}
-      photo={m?.photo ?? trips[0]?.cover?.src ?? "/photos/ama-dablam.webp"}
-      line={m?.line ?? `Treks and tours in the ${term.name}.`}
+      photo={m?.photo ?? trips[0]?.cover?.src ?? "/photos/page-destinations.webp"}
+      line={termSummary("destinations", slug).line}
       crumbs={[
         { name: "Destinations", path: "/destination/" },
         { name: term.name, path: `/destinations/${slug}/` },

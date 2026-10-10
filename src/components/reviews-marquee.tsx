@@ -14,7 +14,7 @@ export function ReviewsMarquee({ reviews }: { reviews: R[] }) {
         <div key={r} className="flex overflow-hidden">
           <div className="marquee flex shrink-0 gap-5 pr-5" style={{ ["--marquee-speed" as string]: `${row.length * 9}s`, animationDirection: r ? "reverse" : "normal" }}>
             {[...row, ...row].map((rv, i) => (
-              <figure key={i} aria-hidden={i >= row.length} className="flex w-[22rem] shrink-0 flex-col justify-between rounded-[1.4rem] border border-line bg-white p-6 sm:w-[26rem]">
+              <figure key={i} aria-hidden={i >= row.length} className="flex w-[22rem] shrink-0 flex-col justify-between rounded-[1.4rem] border border-line bg-card p-6 sm:w-[26rem]">
                 <div>
                   <div className="flex items-center justify-between">
                     <div className="flex gap-0.5" aria-label={`${rv.rating} out of 5`}>
