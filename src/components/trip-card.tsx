@@ -83,7 +83,7 @@ export function TripCard({
               sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw"
               preload={priority}
               quality={80}
-              className="object-cover transition-transform duration-[1100ms] ease-[var(--ease-trail)] group-hover:scale-[1.03]"
+              className="object-cover object-right-bottom transition-transform duration-[1100ms] ease-[var(--ease-trail)] group-hover:scale-[1.03]"
             />
           ) : null}
           {off ? <span className="bg-crimson absolute top-3 left-3 rounded-full px-2.5 py-1 text-[0.68rem] font-bold text-white">{off}% Off</span> : null}

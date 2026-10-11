@@ -109,7 +109,7 @@ export function CollectionPage({
               {guides.map((p) => (
                 <Link key={p.slug} href={`/${p.slug}/`} className="group">
                   <div className="zoom-img relative aspect-[16/10] overflow-hidden rounded-[1.2rem] bg-card">
-                    {p.cover ? <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" /> : null}
+                    {p.cover ? <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover object-right-bottom" /> : null}
                   </div>
                   <h3 className="mt-4 text-lg font-bold leading-snug group-hover:text-pine">{p.title}</h3>
                   <p className="mt-1 line-clamp-2 text-sm text-muted">{p.excerpt}</p>

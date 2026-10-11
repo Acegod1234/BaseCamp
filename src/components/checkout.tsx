@@ -229,7 +229,7 @@ export function Checkout({ trips }: { trips: CheckoutTrip[] }) {
       <aside className="lg:sticky lg:top-28 lg:self-start">
         <div className="overflow-hidden rounded-[1.8rem] border border-line bg-card">
           <div className="relative aspect-[16/9] bg-pine-night">
-            {trip.cover ? <Image src={trip.cover.src} alt={trip.cover.alt || trip.title} fill sizes="400px" className="object-cover" /> : null}
+            {trip.cover ? <Image src={trip.cover.src} alt={trip.cover.alt || trip.title} fill sizes="400px" className="object-cover object-right-bottom" /> : null}
             <div className="scrim-b absolute inset-0" />
             <div className="absolute inset-x-0 bottom-0 p-5 text-white">
               <p className="eyebrow text-white/70">{trip.region}</p>

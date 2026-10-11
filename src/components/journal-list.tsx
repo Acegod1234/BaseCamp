@@ -66,7 +66,7 @@ export function JournalList({
           <Reveal>
             <Link href={`/${lead.slug}/`} className="group grid gap-8 lg:grid-cols-[1.25fr_1fr] lg:items-center">
               <div className="zoom-img relative aspect-[16/10] overflow-hidden rounded-[1.8rem] bg-snow-2">
-                {lead.cover ? <Image src={lead.cover.src} alt={lead.cover.alt || lead.title} fill preload sizes="(max-width: 1024px) 100vw, 55vw" quality={75} className="object-cover" /> : null}
+                {lead.cover ? <Image src={lead.cover.src} alt={lead.cover.alt || lead.title} fill preload sizes="(max-width: 1024px) 100vw, 55vw" quality={75} className="object-cover object-right-bottom" /> : null}
               </div>
               <div>
                 <p className="eyebrow text-pine">Latest · {formatDate(lead.published)} · {lead.readingMinutes} min read</p>

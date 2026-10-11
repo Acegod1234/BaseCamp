@@ -91,7 +91,7 @@ export function GalleryGrid({ photos, regions }: { photos: GalleryPhoto[]; regio
                 className="h-auto w-full transition-transform duration-700 group-hover:scale-105"
               />
               <span className="scrim-b absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <span className="absolute inset-x-3 bottom-3 translate-y-2 text-left text-xs font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+              <span className="absolute bottom-3 left-3 right-[30%] translate-y-2 text-left text-xs font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 {p.tripTitle}
               </span>
             </span>

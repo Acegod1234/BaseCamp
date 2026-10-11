@@ -22,12 +22,12 @@ export function RegionShowcase({ regions }: { regions: RegionPanel[] }) {
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-black/20 lg:aspect-auto lg:min-h-[30rem]">
         <AnimatePresence initial={false}>
           <motion.div key={r.photo} className="absolute inset-0" initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
-            <Image src={r.photo} alt={`${r.name} landscape`} fill sizes="(max-width: 1024px) 100vw, 50vw" quality={80} className="object-cover" />
+            <Image src={r.photo} alt={`${r.name} landscape`} fill sizes="(max-width: 1024px) 100vw, 50vw" quality={80} className="object-cover object-right-bottom" />
           </motion.div>
         </AnimatePresence>
         <div className="scrim-b absolute inset-0" />
         <AnimatePresence mode="wait">
-          <motion.div key={r.slug} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.45 }} className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-8">
+          <motion.div key={r.slug} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.45 }} className="absolute inset-x-0 bottom-0 p-6 pr-[28%] text-white sm:p-8 sm:pr-[28%]">
             <p className="text-[0.68rem] font-bold tracking-[0.16em] text-white/75 uppercase">{String(open + 1).padStart(2, "0")} / {r.name}</p>
             <p className="accent-word mt-2 text-4xl leading-[1.02] sm:text-5xl">{r.trips} trips to explore.</p>
             {r.highest ? (

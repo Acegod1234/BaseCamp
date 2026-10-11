@@ -22,7 +22,7 @@ export function CommunityCards({ posts, full = false, className }: { posts: Comm
             <article id={p.slug} className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-[1.1rem] border border-line bg-card">
               <div className="relative aspect-[16/10] overflow-hidden">
                 {cover ? (
-                  <Image src={cover.src} alt={cover.alt || p.title} fill sizes="(max-width: 640px) 100vw, 40vw" quality={80} className="object-cover transition-transform duration-[1100ms] group-hover:scale-[1.05]" />
+                  <Image src={cover.src} alt={cover.alt || p.title} fill sizes="(max-width: 640px) 100vw, 40vw" quality={80} className="object-cover object-right-bottom transition-transform duration-[1100ms] group-hover:scale-[1.05]" />
                 ) : (
                   <div className="bg-pine absolute inset-0 overflow-hidden text-white dark:bg-pine-deep">
                     <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.09]" />
@@ -60,7 +60,7 @@ export function CommunityCards({ posts, full = false, className }: { posts: Comm
                   <ul className="mt-4 grid grid-cols-3 gap-2">
                     {p.photos.slice(1, 7).map((im) => (
                       <li key={im.src} className="relative aspect-square overflow-hidden rounded-lg">
-                        <Image src={im.src} alt={im.alt || p.title} fill sizes="160px" className="object-cover" />
+                        <Image src={im.src} alt={im.alt || p.title} fill sizes="160px" className="object-cover object-right-bottom" />
                       </li>
                     ))}
                   </ul>

@@ -74,7 +74,7 @@ export function TripPhotos({ title, ours, travellers, shareHref }: { title: stri
                 fill
                 sizes={i === 0 ? "(max-width: 1024px) 100vw, 50vw" : "(max-width: 1024px) 50vw, 25vw"}
                 quality={80}
-                className="object-cover transition-transform duration-[900ms] ease-[var(--ease-trail)] group-hover:scale-[1.03]"
+                className="object-cover object-right-bottom transition-transform duration-[900ms] ease-[var(--ease-trail)] group-hover:scale-[1.03]"
               />
               <span className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10" />
               {p.caption && !last ? (

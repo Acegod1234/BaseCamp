@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
-import { LineReveal, Parallax, Reveal } from "@/components/motion";
+import { LineReveal, Reveal } from "@/components/motion";
 import { breadcrumbLd } from "@/lib/seo";
 import { LogoOverlay } from "@/components/brand/logo-overlay";
+import { cropFor } from "@/lib/banner";
+import { imageSize } from "@/lib/image-size";
 import { cn } from "@/lib/utils";
 
 export type Crumb = { name: string; path: string };
@@ -85,14 +87,29 @@ export function PageHero({
       </div>
       <div className="mx-auto mt-8 max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal y={20} delay={0.15}>
-          <div className="relative">
-            <Parallax className={cn("rounded-xl bg-snow-2", size === "lg" ? "aspect-[3/2] sm:aspect-[21/8]" : "aspect-[3/2] sm:aspect-[21/7]")} amount={6} minWidth={640}>
-              <Image src={photo} alt="" fill preload quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover sm:object-[50%_38%]" />
-            </Parallax>
-            <LogoOverlay className="hidden sm:block" />
-          </div>
+          <BannerPhoto src={photo} wide={size === "lg" ? 21 / 8 : 21 / 7} />
         </Reveal>
       </div>
     </section>
+  );
+}
+
+/**
+ * The page's wide photograph: 3:2 on phones, a wide strip from 640 px. Each
+ * crop shows exactly one logo: the one in the photo, or an overlay in its place.
+ */
+function BannerPhoto({ src, wide }: { src: string; wide: number }) {
+  const size = imageSize(src);
+  const small = size ? cropFor(size.w, size.h, 3 / 2) : null;
+  const large = size ? cropFor(size.w, size.h, wide) : null;
+  return (
+    <div
+      className={cn("relative overflow-hidden rounded-xl bg-snow-2", wide > 2.9 ? "aspect-[3/2] sm:aspect-[21/7]" : "aspect-[3/2] sm:aspect-[21/8]")}
+      style={{ ["--pos-s" as string]: small?.position ?? "50% 50%", ["--pos-l" as string]: large?.position ?? "50% 40%" }}
+    >
+      <Image src={src} alt="" fill preload quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover object-[var(--pos-s)] sm:object-[var(--pos-l)]" />
+      {small?.overlay ? <LogoOverlay box={small.overlay} className="sm:hidden" /> : null}
+      {large?.overlay ? <LogoOverlay box={large.overlay} className="hidden sm:block" /> : null}
+    </div>
   );
 }

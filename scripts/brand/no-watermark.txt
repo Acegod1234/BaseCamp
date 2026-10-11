@@ -1,0 +1,3 @@
+# Images that already show the Base Camp Adventure logo in their artwork.
+# One path per line, relative to the project root. scripts/watermark.ts leaves them as they are.
+public/media/2025/07/manaslu-circuit-vs-annapurna-circuit-trek-3.webp

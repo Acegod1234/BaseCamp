@@ -251,7 +251,7 @@ export default function HomePage() {
           <div className="relative isolate">
             <PhotoGlow src={about.src} strength="lg" />
             <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-snow-2">
-              <Image src={about.src} alt="Evening light on the Annapurna range" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover" />
+              <Image src={about.src} alt="Evening light on the Annapurna range" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover object-right-bottom" />
             </div>
             <Reveal delay={0.2} className="bg-glacier-soft absolute top-6 right-4 rotate-[3deg] rounded-md px-5 py-4 text-center shadow-lg sm:-right-4">
               <p className="text-[0.58rem] font-bold tracking-[0.18em] text-pine uppercase">On the trail since</p>
@@ -361,7 +361,7 @@ export default function HomePage() {
                 {p.cover ? <PhotoGlow src={p.cover.src} strength="sm" /> : null}
                 <Link href={`/${p.slug}/`} className="group block">
                   <div className="zoom-img relative aspect-[16/10] overflow-hidden rounded-xl bg-snow-2">
-                    {p.cover ? <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(max-width: 768px) 100vw, 33vw" quality={75} className="object-cover" /> : null}
+                    {p.cover ? <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(max-width: 768px) 100vw, 33vw" quality={75} className="object-cover object-right-bottom" /> : null}
                   </div>
                   <p className="mt-4 flex items-center gap-2 text-[0.64rem] font-bold tracking-[0.14em] text-muted uppercase">
                     {formatDate(p.published)} <span aria-hidden>·</span> <Clock className="size-3" aria-hidden /> {p.readingMinutes} min

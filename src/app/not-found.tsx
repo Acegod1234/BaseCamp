@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <section className="bg-pine-night relative isolate grid min-h-[90dvh] place-items-center overflow-hidden px-4 text-center text-white">
-      <Image src="/photos/page-404.webp" alt="" fill sizes="100vw" className="-z-10 object-cover opacity-60" />
+      <Image src="/photos/page-404.webp" alt="" fill sizes="100vw" className="-z-10 object-cover object-right-bottom opacity-60" />
       <div className="scrim-hero absolute inset-0 -z-10" />
       <div className="max-w-2xl pt-24">
         <p className="eyebrow text-marigold">Error 404 · altitude unknown</p>

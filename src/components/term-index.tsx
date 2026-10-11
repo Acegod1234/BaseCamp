@@ -36,7 +36,7 @@ export function TermIndex({
           {items.map((it, i) => (
             <StaggerItem key={it.slug} className={i === 0 ? "md:col-span-2 lg:row-span-2" : ""}>
               <Link href={`/${base}/${it.slug}/`} className="group relative flex h-full min-h-[22rem] flex-col justify-end overflow-hidden rounded-[1.8rem] bg-pine-night p-7 text-white">
-                <Image src={it.photo} alt={`${it.name}`} fill sizes={i === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"} quality={70} className="object-cover transition-transform duration-[1200ms] group-hover:scale-105" />
+                <Image src={it.photo} alt={`${it.name}`} fill sizes={i === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"} quality={70} className="object-cover object-right-bottom transition-transform duration-[1200ms] group-hover:scale-105" />
                 <div className="scrim-b absolute inset-0" />
                 <div className="relative">
                   <p className="font-mono text-xs text-white/65">{it.trips} trips</p>

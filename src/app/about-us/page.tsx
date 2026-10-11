@@ -74,7 +74,7 @@ export default function AboutPage() {
         <div className="relative isolate">
           <PhotoGlow src="/photos/page-about.webp" strength="lg" />
           <div className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-snow-2">
-            <Image src="/photos/page-about.webp" alt="Namche Bazaar in the Everest region" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover" />
+            <Image src="/photos/page-about.webp" alt="Namche Bazaar in the Everest region" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover object-right-bottom" />
           </div>
           <Reveal delay={0.2} className="bg-glacier-soft absolute -bottom-5 left-4 rotate-[-2deg] rounded-md px-5 py-4 shadow-lg sm:left-8">
             <p className="text-[0.58rem] font-bold tracking-[0.18em] text-pine uppercase">On the trail since</p>
@@ -126,7 +126,7 @@ export default function AboutPage() {
                 <StaggerItem key={sv.title} className="h-full">
                   <Link href={sv.href} className="group flex h-full flex-col overflow-hidden rounded-[1.1rem] border border-line bg-card transition-[border-color,box-shadow] duration-500 hover:border-pine/30 hover:shadow-[0_22px_48px_-26px_oklch(0.25_0.05_210/0.45)]">
                     <span className="relative block aspect-[3/2] overflow-hidden bg-snow-2">
-                      <Image src={sv.photo} alt={sv.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw" quality={80} className="object-cover transition-transform duration-[1100ms] group-hover:scale-[1.03]" />
+                      <Image src={sv.photo} alt={sv.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw" quality={80} className="object-cover object-right-bottom transition-transform duration-[1100ms] group-hover:scale-[1.03]" />
                     </span>
                     <span className="flex flex-1 flex-col p-5">
                       <span className="font-display flex items-center justify-between gap-2 text-lg text-ink group-hover:text-pine">

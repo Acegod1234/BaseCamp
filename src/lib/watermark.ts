@@ -8,8 +8,8 @@ import sharp from "sharp";
  * The logo is drawn from the vector redraw in scripts/brand/logo.svg at the
  * exact size each photograph needs, so it is sharp on a 4K banner and on a
  * 1,000 px gallery photo alike. For photographs the lettering and frame are
- * white, the sun keeps its teal, and a soft shadow lets it read on snow and
- * sky. Used by scripts/watermark.ts today and by the admin's upload handler.
+ * white, the sun keeps its teal, and a crisp edge shadow under a soft one
+ * lets it read on snow and sky alike. Used by scripts/watermark.ts today and by the admin's upload handler.
  */
 
 const LOGO = path.join(process.cwd(), "scripts", "brand", "logo.svg");
@@ -31,9 +31,18 @@ export function markSvg(width: number, opacity: number) {
     .replace(/viewBox="[^"]*" width="\d+" height="\d+"/, `viewBox="${-PAD} ${-PAD} ${132 + PAD * 2} ${76 + PAD * 2}" width="${width}" height="${height}"`)
     .replace(
       /(<svg[^>]*>)/,
-      `$1<defs><filter id="wm-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="0.6" stdDeviation="1.1" flood-color="#000000" flood-opacity="0.55"/></filter></defs><g filter="url(#wm-shadow)" opacity="${opacity}">`,
+      `$1<defs><filter id="wm-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="0.35" stdDeviation="0.45" flood-color="#000000" flood-opacity="0.6"/><feDropShadow dx="0" dy="0.6" stdDeviation="1.4" flood-color="#000000" flood-opacity="0.45"/></filter></defs><g filter="url(#wm-shadow)" opacity="${opacity}">`,
     )
     .replace("</svg>", "</g></svg>");
+}
+
+/** Logo width 22.5% and padding 5% of the photo's height (narrower on tall photos). */
+export const MARK = { width: 0.225, margin: 0.05 } as const;
+
+export function markBox(w: number, h: number) {
+  const logoW = Math.round(Math.max(Math.min(h * MARK.width, w * 0.3), 100));
+  const margin = Math.round(Math.max(Math.min(h * MARK.margin, w * 0.066), 10));
+  return { logoW, margin };
 }
 
 export type WatermarkOptions = {
@@ -56,19 +65,15 @@ export async function watermark(input: Buffer, { quality = 84, opacity = 0.9, mi
   const [w, h] = orientation && orientation >= 5 ? [height, width] : [width, height];
   if (w < minWidth) return null;
 
-  // About a sixth of the width on landscape photos, capped on tall ones.
-  const logoW = Math.round(Math.min(Math.max(Math.min(w * 0.16, h * 0.26), 110), 640));
+  // One standard mark: sized and spaced from the photo's height, so on every
+  // 3:2 card (which always shows the full height of a landscape photo) the
+  // logo is the same size with the same padding, whatever the photo's shape.
+  const { logoW, margin } = markBox(w, h);
   const svg = markSvg(Math.round(logoW * ((132 + PAD * 2) / 132)), opacity);
   const mark = await sharp(Buffer.from(svg)).png().toBuffer();
   const meta = await sharp(mark).metadata();
-  // Inside what a centred 3:2 frame (the site's cards and tiles) keeps of this
-  // photo, plus a little air: a panorama loses its sides in a card, a 4:3
-  // photo its top and bottom, so the logo moves in by that much.
-  const aspect = w / h;
-  const sideCrop = aspect > 1.5 ? (1 - 1.5 / aspect) / 2 : 0;
-  const endCrop = aspect >= 1 && aspect < 1.5 ? (1 - aspect / 1.5) / 2 : 0;
-  const right = Math.round(Math.max(w * (sideCrop + 0.06), w * 0.09, 12));
-  const bottom = Math.round(Math.max(h * (endCrop + 0.04), h * 0.06, 12));
+  const right = margin;
+  const bottom = margin;
   const padPx = Math.round((meta.width ?? 0) * (PAD / (132 + PAD * 2)));
 
   return base

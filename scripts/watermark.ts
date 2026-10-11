@@ -31,6 +31,10 @@ const walk = (dir: string): string[] =>
     ? readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : /\.(webp|jpe?g|png)$/i.test(e.name) ? [path.join(dir, e.name)] : []))
     : [];
 
+// Photos that already carry the company logo in their artwork (blog graphics).
+const SKIP_FILE = path.join(ROOT, "scripts", "brand", "no-watermark.txt");
+const skip = new Set(existsSync(SKIP_FILE) ? readFileSync(SKIP_FILE, "utf8").split(/\r?\n/).map((l) => l.trim()).filter((l) => l && !l.startsWith("#")) : []);
+
 const manifest: Record<string, string> = existsSync(MANIFEST) ? JSON.parse(readFileSync(MANIFEST, "utf8")) : {};
 const dirs = [only !== "media" && "public/photos", only !== "photos" && "public/media"].filter(Boolean) as string[];
 const files = dirs.flatMap((d) => walk(path.join(ROOT, d)));
@@ -49,6 +53,12 @@ async function one(file: string) {
     if (isOurs && existsSync(clean)) copyFileSync(clean, file), marked++;
     delete manifest[rel];
     return;
+  }
+  if (skip.has(rel)) {
+    // Put back the clean original if an earlier run marked it.
+    if (isOurs && existsSync(clean)) copyFileSync(clean, file);
+    delete manifest[rel];
+    return void small++;
   }
   if (isOurs && !force) return void skipped++;
   if (!isOurs) {
@@ -78,4 +88,4 @@ await Promise.all(
 );
 mkdirSync(path.dirname(MANIFEST), { recursive: true });
 writeFileSync(MANIFEST, JSON.stringify(manifest, null, 0));
-console.log(restore ? `restored ${marked}` : `marked ${marked}, already marked ${skipped}, too small ${small}, of ${files.length}`);
+console.log(restore ? `restored ${marked}` : `marked ${marked}, already marked ${skipped}, skipped (small or listed) ${small}, of ${files.length}`);

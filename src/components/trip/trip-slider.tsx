@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { LogoOverlay } from "@/components/brand/logo-overlay";
+import { cropFor } from "@/lib/banner";
 import { GalleryButton } from "@/components/trip/gallery";
 import { openTripModal } from "@/components/trip/trip-modals";
 import type { Img } from "@/lib/types";
@@ -15,10 +16,15 @@ export function TripSlider({ images, title }: { images: Img[]; title: string }) 
   if (!images.length) return null;
   const go = (d: number) => setI((n) => (n + d + images.length) % images.length);
   const img = images[i];
+  // One logo per view: the photo's own, or an overlay where the crop hides it.
+  const crops = [cropFor(img.w, img.h, 4 / 3), cropFor(img.w, img.h, 3 / 2), cropFor(img.w, img.h, 21 / 9)];
 
   return (
     <div className="relative isolate overflow-hidden rounded-xl bg-snow-2">
-      <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[21/9]">
+      <div
+        className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[21/9]"
+        style={{ ["--pos-m" as string]: crops[0].position, ["--pos-s" as string]: crops[1].position, ["--pos-l" as string]: crops[2].position }}
+      >
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
             key={img.src}
@@ -34,11 +40,13 @@ export function TripSlider({ images, title }: { images: Img[]; title: string }) 
               if (info.offset.x > 50) go(-1);
             }}
           >
-            <Image src={img.src} alt={img.alt || `${title} photograph ${i + 1}`} fill preload={i === 0} quality={80} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover lg:object-[50%_34%]" />
+            <Image src={img.src} alt={img.alt || `${title} photograph ${i + 1}`} fill preload={i === 0} quality={80} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover object-[var(--pos-m)] sm:object-[var(--pos-s)] lg:object-[var(--pos-l)]" />
           </motion.div>
         </AnimatePresence>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
-        <LogoOverlay className="hidden lg:block" />
+        {crops[0].overlay ? <LogoOverlay box={crops[0].overlay} className="sm:hidden" /> : null}
+        {crops[1].overlay ? <LogoOverlay box={crops[1].overlay} className="hidden sm:block lg:hidden" /> : null}
+        {crops[2].overlay ? <LogoOverlay box={crops[2].overlay} className="hidden lg:block" /> : null}
       </div>
 
       {images.length > 1 ? (
@@ -52,12 +60,13 @@ export function TripSlider({ images, title }: { images: Img[]; title: string }) 
         </>
       ) : null}
 
-      <div className="absolute inset-x-3 bottom-3 flex items-end justify-between gap-3 sm:inset-x-5 sm:bottom-5">
+      {/* Controls stay clear of the bottom-right corner, where the logo sits. */}
+      <div className="absolute bottom-3 left-3 sm:bottom-5 sm:left-5">
         <GalleryButton images={images} title={title} />
-        <span className="rounded-full bg-black/45 px-3 py-1.5 font-mono text-xs text-white backdrop-blur">
-          {i + 1} / {images.length}
-        </span>
       </div>
+      <span className="absolute top-3 right-3 rounded-full bg-black/45 px-3 py-1.5 font-mono text-xs text-white backdrop-blur sm:top-5 sm:right-5">
+        {i + 1} / {images.length}
+      </span>
     </div>
   );
 }
