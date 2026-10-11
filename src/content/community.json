@@ -7,7 +7,26 @@
   "date": null,
   "summary": "Base Camp Adventure donated T-shirts and food to families affected by the recent floods in Rasuwa.",
   "html": "<p>When floods struck Rasuwa, our team donated T-shirts and food to the families who were affected.</p>",
-  "photos": [],
+  "photos": [
+   {
+    "src": "/media/community/rasuwa-river-valley.webp",
+    "w": 2400,
+    "h": 1600,
+    "alt": "A river valley in Rasuwa district, Nepal"
+   },
+   {
+    "src": "/media/community/syabrubesi-rasuwa.webp",
+    "w": 2400,
+    "h": 1600,
+    "alt": "Syabrubesi village in Rasuwa district"
+   },
+   {
+    "src": "/media/community/lauribinayak-rasuwa.webp",
+    "w": 2400,
+    "h": 1600,
+    "alt": "The Ganesh Himal range from Laurebinayak, Rasuwa"
+   }
+  ],
   "partners": []
  },
  {
@@ -18,7 +37,26 @@
   "date": null,
   "summary": "Base Camp Adventure has sponsored many local events, supporting the communities we work with.",
   "html": "<p>Base Camp Adventure has sponsored many local events, supporting the communities we work with.</p>",
-  "photos": [],
+  "photos": [
+   {
+    "src": "/media/community/bisket-jatra-bhaktapur.webp",
+    "w": 2400,
+    "h": 1600,
+    "alt": "Bisket Jatra festival at the Nyatapola temple, Bhaktapur"
+   },
+   {
+    "src": "/media/community/indra-jatra-start.webp",
+    "w": 2400,
+    "h": 1602,
+    "alt": "The start of the Indra Jatra festival in Kathmandu"
+   },
+   {
+    "src": "/media/community/indra-jatra-chariot.webp",
+    "w": 2400,
+    "h": 1800,
+    "alt": "Chariot procession during Indra Jatra, Kathmandu Durbar Square"
+   }
+  ],
   "partners": []
  }
 ]

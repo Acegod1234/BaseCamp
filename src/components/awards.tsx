@@ -12,7 +12,7 @@ import type { Award } from "@/lib/types";
  */
 export function Awards({ awards }: { awards: Award[] }) {
   return (
-    <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-stretch">
+    <div className={awards.length ? "grid gap-4 lg:grid-cols-[1fr_auto] lg:items-stretch" : "max-w-md"}>
       {awards.length ? (
         <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4" gap={0.05}>
           {awards.map((a) => {
@@ -54,8 +54,8 @@ export function Awards({ awards }: { awards: Award[] }) {
         rel="noopener noreferrer"
         className="group hover:border-pine/40 flex items-center gap-4 rounded-xl border border-line bg-card p-5 transition-colors lg:min-w-[19rem] lg:flex-col lg:justify-center lg:text-center"
       >
-        <span className="grid h-14 w-24 shrink-0 place-items-center rounded-lg bg-white px-2">
-          <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-11 w-auto" />
+        <span className="grid h-14 w-24 shrink-0 place-items-center px-2">
+          <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-11 w-auto dark:brightness-0 dark:invert" />
         </span>
         <span>
           <span className="block font-bold">Base Camp Adventure on Tripadvisor</span>

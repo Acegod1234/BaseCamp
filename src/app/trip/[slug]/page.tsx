@@ -19,6 +19,9 @@ import { getActivity, getDestination, getGuidesForRegion, getRelatedTrips, getTr
 import type { InfoKey } from "@/lib/trip-info";
 import { meta, tripLd, tripLead, videoLd } from "@/lib/seo";
 import { YouTube } from "@/components/video";
+import { Flag as CountryFlag } from "@/components/flag";
+import { ReviewText } from "@/components/review-text";
+import { reviewer } from "@/lib/reviewer";
 import { whatsappHref } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
@@ -287,20 +290,36 @@ export default async function TripPage({ params }: Props) {
                 ) : null}
               </div>
               <Stagger className="mt-8 grid gap-4 md:grid-cols-2">
-                {trip.reviews.map((r, i) => (
-                  <StaggerItem key={i} className="rounded-[1.4rem] border border-line bg-card p-6">
+                {trip.reviews.map((r, i) => {
+                  const who = reviewer(r.author);
+                  return (
+                  <StaggerItem key={i} className="rounded-2xl border border-line bg-card p-6">
                     <div className="flex gap-0.5" aria-label={`${r.rating} out of 5`}>
                       {Array.from({ length: 5 }).map((_, s) => (
                         <Star key={s} className={s < Math.round(r.rating) ? "fill-marigold text-marigold size-4" : "size-4 text-line"} aria-hidden />
                       ))}
                     </div>
                     {r.title ? <p className="mt-3 font-bold">{r.title}</p> : null}
-                    <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">{r.body}</p>
-                    <p className="mt-4 border-t border-line pt-3 text-sm font-semibold">
-                      {r.author} {r.date ? <span className="font-normal text-muted">· {formatDate(r.date) || r.date}</span> : null}
-                    </p>
+                    <div className="mt-3 text-[0.95rem]">
+                      <ReviewText text={r.body} lines={8} />
+                    </div>
+                    <div className="mt-4 flex items-center gap-3 border-t border-line pt-4">
+                      <span className="grid size-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#00afc4] to-[#00788a] text-xs font-bold text-white">
+                        {who.name.replace(/[^A-Za-z\s]/g, " ").trim().split(/\s+/).slice(0, 2).map((w) => w[0]?.toUpperCase()).join("") || "★"}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="flex items-center gap-2 text-sm font-semibold">
+                          <span className="truncate">{who.name}</span>
+                          {who.flag && who.country ? <CountryFlag svg={who.flag} label={who.country} /> : null}
+                        </p>
+                        <p className="truncate text-xs text-muted">
+                          {[who.place, r.date ? formatDate(r.date) || r.date : null].filter(Boolean).join(" · ")}
+                        </p>
+                      </div>
+                    </div>
                   </StaggerItem>
-                ))}
+                  );
+                })}
               </Stagger>
             </section>
           ) : null}

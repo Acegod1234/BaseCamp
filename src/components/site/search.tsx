@@ -4,12 +4,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, BookOpen, CornerDownLeft, Loader2, MapPin, Search, X } from "lucide-react";
+import { ArrowRight, BookOpen, CornerDownLeft, FileText, Loader2, MapPin, Search, UserRound, X } from "lucide-react";
 import { Portal } from "@/components/portal";
 import { cn } from "@/lib/utils";
 
-type Index = { trips: [string, string, string, number, number, string][]; places: [string, string, string][]; posts: [string, string][] };
-type Hit = { kind: "trip" | "place" | "post"; href: string; title: string; sub: string; image?: string; score: number };
+type Index = {
+  trips: [string, string, string, number, number, string][];
+  places: [string, string, string][];
+  pages: [string, string, string][];
+  posts: [string, string, string][];
+  team: [string, string, string][];
+};
+type Kind = "page" | "place" | "trip" | "post" | "team";
+type Hit = { kind: Kind; href: string; title: string; sub: string; image?: string; score: number };
+const GROUP: Record<Kind, string> = { page: "Pages", place: "Regions & activities", trip: "Trips", post: "Travel guides", team: "Our team" };
+const BLOG_WORDS = "blog blogs journal article articles guide guides news";
 
 let cache: Promise<Index> | null = null;
 const load = () => (cache ??= fetch("/search-index.json").then((r) => r.json() as Promise<Index>));
@@ -101,8 +110,15 @@ export function SiteSearch() {
     const by = (a: Hit, b: Hit) => b.score - a.score || a.title.length - b.title.length;
     const trips = index.trips.map((t) => trip(t, score(t[1], words) * 2 || score(`${t[1]} ${t[2]}`, words))).filter((h) => h.score > 0);
     const places: Hit[] = index.places.map((p) => ({ kind: "place" as const, href: p[0], title: p[1], sub: p[2], score: score(p[1], words) * 2 })).filter((h) => h.score > 0);
-    const posts: Hit[] = index.posts.map((p) => ({ kind: "post" as const, href: `/${p[0]}/`, title: p[1], sub: "Travel guide", score: score(p[1], words) })).filter((h) => h.score > 0);
-    return [...places.sort(by).slice(0, 3), ...trips.sort(by).slice(0, 8), ...posts.sort(by).slice(0, 6)];
+    const pages: Hit[] = index.pages
+      .map((p) => ({ kind: "page" as const, href: p[0], title: p[1], sub: p[0], score: score(p[1], words) * 2 || score(`${p[1]} ${p[2]}`, words) * 1.5 }))
+      .filter((h) => h.score > 0);
+    const blogWords = words.every((w) => BLOG_WORDS.includes(w));
+    const posts: Hit[] = index.posts
+      .map((p) => ({ kind: "post" as const, href: `/${p[0]}/`, title: p[1], sub: p[2] || "Travel guide", score: score(p[1], words) * 1.5 || score(p[2], words) * 0.6 || (blogWords ? 0.3 : 0) }))
+      .filter((h) => h.score > 0);
+    const team: Hit[] = index.team.map((m) => ({ kind: "team" as const, href: m[0], title: m[1], sub: m[2], score: score(`${m[1]} ${m[2]}`, words) })).filter((h) => h.score > 0);
+    return [...pages.sort(by).slice(0, 4), ...places.sort(by).slice(0, 3), ...trips.sort(by).slice(0, 8), ...posts.sort(by).slice(0, 6), ...team.sort(by).slice(0, 3)];
   }, [index, q]);
 
   const close = () => {
@@ -168,7 +184,7 @@ export function SiteSearch() {
                     setQ(e.target.value);
                     setSel(0);
                   }}
-                  placeholder="Search treks, regions and guides"
+                  placeholder="Search trips, places, guides and pages"
                   aria-label="Search"
                   aria-controls="search-results"
                   aria-activedescendant={hits[sel] ? `search-${sel}` : undefined}
@@ -187,7 +203,7 @@ export function SiteSearch() {
                   return (
                     <li key={h.kind + h.href} role="presentation">
                       {q.trim() && first ? (
-                        <p className="px-3 pt-3 pb-1 text-[0.66rem] font-bold tracking-[0.14em] text-muted uppercase">{h.kind === "trip" ? "Trips" : h.kind === "place" ? "Regions & activities" : "Travel guides"}</p>
+                        <p className="px-3 pt-3 pb-1 text-[0.66rem] font-bold tracking-[0.14em] text-muted uppercase">{GROUP[h.kind]}</p>
                       ) : null}
                       <button
                         type="button"
@@ -205,7 +221,7 @@ export function SiteSearch() {
                           </span>
                         ) : (
                           <span className="text-pine grid size-11 shrink-0 place-items-center rounded-lg bg-snow-2">
-                            {h.kind === "post" ? <BookOpen className="size-4" aria-hidden /> : <MapPin className="size-4" aria-hidden />}
+                            {h.kind === "post" ? <BookOpen className="size-4" aria-hidden /> : h.kind === "page" ? <FileText className="size-4" aria-hidden /> : h.kind === "team" ? <UserRound className="size-4" aria-hidden /> : <MapPin className="size-4" aria-hidden />}
                           </span>
                         )}
                         <span className="min-w-0 flex-1">

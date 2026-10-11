@@ -126,6 +126,8 @@
   }
   /* Headings are set in sentence case, as in the prototype. */
   .font-display.uppercase { text-transform: none; }
+  /* The hero's photo-in-letters title is extra-bold, so more of the photo shows. */
+  .font-display.hero-title { font-weight: 800 !important; }
   /* The one word per heading set in italic serif, as in the prototype. */
   .accent-word {
     font-family: var(--font-serif);
@@ -445,4 +447,23 @@
     max-width: 22rem;
     scroll-snap-align: start;
   }
+}
+
+/* The photo-in-letters title: extra-bold so more of the photograph shows
+   through, and a soft glow around it in dark mode. */
+.dark .hero-title {
+  filter: drop-shadow(0 0 14px rgb(60 203 220 / 0.32)) drop-shadow(0 0 48px rgb(0 175 196 / 0.22));
+}
+
+/* Arrows on links and buttons lean the way they point on hover. */
+.lucide-arrow-right,
+.lucide-arrow-up-right {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+:is(a, button):hover > .lucide-arrow-right { transform: translateX(3px); }
+:is(a, button):hover > .lucide-arrow-up-right,
+:is(a, button):hover .lucide-arrow-up-right { transform: translate(2px, -2px); }
+@media (prefers-reduced-motion: reduce) {
+  :is(a, button):hover > .lucide-arrow-right,
+  :is(a, button):hover .lucide-arrow-up-right { transform: none; }
 }

@@ -99,6 +99,7 @@ const data = cache(() => ({
   videos: load<Video[]>("videos", []),
   awards: load<Award[]>("awards", []),
   tripadvisor: load<TripadvisorFacts | null>("tripadvisor", null),
+  imageCredits: load<Record<string, { title: string; author: string; license: string; licenseUrl: string | null; source: string }>>("image-credits", {}),
   tripInfo: load<Record<string, InfoOverrides>>("trip-info", {}),
   travellerPhotos: load<Record<string, (Img & { traveller: string; date?: string | null })[]>>("traveller-photos", {}),
   offers: load<Offer[]>("offers", []),
@@ -287,10 +288,13 @@ export function getOfferTrips(offer: Offer | null): TripCard[] {
 }
 
 /** Photographs from Wikimedia Commons used on the site, with their credits. */
-export const getPhotoCredits = () =>
-  Object.entries(data().photos)
+export const getPhotoCredits = () => [
+  ...Object.entries(data().photos)
     .filter(([, p]) => p.credit)
-    .map(([slot, p]) => ({ slot, ...p, credit: p.credit! }));
+    .map(([slot, p]) => ({ slot, src: p.src, credit: p.credit! })),
+  // Free-licence photos used elsewhere, e.g. on community posts until the company's own are added.
+  ...Object.entries(data().imageCredits).map(([src, credit]) => ({ slot: src, src, credit })),
+];
 
 export function getAllReviews() {
   return data()

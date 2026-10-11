@@ -20,7 +20,7 @@ export function Offers({ offer, trips, regionNames }: { offer: Offer | null; tri
   const shown = trips.slice(0, 4);
 
   return (
-    <section id="offers" className="scroll-mt-24 py-20 sm:py-24 lg:py-28">
+    <section id="offers" className="scroll-mt-24 py-14 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         {offer ? (
           <div className="bg-pine relative mb-12 overflow-hidden rounded-[1.4rem] text-white dark:bg-pine-deep">

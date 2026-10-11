@@ -85,7 +85,8 @@ export function HomeHero({ slides }: { slides: HeroSlide[] }) {
             wordRef.current.style.setProperty("--px", `${35 + ((e.clientX - r.left) / r.width) * 30}%`);
             wordRef.current.style.setProperty("--py", `${35 + ((e.clientY - r.top) / r.height) * 30}%`);
           }}
-          className="font-display relative mx-auto mt-2 text-center tracking-[-0.06em] select-none sm:mt-4"
+          // Extra-bold letters show more of the photograph; at night they glow.
+          className="font-display hero-title relative mx-auto mt-2 text-center tracking-[-0.055em] select-none sm:mt-4"
         >
           {/* Sizing copy, in the page colour, so the block keeps its height */}
           <motion.div

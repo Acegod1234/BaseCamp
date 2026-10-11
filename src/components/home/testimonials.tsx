@@ -41,7 +41,7 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
   const excellent = tripadvisor ? Math.round(((tripadvisor.breakdown.excellent ?? 0) / tripadvisor.reviews) * 1000) / 10 : null;
 
   return (
-    <section className="bg-snow-2 relative overflow-hidden py-16 sm:py-20 lg:py-24">
+    <section className="bg-snow-2 relative overflow-hidden py-12 sm:py-14 lg:py-16">
       <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-[#00afc4]/10 blur-3xl" />
       <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -49,8 +49,8 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
           {tripadvisor ? (
             <Reveal className="w-full lg:w-auto">
               <a href={tripadvisor.url} target="_blank" rel="noopener noreferrer" className="group hover:border-pine/40 flex items-center gap-4 rounded-2xl border border-line bg-card p-4 pr-5 shadow-[0_20px_40px_-32px_oklch(0.2_0.04_200/0.6)] transition-colors">
-                <span className="grid h-14 w-[4.5rem] shrink-0 place-items-center rounded-xl bg-white p-1.5">
-                  <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-11 w-auto" />
+                <span className="grid h-14 w-[4.5rem] shrink-0 place-items-center">
+                  <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-12 w-auto dark:brightness-0 dark:invert" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="flex items-baseline gap-2">

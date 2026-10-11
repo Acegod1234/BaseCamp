@@ -71,6 +71,7 @@ export default function HomePage() {
   const offer = getActiveOffer();
   const offerTrips = getOfferTrips(offer);
   const community = getCommunity();
+  const awards = getAwards();
   const videos = getFeaturedVideos().slice(0, 3);
 
   const byRegion = (slug: string) => cards.filter((c) => c.destinations.includes(slug)).sort((a, b) => (b.rating?.count ?? 0) - (a.rating?.count ?? 0) || (b.price ? 1 : 0) - (a.price ? 1 : 0));
@@ -113,7 +114,7 @@ export default function HomePage() {
       <HomeHero slides={slides} />
 
       {/* 01 / Find your trail */}
-      <section id="find" className="scroll-mt-24 py-20 sm:py-24 lg:py-28">
+      <section id="find" className="scroll-mt-24 py-14 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading eyebrow="01 / Find your trail" lines={["Where do you", <span key="g">want to <Accent>go?</Accent></span>]} />
@@ -128,7 +129,7 @@ export default function HomePage() {
 
       {/* Nepal tours */}
       {tours.length ? (
-        <section className="border-t border-line py-20 sm:py-24 lg:py-28">
+        <section className="border-t border-line py-14 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <SectionHeading eyebrow="Nepal tours" lines={["Discover Nepal.", <Accent key="b">Beyond the trails.</Accent>]} />
@@ -167,7 +168,7 @@ export default function HomePage() {
 
       {/* 03 / Day by day: the classic route, from the real itinerary */}
       {ebc ? (
-        <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28">
+        <section className="relative overflow-hidden py-14 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <div className="grid gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start lg:gap-14">
               <div className="lg:sticky lg:top-28">
@@ -213,7 +214,7 @@ export default function HomePage() {
       ) : null}
 
       {/* Popular Trekking & Tour Packages */}
-      <section className="bg-snow-2 overflow-hidden py-20 sm:py-24 lg:py-28">
+      <section className="bg-snow-2 overflow-hidden py-14 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow={`${popular.length} packages`} lines={["Popular trekking", <span key="p">& tour <Accent>packages.</Accent></span>]} />
           <div className="mt-6">
@@ -227,7 +228,7 @@ export default function HomePage() {
 
       {/* Luxury Trekking & Tour Packages, with Customize as the fourth tile */}
       {luxury.length ? (
-        <section className="border-t border-line py-20 sm:py-24 lg:py-28">
+        <section className="border-t border-line py-14 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <SectionHeading eyebrow="In comfort" lines={["Luxury trekking", <span key="l">& tour <Accent>packages.</Accent></span>]} />
             <Stagger className="rail mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
@@ -256,7 +257,7 @@ export default function HomePage() {
       ) : null}
 
       {/* 04 / The people behind the journey */}
-      <section className="border-t border-line py-20 sm:py-24 lg:py-28">
+      <section className="border-t border-line py-14 sm:py-16 lg:py-20">
         <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
           <div className="relative isolate">
             <PhotoGlow src={about.src} strength="lg" />
@@ -311,7 +312,7 @@ export default function HomePage() {
 
       {/* Community & social work */}
       {community.length ? (
-        <section id="community" className="scroll-mt-24 border-t border-line py-20 sm:py-24 lg:py-28">
+        <section id="community" className="scroll-mt-24 border-t border-line py-14 sm:py-16 lg:py-20">
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.6fr] lg:gap-14 lg:px-8">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <SectionHeading eyebrow="Community & social work" lines={["Rooted in", <Accent key="c">our community.</Accent>]} />
@@ -333,15 +334,18 @@ export default function HomePage() {
         <div className="mt-4">
           <Accreditations />
         </div>
-        <div className="mx-auto max-w-[90rem] px-4 py-10 sm:px-6 lg:px-8">
-          <p className="eyebrow text-pine mb-4">Awards &amp; recognition</p>
-          <Awards awards={getAwards()} />
-        </div>
+        {/* Shown once the company's awards are added; the Tripadvisor rating is already in the reviews. */}
+        {awards.length ? (
+          <div className="mx-auto max-w-[90rem] px-4 py-10 sm:px-6 lg:px-8">
+            <p className="eyebrow text-pine mb-4">Awards &amp; recognition</p>
+            <Awards awards={awards} />
+          </div>
+        ) : null}
       </section>
 
       {/* Videos from the trail */}
       {videos.length ? (
-        <section className="border-t border-line py-20 sm:py-24">
+        <section className="border-t border-line py-14 sm:py-16">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <SectionHeading eyebrow="Watch" lines={["Videos from", <Accent key="v">the trail.</Accent>]} />
             <div className={`mt-10 grid gap-4 ${videos.length > 1 ? "md:grid-cols-2 lg:grid-cols-3" : "max-w-3xl"}`}>
@@ -360,7 +364,7 @@ export default function HomePage() {
       <Testimonials reviews={reviews} tripadvisor={getTripadvisor()} />
 
       {/* 05 / Before you go */}
-      <section className="py-20 sm:py-24 lg:py-28">
+      <section className="py-14 sm:py-16 lg:py-20">
         <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
             <SectionHeading eyebrow="05 / Before you go" lines={["A few things", <span key="k">worth <Accent>knowing.</Accent></span>]} />
@@ -380,7 +384,7 @@ export default function HomePage() {
       </section>
 
       {/* From the journal */}
-      <section className="border-t border-line py-20 sm:py-24">
+      <section className="border-t border-line py-14 sm:py-16">
         <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading eyebrow="Journal" lines={["Notes from", <Accent key="t">the trail.</Accent>]} />

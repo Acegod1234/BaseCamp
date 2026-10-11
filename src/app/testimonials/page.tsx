@@ -43,8 +43,8 @@ export default function TestimonialsPage() {
         <div className="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
           {ta ? (
             <a href={ta.url} target="_blank" rel="noopener noreferrer" className="group hover:border-pine/40 flex flex-col gap-5 rounded-2xl border border-line bg-card p-5 transition-colors sm:flex-row sm:items-center sm:p-6">
-              <span className="grid h-20 w-24 shrink-0 place-items-center rounded-xl bg-white p-2">
-                <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-16 w-auto" />
+              <span className="grid h-20 w-24 shrink-0 place-items-center">
+                <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-16 w-auto dark:brightness-0 dark:invert" />
               </span>
               <span className="min-w-0 flex-1">
                 <span className="flex items-baseline gap-3">

@@ -5,16 +5,17 @@ import { Accreditations } from "@/components/accreditations";
 import { Logo } from "@/components/brand/logo";
 import { FacebookIcon, InstagramIcon, WhatsappIcon, XIcon } from "@/components/icons";
 import { Newsletter } from "@/components/newsletter";
-import { FooterRidge } from "@/components/site/footer-ridge";
 import { getTrip } from "@/lib/content";
 import { site, whatsappHref } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
+/** The card brands' own vector logos (transparent), in their original colours. */
 const PAYMENTS = [
-  { src: "/brand/payments/mastercard.png", w: 53, alt: "Mastercard" },
-  { src: "/brand/payments/visa.png", w: 64, alt: "Visa" },
-  { src: "/brand/payments/american-express.png", w: 42, alt: "American Express" },
-  { src: "/brand/payments/union-pay.png", w: 67, alt: "UnionPay" },
-  { src: "/brand/payments/jcb.png", w: 54, alt: "JCB" },
+  { src: "/brand/payments/visa.svg", w: 512, h: 166, alt: "Visa", className: "h-5" },
+  { src: "/brand/payments/mastercard.svg", w: 1000, h: 618, alt: "Mastercard", className: "h-7" },
+  { src: "/brand/payments/american-express.svg", w: 1000, h: 998, alt: "American Express", className: "h-8" },
+  { src: "/brand/payments/union-pay.svg", w: 256, h: 160, alt: "UnionPay", className: "h-7" },
+  { src: "/brand/payments/jcb.svg", w: 300, h: 232, alt: "JCB", className: "h-7" },
 ];
 
 const POPULAR = ["everest-base-camp-trek", "annapurna-base-camp-trek", "annapurna-circuit-trek", "langtang-valley-trek", "manaslu-circuit-trek", "ghorepani-poon-hill-trek"];
@@ -47,7 +48,7 @@ export function SiteFooter() {
     <footer>
       {/* Let's make a plan. */}
       <section className="relative border-t border-line bg-snow">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 pt-16 pb-6 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 lg:pt-20">
+        <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 py-14 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 lg:py-16">
           <div>
             <p className="eyebrow text-pine">Your time. Your interests. Your trip.</p>
             <h2 className="font-display mt-3 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] text-ink">
@@ -68,13 +69,12 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-        <FooterRidge />
       </section>
 
       <div className="relative overflow-hidden bg-[#1c2224] text-white/75">
         <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.04]" />
         <div aria-hidden className="absolute -top-40 right-[-10%] size-[36rem] rounded-full bg-[#00afc4]/12 blur-[120px]" />
-        <div className="relative mx-auto max-w-[90rem] px-4 pt-6 pb-8 sm:px-6 lg:px-8 lg:pt-8">
+        <div className="relative mx-auto max-w-[90rem] px-4 pt-12 pb-8 sm:px-6 lg:px-8 lg:pt-14">
           {/* Newsletter: email only */}
           <div className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
@@ -87,10 +87,7 @@ export function SiteFooter() {
           <div className="mt-12 grid gap-10 lg:grid-cols-[1.35fr_1fr_1fr_1.25fr] lg:gap-12">
             {/* Brand */}
             <div className="text-center lg:text-left">
-              <Logo className="mx-auto hidden w-[132px] dark:block lg:mx-0" />
-              <span className="inline-block rounded-md bg-white p-2.5 dark:hidden">
-                <Logo tone="light" className="w-[116px]" />
-              </span>
+              <Logo tone="dark" className="mx-auto w-[132px] lg:mx-0" />
               <p className="mx-auto mt-5 max-w-xs text-sm leading-relaxed lg:mx-0">{site.description}</p>
               <ul className="mt-6 flex items-center justify-center gap-2 lg:justify-start">
                 {socials.map((s) => (
@@ -101,8 +98,8 @@ export function SiteFooter() {
                   </li>
                 ))}
                 <li>
-                  <a href={site.social.tripadvisor} target="_blank" rel="me noopener noreferrer" aria-label="Base Camp Adventure on Tripadvisor" className="grid size-10 place-items-center overflow-hidden rounded-full border border-white/20 bg-white transition-all hover:-translate-y-0.5">
-                    <Image src="/brand/partners/tripadvisor.png" alt="" width={245} height={220} className="h-6 w-auto" />
+                  <a href={site.social.tripadvisor} target="_blank" rel="me noopener noreferrer" aria-label="Base Camp Adventure on Tripadvisor" className="grid size-10 place-items-center overflow-hidden rounded-full border border-white/20 transition-all hover:-translate-y-0.5 hover:border-[#34e0a1]">
+                    <Image src="/brand/partners/tripadvisor.png" alt="" width={245} height={220} className="h-6 w-auto brightness-0 invert" />
                   </a>
                 </li>
               </ul>
@@ -152,18 +149,16 @@ export function SiteFooter() {
                 <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden /> {site.address.street}, {site.address.city}, Nepal · {site.address.poBox}
               </p>
               <p className="eyebrow mt-7 text-center text-[#3ccbdc] lg:text-left">We Accept</p>
-              <div className="mt-3 flex flex-wrap justify-center gap-2 lg:justify-start">
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
                 {PAYMENTS.map((p) => (
-                  <span key={p.alt} className="grid h-9 place-items-center rounded-md bg-white px-2">
-                    <Image src={p.src} alt={p.alt} width={p.w} height={42} className="h-6 w-auto" />
-                  </span>
+                  <Image key={p.alt} src={p.src} alt={p.alt} width={p.w} height={p.h} unoptimized className={cn(p.className, "w-auto")} />
                 ))}
               </div>
             </div>
           </div>
 
           <div className="mt-12 flex flex-col items-center gap-6 border-t border-white/10 pt-8 lg:flex-row lg:justify-between">
-            <Accreditations variant="compact" />
+            <Accreditations variant="compact" surface="dark" />
             <p className="text-center text-xs leading-relaxed text-white/50 lg:text-right">
               Government Reg. No: 68517/066/067 · VAT No: 303970392
               <br />
