@@ -1,24 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Clock, Mountain, Star } from "lucide-react";
+import { ArrowRight, Check, Clock, Mountain } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
 import { AltitudeProfile } from "@/components/altitude-profile";
 import { placeOf } from "@/lib/itinerary";
 import { Faq } from "@/components/faq";
 import { FeaturedTrips, type TripGroup } from "@/components/home/featured-trips";
+import { CommunityCards } from "@/components/community-cards";
 import { HomeHero } from "@/components/home/hero";
+import { Offers } from "@/components/home/offers";
 import { RegionShowcase } from "@/components/home/regions";
+import { Testimonials } from "@/components/home/testimonials";
 import { TripCarousel } from "@/components/home/trip-carousel";
-import { Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PhotoGlow } from "@/components/photo-glow";
-import { ReviewsMarquee } from "@/components/reviews-marquee";
 import { Accent, SectionHeading } from "@/components/section-heading";
 import { TripCard } from "@/components/trip-card";
 import {
+  getActiveOffer,
   getAllReviews,
+  getCommunity,
   getFeaturedTrips,
   getHomeList,
   getLiveTerms,
+  getOfferTrips,
   getPostCards,
   getTeam,
   getTrip,
@@ -57,6 +62,9 @@ export default function HomePage() {
   const popular = getHomeList("popular");
   const luxury = getHomeList("luxury");
   const tours = getTripsIn("activities", "nepal-tour").slice(0, 8);
+  const offer = getActiveOffer();
+  const offerTrips = getOfferTrips(offer);
+  const community = getCommunity();
 
   const byRegion = (slug: string) => cards.filter((c) => c.destinations.includes(slug)).sort((a, b) => (b.rating?.count ?? 0) - (a.rating?.count ?? 0) || (b.price ? 1 : 0) - (a.price ? 1 : 0));
   const all = [...featured, ...popular.filter((p) => !featured.some((f) => f.slug === p.slug))];
@@ -204,9 +212,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Festival offers, or the trips on a reduced price today */}
+      <Offers offer={offer} trips={offerTrips} regionNames={regionNames} />
+
       {/* Luxury Trekking & Tour Packages, with Customize as the fourth tile */}
       {luxury.length ? (
-        <section className="py-20 sm:py-24 lg:py-28">
+        <section className="border-t border-line py-20 sm:py-24 lg:py-28">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <SectionHeading eyebrow="In comfort" lines={["Luxury trekking", <span key="l">& tour <Accent>packages.</Accent></span>]} />
             <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
@@ -239,9 +250,9 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
           <div className="relative isolate">
             <PhotoGlow src={about.src} strength="lg" />
-            <Parallax className="aspect-[5/4] rounded-xl bg-snow-2" amount={7}>
+            <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-snow-2">
               <Image src={about.src} alt="Evening light on the Annapurna range" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover" />
-            </Parallax>
+            </div>
             <Reveal delay={0.2} className="bg-glacier-soft absolute top-6 right-4 rotate-[3deg] rounded-md px-5 py-4 text-center shadow-lg sm:-right-4">
               <p className="text-[0.58rem] font-bold tracking-[0.18em] text-pine uppercase">On the trail since</p>
               <p className="font-display text-pine text-4xl">2009</p>
@@ -288,6 +299,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Community & social work */}
+      {community.length ? (
+        <section id="community" className="scroll-mt-24 border-t border-line py-20 sm:py-24 lg:py-28">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.6fr] lg:gap-14 lg:px-8">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <SectionHeading eyebrow="Community & social work" lines={["Rooted in", <Accent key="c">our community.</Accent>]} />
+              <Reveal delay={0.1}>
+                <p className="mt-5 text-ink-soft">Giving back to the people and places that make every journey possible.</p>
+                <Link href="/community/" className="mt-6 inline-block border-b-2 border-ink pb-1 text-sm font-bold">See our community work</Link>
+              </Reveal>
+            </div>
+            <CommunityCards posts={community.slice(0, 2)} />
+          </div>
+        </section>
+      ) : null}
+
       {/* Our affiliation */}
       <section id="affiliations" className="scroll-mt-24 border-t border-line pt-16">
         <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
@@ -299,19 +326,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      {reviews.length ? (
-        <section className="bg-snow-2 overflow-hidden py-20 sm:py-24">
-          <div className="mx-auto mb-10 flex max-w-[90rem] flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
-            <SectionHeading eyebrow="Testimonials" lines={["In their", <Accent key="w">own words.</Accent>]} />
-            <Link href="/testimonials/" className="inline-flex items-center gap-2 self-start rounded-lg border border-line bg-card px-4 py-2.5 text-sm lg:self-auto">
-              <Star className="fill-marigold text-marigold size-4" aria-hidden />
-              <span className="font-bold">{reviews.length} reviews</span>
-              <ArrowRight className="size-4" aria-hidden />
-            </Link>
-          </div>
-          <ReviewsMarquee reviews={reviews.slice(0, 18)} />
-        </section>
-      ) : null}
+      <Testimonials reviews={reviews} />
 
       {/* 05 / Before you go */}
       <section className="py-20 sm:py-24 lg:py-28">

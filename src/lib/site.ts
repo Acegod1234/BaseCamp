@@ -50,7 +50,6 @@ export const site = {
     { name: "Himalayan Rescue Association", short: "HRA · Partner", logo: "/brand/partners/hra.png", w: 221, h: 220, href: "https://himalayanrescue.org/" },
     { name: "Kathmandu Environmental Education Project", short: "KEEP · Partner", logo: "/brand/partners/keep.png", w: 170, h: 220, href: "https://keepnepal.org/" },
     { name: "Tripadvisor", short: "Traveller reviews", logo: "/brand/partners/tripadvisor.png", w: 245, h: 220, href: "https://www.tripadvisor.com/" },
-    { name: "Bookmundi", short: "Booking partner", logo: "/brand/partners/bookmundi.png", w: 1415, h: 220, href: "https://www.bookmundi.com/" },
   ],
   integrations: {
     ga4: process.env.NEXT_PUBLIC_GA4_ID ?? "",

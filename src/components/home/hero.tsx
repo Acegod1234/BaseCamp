@@ -9,7 +9,17 @@ import { EASE } from "@/components/motion";
 export type HeroSlide = { src: string; label: string };
 
 /** Optimised image URL for use inside CSS, where next/image cannot reach. */
-const optimised = (src: string, w = 1920) => `/_next/image/?url=${encodeURIComponent(src)}&w=${w}&q=75`;
+const optimised = (src: string, w = 1920) => `/_next/image/?url=${encodeURIComponent(src)}&w=${w}&q=80`;
+
+/**
+ * The photograph for each screen: 1200 px on phones (1920 on sharp ones),
+ * 1920 px on laptops and the full 3840 px original on retina and 4K displays.
+ */
+const photoVars = (src: string) => ({
+  ["--photo" as string]: `url("${optimised(src)}")`,
+  ["--photo-set" as string]: `image-set(url("${optimised(src)}") 1x, url("${optimised(src, 3840)}") 2x)`,
+  ["--photo-sm" as string]: `image-set(url("${optimised(src, 1200)}") 1x, url("${optimised(src, 1920)}") 2x)`,
+});
 
 /**
  * The prototype's title: the company name set huge, with photographs of the
@@ -28,17 +38,21 @@ export function HomeHero({ slides }: { slides: HeroSlide[] }) {
     return () => clearInterval(t);
   }, [slides.length, reduce, paused]);
 
-  // Preload the other photographs once the page is idle.
+  // Warm only the next photograph, at the size this screen will ask for.
   useEffect(() => {
-    const id = window.setTimeout(() => slides.slice(1).forEach((s) => (new Image().src = optimised(s.src))), 2500);
+    if (reduce || paused) return;
+    const id = window.setTimeout(() => {
+      const w = window.innerWidth < 640 ? (devicePixelRatio > 1 ? 1920 : 1200) : devicePixelRatio > 1 ? 3840 : 1920;
+      new Image().src = optimised(slides[(i + 1) % slides.length].src, w);
+    }, 3000);
     return () => window.clearTimeout(id);
-  }, [slides]);
+  }, [slides, i, reduce, paused]);
 
   const slide = slides[i];
   const word = (
     <>
-      <span className="block text-[clamp(4.1rem,17.5vw,16.5rem)] leading-[0.86]">Base Camp</span>
-      <span className="block text-[clamp(3.5rem,14.6vw,13.8rem)] leading-[0.9]">Adventure</span>
+      <span className="block text-[clamp(2.4rem,16.6vw,15.6rem)] leading-[0.86] whitespace-nowrap">Base Camp</span>
+      <span className="block text-[clamp(2rem,13.9vw,13.1rem)] leading-[0.9] whitespace-nowrap">Adventure</span>
     </>
   );
 
@@ -75,7 +89,7 @@ export function HomeHero({ slides }: { slides: HeroSlide[] }) {
             <motion.div
               key={slide.src}
               className="photo-text hero-drift absolute inset-0"
-              style={{ ["--photo" as string]: `url("${optimised(slide.src)}")` }}
+              style={photoVars(slide.src)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

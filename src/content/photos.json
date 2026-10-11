@@ -3,192 +3,308 @@
   "src": "/photos/home-banner.webp",
   "w": 1600,
   "h": 1200,
-  "trip": null
+  "trip": null,
+  "credit": null
  },
  "hero-ama-dablam": {
   "src": "/photos/hero-ama-dablam.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "pikey-peak-trek"
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "Ama Dablam and the Himalayas, Mountains of Nepal",
+   "author": "Vyacheslav Argenberg",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Ama_Dablam_and_the_Himalayas,_Mountains_of_Nepal.jpg"
+  }
  },
  "hero-alpenglow": {
   "src": "/photos/hero-alpenglow.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "panchase-trek"
+  "w": 2560,
+  "h": 1707,
+  "trip": "panchase-trek",
+  "credit": null
  },
  "hero-gokyo": {
   "src": "/photos/hero-gokyo.webp",
-  "w": 2400,
-  "h": 1350,
-  "trip": null
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "Gokyo Lake, Ngozumpa Glacier, Arakamtse, Cholatse, Nepal, Himalayas",
+   "author": "Vyacheslav Argenberg",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Gokyo_Lake,_Ngozumpa_Glacier,_Arakamtse,_Cholatse,_Nepal,_Himalayas.jpg"
+  }
  },
  "hero-machapuchare": {
   "src": "/photos/hero-machapuchare.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "ghorepani-poon-hill-trek"
+  "w": 2560,
+  "h": 1707,
+  "trip": "ghorepani-poon-hill-trek",
+  "credit": null
  },
  "hero-mustang": {
   "src": "/photos/hero-mustang.webp",
-  "w": 1600,
-  "h": 1066,
-  "trip": null
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "Upper Mustang",
+   "author": "Nishan Hitang",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Upper_Mustang.jpg"
+  }
  },
  "region-everest": {
   "src": "/photos/region-everest.webp",
-  "w": 1920,
-  "h": 810,
-  "trip": null
+  "w": 3806,
+  "h": 2688,
+  "trip": null,
+  "credit": {
+   "title": "Everest, Nuptse, Khumbu Glacier, Nepal, Himalayas",
+   "author": "Vyacheslav Argenberg",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Everest,_Nuptse,_Khumbu_Glacier,_Nepal,_Himalayas.jpg"
+  }
  },
  "region-annapurna": {
   "src": "/photos/region-annapurna.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "panchase-trek"
+  "w": 3840,
+  "h": 2880,
+  "trip": null,
+  "credit": {
+   "title": "South Face of Annapurna I (Main)",
+   "author": "PrajwalMohan",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:South_Face_of_Annapurna_I_(Main).jpg"
+  }
  },
  "region-langtang": {
   "src": "/photos/region-langtang.webp",
-  "w": 1920,
-  "h": 1280,
-  "trip": null
+  "w": 3840,
+  "h": 2471,
+  "trip": null,
+  "credit": {
+   "title": "Paints of sunrise on Langtang National Park",
+   "author": "Q-lieb-in",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Paints_of_sunrise_on_Langtang_National_Park.jpg"
+  }
  },
  "region-manaslu": {
   "src": "/photos/region-manaslu.webp",
-  "w": 2400,
-  "h": 1080,
-  "trip": "short-manaslu-circuit-trek"
+  "w": 3840,
+  "h": 2563,
+  "trip": null,
+  "credit": {
+   "title": "Manaslu range",
+   "author": "Samdesherpa",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Manaslu_range.jpg"
+  }
  },
  "region-remote": {
   "src": "/photos/region-remote.webp",
-  "w": 1600,
-  "h": 1066,
-  "trip": null
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "LoManthang 1",
+   "author": "Boerniefischer",
+   "license": "CC BY 3.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+   "source": "https://commons.wikimedia.org/wiki/File:LoManthang_1.JPG"
+  }
  },
  "region-nepal": {
   "src": "/photos/region-nepal.webp",
-  "w": 1920,
-  "h": 1276,
-  "trip": null
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "Chitwan Rhino on the road",
+   "author": "Yajuvendraupadhyaya",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Chitwan_Rhino_on_the_road.jpg"
+  }
  },
  "region-bhutan": {
   "src": "/photos/region-bhutan.webp",
-  "w": 1380,
-  "h": 690,
-  "trip": "punakha-domoche-trekking"
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "Paro, Taktsang Goemba (Tiger's Nest) (15221622304)",
+   "author": "Arian Zwegers from Brussels, Belgium",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Paro,_Taktsang_Goemba_(Tiger%27s_Nest)_(15221622304).jpg"
+  }
  },
  "region-tibet": {
   "src": "/photos/region-tibet.webp",
-  "w": 2048,
-  "h": 1536,
-  "trip": "kathmandu-lhasa-everest-base-camp-tour"
+  "w": 3264,
+  "h": 2094,
+  "trip": null,
+  "credit": {
+   "title": "Tibet-5483 - Potala Palace",
+   "author": "Dennis G. Jarvis",
+   "license": "CC BY-SA 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Tibet-5483_-_Potala_Palace.jpg"
+  }
  },
  "activity-trekking": {
   "src": "/photos/activity-trekking.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "annapurna-circuit-trek"
+  "w": 2560,
+  "h": 1707,
+  "trip": "annapurna-circuit-trek",
+  "credit": null
  },
  "activity-peak": {
   "src": "/photos/activity-peak.webp",
-  "w": 2400,
-  "h": 1800,
-  "trip": "nar-phu-valley-and-thorang-la-pass-trek"
+  "w": 2560,
+  "h": 1920,
+  "trip": "nar-phu-valley-and-thorang-la-pass-trek",
+  "credit": null
  },
  "activity-tour": {
   "src": "/photos/activity-tour.webp",
-  "w": 2400,
-  "h": 1800,
-  "trip": "buddhist-tour-in-nepal"
+  "w": 2560,
+  "h": 1920,
+  "trip": "buddhist-tour-in-nepal",
+  "credit": null
  },
  "activity-rafting": {
   "src": "/photos/activity-rafting.webp",
-  "w": 1024,
-  "h": 690,
-  "trip": "karnali-river-rafting"
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "Trishuli River Rafting, Nepal-3171",
+   "author": "Bijay Chaurasia",
+   "license": "CC BY-SA 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Trishuli_River_Rafting,_Nepal-3171.jpg"
+  }
  },
  "activity-day": {
   "src": "/photos/activity-day.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "everest-base-camp-trek-with-helicopter-return"
+  "w": 3840,
+  "h": 2560,
+  "trip": "everest-base-camp-trek-with-helicopter-return",
+  "credit": null
  },
  "activity-bhutan": {
   "src": "/photos/activity-bhutan.webp",
-  "w": 1380,
-  "h": 690,
-  "trip": "bhutan-heritage-tour"
+  "w": 3819,
+  "h": 2501,
+  "trip": null,
+  "credit": {
+   "title": "Paro Taktsang, Bhutan (edited)",
+   "author": "Original:  Nina R from Africa",
+   "license": "CC BY 2.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Paro_Taktsang,_Bhutan_(edited).jpg"
+  }
  },
  "activity-tibet": {
   "src": "/photos/activity-tibet.webp",
   "w": 2048,
   "h": 1152,
-  "trip": "kathmandu-lhasa-everest-base-camp-tour"
+  "trip": "kathmandu-lhasa-everest-base-camp-tour",
+  "credit": null
  },
  "page-about": {
   "src": "/photos/page-about.webp",
-  "w": 1600,
-  "h": 1067,
-  "trip": null
+  "w": 3840,
+  "h": 2560,
+  "trip": null,
+  "credit": {
+   "title": "Namche Bazaar from above, Nepal",
+   "author": "Vyacheslav Argenberg",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+   "source": "https://commons.wikimedia.org/wiki/File:Namche_Bazaar_from_above,_Nepal.jpg"
+  }
  },
  "page-about-group": {
   "src": "/photos/page-about-group.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "ghorepani-poon-hill-trek"
+  "w": 2560,
+  "h": 1707,
+  "trip": "ghorepani-poon-hill-trek",
+  "credit": null
  },
  "page-trips": {
   "src": "/photos/page-trips.webp",
-  "w": 1920,
-  "h": 1280,
-  "trip": null
+  "w": 2048,
+  "h": 1365,
+  "trip": null,
+  "credit": null
  },
  "page-destinations": {
   "src": "/photos/page-destinations.webp",
   "w": 1920,
   "h": 1079,
-  "trip": "mohare-hill-trek"
+  "trip": "mohare-hill-trek",
+  "credit": null
  },
  "page-activities": {
   "src": "/photos/page-activities.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "everest-base-camp-trek-with-helicopter-return"
+  "w": 3840,
+  "h": 2560,
+  "trip": "everest-base-camp-trek-with-helicopter-return",
+  "credit": null
  },
  "page-team": {
   "src": "/photos/page-team.webp",
-  "w": 2400,
-  "h": 1080,
-  "trip": "short-manaslu-circuit-trek"
+  "w": 2560,
+  "h": 1152,
+  "trip": "short-manaslu-circuit-trek",
+  "credit": null
  },
  "page-reviews": {
   "src": "/photos/page-reviews.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "langtang-valley-trek"
+  "w": 3840,
+  "h": 2560,
+  "trip": "langtang-valley-trek",
+  "credit": null
  },
  "page-contact": {
   "src": "/photos/page-contact.webp",
   "w": 1920,
   "h": 1079,
-  "trip": "mohare-hill-trek"
+  "trip": "mohare-hill-trek",
+  "credit": null
  },
  "page-customize": {
   "src": "/photos/page-customize.webp",
   "w": 1600,
   "h": 1200,
-  "trip": "mardi-himal-trek"
+  "trip": "mardi-himal-trek",
+  "credit": null
  },
  "page-gallery": {
   "src": "/photos/page-gallery.webp",
-  "w": 2400,
-  "h": 1348,
-  "trip": "mohare-hill-trek"
+  "w": 2592,
+  "h": 1456,
+  "trip": "mohare-hill-trek",
+  "credit": null
  },
  "page-404": {
   "src": "/photos/page-404.webp",
-  "w": 2400,
-  "h": 1600,
-  "trip": "ghorepani-poon-hill-trek"
+  "w": 2560,
+  "h": 1707,
+  "trip": "ghorepani-poon-hill-trek",
+  "credit": null
  }
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BedDouble, ChevronDown, Coffee, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
+import { UnitTip, altitudeLines, distanceLines } from "@/components/unit-tip";
 import type { ItineraryDay } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -41,7 +42,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
               >
                 {String(d.day).padStart(2, "0")}
               </span>
-              <div className={cn("rounded-2xl border transition-colors", isOpen ? "border-pine/30 bg-card shadow-[0_18px_40px_-30px_oklch(0.2_0.04_170/0.5)]" : "border-transparent hover:bg-white/60")}>
+              <div className={cn("rounded-2xl border transition-colors", isOpen ? "border-pine/30 bg-card shadow-[0_18px_40px_-30px_oklch(0.2_0.04_170/0.5)]" : "border-transparent hover:bg-card/60")}>
                 <h3>
                   <button type="button" onClick={() => toggle(d.day)} aria-expanded={isOpen} className="flex w-full items-start justify-between gap-4 p-4 text-left">
                     <span>
@@ -51,16 +52,37 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                     <ChevronDown className={cn("mt-5 size-5 shrink-0 text-muted transition-transform", isOpen && "rotate-180")} aria-hidden />
                   </button>
                 </h3>
+                {d.altitude || km || d.hours ? (
+                  <ul className="-mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 px-4 pb-3.5 text-[0.8rem] text-ink-soft" aria-label={`Day ${d.day} at a glance`}>
+                    {d.altitude ? (
+                      <li className="inline-flex items-center gap-1.5">
+                        <Mountain className="text-pine size-3.5" aria-hidden /> {d.altitude.toLocaleString("en-US")} m
+                        <UnitTip label="Altitude" lines={altitudeLines(d.altitude)} className="-ml-1" />
+                      </li>
+                    ) : null}
+                    {km ? (
+                      <li className="inline-flex items-center gap-1.5">
+                        <Route className="text-pine size-3.5" aria-hidden /> {km.toLocaleString("en-US")} km
+                        <UnitTip label="Distance, approx." lines={distanceLines(km)} className="-ml-1" />
+                      </li>
+                    ) : null}
+                    {d.hours ? (
+                      <li className="inline-flex items-center gap-1.5">
+                        <Timer className="text-pine size-3.5" aria-hidden /> {d.hours} {d.hours === 1 ? "hour" : "hours"}
+                      </li>
+                    ) : null}
+                  </ul>
+                ) : null}
                 <motion.div initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden" inert={!isOpen}>
                   <div className="px-4 pb-5">
                     {d.html ? <div className="prose-trail text-base" dangerouslySetInnerHTML={{ __html: d.html }} /> : null}
                     {d.altitude || d.overnight || d.meals.length || d.hours || km ? (
                       <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                         {d.altitude ? (
-                          <Fact icon={<Mountain className="size-4" aria-hidden />} label="Altitude" value={`${d.altitude.toLocaleString("en-US")} m / ${Math.round(d.altitude * 3.28084).toLocaleString("en-US")} ft`} />
+                          <Fact icon={<Mountain className="size-4" aria-hidden />} label="Altitude" value={`${d.altitude.toLocaleString("en-US")} m`} tip={<UnitTip label="Altitude" lines={altitudeLines(d.altitude)} />} />
                         ) : null}
                         {d.hours ? <Fact icon={<Timer className="size-4" aria-hidden />} label="Walking" value={`${d.hours} ${d.hours === 1 ? "hour" : "hours"}`} /> : null}
-                        {km ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={`${km} km / ${(km * 0.621371).toFixed(1)} mi`} /> : null}
+                        {km ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={`${km.toLocaleString("en-US")} km`} tip={<UnitTip label="Distance, approx." lines={distanceLines(km)} />} /> : null}
                         {d.overnight ? <Fact icon={<BedDouble className="size-4" aria-hidden />} label="Overnight" value={d.overnight} /> : null}
                       </dl>
                     ) : null}
@@ -88,13 +110,16 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
   );
 }
 
-function Fact({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function Fact({ icon, label, value, tip }: { icon: React.ReactNode; label: string; value: string; tip?: React.ReactNode }) {
   return (
     <div className="flex items-start gap-2 rounded-xl bg-snow-2 px-3 py-2.5">
       <span className="text-pine mt-0.5">{icon}</span>
       <span className="min-w-0">
         <dt className="text-[0.66rem] font-bold tracking-[0.1em] text-muted uppercase">{label}</dt>
-        <dd className="text-[0.85rem] font-semibold leading-snug">{value}</dd>
+        <dd className="flex items-center gap-1 text-[0.85rem] font-semibold leading-snug">
+          {value}
+          {tip}
+        </dd>
       </span>
     </div>
   );

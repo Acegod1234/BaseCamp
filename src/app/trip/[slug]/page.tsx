@@ -24,13 +24,14 @@ import { Breadcrumbs } from "@/components/page-hero";
 import { Accent, SectionHeading } from "@/components/section-heading";
 import { BookingCard, MobileBookingBar } from "@/components/trip/booking-card";
 import { PlanTripButton, TripSlider } from "@/components/trip/trip-slider";
+import { TripPhotos } from "@/components/trip/trip-photos";
 import { Itinerary } from "@/components/trip/itinerary";
 import { SectionNav } from "@/components/trip/section-nav";
 import { TripModals } from "@/components/trip/trip-modals";
 import { TripCard } from "@/components/trip-card";
-import { getActivity, getDestination, getGuidesForRegion, getRelatedTrips, getTrip, getTrips } from "@/lib/content";
-import { meta, tripLd } from "@/lib/seo";
-import { difficultyLabel } from "@/lib/site";
+import { getActivity, getDestination, getGuidesForRegion, getRelatedTrips, getTravellerPhotos, getTrip, getTrips } from "@/lib/content";
+import { meta, tripLd, tripLead } from "@/lib/seo";
+import { difficultyLabel, whatsappHref } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const trip = getTrip(slug);
   if (!trip) return {};
-  return meta({ path: `/trip/${trip.slug}/`, title: trip.title, description: trip.summary, seo: trip.seo, image: trip.cover });
+  return meta({ path: `/trip/${trip.slug}/`, title: trip.title, description: trip.summary, seo: trip.seo, image: trip.cover, lead: tripLead(trip), price: trip.price?.amount });
 }
 
 const FACT_ICONS: Record<string, LucideIcon> = {
@@ -69,6 +70,7 @@ export default async function TripPage({ params }: Props) {
   const guides = region ? getGuidesForRegion(region.slug, 3) : [];
   const sharpest = [trip.cover, ...trip.gallery].filter((x): x is NonNullable<typeof x> => Boolean(x) && x!.w >= x!.h).sort((a, b) => b.w - a.w)[0] ?? trip.cover;
   const photos = [trip.cover, ...trip.gallery].filter((x, i, a): x is NonNullable<typeof x> => Boolean(x) && a.findIndex((y) => y?.src === x?.src) === i);
+  const travellerPhotos = getTravellerPhotos(trip.slug);
   const altitudeDays = trip.itinerary.filter((d) => d.altitude).length >= 3 ? trip.itinerary : [];
 
   const facts = [
@@ -84,6 +86,7 @@ export default async function TripPage({ params }: Props) {
     ...(trip.includes.length || trip.excludes.length ? [{ id: "included", label: "What's included" }] : []),
     ...trip.sections.map((s) => ({ id: s.id, label: s.title.length > 22 ? `${s.title.slice(0, 20)}…` : s.title })),
     ...(trip.map ? [{ id: "route-map", label: "Route map" }] : []),
+    { id: "gallery", label: "Gallery" },
     ...(trip.faqs.length ? [{ id: "faqs", label: "FAQs" }] : []),
     ...(trip.reviews.length ? [{ id: "reviews", label: "Reviews" }] : []),
   ];
@@ -233,6 +236,21 @@ export default async function TripPage({ params }: Props) {
               <a href={trip.map.src} target="_blank" rel="noopener" className="mt-8 block overflow-hidden rounded-[1.4rem] border border-line bg-card">
                 <Image src={trip.map.src} alt={trip.map.alt || `${trip.title} map`} width={trip.map.w} height={trip.map.h} sizes="(max-width: 1024px) 100vw, 60vw" className="h-auto w-full" />
               </a>
+            </section>
+          ) : null}
+
+          {photos.length || travellerPhotos.length ? (
+            <section id="gallery" className="scroll-mt-40">
+              <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                <SectionHeading eyebrow="Gallery" lines={["Moments from", <Accent key="g">the trail.</Accent>]} />
+                <p className="text-sm text-muted">{photos.length + travellerPhotos.length} photos</p>
+              </div>
+              <TripPhotos
+                title={trip.title}
+                ours={photos.map((p) => ({ src: p.src, w: p.w, h: p.h, alt: p.alt }))}
+                travellers={travellerPhotos}
+                shareHref={whatsappHref(`Namaste Base Camp Adventure, here are my photos from the ${trip.title}.`)}
+              />
             </section>
           ) : null}
 

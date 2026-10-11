@@ -48,7 +48,7 @@ export function SiteFooter() {
         <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.05]" />
         <div aria-hidden className="absolute -top-40 right-[-10%] size-[36rem] rounded-full bg-[#00afc4]/15 blur-[120px]" />
         <div className="relative mx-auto max-w-[90rem] px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-20">
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.3fr] lg:gap-16">
             <div>
               <Logo className="hidden w-[132px] dark:block" />
               <span className="inline-block rounded-md bg-white p-2.5 dark:hidden">
@@ -76,28 +76,14 @@ export function SiteFooter() {
             </div>
 
             <div>
-              <p className="eyebrow text-[#3ccbdc]">Explore</p>
-              <ul className="mt-5 space-y-2.5 text-sm">
-                {[
-                  { href: "/trip/", label: "Find a trip" },
-                  { href: "/destination/", label: "Destinations" },
-                  { href: "/activities/", label: "Activities" },
-                  { href: "/gallery/", label: "Gallery" },
-                  { href: "/blogs/", label: "Read Our Blogs" },
-                  { href: "/customize-trip/", label: "Customize Trip" },
-                ].map((l) => (
-                  <li key={l.href}><Link href={l.href} className="link-draw hover:text-white">{l.label}</Link></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
               <p className="eyebrow text-[#3ccbdc]">About Us</p>
               <ul className="mt-5 space-y-2.5 text-sm">
                 {[
                   { href: "/about-us/", label: "Our story" },
                   { href: "/our-team/", label: "Our Team" },
                   { href: "/why-book-with-us/", label: "Why Travel With Us?" },
+                  { href: "/community/", label: "Community & social work" },
+                  { href: "/gallery/", label: "Photo Gallery" },
                   { href: "/legal-documents/", label: "Legal Documents" },
                   { href: "/terms-and-conditions/", label: "Terms and Conditions" },
                   { href: "/online-payment/", label: "Online Payment" },

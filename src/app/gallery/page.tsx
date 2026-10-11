@@ -1,7 +1,8 @@
 import { GalleryGrid, type GalleryPhoto } from "@/components/gallery-grid";
+import { JsonLd } from "@/components/json-ld";
 import { PageHero } from "@/components/page-hero";
-import { getLiveTerms, getTrips, photo } from "@/lib/content";
-import { meta } from "@/lib/seo";
+import { getLiveTerms, getPhotoCredits, getTrips, photo } from "@/lib/content";
+import { abs, imageLd, meta } from "@/lib/seo";
 
 export const metadata = meta({
   path: "/gallery/",
@@ -26,13 +27,50 @@ export default function GalleryPage() {
     .map((d) => ({ slug: d.slug, name: names[d.slug], count: photos.filter((p) => p.region === d.slug).length }))
     .filter((r) => r.count > 0);
   const hero = photo("page-gallery");
+  const credits = getPhotoCredits();
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ImageGallery",
+          name: "Base Camp Adventure photo gallery",
+          url: abs("/gallery/"),
+          associatedMedia: photos.slice(0, 60).map((p) => imageLd(p)),
+        }}
+      />
       <PageHero title="Photo" accent="Gallery" eyebrow={`${photos.length} photographs`} photo={hero.src} crumbs={[{ name: "Gallery", path: "/gallery/" }]} />
       <section className="mx-auto max-w-[90rem] px-4 py-14 sm:px-6 sm:py-20">
         <GalleryGrid photos={photos} regions={regions} />
       </section>
+
+      {credits.length ? (
+        <div id="photo-credits" className="mx-auto max-w-[90rem] scroll-mt-28 px-4 pb-10 sm:px-6 lg:px-8">
+          <details className="group text-xs text-muted">
+            <summary className="cursor-pointer list-none hover:text-ink">Photo credits</summary>
+            <p className="mt-3 max-w-3xl leading-relaxed">
+              Some banner photographs are from Wikimedia Commons, used under Creative Commons licences with our watermark added:{" "}
+              {credits.map((c, i) => (
+                <span key={c.slot}>
+                  <a href={c.credit.source} target="_blank" rel="noopener noreferrer" className="hover:text-pine underline-offset-2 hover:underline">
+                    {c.credit.title}
+                  </a>{" "}
+                  by {c.credit.author} (
+                  {c.credit.licenseUrl ? (
+                    <a href={c.credit.licenseUrl} target="_blank" rel="license noopener noreferrer" className="hover:text-pine">
+                      {c.credit.license}
+                    </a>
+                  ) : (
+                    c.credit.license
+                  )}
+                  ){i < credits.length - 1 ? "; " : "."}
+                </span>
+              ))}
+            </p>
+          </details>
+        </div>
+      ) : null}
     </>
   );
 }

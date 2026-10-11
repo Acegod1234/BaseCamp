@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { LogoOverlay } from "@/components/brand/logo-overlay";
 import { GalleryButton } from "@/components/trip/gallery";
 import { openTripModal } from "@/components/trip/trip-modals";
 import type { Img } from "@/lib/types";
@@ -17,7 +18,7 @@ export function TripSlider({ images, title }: { images: Img[]; title: string }) 
 
   return (
     <div className="relative isolate overflow-hidden rounded-xl bg-snow-2">
-      <div className="relative aspect-[4/3] sm:aspect-[16/8] lg:aspect-[21/9]">
+      <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[21/9]">
         <AnimatePresence initial={false} mode="popLayout">
           <motion.div
             key={img.src}
@@ -33,10 +34,11 @@ export function TripSlider({ images, title }: { images: Img[]; title: string }) 
               if (info.offset.x > 50) go(-1);
             }}
           >
-            <Image src={img.src} alt={img.alt || `${title} photograph ${i + 1}`} fill preload={i === 0} quality={85} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover" />
+            <Image src={img.src} alt={img.alt || `${title} photograph ${i + 1}`} fill preload={i === 0} quality={80} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover lg:object-[50%_34%]" />
           </motion.div>
         </AnimatePresence>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
+        <LogoOverlay className="hidden lg:block" />
       </div>
 
       {images.length > 1 ? (

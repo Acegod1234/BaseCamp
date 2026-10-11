@@ -68,7 +68,7 @@ export function SectionNav({
         aria-label="Trip sections"
         className={cn(
           "relative mx-auto flex max-w-[86rem] items-center gap-2 overflow-hidden rounded-2xl border p-1.5 backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-500",
-          stuck ? "border-line bg-white/95 shadow-[0_14px_40px_-22px_oklch(0.2_0.04_170/0.45)]" : "border-line/70 bg-white/80",
+          stuck ? "border-line bg-card/95 shadow-[0_14px_40px_-22px_oklch(0.2_0.04_170/0.45)]" : "border-line/70 bg-card/80",
         )}
       >
         <div ref={scrollerRef} className="no-scrollbar flex min-w-0 flex-1 gap-1 overflow-x-auto scroll-smooth">

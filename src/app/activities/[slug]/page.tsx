@@ -17,7 +17,10 @@ export async function generateMetadata({ params }: Props) {
   const term = getActivity(slug);
   if (!term) return {};
   const trips = getTripsIn("activities", slug);
+  const prices = trips.map((t) => t.price?.amount).filter((n): n is number => Boolean(n));
+  const lead = prices.length ? `${trips.length} trips from US$${Math.min(...prices).toLocaleString("en-US")}.` : null;
   return meta({
+    lead,
     path: `/activities/${slug}/`,
     title: term.name,
     description: `${trips.length} ${term.name} trips with Base Camp Adventure. ${termSummary("activities", slug).line}`,

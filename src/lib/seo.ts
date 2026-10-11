@@ -22,6 +22,8 @@ export function meta({
   type = "website",
   published,
   modified,
+  lead,
+  price,
 }: {
   path: string;
   title: string;
@@ -31,9 +33,14 @@ export function meta({
   type?: "website" | "article";
   published?: string | null;
   modified?: string | null;
+  /** Put first in the description, e.g. "14 days from US$1,249 · 5.0★ (6 reviews)." */
+  lead?: string | null;
+  /** Price for Open Graph product tags (Facebook, WhatsApp and Pinterest previews). */
+  price?: number | null;
 }): Metadata {
   const finalTitle = bareTitle(seo?.title) || title;
-  const finalDescription = seo?.description || description || site.description;
+  const base = seo?.description || description || site.description;
+  const finalDescription = lead ? `${lead} ${base}` : base;
   const imgSrc = typeof image === "string" ? image : image?.src;
   const og = imgSrc ?? "/photos/home-banner.webp";
   return {
@@ -51,6 +58,7 @@ export function meta({
       ...(type === "article" ? { publishedTime: published ?? undefined, modifiedTime: modified ?? undefined } : {}),
     },
     twitter: { card: "summary_large_image", title: finalTitle, description: finalDescription, images: [abs(og)] },
+    ...(price ? { other: { "product:price:amount": String(price), "product:price:currency": "USD" } } : {}),
   };
 }
 
@@ -115,28 +123,74 @@ export function breadcrumbLd(items: { name: string; path: string }[]) {
   };
 }
 
+/** "14 days from US$1,249 · 5.0★ (6 reviews)." — leads the trip's search snippet. */
+export function tripLead(trip: Pick<Trip, "days" | "price" | "rating">) {
+  const parts = [`${trip.days} ${trip.days === 1 ? "day" : "days"}${trip.price ? ` from US$${trip.price.amount.toLocaleString("en-US")}` : ""}`];
+  if (trip.rating?.count) parts.push(`${trip.rating.value.toFixed(1)}★ (${trip.rating.count} ${trip.rating.count === 1 ? "review" : "reviews"})`);
+  return `${parts.join(" · ")}.`;
+}
+
+/** The trip's price as a schema.org Offer: today's price, the regular price struck through. */
+export function tripOffer(trip: Pick<Trip, "slug" | "price">) {
+  if (!trip.price) return undefined;
+  const url = abs(`/trip/${trip.slug}/`);
+  const validUntil = `${new Date().getFullYear() + 1}-12-31`;
+  const p = trip.price;
+  return {
+    "@type": "Offer",
+    url,
+    price: p.amount,
+    priceCurrency: "USD",
+    priceValidUntil: validUntil,
+    availability: "https://schema.org/InStock",
+    itemCondition: "https://schema.org/NewCondition",
+    seller: { "@id": `${site.url}/#organization` },
+    priceSpecification: [
+      { "@type": "UnitPriceSpecification", price: p.amount, priceCurrency: "USD" },
+      ...(p.regular && p.regular > p.amount
+        ? [{ "@type": "UnitPriceSpecification", priceType: "https://schema.org/StrikethroughPrice", price: p.regular, priceCurrency: "USD" }]
+        : []),
+    ],
+  };
+}
+
+/** "Peter D-Cornwall, United Kingdom" → "Peter D". */
+const reviewer = (author: string) => (author.match(/^(.+?)-[A-Z][^-]*,/)?.[1] ?? author.split(",")[0]).trim();
+const isoDate = (d: string | null) => {
+  const t = d ? Date.parse(d) : NaN;
+  return Number.isNaN(t) ? undefined : new Date(t).toISOString().slice(0, 10);
+};
+
+/** A photograph as schema.org ImageObject, credited to Base Camp Adventure. */
+export function imageLd(img: Img) {
+  return {
+    "@type": "ImageObject",
+    contentUrl: abs(img.src),
+    url: abs(img.src),
+    width: img.w,
+    height: img.h,
+    caption: img.alt || undefined,
+    creator: { "@type": "Organization", name: site.name, url: `${site.url}/` },
+    creditText: site.name,
+    copyrightNotice: `© ${site.legalName}`,
+    copyrightHolder: { "@id": `${site.url}/#organization` },
+  };
+}
+
 export function tripLd(trip: Trip) {
   const url = abs(`/trip/${trip.slug}/`);
   const images = [trip.cover, ...trip.gallery].filter(Boolean).slice(0, 6).map((i) => abs((i as Img).src));
-  const offer = trip.price
-    ? {
-        "@type": "Offer",
-        price: trip.price.amount,
-        priceCurrency: "USD",
-        availability: "https://schema.org/InStock",
-        url,
-        seller: { "@id": `${site.url}/#organization` },
-        validFrom: trip.modified ?? undefined,
-      }
-    : undefined;
+  const offer = tripOffer(trip);
   const reviews = trip.reviews.slice(0, 6).map((r) => ({
     "@type": "Review",
-    author: { "@type": "Person", name: r.author },
-    reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
+    author: { "@type": "Person", name: reviewer(r.author) },
+    datePublished: isoDate(r.date),
+    name: r.title ?? undefined,
+    reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5, worstRating: 1 },
     reviewBody: r.body,
   }));
   const rating = trip.rating
-    ? { "@type": "AggregateRating", ratingValue: trip.rating.value, reviewCount: trip.rating.count, bestRating: 5 }
+    ? { "@type": "AggregateRating", ratingValue: trip.rating.value, reviewCount: trip.rating.count, bestRating: 5, worstRating: 1 }
     : undefined;
 
   return [
@@ -171,12 +225,25 @@ export function tripLd(trip: Trip) {
       description: trip.summary,
       image: images,
       sku: trip.code ?? String(trip.id),
+      url,
+      category: "Travel > Tours > Trekking",
       brand: { "@type": "Brand", name: site.name },
       offers: offer,
       aggregateRating: rating,
       review: reviews.length ? reviews : undefined,
     },
     ...(trip.faqs.length ? [faqLd(trip.faqs)] : []),
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      "@id": `${url}#gallery`,
+      name: `${trip.title} photos`,
+      url: `${url}#gallery`,
+      associatedMedia: [trip.cover, ...trip.gallery]
+        .filter((x, i, a): x is Img => Boolean(x) && a.findIndex((y) => y?.src === x?.src) === i)
+        .slice(0, 30)
+        .map((im) => imageLd(im)),
+    },
   ];
 }
 

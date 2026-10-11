@@ -1,0 +1,31 @@
+{
+ "everest-base-camp-trek": {
+  "2": {
+   "distanceKm": 8
+  },
+  "3": {
+   "distanceKm": 10
+  },
+  "5": {
+   "distanceKm": 10
+  },
+  "6": {
+   "distanceKm": 11
+  },
+  "8": {
+   "distanceKm": 8.5
+  },
+  "9": {
+   "distanceKm": 12
+  },
+  "10": {
+   "distanceKm": 14
+  },
+  "11": {
+   "distanceKm": 19
+  },
+  "12": {
+   "distanceKm": 18
+  }
+ }
+}

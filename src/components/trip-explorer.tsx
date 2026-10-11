@@ -122,7 +122,7 @@ export function TripExplorer({
   return (
     <div>
       <div data-subnav className="sticky top-[4.5rem] z-30 -mx-1.5 pt-4 sm:-mx-0 lg:top-[5.25rem]">
-        <div className="rounded-2xl border border-line bg-white/92 p-2 shadow-[0_14px_40px_-26px_oklch(0.2_0.04_170/0.45)] backdrop-blur-xl sm:p-2.5">
+        <div className="rounded-2xl border border-line bg-card/92 p-2 shadow-[0_14px_40px_-26px_oklch(0.2_0.04_170/0.45)] backdrop-blur-xl sm:p-2.5">
         <div className="flex flex-row gap-2 lg:items-center lg:gap-3">
           <form
             role="search"
@@ -144,7 +144,7 @@ export function TripExplorer({
               }}
               onBlur={() => q !== state.q && set({ q })}
               placeholder="Search Everest, Poon Hill, Island Peak…"
-              className="h-11 w-full rounded-xl border border-line bg-snow pr-4 pl-11 text-sm outline-none transition focus:border-pine focus:bg-white focus:ring-4 focus:ring-pine/10"
+              className="h-11 w-full rounded-xl border border-line bg-snow pr-4 pl-11 text-sm outline-none transition focus:border-pine focus:bg-card focus:ring-4 focus:ring-pine/10"
             />
           </form>
           <div className="hidden lg:block">{controls("f")}</div>

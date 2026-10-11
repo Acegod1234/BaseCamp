@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { LineReveal, Parallax, Reveal } from "@/components/motion";
 import { breadcrumbLd } from "@/lib/seo";
+import { LogoOverlay } from "@/components/brand/logo-overlay";
 import { cn } from "@/lib/utils";
 
 export type Crumb = { name: string; path: string };
@@ -84,9 +85,12 @@ export function PageHero({
       </div>
       <div className="mx-auto mt-8 max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <Reveal y={20} delay={0.15}>
-          <Parallax className={cn("rounded-xl bg-snow-2", size === "lg" ? "aspect-[16/10] sm:aspect-[21/8]" : "aspect-[16/9] sm:aspect-[21/7]")} amount={6}>
-            <Image src={photo} alt="" fill preload quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover" />
-          </Parallax>
+          <div className="relative">
+            <Parallax className={cn("rounded-xl bg-snow-2", size === "lg" ? "aspect-[3/2] sm:aspect-[21/8]" : "aspect-[3/2] sm:aspect-[21/7]")} amount={6} minWidth={640}>
+              <Image src={photo} alt="" fill preload quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover sm:object-[50%_38%]" />
+            </Parallax>
+            <LogoOverlay className="hidden sm:block" />
+          </div>
         </Reveal>
       </div>
     </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   motion,
   useInView,
@@ -118,8 +118,20 @@ export function LineReveal({
 }
 
 /** A photograph that drifts against the scroll, for depth. */
-export function Parallax({ children, className, amount = 14 }: { children: React.ReactNode; className?: string; amount?: number }) {
-  const reduce = useReducedMotion();
+const wideQuery = (min: number) => `(min-width: ${min}px)`;
+
+/** Drifts its photograph against the scroll. `minWidth` keeps it still on smaller screens. */
+export function Parallax({ children, className, amount = 14, minWidth = 0 }: { children: React.ReactNode; className?: string; amount?: number; minWidth?: number }) {
+  const wide = useSyncExternalStore(
+    (cb) => {
+      const m = window.matchMedia(wideQuery(minWidth));
+      m.addEventListener("change", cb);
+      return () => m.removeEventListener("change", cb);
+    },
+    () => window.matchMedia(wideQuery(minWidth)).matches,
+    () => minWidth === 0,
+  );
+  const reduce = useReducedMotion() || !wide;
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [`-${amount}%`, `${amount}%`]);

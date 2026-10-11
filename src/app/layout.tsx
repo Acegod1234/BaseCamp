@@ -1,3 +1,4 @@
+import { ProseLightbox } from "@/components/prose-lightbox";
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, JetBrains_Mono, Manrope, Newsreader } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <WhatsappFab />
         <Integrations />
         <SmoothScroll />
+        <ProseLightbox />
         <JsonLd data={[organizationLd(), websiteLd()]} />
       </body>
     </html>

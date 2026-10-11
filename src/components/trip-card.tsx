@@ -74,7 +74,7 @@ export function TripCard({
         href={`/trip/${trip.slug}/`}
         className="relative flex h-full flex-col overflow-hidden rounded-[1.1rem] border border-line bg-card transition-[box-shadow,border-color] duration-500 group-hover:border-pine/30 group-hover:shadow-[0_22px_48px_-26px_oklch(0.25_0.05_210/0.45)]"
       >
-        <div className="relative aspect-[4/3.4] overflow-hidden bg-snow-2">
+        <div className="relative aspect-[3/2] overflow-hidden bg-snow-2">
           {trip.cover ? (
             <Image
               src={trip.cover.src}
@@ -82,13 +82,13 @@ export function TripCard({
               fill
               sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw"
               preload={priority}
-              quality={75}
-              className="object-cover transition-transform duration-[1100ms] ease-[var(--ease-trail)] group-hover:scale-[1.06]"
+              quality={80}
+              className="object-cover transition-transform duration-[1100ms] ease-[var(--ease-trail)] group-hover:scale-[1.03]"
             />
           ) : null}
           {off ? <span className="bg-crimson absolute top-3 left-3 rounded-full px-2.5 py-1 text-[0.68rem] font-bold text-white">{off}% Off</span> : null}
           {tag ? (
-            <span className="absolute right-3 bottom-3 rounded-full bg-white/95 px-3 py-1.5 text-[0.62rem] font-bold tracking-[0.08em] text-[#242a2c] uppercase shadow-sm">
+            <span className="absolute top-3 right-3 rounded-full bg-white/95 px-3 py-1.5 text-[0.62rem] font-bold tracking-[0.08em] text-[#242a2c] uppercase shadow-sm">
               {tag}
             </span>
           ) : null}

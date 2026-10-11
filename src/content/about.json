@@ -1,0 +1,71 @@
+{
+ "h1": "Tours and Trekking in Nepal with Base Camp Adventure",
+ "intro": [
+  "Base Camp Adventure is founded by a competent & professional local guide and running as an admirable travel and trekking company in Nepal. We are a leading travel and trekking company of Nepal that was established to create memorable and adventures tours and trekking in Nepal, Bhutan and Tibet. We are always available and ready to serve you and show you our experience on numerous exciting treks and tours. We have put our heart, soul and over many years of experience into our outstanding services.",
+  "We are passionate about providing real daring experiences that take you to the places you’ve anticipated to see with your own eyes. Our utmost priority is to make the best preparation of services to confirm the highest level of customer satisfaction. We are here to serve you and we are highly committed to that. So, please do not hesitate to contact us for any types of holidays. We are here to assist you and make your holiday truly the heavenly experience of your life time."
+ ],
+ "services": [
+  {
+   "title": "Trekking in Nepal",
+   "href": "/activities/trekking-in-nepal/",
+   "photo": "/photos/activity-trekking.webp",
+   "text": "A paradise for trekkers searching for landscape diversity and calm, Nepal is one of the most popular destinations for traveller that offer breath-taking and enthralling trekking routes."
+  },
+  {
+   "title": "Tour in Nepal",
+   "href": "/activities/nepal-tour/",
+   "photo": "/photos/activity-tour.webp",
+   "text": "Mention Nepal, and the vast majority will invoke pictures of the majestic Himalayan. Surely, eight of the world’s 10 tallest Mountains are situated here. However, the country is not only recognized for its high mountains but also for its one of a kind social legacy, aesthetic landmarks and extraordinary natural life."
+  },
+  {
+   "title": "Peak Climbing",
+   "href": "/activities/nepal-peak-climbing/",
+   "photo": "/photos/activity-peak.webp",
+   "text": null
+  },
+  {
+   "title": "Tibet Tour",
+   "href": "/activities/tours-in-tibet/",
+   "photo": "/photos/activity-tibet.webp",
+   "text": "The ancient kingdom of Tibet, also known as the roof of the world is best known for its one of a kind religion, culture and history. This small autonomous state situated in north East Asia offers a fascinating insight of culture, natural resources along with heavenly landscapes."
+  },
+  {
+   "title": "Bhutan Tour",
+   "href": "/activities/tours-in-bhutan/",
+   "photo": "/photos/activity-bhutan.webp",
+   "text": "Bhutan, the Land of the Thunder Dragon, situated in the lap of the Himalayas in South Asia is best described as the last Shangri-La, hidden in centuries old mystery."
+  }
+ ],
+ "why": [
+  {
+   "title": "Outstanding Service",
+   "icon": "award",
+   "text": "We take pride in the level of service we produce, which we produce through constant deliverance. We gain this through educating our service providers constantly on how they can better themselves."
+  },
+  {
+   "title": "Competent & Professional local guide",
+   "icon": "guide",
+   "text": "Our guides are from the local areas that you will be venturing into. Hiring local guides restores authenticity, brings you a personnel that knows the local lingo, promotes an ecosystem empowering rural communities by offering them jobs."
+  },
+  {
+   "title": "The real Experience of Nepal",
+   "icon": "mountain",
+   "text": "As mentioned earlier we put a great deal of effort into providing you with an in-depth knowledge of the country. Our guides, itineraries, and facilities are all geared towards providing you with the most authentic experience possible."
+  },
+  {
+   "title": "Customized Trips",
+   "icon": "route",
+   "text": "Traveling in Nepal is quite diverse, there is something for everyone here. Hence, our company has taken great efforts to make sure that every kind of traveling that one wants to experience here can do so with the help of our customized trip options."
+  },
+  {
+   "title": "Health and Safety",
+   "icon": "shield",
+   "text": "Traveling to the Himalayas means working through tricky trails and powering forward to the peaks. The climate, interesting landscape and lack of infrastructure could all be reason enough to put special focus on health and safety and this is exactly what we do."
+  },
+  {
+   "title": "Small to average group",
+   "icon": "users",
+   "text": "The flexibility in our itineraries also extends to groups of people we take with us. Our small group trips who want privacy as they travel can do so with our one or two people group trips. In this type of trips, the clients can intimately experience the Himalayas in solitude."
+  }
+ ]
+}

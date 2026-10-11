@@ -296,6 +296,7 @@
 .prose-trail ol { list-style: decimal; }
 .prose-trail li + li { margin-top: 0.45em; }
 .prose-trail img {
+  cursor: zoom-in;
   border-radius: 1rem;
   width: 100%;
   height: auto;
@@ -391,6 +392,13 @@
 }
 
 /* The photograph inside the hero title drifts slowly, so the type feels alive. */
+/* Sharper hero photographs where the browser can choose by pixel density. */
+@supports (background-image: image-set(url("a.webp") 1x)) {
+  .photo-text { background-image: var(--photo-set, var(--photo)); }
+  @media (max-width: 639px) {
+    .photo-text { background-image: var(--photo-sm, var(--photo)); }
+  }
+}
 @keyframes hero-drift {
   0% { background-size: 112% auto; }
   100% { background-size: 124% auto; }

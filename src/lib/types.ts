@@ -162,4 +162,37 @@ export type PhotoCredit = {
 export type MenuItem = { label: string; href: string; children?: MenuItem[] };
 
 /** A hero photograph chosen from the company's own uploads. */
-export type Photo = { src: string; w: number; h: number; trip: string | null };
+export type Photo = {
+  src: string;
+  w: number;
+  h: number;
+  trip: string | null;
+  credit?: { title: string; author: string; license: string; licenseUrl: string | null; source: string } | null;
+};
+
+/** Social work and community news, posted from the admin. */
+export type CommunityPost = {
+  slug: string;
+  title: string;
+  kind: "Relief" | "Sponsorship" | "Community" | "Environment";
+  place: string;
+  date: string | null;
+  summary: string;
+  html: string;
+  photos: Img[];
+  partners: string[];
+};
+
+/** A seasonal offer (Dashain, Tihar, New Year...), switched on from the admin. */
+export type Offer = {
+  slug: string;
+  title: string;
+  festival: string;
+  summary: string;
+  code: string | null;
+  percent: number | null;
+  starts: string | null;
+  ends: string | null;
+  trips: string[];
+  active: boolean;
+};

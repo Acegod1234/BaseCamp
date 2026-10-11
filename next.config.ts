@@ -47,10 +47,12 @@ const nextConfig: NextConfig = {
     "/wp-content/**": ["./src/content/media-redirects.json"],
   },
   images: {
-    deviceSizes: [640, 828, 1200, 1920],
+    deviceSizes: [640, 828, 1200, 1920, 2560, 3840],
     imageSizes: [96, 256, 384],
     qualities: [70, 75, 80, 85],
-    formats: ["image/avif", "image/webp"],
+    // WebP only: AVIF takes several times longer to encode, which made first
+    // visits wait on the optimiser. The sources are WebP already.
+    formats: ["image/webp"],
     minimumCacheTTL: 2_678_400,
   },
   async redirects() {

@@ -3,7 +3,10 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 import type {
+  CommunityPost,
+  Img,
   MenuItem,
+  Offer,
   Page,
   Photo,
   Post,
@@ -43,8 +46,19 @@ function load<T>(name: string, fallback: T): T {
   }
 }
 
+/** Per-day figures the admin adds on top of the imported itinerary (distance, walking time). */
+type DayExtras = Record<string, Record<string, { distanceKm?: number; hours?: number }>>;
+
+function withExtras(trips: Trip[], extras: DayExtras): Trip[] {
+  return trips.map((t) =>
+    extras[t.slug]
+      ? { ...t, itinerary: t.itinerary.map((d) => ({ ...d, ...extras[t.slug][String(d.day)] })) }
+      : t,
+  );
+}
+
 const data = cache(() => ({
-  trips: load<Trip[]>("trips", []),
+  trips: withExtras(load<Trip[]>("trips", []), load<DayExtras>("itinerary-extras", {})),
   posts: load<Post[]>("posts", []),
   pages: load<Page[]>("pages", []),
   team: load<TeamMember[]>("team", []),
@@ -58,6 +72,10 @@ const data = cache(() => ({
   }),
   menu: load<MenuItem[]>("menu", []),
   photos: load<Record<string, Photo>>("photos", {}),
+  community: load<CommunityPost[]>("community", []),
+  about: load<AboutContent | null>("about", null),
+  travellerPhotos: load<Record<string, (Img & { traveller: string; date?: string | null })[]>>("traveller-photos", {}),
+  offers: load<Offer[]>("offers", []),
 }));
 
 export function toCard(t: Trip): TripCard {
@@ -187,6 +205,47 @@ export function getRelatedTrips(trip: Trip, limit = 3): TripCard[] {
     .slice(0, limit)
     .map(({ t }) => toCard(t));
 }
+
+/* ------------------------------------------------------------------ about */
+
+export type AboutContent = {
+  h1: string;
+  intro: string[];
+  services: { title: string; href: string; photo: string; text: string | null }[];
+  why: { title: string; icon: string; text: string }[];
+};
+
+/** Photos travellers sent from a trip, posted from the admin. */
+export const getTravellerPhotos = (slug: string) => data().travellerPhotos[slug] ?? [];
+
+/** The About page's own words, as written on the live site. */
+export const getAbout = () => data().about;
+
+/* -------------------------------------------------------------- community */
+
+export const getCommunity = () => [...data().community].sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
+
+/* ----------------------------------------------------------------- offers */
+
+/** The festival offer running today, if the admin has switched one on. */
+export function getActiveOffer(now = new Date()): Offer | null {
+  const day = now.toISOString().slice(0, 10);
+  return data().offers.find((o) => o.active && (!o.starts || o.starts <= day) && (!o.ends || o.ends >= day)) ?? null;
+}
+
+/** Trips on offer: the festival's own list, or every trip with a reduced price. */
+export function getOfferTrips(offer: Offer | null): TripCard[] {
+  const cards = getTripCards();
+  if (offer?.trips.length) return offer.trips.map((s) => cards.find((c) => c.slug === s)).filter((c): c is TripCard => Boolean(c));
+  const saving = (c: TripCard) => (c.price?.regular ? c.price.regular - c.price.amount : 0);
+  return cards.filter((c) => saving(c) > 0).sort((a, b) => saving(b) - saving(a));
+}
+
+/** Photographs from Wikimedia Commons used on the site, with their credits. */
+export const getPhotoCredits = () =>
+  Object.entries(data().photos)
+    .filter(([, p]) => p.credit)
+    .map(([slot, p]) => ({ slot, ...p, credit: p.credit! }));
 
 export function getAllReviews() {
   return data()

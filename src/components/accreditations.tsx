@@ -21,7 +21,7 @@ export function Accreditations({ variant = "band" }: { variant?: "band" | "compa
   }
 
   return (
-    <section aria-label="Licences and memberships" className="border-b border-line bg-white">
+    <section aria-label="Licences and memberships" className="border-b border-line bg-card">
       <div className="mx-auto grid max-w-[90rem] gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[18rem_1fr] lg:items-center lg:gap-12">
         <div>
           <p className="eyebrow text-pine flex items-center gap-2">
@@ -31,7 +31,7 @@ export function Accreditations({ variant = "band" }: { variant?: "band" | "compa
             Licensed by the Government of Nepal. Members of TAAN and the Nepal Mountaineering Association since 2010.
           </p>
         </div>
-        <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7" gap={0.05}>
+        <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6" gap={0.05}>
           {site.affiliations.map((a) => (
             <StaggerItem key={a.name}>
               <a
@@ -39,9 +39,9 @@ export function Accreditations({ variant = "band" }: { variant?: "band" | "compa
                 target="_blank"
                 rel="noopener noreferrer"
                 title={a.name}
-                className="group flex h-full flex-col items-center justify-between gap-3 rounded-2xl border border-line bg-white p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:border-pine/30 hover:shadow-[0_18px_40px_-26px_oklch(0.2_0.04_170/0.5)]"
+                className="group flex h-full flex-col items-center justify-between gap-3 rounded-2xl border border-line bg-card p-3 text-center transition-all duration-300 hover:-translate-y-1 hover:border-pine/30 hover:shadow-[0_18px_40px_-26px_oklch(0.2_0.04_170/0.5)]"
               >
-                <span className="grid h-16 w-full place-items-center">
+                <span className="grid h-20 w-full place-items-center rounded-xl bg-white px-2">
                   <Image
                     src={a.logo}
                     alt={a.name}
