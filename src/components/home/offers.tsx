@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BadgePercent, Sparkles } from "lucide-react";
 import { Countdown, CopyCode } from "@/components/home/offer-bits";
 import { Stagger, StaggerItem } from "@/components/motion";
+import { Newsletter } from "@/components/newsletter";
 import { Accent, SectionHeading } from "@/components/section-heading";
 import { TripCard } from "@/components/trip-card";
 import type { Offer, TripCard as Card } from "@/lib/types";
@@ -64,6 +65,12 @@ export function Offers({ offer, trips, regionNames }: { offer: Offer | null; tri
               See every trip
             </Link>
           </div>
+        </div>
+        <div className="mb-8 flex flex-col gap-3 rounded-xl border border-line bg-snow-2 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+          <p className="text-sm text-ink-soft">
+            <strong className="text-ink">Hear about festival offers first.</strong> Dashain, Tihar and New Year offers by email.
+          </p>
+          <Newsletter source="offers" className="w-full sm:max-w-sm" />
         </div>
 
         <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props) {
   }
   const page = getPage(slug);
   if (!page) return {};
-  return meta({ path: `/${slug}/`, title: page.title, description: page.excerpt, seo: page.seo, image: page.cover });
+  return meta({ path: `/${slug}/`, title: page.title, description: page.excerpt || page.html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(), seo: page.seo, image: page.cover });
 }
 
 /** Trips that a guide is most likely about, by the words in its title. */

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, MessageSquare, Phone } from "lucide-react";
+import { ArrowRight, BadgeCheck, FileDown, Lock, MessageSquare, Phone, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import { WhatsappIcon } from "@/components/icons";
 import { openTripModal } from "@/components/trip/trip-modals";
 import { site, whatsappHref } from "@/lib/site";
@@ -9,45 +9,64 @@ import type { Price } from "@/lib/types";
 import { usd } from "@/lib/utils";
 
 /**
- * The booking box, laid out like the live site's: discount, "From" price
- * per adult, Book Now, Customize Trip, and "Need help with booking?".
+ * The booking box: discount and "From" price per adult, Book Now, Customize
+ * Trip, the program PDF, help, and the reasons it is safe to book.
  */
-export function BookingCard({ title, price }: { slug: string; title: string; price: Price | null; days: number }) {
+export function BookingCard({ slug, title, price }: { slug: string; title: string; price: Price | null; days: number }) {
   const off = price?.regular ? Math.round((1 - price.amount / price.regular) * 100) : 0;
   return (
-    <div className="overflow-hidden rounded-[1.8rem] border border-line bg-card shadow-[0_30px_60px_-40px_oklch(0.2_0.04_170/0.55)]">
-      <div className="bg-pine-deep aura relative overflow-hidden p-6 text-white">
+    <div className="overflow-hidden rounded-2xl border border-line bg-card shadow-[0_30px_60px_-40px_oklch(0.2_0.04_170/0.55)]">
+      <div className="bg-pine relative overflow-hidden p-6 text-white dark:bg-pine-deep">
+        <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.07]" />
         {off > 0 ? <span className="bg-crimson absolute top-5 right-5 rounded-full px-3 py-1 text-xs font-bold">{off}% Off</span> : null}
-        <p className="eyebrow text-marigold">{price ? "From" : "Book this trip"}</p>
+        <p className="relative text-[0.66rem] font-bold tracking-[0.16em] text-white/75 uppercase">{price ? "From, per adult" : "Book this trip"}</p>
         {price ? (
-          <div className="mt-2 flex flex-wrap items-end gap-x-3 gap-y-1">
-            {price.regular ? <span className="pb-1.5 text-lg text-white/55 line-through">{usd(price.regular)}</span> : null}
-            <span className="font-display text-6xl font-black leading-none">{usd(price.amount)}</span>
-            <span className="pb-1.5 text-sm text-white/70">/ Adult</span>
+          <div className="relative mt-2 flex flex-wrap items-end gap-x-3 gap-y-1">
+            {price.regular ? <span className="pb-1 text-lg text-white/60 line-through">{usd(price.regular)}</span> : null}
+            <span className="font-display text-5xl leading-none">{usd(price.amount)}</span>
           </div>
         ) : (
-          <p className="font-display mt-2 text-4xl font-black uppercase leading-none">Price on request</p>
+          <p className="font-display relative mt-2 text-4xl leading-none">Price on request</p>
         )}
       </div>
 
-      <div className="space-y-3 p-6">
+      <div className="space-y-2.5 p-5">
         {price ? (
-          <button type="button" onClick={() => openTripModal("book")} className="bg-marigold text-pine-night flex w-full items-center justify-center gap-2 rounded-full py-4 font-bold transition-colors hover:bg-pine hover:text-white">
+          <button type="button" onClick={() => openTripModal("book")} className="bg-pine hover:bg-pine-deep flex w-full items-center justify-center gap-2 rounded-lg py-3.5 font-bold text-white transition-colors">
             Book Now <ArrowRight className="size-4" aria-hidden />
           </button>
         ) : null}
-        <Link href={`/customize-trip/?trip=${encodeURIComponent(title)}`} className="flex w-full items-center justify-center gap-2 rounded-full border border-line py-4 font-bold transition-colors hover:border-pine">
-          Customize Trip
+        <Link href={`/customize-trip/?trip=${encodeURIComponent(slug)}#request`} className="flex w-full items-center justify-center gap-2 rounded-lg border border-line py-3.5 font-bold transition-colors hover:border-pine">
+          <SlidersHorizontal className="size-4" aria-hidden /> Customize Trip
         </Link>
-        <div className="rounded-2xl bg-snow-2 p-4 text-center">
+        <a href={`/trip/${slug}/itinerary.pdf`} download className="hover:text-pine flex w-full items-center justify-center gap-2 py-2 text-sm font-semibold text-ink-soft">
+          <FileDown className="size-4" aria-hidden /> Download trip program (PDF)
+        </a>
+        <div className="rounded-xl bg-snow-2 p-3.5 text-center">
           <p className="text-sm font-semibold">Need help with booking?</p>
-          <button type="button" onClick={() => openTripModal("enquire")} className="text-pine mt-1 inline-flex items-center gap-1.5 text-sm font-bold hover:underline">
+          <button type="button" onClick={() => openTripModal("enquire")} className="text-pine mt-0.5 inline-flex items-center gap-1.5 text-sm font-bold hover:underline">
             <MessageSquare className="size-4" aria-hidden /> Send Us A Message
           </button>
         </div>
       </div>
 
-      <div className="flex items-center gap-3 border-t border-line bg-snow p-5">
+      {/* Why it is safe to book */}
+      <ul className="grid gap-2.5 border-t border-line px-5 py-4 text-[0.8rem] text-ink-soft">
+        <li className="flex items-start gap-2.5">
+          <ShieldCheck className="text-pine mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>Licensed by the Government of Nepal · Reg. {site.registration[0].value} · TAAN {site.registration[3].value}</span>
+        </li>
+        <li className="flex items-start gap-2.5">
+          <Lock className="text-pine mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>Secure online payment with WeTravel</span>
+        </li>
+        <li className="flex items-start gap-2.5">
+          <BadgeCheck className="text-pine mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>No hidden fees · Experienced local guides</span>
+        </li>
+      </ul>
+
+      <div className="flex items-center gap-3 border-t border-line bg-snow p-4">
         <div className="min-w-0 flex-1">
           <p className="text-sm font-bold">Available 24/7 - Call Us Anytime</p>
           <a href={`tel:${site.mobileHref}`} className="text-pine inline-flex items-center gap-1.5 text-sm">
@@ -71,7 +90,7 @@ export function MobileBookingBar({ price }: { slug: string; title: string; price
           {price ? (
             <>
               <p className="text-[0.68rem] font-semibold tracking-wide text-muted uppercase">From</p>
-              <p className="font-display text-3xl font-black leading-none">
+              <p className="font-display text-3xl leading-none">
                 {usd(price.amount)} <span className="text-sm font-semibold text-muted normal-case">/ Adult</span>
               </p>
             </>
@@ -80,11 +99,11 @@ export function MobileBookingBar({ price }: { slug: string; title: string; price
           )}
         </div>
         <div className="flex shrink-0 gap-2">
-          <button type="button" onClick={() => openTripModal("enquire")} aria-label="Send Us A Message" className="grid size-12 place-items-center rounded-full border border-line bg-card">
+          <button type="button" onClick={() => openTripModal("enquire")} aria-label="Send Us A Message" className="grid size-12 place-items-center rounded-lg border border-line bg-card">
             <MessageSquare className="size-5" aria-hidden />
           </button>
           {price ? (
-            <button type="button" onClick={() => openTripModal("book")} className="bg-marigold text-pine-night inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-bold">
+            <button type="button" onClick={() => openTripModal("book")} className="bg-pine inline-flex items-center gap-2 rounded-lg px-5 py-3.5 font-bold text-white">
               Book Now <ArrowRight className="size-4" aria-hidden />
             </button>
           ) : null}

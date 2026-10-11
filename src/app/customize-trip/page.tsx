@@ -1,6 +1,8 @@
-import { CustomTripForm } from "@/components/enquiry-forms";
-import { Reveal } from "@/components/motion";
+import { Suspense } from "react";
 import { PageHero } from "@/components/page-hero";
+import { Accent, SectionHeading } from "@/components/section-heading";
+import { TripRequest, type RequestTrip } from "@/components/trip-request";
+import { getTripCards } from "@/lib/content";
 import { meta } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -11,6 +13,10 @@ export const metadata = meta({
 });
 
 export default function CustomizeTripPage() {
+  const trips: RequestTrip[] = getTripCards()
+    .map((t) => ({ slug: t.slug, title: t.title, days: t.days, price: t.price?.amount ?? null }))
+    .sort((a, b) => a.title.localeCompare(b.title));
+
   return (
     <>
       <PageHero
@@ -21,19 +27,12 @@ export default function CustomizeTripPage() {
         photo="/photos/page-customize.webp"
         crumbs={[{ name: "Customize your trip", path: "/customize-trip/" }]}
       />
-      <section className="mx-auto grid max-w-[90rem] gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.3fr_0.7fr]">
-        <Reveal>
-          <div className="rounded-[2rem] border border-line bg-card p-6 sm:p-10">
-            <CustomTripForm />
-          </div>
-        </Reveal>
-        <div className="space-y-4">
-          <div className="bg-pine-deep aura relative overflow-hidden rounded-[1.4rem] p-6 text-white">
-            <p className="eyebrow text-marigold">Need help?</p>
-            <p className="mt-2 text-lg font-bold">Available 24/7 - Call Us Anytime</p>
-            <a href={`tel:${site.mobileHref}`} className="mt-1 block font-semibold text-white/85">+977 9851 029616 [Shree]</a>
-            <a href={`mailto:${site.email}`} className="mt-1 block text-white/75">{site.email}</a>
-          </div>
+      <section id="request" className="mx-auto max-w-[90rem] scroll-mt-28 px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+        <SectionHeading eyebrow="Four short steps" lines={["Start your", <Accent key="r">trip request.</Accent>]} />
+        <div className="mt-10">
+          <Suspense fallback={<div className="h-[36rem] rounded-2xl border border-line bg-card" />}>
+            <TripRequest trips={trips} />
+          </Suspense>
         </div>
       </section>
     </>

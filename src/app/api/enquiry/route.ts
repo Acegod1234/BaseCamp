@@ -3,7 +3,7 @@ import { z } from "zod";
 import { rateLimited, record, reference } from "@/lib/server/store";
 
 const schema = z.object({
-  kind: z.enum(["contact", "custom-trip"]).default("contact"),
+  kind: z.enum(["contact", "custom-trip", "trip-request"]).default("contact"),
   name: z.string().trim().min(2, "Please tell us your name").max(120),
   email: z.email("That email address doesn't look right").max(200),
   phone: z.string().trim().max(40).optional().or(z.literal("")),
@@ -16,6 +16,11 @@ const schema = z.object({
   interests: z.array(z.string().max(60)).max(20).optional(),
   fitness: z.string().trim().max(60).optional().or(z.literal("")),
   message: z.string().trim().max(5000).optional().or(z.literal("")),
+  // Trip request extras.
+  tripSlug: z.string().trim().max(200).optional().or(z.literal("")),
+  places: z.array(z.string().max(60)).max(20).optional(),
+  style: z.string().trim().max(40).optional().or(z.literal("")),
+  contactBy: z.enum(["Email", "WhatsApp", "Phone"]).optional(),
   // Honeypot: real people never see this field.
   website: z.string().max(0).optional().or(z.literal("")),
 });

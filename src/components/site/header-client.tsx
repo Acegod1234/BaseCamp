@@ -9,6 +9,7 @@ import { ArrowRight, ChevronDown, Menu as MenuIcon, Phone, X } from "lucide-reac
 import { Logo } from "@/components/brand/logo";
 import { WhatsappIcon } from "@/components/icons";
 import { Portal } from "@/components/portal";
+import { SearchButton, SiteSearch } from "@/components/site/search";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { site, whatsappHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -145,8 +146,9 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
             </nav>
 
             <div className="ml-auto flex items-center gap-1.5 lg:ml-0">
+              <SearchButton />
               <ThemeToggle />
-              <Link href="/contact-us/" className="bg-pine hover:bg-pine-deep hidden rounded-lg px-5 py-3 text-sm font-bold text-white transition-colors sm:inline-flex">
+              <Link href="/customize-trip/" className="bg-pine hover:bg-pine-deep hidden rounded-lg px-5 py-3 text-sm font-bold text-white transition-colors sm:inline-flex">
                 Plan your trip
               </Link>
               <button type="button" onClick={() => setMobile(true)} aria-label="Open menu" aria-expanded={mobile} className="grid size-10 place-items-center rounded-lg border border-line text-ink lg:hidden">
@@ -156,6 +158,7 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
           </div>
         </div>
       </header>
+      <SiteSearch />
 
       <Portal>
         <AnimatePresence>
@@ -202,7 +205,7 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
                 </Link>
               </nav>
               <div className="grid shrink-0 gap-2 border-t border-line bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
-                <Link href="/contact-us/" className="bg-pine rounded-lg py-3.5 text-center font-bold text-white">Plan your trip</Link>
+                <Link href="/customize-trip/" className="bg-pine rounded-lg py-3.5 text-center font-bold text-white">Plan your trip</Link>
                 <div className="grid grid-cols-2 gap-2">
                   <a href={`tel:${site.mobileHref}`} className="flex items-center justify-center gap-2 rounded-lg border border-line py-3 text-sm font-bold">
                     <Phone className="size-4" aria-hidden /> Call 24/7

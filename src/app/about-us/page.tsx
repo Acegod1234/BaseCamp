@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Award, Compass, HeartPulse, Mountain, Route, Users } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
+import { Awards } from "@/components/awards";
 import { CommunityCards } from "@/components/community-cards";
 import { CountUp, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PageHero } from "@/components/page-hero";
 import { PhotoGlow } from "@/components/photo-glow";
 import { Accent, SectionHeading } from "@/components/section-heading";
-import { getAbout, getCommunity, getPage, getTeam, getTrips, getTripsIn } from "@/lib/content";
+import { getAbout, getAwards, getCommunity, getPage, getTeam, getTrips, getTripsIn } from "@/lib/content";
 import { meta } from "@/lib/seo";
 import { site, whatsappHref } from "@/lib/site";
 
@@ -214,6 +215,10 @@ export default function AboutPage() {
         </div>
         <div className="mt-4">
           <Accreditations />
+        </div>
+        <div id="awards" className="mx-auto max-w-[90rem] scroll-mt-28 px-4 pt-10 sm:px-6 lg:px-8">
+          <p className="eyebrow text-pine mb-4">Awards &amp; recognition</p>
+          <Awards awards={getAwards()} />
         </div>
         <div className="mx-auto flex max-w-[90rem] flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <p className="font-mono text-xs text-ink-soft sm:text-sm">{site.registration.map((r) => `${r.label} ${r.value}`).join("  ·  ")}</p>

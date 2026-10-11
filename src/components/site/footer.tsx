@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUp, Mail, MapPin, Phone } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
 import { Logo } from "@/components/brand/logo";
+import { Newsletter } from "@/components/newsletter";
 import { FacebookIcon, InstagramIcon, WhatsappIcon, XIcon } from "@/components/icons";
 import { site, whatsappHref } from "@/lib/site";
 
@@ -33,7 +34,7 @@ export function SiteFooter() {
           <div className="max-w-sm">
             <p className="text-ink-soft">Choose an itinerary or talk to our local team about a journey built around you.</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/contact-us/" className="rounded-lg bg-[#00afc4] px-6 py-3.5 text-sm font-bold text-[#0f2a30] transition-colors hover:bg-pine hover:text-white">
+              <Link href="/customize-trip/" className="rounded-lg bg-[#00afc4] px-6 py-3.5 text-sm font-bold text-[#0f2a30] transition-colors hover:bg-pine hover:text-white">
                 Plan your trip
               </Link>
               <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-line px-5 py-3.5 text-sm font-semibold">
@@ -47,7 +48,15 @@ export function SiteFooter() {
       <div className="relative overflow-hidden bg-[#1c2224] text-white/75">
         <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.05]" />
         <div aria-hidden className="absolute -top-40 right-[-10%] size-[36rem] rounded-full bg-[#00afc4]/15 blur-[120px]" />
-        <div className="relative mx-auto max-w-[90rem] px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-20">
+        <div className="relative mx-auto max-w-[90rem] px-4 pt-12 pb-8 sm:px-6 lg:px-8 lg:pt-14">
+          {/* Newsletter: email only */}
+          <div className="mb-12 flex flex-col gap-5 border-b border-white/10 pb-10 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="eyebrow text-[#3ccbdc]">Newsletter</p>
+              <p className="font-display mt-2 text-2xl text-white">Trip ideas and festival offers, by email.</p>
+            </div>
+            <Newsletter source="footer" tone="dark" className="w-full max-w-md" />
+          </div>
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.3fr] lg:gap-16">
             <div>
               <Logo className="hidden w-[132px] dark:block" />

@@ -13,7 +13,7 @@ import path from "node:path";
 // between cold starts: fine for a preview, and the admin database replaces it.
 const dir = process.env.VERCEL ? "/tmp/bca-data" : path.join(process.cwd(), ".data");
 
-export async function record(kind: "enquiries" | "bookings", entry: Record<string, unknown>) {
+export async function record(kind: "enquiries" | "bookings" | "newsletter", entry: Record<string, unknown>) {
   const line = JSON.stringify({ kind, ...entry, at: new Date().toISOString() });
   // Always in the server log, so nothing is lost even if the disk write fails.
   console.info(`[${kind}] ${line}`);

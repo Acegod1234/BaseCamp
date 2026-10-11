@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { CONTENT_REDIRECTS } from "./src/lib/redirects";
 
 /**
  * Content Security Policy.
@@ -37,6 +38,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // pdfkit reads its built-in font metrics from its own folder at runtime.
+  serverExternalPackages: ["pdfkit"],
   // WordPress served every URL with a trailing slash. Matching it means not a
   // single indexed URL changes shape on the day of the switch.
   trailingSlash: true,
@@ -45,6 +48,8 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/**": ["./src/content/trips.json"],
     "/wp-content/**": ["./src/content/media-redirects.json", "./src/content/media-files.json"],
+    // The trip program PDF is set in the site's own fonts.
+    "/trip/**": ["./node_modules/@fontsource/manrope/files/manrope-latin-{600,700}-normal.woff", "./node_modules/@fontsource/dm-sans/files/dm-sans-latin-{400,500,700}-normal.woff"],
   },
   images: {
     deviceSizes: [640, 828, 1200, 1920, 2560, 3840],
@@ -86,6 +91,9 @@ const nextConfig: NextConfig = {
       { source: "/trip_tag/:path*", destination: "/trip/", permanent: true },
       { source: "/destinations/", destination: "/destination/", permanent: true },
       { source: "/photo-credits/", destination: "/gallery/", permanent: true },
+      // Old addresses linked from inside the imported content (src/lib/redirects.ts).
+      ...CONTENT_REDIRECTS.map((r) => ({ ...r, permanent: true })),
+      { source: "/category/:path*/page/:n/", destination: "/category/:path*/", permanent: true },
     ];
   },
   async headers() {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Clock, PenLine } from "lucide-react";
-import { FacebookIcon, WhatsappIcon, XIcon } from "@/components/icons";
+import { ShareBar, TableOfContents } from "@/components/article-tools";
+import { Newsletter } from "@/components/newsletter";
 import { ReadingProgress, Reveal } from "@/components/motion";
 import { PageHero, type Crumb } from "@/components/page-hero";
 import { PostCard } from "@/components/post-card";
@@ -40,8 +41,9 @@ export function ArticleLayout({
   related?: PCard[];
   categoryNames?: Record<string, string>;
 }) {
-  const share = encodeURIComponent(abs(path));
-  const headings = toc.filter((t) => t.level === 2);
+  // Main headings; with only a couple of them, their sub-headings too.
+  const main = toc.filter((t) => t.level === 2);
+  const headings = main.length > 2 ? main : toc.filter((t) => t.level <= 3);
 
   return (
     <>
@@ -62,31 +64,31 @@ export function ArticleLayout({
 
       <div className="mx-auto grid max-w-[90rem] gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[15rem_minmax(0,1fr)_20rem] lg:gap-14">
         <aside className="hidden lg:block">
-          {headings.length > 2 ? (
-            <nav aria-label="On this page" className="sticky top-32">
-              <p className="eyebrow text-pine">On this page</p>
-              <ol className="mt-4 space-y-2 border-l border-line text-sm">
-                {headings.map((h) => (
-                  <li key={h.id}>
-                    <a href={`#${h.id}`} className="-ml-px block border-l-2 border-transparent py-1 pl-4 text-ink-soft transition-colors hover:border-marigold hover:text-ink">
-                      {h.text}
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </nav>
-          ) : null}
+          {headings.length > 2 ? <TableOfContents headings={headings} variant="side" /> : null}
         </aside>
 
         <article className="min-w-0">
+          {headings.length > 2 ? <TableOfContents headings={headings} variant="inline" /> : null}
           <Reveal>
             <div className="prose-trail mx-auto" dangerouslySetInnerHTML={{ __html: html }} />
           </Reveal>
-          <div className="mx-auto mt-14 flex max-w-[72ch] flex-wrap items-center gap-3 border-t border-line pt-8">
-            <span className="text-sm font-semibold">Share</span>
-            <a aria-label="Share on Facebook" href={`https://www.facebook.com/sharer/sharer.php?u=${share}`} target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full border border-line hover:border-pine"><FacebookIcon className="size-4" /></a>
-            <a aria-label="Share on X" href={`https://x.com/intent/post?url=${share}&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full border border-line hover:border-pine"><XIcon className="size-3.5" /></a>
-            <a aria-label="Share on WhatsApp" href={`https://wa.me/?text=${encodeURIComponent(`${title} ${abs(path)}`)}`} target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-full border border-line hover:border-pine"><WhatsappIcon className="size-4" /></a>
+          <div className="mx-auto mt-14 max-w-[72ch] space-y-8 border-t border-line pt-8">
+            <ShareBar url={abs(path)} title={title} />
+            {trips.length ? (
+              <div>
+                <p className="eyebrow text-pine">Trips for this guide</p>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  {trips.slice(0, 2).map((t) => (
+                    <TripCard key={t.slug} trip={t} />
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            <div className="rounded-xl border border-line bg-snow-2 p-5">
+              <p className="font-display text-xl text-ink">Enjoyed this guide?</p>
+              <p className="mt-1 text-sm text-ink-soft">Get new guides, trip ideas and festival offers by email.</p>
+              <Newsletter source="blog" className="mt-4" />
+            </div>
           </div>
         </article>
 
@@ -96,11 +98,11 @@ export function ArticleLayout({
               <p className="eyebrow text-glacier">Base Camp Adventure</p>
               <p className="font-display mt-2 text-2xl leading-tight">Customize Your Trip</p>
               <p className="mt-2 text-sm text-white/80">{site.customize}</p>
-              <Link href="/customize-trip/" className="bg-marigold text-pine-night mt-5 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold">
+              <Link href="/customize-trip/#request" className="mt-5 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-[#006c7c]">
                 Customize Trip <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
-            {trips.slice(0, 2).map((t) => (
+            {trips.slice(2, 4).map((t) => (
               <TripCard key={t.slug} trip={t} />
             ))}
           </div>

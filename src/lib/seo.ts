@@ -9,6 +9,14 @@ function bareTitle(title: string | null | undefined) {
   return (title ?? "").replace(/\s*[-|–]\s*Base Camp Adventure\s*$/i, "").trim();
 }
 
+/** Search results show about 160 characters: cut longer text at a word, with an ellipsis. */
+function clip(text: string, max = 160) {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max - 1);
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), max - 30)).replace(/[\s,;:.–-]+$/, "")}…`;
+}
+
 /**
  * Page metadata. Imported Yoast values win, so titles and descriptions that
  * rank today are carried over word for word.
@@ -40,7 +48,7 @@ export function meta({
 }): Metadata {
   const finalTitle = bareTitle(seo?.title) || title;
   const base = seo?.description || description || site.description;
-  const finalDescription = lead ? `${lead} ${base}` : base;
+  const finalDescription = clip(lead ? `${lead} ${base}` : base);
   const imgSrc = typeof image === "string" ? image : image?.src;
   const og = imgSrc ?? "/photos/home-banner.webp";
   return {
@@ -217,21 +225,27 @@ export function tripLd(trip: Trip) {
         : undefined,
       offers: offer,
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "@id": `${url}#product`,
-      name: trip.title,
-      description: trip.summary,
-      image: images,
-      sku: trip.code ?? String(trip.id),
-      url,
-      category: "Travel > Tours > Trekking",
-      brand: { "@type": "Brand", name: site.name },
-      offers: offer,
-      aggregateRating: rating,
-      review: reviews.length ? reviews : undefined,
-    },
+    // Product (price and stars in search results) only when there is a price
+    // or a review to show; Google rejects a Product with neither.
+    ...(offer || rating || reviews.length
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "@id": `${url}#product`,
+            name: trip.title,
+            description: trip.summary,
+            image: images,
+            sku: trip.code ?? String(trip.id),
+            url,
+            category: "Travel > Tours > Trekking",
+            brand: { "@type": "Brand", name: site.name },
+            offers: offer,
+            aggregateRating: rating,
+            review: reviews.length ? reviews : undefined,
+          },
+        ]
+      : []),
     ...(trip.faqs.length ? [faqLd(trip.faqs)] : []),
     {
       "@context": "https://schema.org",
@@ -245,6 +259,22 @@ export function tripLd(trip: Trip) {
         .map((im) => imageLd(im)),
     },
   ];
+}
+
+/** VideoObject, so the videos can appear in Google's video results. */
+export function videoLd(v: { id: string; title: string; description: string | null; uploadDate: string | null; duration: string | null }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: v.title,
+    description: v.description || v.title,
+    thumbnailUrl: [`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`, `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`],
+    uploadDate: v.uploadDate ?? undefined,
+    duration: v.duration ?? undefined,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${v.id}`,
+    contentUrl: `https://www.youtube.com/watch?v=${v.id}`,
+    publisher: { "@id": `${site.url}/#organization` },
+  };
 }
 
 export function faqLd(faqs: { q: string; a: string }[]) {

@@ -1,4 +1,6 @@
 import "server-only";
+import { resolveOldPath } from "@/lib/redirects";
+import { tripInfo, type InfoOverrides } from "@/lib/trip-info";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
@@ -15,6 +17,8 @@ import type {
   TeamMember,
   Trip,
   TripCard,
+  Video,
+  Award,
 } from "@/lib/types";
 
 /**
@@ -36,18 +40,36 @@ const MEASURE = /<span class="measurement" data-meters="(\d+)">[^<]*<\/span>/g;
 const withFeet = (s: string) =>
   s.replace(MEASURE, (_m, m: string) => `${Number(m).toLocaleString("en-US")} m / ${Math.round(Number(m) * 3.28084).toLocaleString("en-US")} ft`);
 
+/**
+ * Links inside imported text go straight to the final page: old WordPress
+ * addresses are rewritten (src/lib/redirects.ts) and internal paths get the
+ * trailing slash every URL here has, so no link costs a redirect.
+ */
+const HREF = /href="(https?:\/\/(?:www\.)?basecampadventure\.com)?(\/[^"#?]*)([^"]*)"/g;
+const directLinks = (s: string) =>
+  s.replace(HREF, (m, origin: string | undefined, p: string, rest: string) => {
+    if (p.startsWith("/wp-content/")) return m;
+    const target = resolveOldPath(p);
+    if (target) return `href="${target}${rest}"`;
+    if (!/\.\w+$/.test(p) && !p.endsWith("/")) return `href="${origin ?? ""}${p}/${rest}"`;
+    return m;
+  });
+
 function load<T>(name: string, fallback: T): T {
   try {
-    return JSON.parse(readFileSync(path.join(dir, `${name}.json`), "utf8"), (_k, v) =>
-      typeof v === "string" && v.includes('class="measurement"') ? withFeet(v) : v,
-    ) as T;
+    return JSON.parse(readFileSync(path.join(dir, `${name}.json`), "utf8"), (_k, v) => {
+      if (typeof v !== "string") return v;
+      let s = v.includes('class="measurement"') ? withFeet(v) : v;
+      if (s.includes('href="')) s = directLinks(s);
+      return s;
+    }) as T;
   } catch {
     return fallback;
   }
 }
 
 /** Per-day figures the admin adds on top of the imported itinerary (distance, walking time). */
-type DayExtras = Record<string, Record<string, { distanceKm?: number; hours?: number }>>;
+type DayExtras = Record<string, Record<string, { distanceKm?: number; hours?: number; accommodation?: string; images?: Img[] }>>;
 
 function withExtras(trips: Trip[], extras: DayExtras): Trip[] {
   return trips.map((t) =>
@@ -74,6 +96,9 @@ const data = cache(() => ({
   photos: load<Record<string, Photo>>("photos", {}),
   community: load<CommunityPost[]>("community", []),
   about: load<AboutContent | null>("about", null),
+  videos: load<Video[]>("videos", []),
+  awards: load<Award[]>("awards", []),
+  tripInfo: load<Record<string, InfoOverrides>>("trip-info", {}),
   travellerPhotos: load<Record<string, (Img & { traveller: string; date?: string | null })[]>>("traveller-photos", {}),
   offers: load<Offer[]>("offers", []),
 }));
@@ -214,6 +239,20 @@ export type AboutContent = {
   services: { title: string; href: string; photo: string; text: string | null }[];
   why: { title: string; icon: string; text: string }[];
 };
+
+/** "Trip information" for a trip: real values only, with the admin's overrides. */
+export function getTripInfo(trip: Trip) {
+  const region = trip.destinations[0] ? getDestination(trip.destinations[0])?.name : null;
+  const activity = trip.activities[0] ? getActivity(trip.activities[0])?.name : null;
+  return tripInfo(trip, { region, activity, overrides: data().tripInfo[trip.slug] });
+}
+
+/** Awards, newest first. */
+export const getAwards = () => [...data().awards].sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+
+/** The company's videos: those for one trip, or the featured ones. */
+export const getVideosForTrip = (slug: string) => data().videos.filter((v) => v.trips.includes(slug));
+export const getFeaturedVideos = () => data().videos.filter((v) => v.featured);
 
 /** Photos travellers sent from a trip, posted from the admin. */
 export const getTravellerPhotos = (slug: string) => data().travellerPhotos[slug] ?? [];

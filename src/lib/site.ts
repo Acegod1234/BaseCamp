@@ -36,6 +36,8 @@ export const site = {
     facebook: "https://www.facebook.com/BaseCampAdventure/",
     instagram: "https://www.instagram.com/base.camp.adventure/",
     x: "https://x.com/basecampadven",
+    // The company's Tripadvisor listing (from the review widget on the old site).
+    tripadvisor: "https://www.tripadvisor.com/Attraction_Review-g293890-d2437309-Reviews-Base_Camp_Adventure-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central_Region.html",
   },
   registration: [
     { label: "Govt. Reg.", value: "68517/066/067" },
@@ -49,7 +51,7 @@ export const site = {
     { name: "Nepal Mountaineering Association", short: "NMA · Member 776", logo: "/brand/partners/nma.png", w: 252, h: 220, href: "https://www.nepalmountaineering.org/" },
     { name: "Himalayan Rescue Association", short: "HRA · Partner", logo: "/brand/partners/hra.png", w: 221, h: 220, href: "https://himalayanrescue.org/" },
     { name: "Kathmandu Environmental Education Project", short: "KEEP · Partner", logo: "/brand/partners/keep.png", w: 170, h: 220, href: "https://keepnepal.org/" },
-    { name: "Tripadvisor", short: "Traveller reviews", logo: "/brand/partners/tripadvisor.png", w: 245, h: 220, href: "https://www.tripadvisor.com/" },
+    { name: "Tripadvisor", short: "Traveller reviews", logo: "/brand/partners/tripadvisor.png", w: 245, h: 220, href: "https://www.tripadvisor.com/Attraction_Review-g293890-d2437309-Reviews-Base_Camp_Adventure-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central_Region.html" },
   ],
   integrations: {
     ga4: process.env.NEXT_PUBLIC_GA4_ID ?? "",

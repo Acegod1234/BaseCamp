@@ -1,21 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowRight,
-  BedDouble,
-  Check,
-  Clock,
-  Flag,
-  Gauge,
-  Info,
-  MapPin,
-  Mountain,
-  Star,
-  Users,
-  X,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowRight, Backpack, Check, Clock, Compass, FileDown, Flag, Gauge, Info, MapPin, Mountain, Route, Star, Sun, Users, X, type LucideIcon } from "lucide-react";
 import { AltitudeProfile } from "@/components/altitude-profile";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
@@ -29,9 +15,11 @@ import { Itinerary } from "@/components/trip/itinerary";
 import { SectionNav } from "@/components/trip/section-nav";
 import { TripModals } from "@/components/trip/trip-modals";
 import { TripCard } from "@/components/trip-card";
-import { getActivity, getDestination, getGuidesForRegion, getRelatedTrips, getTravellerPhotos, getTrip, getTrips } from "@/lib/content";
-import { meta, tripLd, tripLead } from "@/lib/seo";
-import { difficultyLabel, whatsappHref } from "@/lib/site";
+import { getActivity, getDestination, getGuidesForRegion, getRelatedTrips, getTravellerPhotos, getTrip, getTripInfo, getTrips, getVideosForTrip } from "@/lib/content";
+import type { InfoKey } from "@/lib/trip-info";
+import { meta, tripLd, tripLead, videoLd } from "@/lib/seo";
+import { YouTube } from "@/components/video";
+import { whatsappHref } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -49,14 +37,17 @@ export async function generateMetadata({ params }: Props) {
   return meta({ path: `/trip/${trip.slug}/`, title: trip.title, description: trip.summary, seo: trip.seo, image: trip.cover, lead: tripLead(trip), price: trip.price?.amount });
 }
 
-const FACT_ICONS: Record<string, LucideIcon> = {
+const INFO_ICONS: Record<InfoKey, LucideIcon> = {
   duration: Clock,
-  location: MapPin,
-  destinations: Flag,
-  accommodation: BedDouble,
-  "group size": Users,
-  "highest elevation": Mountain,
+  start: MapPin,
+  end: Flag,
+  altitude: Mountain,
+  group: Users,
+  distance: Route,
   difficulty: Gauge,
+  destination: Compass,
+  type: Backpack,
+  season: Sun,
 };
 
 export default async function TripPage({ params }: Props) {
@@ -71,13 +62,10 @@ export default async function TripPage({ params }: Props) {
   const sharpest = [trip.cover, ...trip.gallery].filter((x): x is NonNullable<typeof x> => Boolean(x) && x!.w >= x!.h).sort((a, b) => b.w - a.w)[0] ?? trip.cover;
   const photos = [trip.cover, ...trip.gallery].filter((x, i, a): x is NonNullable<typeof x> => Boolean(x) && a.findIndex((y) => y?.src === x?.src) === i);
   const travellerPhotos = getTravellerPhotos(trip.slug);
+  const videos = getVideosForTrip(trip.slug);
   const altitudeDays = trip.itinerary.filter((d) => d.altitude).length >= 3 ? trip.itinerary : [];
 
-  const facts = [
-    ...trip.facts.filter((f) => !/highest elevation/i.test(f.label)),
-    ...(trip.maxAltitude ? [{ label: "Highest elevation", value: `${trip.maxAltitude.toLocaleString("en-US")} m` }] : []),
-    ...(trip.difficulty ? [{ label: "Difficulty", value: difficultyLabel[trip.difficulty] ?? trip.difficulty }] : []),
-  ];
+  const info = getTripInfo(trip);
 
   const nav = [
     { id: "overview", label: "Overview" },
@@ -86,6 +74,7 @@ export default async function TripPage({ params }: Props) {
     ...(trip.includes.length || trip.excludes.length ? [{ id: "included", label: "What's included" }] : []),
     ...trip.sections.map((s) => ({ id: s.id, label: s.title.length > 22 ? `${s.title.slice(0, 20)}…` : s.title })),
     ...(trip.map ? [{ id: "route-map", label: "Route map" }] : []),
+    ...(videos.length ? [{ id: "videos", label: "Videos" }] : []),
     { id: "gallery", label: "Gallery" },
     ...(trip.faqs.length ? [{ id: "faqs", label: "FAQs" }] : []),
     ...(trip.reviews.length ? [{ id: "reviews", label: "Reviews" }] : []),
@@ -124,19 +113,20 @@ export default async function TripPage({ params }: Props) {
           <TripSlider images={[...(sharpest ? [sharpest] : []), ...photos.filter((p) => p.src !== sharpest?.src)]} title={trip.title} />
         </div>
 
-        {/* Facts */}
+        {/* Trip information: only the fields that have a value */}
         <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <Stagger className="grid grid-cols-2 gap-x-6 gap-y-5 border-b border-line py-6 sm:grid-cols-3 lg:grid-cols-6">
-            {facts.slice(0, 6).map((f) => {
-              const Icon = FACT_ICONS[f.label.toLowerCase().trim()] ?? Info;
+          <h2 className="sr-only">Trip information</h2>
+          <Stagger className="grid grid-cols-2 gap-x-5 gap-y-5 border-b border-line py-6 sm:grid-cols-3 lg:grid-cols-5" gap={0.04}>
+            {info.map((f) => {
+              const Icon = INFO_ICONS[f.key] ?? Info;
               return (
-                <StaggerItem key={f.label} className="flex min-w-0 items-start gap-3">
+                <StaggerItem key={f.key} className="flex min-w-0 items-start gap-3">
                   <span className="bg-glacier-soft text-pine grid size-9 shrink-0 place-items-center rounded-lg">
                     <Icon className="size-[1.1rem]" aria-hidden />
                   </span>
                   <span className="min-w-0">
                     <span className="block text-[0.72rem] text-muted">{f.label}</span>
-                    <span className="mt-0.5 block text-[0.95rem] font-bold leading-snug">{f.value}</span>
+                    <span className="mt-0.5 block text-[0.92rem] font-bold leading-snug break-words">{f.value}</span>
                   </span>
                 </StaggerItem>
               );
@@ -170,7 +160,12 @@ export default async function TripPage({ params }: Props) {
 
           {trip.itinerary.length ? (
             <section id="itinerary" className="scroll-mt-40">
-              <SectionHeading eyebrow="Itinerary" lines={["Day by", <Accent key="d">day.</Accent>]} />
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <SectionHeading eyebrow="Itinerary" lines={["Day by", <Accent key="d">day.</Accent>]} />
+                <a href={`/trip/${trip.slug}/itinerary.pdf`} download className="hover:border-pine inline-flex items-center gap-2 rounded-lg border border-line bg-card px-4 py-2.5 text-sm font-semibold transition-colors">
+                  <FileDown className="text-pine size-4" aria-hidden /> Download program (PDF)
+                </a>
+              </div>
               <div className="mt-8">
                 <Itinerary days={trip.itinerary} />
               </div>
@@ -232,6 +227,20 @@ export default async function TripPage({ params }: Props) {
               <a href={trip.map.src} target="_blank" rel="noopener" className="mt-8 block overflow-hidden rounded-[1.4rem] border border-line bg-card">
                 <Image src={trip.map.src} alt={trip.map.alt || `${trip.title} map`} width={trip.map.w} height={trip.map.h} sizes="(max-width: 1024px) 100vw, 60vw" className="h-auto w-full" />
               </a>
+            </section>
+          ) : null}
+
+          {videos.length ? (
+            <section id="videos" className="scroll-mt-40">
+              <SectionHeading eyebrow="Videos" lines={["See it", <Accent key="v">for yourself.</Accent>]} />
+              <div className={`mt-8 grid gap-4 ${videos.length > 1 ? "sm:grid-cols-2" : ""}`}>
+                {videos.map((v) => (
+                  <YouTube key={v.id} id={v.id} title={v.title} />
+                ))}
+              </div>
+              {videos.map((v) => (
+                <JsonLd key={v.id} data={videoLd(v)} />
+              ))}
             </section>
           ) : null}
 

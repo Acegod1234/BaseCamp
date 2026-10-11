@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, Clock, Mountain } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
+import { Awards } from "@/components/awards";
 import { AltitudeProfile } from "@/components/altitude-profile";
 import { placeOf } from "@/lib/itinerary";
 import { Faq } from "@/components/faq";
@@ -18,9 +19,11 @@ import { Accent, SectionHeading } from "@/components/section-heading";
 import { TripCard } from "@/components/trip-card";
 import {
   getActiveOffer,
+  getAwards,
   getAllReviews,
   getCommunity,
   getFeaturedTrips,
+  getFeaturedVideos,
   getHomeList,
   getLiveTerms,
   getOfferTrips,
@@ -32,7 +35,9 @@ import {
   photo,
   termSummary,
 } from "@/lib/content";
-import { meta } from "@/lib/seo";
+import { JsonLd } from "@/components/json-ld";
+import { YouTube } from "@/components/video";
+import { meta, videoLd } from "@/lib/seo";
 import { regionMeta, site } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
@@ -65,6 +70,7 @@ export default function HomePage() {
   const offer = getActiveOffer();
   const offerTrips = getOfferTrips(offer);
   const community = getCommunity();
+  const videos = getFeaturedVideos().slice(0, 3);
 
   const byRegion = (slug: string) => cards.filter((c) => c.destinations.includes(slug)).sort((a, b) => (b.rating?.count ?? 0) - (a.rating?.count ?? 0) || (b.price ? 1 : 0) - (a.price ? 1 : 0));
   const all = [...featured, ...popular.filter((p) => !featured.some((f) => f.slug === p.slug))];
@@ -326,7 +332,28 @@ export default function HomePage() {
         <div className="mt-4">
           <Accreditations />
         </div>
+        <div className="mx-auto max-w-[90rem] px-4 py-10 sm:px-6 lg:px-8">
+          <p className="eyebrow text-pine mb-4">Awards &amp; recognition</p>
+          <Awards awards={getAwards()} />
+        </div>
       </section>
+
+      {/* Videos from the trail */}
+      {videos.length ? (
+        <section className="border-t border-line py-20 sm:py-24">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+            <SectionHeading eyebrow="Watch" lines={["Videos from", <Accent key="v">the trail.</Accent>]} />
+            <div className={`mt-10 grid gap-4 ${videos.length > 1 ? "md:grid-cols-2 lg:grid-cols-3" : "max-w-3xl"}`}>
+              {videos.map((v) => (
+                <YouTube key={v.id} id={v.id} title={v.title} />
+              ))}
+            </div>
+            {videos.map((v) => (
+              <JsonLd key={v.id} data={videoLd(v)} />
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* Testimonials */}
       <Testimonials reviews={reviews} />

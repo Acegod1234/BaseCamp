@@ -41,6 +41,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
       images: [...new Set([t.cover, ...t.gallery].filter(Boolean).map((i) => abs(i!.src)))],
     })),
+    // Each trip's program PDF, so it can be found as a document in search.
+    ...trips.map((t) => ({ url: abs(`/trip/${t.slug}/itinerary.pdf`), lastModified: date(t.modified), changeFrequency: "monthly" as const, priority: 0.5 })),
     ...destinations.map((d) => ({ url: abs(`/destinations/${d.slug}/`), changeFrequency: "weekly" as const, priority: 0.8 })),
     ...activities.map((a) => ({ url: abs(`/activities/${a.slug}/`), changeFrequency: "weekly" as const, priority: 0.8 })),
     ...posts.map((p) => ({

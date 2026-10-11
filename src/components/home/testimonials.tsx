@@ -5,6 +5,7 @@ import { FeaturedReviews, type Featured } from "@/components/home/featured-revie
 import { Reveal } from "@/components/motion";
 import { ReviewsMarquee } from "@/components/reviews-marquee";
 import { Accent, SectionHeading } from "@/components/section-heading";
+import { site } from "@/lib/site";
 import type { Review } from "@/lib/types";
 
 type R = Review & { trip: { slug: string; title: string } };
@@ -54,7 +55,9 @@ export function Testimonials({ reviews }: { reviews: R[] }) {
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-              <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-12 w-auto" />
+              <a href={site.social.tripadvisor} target="_blank" rel="noopener noreferrer" aria-label="Base Camp Adventure on Tripadvisor" className="rounded-lg bg-white p-1.5">
+                <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-11 w-auto" />
+              </a>
               <Link href="/testimonials/" className="bg-pine hover:bg-pine-deep inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-bold text-white transition-colors">
                 Read all reviews <ArrowRight className="size-4" aria-hidden />
               </Link>

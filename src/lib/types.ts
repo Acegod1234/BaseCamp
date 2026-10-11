@@ -35,6 +35,10 @@ export type ItineraryDay = {
   overnight: string | null;
   hours?: number | null;
   distanceKm?: number | null;
+  /** The kind of stay, e.g. "Teahouse" or "3-star hotel" (admin). */
+  accommodation?: string | null;
+  /** Photos for this day (admin). */
+  images?: Img[];
 };
 
 export type Review = {
@@ -182,6 +186,21 @@ export type CommunityPost = {
   photos: Img[];
   partners: string[];
 };
+
+/** A YouTube video of the company's, added with scripts/add-video.mjs or the admin. */
+export type Video = {
+  id: string;
+  title: string;
+  description: string | null;
+  uploadDate: string | null;
+  /** ISO 8601, e.g. "PT3M12S". */
+  duration: string | null;
+  trips: string[];
+  featured: boolean;
+};
+
+/** An award, e.g. Tripadvisor Travellers' Choice 2024, added from the admin. */
+export type Award = { title: string; issuer: string; year: number | null; image: string | null; href: string | null };
 
 /** A seasonal offer (Dashain, Tihar, New Year...), switched on from the admin. */
 export type Offer = {
