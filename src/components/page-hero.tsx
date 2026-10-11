@@ -86,9 +86,7 @@ export function PageHero({
         {children ? <Reveal delay={0.25} y={10}>{children}</Reveal> : null}
       </div>
       <div className="mx-auto mt-8 max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <Reveal y={20} delay={0.15}>
-          <BannerPhoto src={photo} wide={size === "lg" ? 21 / 8 : 21 / 7} />
-        </Reveal>
+        <BannerPhoto src={photo} wide={size === "lg" ? 21 / 8 : 21 / 7} />
       </div>
     </section>
   );
@@ -107,7 +105,7 @@ function BannerPhoto({ src, wide }: { src: string; wide: number }) {
       className={cn("relative overflow-hidden rounded-xl bg-snow-2", wide > 2.9 ? "aspect-[3/2] sm:aspect-[21/7]" : "aspect-[3/2] sm:aspect-[21/8]")}
       style={{ ["--pos-s" as string]: small?.position ?? "50% 50%", ["--pos-l" as string]: large?.position ?? "50% 40%" }}
     >
-      <Image src={src} alt="" fill preload quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover object-[var(--pos-s)] sm:object-[var(--pos-l)]" />
+      <Image src={src} alt="" fill preload fetchPriority="high" quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover object-[var(--pos-s)] sm:object-[var(--pos-l)]" />
       {small?.overlay ? <LogoOverlay box={small.overlay} className="sm:hidden" /> : null}
       {large?.overlay ? <LogoOverlay box={large.overlay} className="hidden sm:block" /> : null}
     </div>

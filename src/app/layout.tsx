@@ -18,9 +18,9 @@ import "./globals.css";
  * JetBrains Mono is kept for small figures that line up.
  */
 const display = Manrope({ variable: "--font-display-face", subsets: ["latin"], display: "swap" });
-const serif = Newsreader({ variable: "--font-serif-face", subsets: ["latin"], style: ["italic"], display: "swap", axes: ["opsz"] });
+const serif = Newsreader({ variable: "--font-serif-face", subsets: ["latin"], style: ["italic"], weight: ["400"], display: "swap", preload: false });
 const sans = DM_Sans({ variable: "--font-sans-face", subsets: ["latin"], display: "swap" });
-const mono = JetBrains_Mono({ variable: "--font-mono-face", subsets: ["latin"], display: "swap", weight: ["400", "500"] });
+const mono = JetBrains_Mono({ variable: "--font-mono-face", subsets: ["latin"], display: "swap", weight: ["400", "500"], preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

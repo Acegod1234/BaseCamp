@@ -64,7 +64,7 @@ export function TripPhotos({ title, ours, travellers, shareHref }: { title: stri
               key={p.src + tab}
               type="button"
               onClick={() => setIndex(i)}
-              aria-label={last ? `See all ${list.length} photos` : `Open photo ${i + 1}: ${p.alt || title}`}
+              aria-label={last ? undefined : `Open photo ${i + 1}: ${p.alt || title}`}
               className={cn("group relative isolate overflow-hidden rounded-xl bg-snow-2 text-left", i === 0 ? "col-span-2 aspect-[3/2] lg:row-span-2 lg:aspect-auto" : "aspect-[3/2]")}
             >
               {i === 0 ? <PhotoGlow src={p.src} strength="sm" /> : null}
@@ -91,7 +91,9 @@ export function TripPhotos({ title, ours, travellers, shareHref }: { title: stri
                   <span className="text-center">
                     <Images className="mx-auto size-6" aria-hidden />
                     <span className="font-display mt-1 block text-2xl">+{more}</span>
-                    <span className="text-xs font-semibold text-white/80">View all</span>
+                    <span className="text-xs font-semibold text-white/80">
+                      View all<span className="sr-only"> {list.length} photos</span>
+                    </span>
                   </span>
                 </span>
               )}

@@ -12,13 +12,18 @@ export type HeroSlide = { src: string; label: string };
 const optimised = (src: string, w = 1920) => `/_next/image/?url=${encodeURIComponent(src)}&w=${w}&q=80`;
 
 /**
- * The photograph for each screen: 1200 px on phones (1920 on sharp ones),
- * 1920 px on laptops and the full 3840 px original on retina and 4K displays.
+ * The photograph for each screen: 828 px on phones (1200 on sharp ones), whose
+ * letters are under 400 px wide; 1920 px on laptops and the full 3840 px
+ * original on retina and 4K displays.
  */
+const SMALL = [828, 1200];
+const LARGE = [1920, 3840];
+const srcSet = (src: string, [x1, x2]: number[]) => `${optimised(src, x1)} 1x, ${optimised(src, x2)} 2x`;
+const imageSet = (src: string, [x1, x2]: number[]) => `image-set(url("${optimised(src, x1)}") 1x, url("${optimised(src, x2)}") 2x)`;
 const photoVars = (src: string) => ({
   ["--photo" as string]: `url("${optimised(src)}")`,
-  ["--photo-set" as string]: `image-set(url("${optimised(src)}") 1x, url("${optimised(src, 3840)}") 2x)`,
-  ["--photo-sm" as string]: `image-set(url("${optimised(src, 1200)}") 1x, url("${optimised(src, 1920)}") 2x)`,
+  ["--photo-set" as string]: imageSet(src, LARGE),
+  ["--photo-sm" as string]: imageSet(src, SMALL),
 });
 
 /**
@@ -38,13 +43,16 @@ export function HomeHero({ slides }: { slides: HeroSlide[] }) {
     return () => clearInterval(t);
   }, [slides.length, reduce, paused]);
 
-  // Warm only the next photograph, at the size this screen will ask for.
+  // Warm the next photograph once the page has settled, only on a fast
+  // connection, at the size this screen will ask for.
   useEffect(() => {
     if (reduce || paused) return;
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (conn?.saveData || (conn?.effectiveType && conn.effectiveType !== "4g")) return;
     const id = window.setTimeout(() => {
-      const w = window.innerWidth < 640 ? (devicePixelRatio > 1 ? 1920 : 1200) : devicePixelRatio > 1 ? 3840 : 1920;
-      new Image().src = optimised(slides[(i + 1) % slides.length].src, w);
-    }, 3000);
+      const [x1, x2] = window.innerWidth < 640 ? SMALL : LARGE;
+      new Image().src = optimised(slides[(i + 1) % slides.length].src, devicePixelRatio > 1 ? x2 : x1);
+    }, 4500);
     return () => window.clearTimeout(id);
   }, [slides, i, reduce, paused]);
 
@@ -58,6 +66,9 @@ export function HomeHero({ slides }: { slides: HeroSlide[] }) {
 
   return (
     <section className="relative overflow-hidden pt-[5.5rem] lg:pt-[6.25rem]">
+      {/* The first photograph is the page's largest paint: fetch it before the CSS asks for it. */}
+      <link rel="preload" as="image" href={optimised(slides[0].src, SMALL[0])} imageSrcSet={srcSet(slides[0].src, SMALL)} media="(max-width: 639px)" fetchPriority="high" />
+      <link rel="preload" as="image" href={optimised(slides[0].src, LARGE[0])} imageSrcSet={srcSet(slides[0].src, LARGE)} media="(min-width: 640px)" fetchPriority="high" />
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4 text-[0.65rem] font-bold tracking-[0.18em] text-muted uppercase">
           <span>Est. 2009</span>
@@ -120,7 +131,7 @@ export function HomeHero({ slides }: { slides: HeroSlide[] }) {
                 {String(i + 1).padStart(2, "0")} / {slide.label}
               </motion.span>
             </AnimatePresence>
-            <div className="flex items-center gap-2" role="tablist" aria-label="Photographs">
+            <div className="flex items-center gap-0.5" role="tablist" aria-label="Photographs">
               {slides.map((s, n) => (
                 <button
                   key={s.src}
@@ -129,8 +140,10 @@ export function HomeHero({ slides }: { slides: HeroSlide[] }) {
                   aria-selected={n === i}
                   aria-label={s.label}
                   onClick={() => setI(n)}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${n === i ? "bg-pine w-6" : "w-1.5 bg-line hover:bg-muted"}`}
-                />
+                  className="group grid h-6 min-w-6 place-items-center"
+                >
+                  <span className={`block h-1.5 rounded-full transition-all duration-500 ${n === i ? "bg-pine w-6" : "w-1.5 bg-line group-hover:bg-muted"}`} />
+                </button>
               ))}
             </div>
             <button type="button" onClick={() => setPaused((p) => !p)} className="inline-flex items-center gap-1 border-b border-line text-xs text-muted hover:text-ink" aria-pressed={paused}>

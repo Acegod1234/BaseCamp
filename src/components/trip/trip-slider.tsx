@@ -40,7 +40,7 @@ export function TripSlider({ images, title }: { images: Img[]; title: string }) 
               if (info.offset.x > 50) go(-1);
             }}
           >
-            <Image src={img.src} alt={img.alt || `${title} photograph ${i + 1}`} fill preload={i === 0} quality={80} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover object-[var(--pos-m)] sm:object-[var(--pos-s)] lg:object-[var(--pos-l)]" />
+            <Image src={img.src} alt={img.alt || `${title} photograph ${i + 1}`} fill preload={i === 0} fetchPriority={i === 0 ? "high" : "auto"} quality={80} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover object-[var(--pos-m)] sm:object-[var(--pos-s)] lg:object-[var(--pos-l)]" />
           </motion.div>
         </AnimatePresence>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />

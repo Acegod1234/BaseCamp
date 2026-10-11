@@ -73,6 +73,7 @@ export function CollectionPage({
       </PageHero>
 
       <section className="mx-auto max-w-[90rem] px-4 pb-24 sm:px-6 lg:px-8">
+        <h2 className="sr-only">{`${term.name} trips`}</h2>
         <Suspense fallback={<TripGrid trips={trips} regionNames={regionNames} />}>
           <TripExplorer
             trips={trips}

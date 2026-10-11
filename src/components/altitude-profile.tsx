@@ -176,6 +176,7 @@ export function AltitudeProfile({ days, tone = "dark", className }: { days: Prof
                 width={slot}
                 height={H - PAD.t - PAD.b + 30}
                 fill="transparent"
+                role="img"
                 onPointerEnter={() => setHover(i)}
                 onClick={() => setHover(i)}
                 onFocus={() => setHover(i)}

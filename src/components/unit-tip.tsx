@@ -55,7 +55,7 @@ export function UnitTip({ label, lines, className }: { label: string; lines: str
           e.stopPropagation();
           show();
         }}
-        className={cn("hover:text-pine focus-visible:text-pine inline-grid size-5 shrink-0 place-items-center rounded-full text-muted transition-colors", className)}
+        className={cn("hover:text-pine focus-visible:text-pine inline-grid size-6 shrink-0 place-items-center rounded-full text-muted transition-colors", className)}
       >
         <Info className="size-3.5" aria-hidden />
       </button>

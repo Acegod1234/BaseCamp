@@ -112,15 +112,15 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
 
 function Fact({ icon, label, value, tip }: { icon: React.ReactNode; label: string; value: string; tip?: React.ReactNode }) {
   return (
-    <div className="flex items-start gap-2 rounded-xl bg-snow-2 px-3 py-2.5">
-      <span className="text-pine mt-0.5">{icon}</span>
-      <span className="min-w-0">
-        <dt className="text-[0.66rem] font-bold tracking-[0.1em] text-muted uppercase">{label}</dt>
-        <dd className="flex items-center gap-1 text-[0.85rem] font-semibold leading-snug">
-          {value}
-          {tip}
-        </dd>
-      </span>
+    <div className="rounded-xl bg-snow-2 px-3 py-2.5">
+      <dt className="flex items-center gap-1.5 text-[0.66rem] font-bold tracking-[0.1em] text-muted uppercase">
+        <span className="text-pine">{icon}</span>
+        {label}
+      </dt>
+      <dd className="mt-0.5 flex items-center gap-1 text-[0.85rem] font-semibold leading-snug">
+        {value}
+        {tip}
+      </dd>
     </div>
   );
 }

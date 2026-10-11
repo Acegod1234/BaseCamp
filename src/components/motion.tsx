@@ -94,8 +94,23 @@ export function LineReveal({
   immediate?: boolean;
 }) {
   const reduce = useReducedMotion();
+  // A page's opening headline rises in with CSS alone, so it paints before any script runs.
+  if (immediate) {
+    const Plain = as;
+    return (
+      <Plain className={className}>
+        {lines.map((line, i) => (
+          <span key={i} className="block overflow-hidden pb-[0.06em]">
+            <span className="line-rise block" style={{ animationDelay: `${delay + i * 0.09}s` }}>
+              {line}
+            </span>
+          </span>
+        ))}
+      </Plain>
+    );
+  }
   const Tag = motion[as];
-  const trigger = immediate ? { animate: "show" } : { whileInView: "show", viewport: { once: true, margin: "-10%" } };
+  const trigger = { whileInView: "show", viewport: { once: true, margin: "-10%" } };
   return (
     <Tag
       className={className}

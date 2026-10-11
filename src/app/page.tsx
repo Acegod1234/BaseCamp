@@ -74,7 +74,10 @@ export default function HomePage() {
     { key: "annapurna", label: "Annapurna", trips: byRegion("annapurna-region"), href: "/destinations/annapurna-region/" },
     { key: "langtang", label: "Langtang", trips: byRegion("langtang-region"), href: "/destinations/langtang-region/" },
     { key: "manaslu", label: "Manaslu", trips: byRegion("manaslu-region"), href: "/destinations/manaslu-region/" },
-  ].filter((g) => g.trips.length);
+  ]
+    .filter((g) => g.trips.length)
+    // The finder shows eight per tab; sending more only weighs the page down.
+    .map((g) => ({ ...g, trips: g.trips.slice(0, 8) }));
 
   const regionOrder = ["everest-region", "annapurna-region", "langtang-region", "manaslu-region", "remote-area-trekking", "bhutan", "tibet"];
   const panels = regionOrder
@@ -183,7 +186,7 @@ export default function HomePage() {
               </div>
               <Reveal delay={0.1}>
                 <div className="rounded-2xl border border-line bg-card p-4 sm:p-6">
-                  <AltitudeProfile days={ebc.itinerary} tone="light" />
+                  <AltitudeProfile days={ebc.itinerary.map(({ day, title, altitude }) => ({ day, title, altitude }))} tone="light" />
                 </div>
                 <ol className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
                   {stops.map((d) => (
@@ -207,7 +210,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow={`${popular.length} packages`} lines={["Popular trekking", <span key="p">& tour <Accent>packages.</Accent></span>]} />
           <div className="mt-6">
-            <TripCarousel trips={popular} regionNames={regionNames} moreHref="/trip/" moreLabel={`All ${cards.length} trips`} />
+            <TripCarousel trips={popular.slice(0, 20)} regionNames={regionNames} moreHref="/trip/" moreLabel={`All ${cards.length} trips`} />
           </div>
         </div>
       </section>

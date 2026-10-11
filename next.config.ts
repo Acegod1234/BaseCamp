@@ -44,7 +44,7 @@ const nextConfig: NextConfig = {
   // Server routes read the imported content at runtime; ship it with them.
   outputFileTracingIncludes: {
     "/api/**": ["./src/content/trips.json"],
-    "/wp-content/**": ["./src/content/media-redirects.json"],
+    "/wp-content/**": ["./src/content/media-redirects.json", "./src/content/media-files.json"],
   },
   images: {
     deviceSizes: [640, 828, 1200, 1920, 2560, 3840],
@@ -73,11 +73,16 @@ const nextConfig: NextConfig = {
       { source: "/enquiry-received/", destination: "/thank-you/", permanent: true },
       { source: "/enquiry-thankyou-page/", destination: "/thank-you/", permanent: true },
       { source: "/success/", destination: "/thank-you/", permanent: true },
-      { source: "/cancel/", destination: "/booking/", permanent: false },
+      { source: "/cancel/", destination: "/booking/", permanent: true },
       { source: "/feed/", destination: "/blogs/", permanent: false },
       { source: "/author/:path*", destination: "/our-team/", permanent: true },
       { source: "/tag/:path*", destination: "/blogs/", permanent: true },
       { source: "/difficulty/:path*", destination: "/trip/", permanent: true },
+      { source: "/trip-difficulty/:path*", destination: "/trip/", permanent: true },
+      // Trip tags in the live sitemap, each to the trip it was about.
+      { source: "/trip-tag/everest-base-camp-three-passes-trek/", destination: "/trip/everest-three-passes-trek/", permanent: true },
+      { source: "/trip-tag/makalu/", destination: "/trip/makalu-base-camp-trek/", permanent: true },
+      { source: "/trip-tag/:path*", destination: "/trip/", permanent: true },
       { source: "/trip_tag/:path*", destination: "/trip/", permanent: true },
       { source: "/destinations/", destination: "/destination/", permanent: true },
       { source: "/photo-credits/", destination: "/gallery/", permanent: true },

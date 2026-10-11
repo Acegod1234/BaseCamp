@@ -45,7 +45,7 @@ export function RegionShowcase({ regions }: { regions: RegionPanel[] }) {
           return (
             <li key={x.slug}>
               <button type="button" onClick={() => setOpen(i)} onMouseEnter={() => setOpen(i)} aria-expanded={on} className="flex w-full items-center gap-4 py-4 text-left">
-                <span className="w-6 font-mono text-xs text-white/55">{String(i + 1).padStart(2, "0")}</span>
+                <span className="w-6 font-mono text-xs text-white/80">{String(i + 1).padStart(2, "0")}</span>
                 <span className="min-w-0 flex-1">
                   <span className={cn("block text-xl font-semibold tracking-tight transition-colors sm:text-2xl", on ? "text-glacier" : "text-white")}>{x.name}</span>
                   <span className="mt-0.5 block truncate text-sm text-white/65">{x.trips} trips</span>

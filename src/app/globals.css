@@ -49,7 +49,7 @@
   --ink-soft: #4a5357;
   --muted: #626b70;
   --line: #d8e3e6;
-  --pine: #007f91;
+  --pine: #00788a;
   --pine-deep: #006c7c;
   --pine-night: #1f2527;
   --moss: #2f8a4a;
@@ -57,7 +57,7 @@
   --marigold-soft: #e0f1f4;
   --glacier: #36c4d5;
   --glacier-soft: #eaf4f6;
-  --crimson: #d9483b;
+  --crimson: #c2392d;
   --photo-glow: 0;
 }
 
@@ -399,6 +399,16 @@
     .photo-text { background-image: var(--photo-sm, var(--photo)); }
   }
 }
+/* Opening headlines rise into place without waiting for JavaScript. */
+@keyframes line-rise {
+  from { transform: translateY(110%) rotate(2deg); }
+  to { transform: none; }
+}
+.line-rise { animation: line-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .line-rise { animation: none; }
+}
+
 @keyframes hero-drift {
   0% { background-size: 112% auto; }
   100% { background-size: 124% auto; }

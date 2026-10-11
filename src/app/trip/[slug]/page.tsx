@@ -109,9 +109,7 @@ export default async function TripPage({ params }: Props) {
             <p className="eyebrow text-pine mt-7">{[region?.name, activity?.name].filter(Boolean).join(" · ")}</p>
           </Reveal>
           <div className="mt-3 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <Reveal y={16} delay={0.1}>
-              <h1 className="font-display max-w-4xl text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.03] text-ink">{trip.title}</h1>
-            </Reveal>
+            <h1 className="font-display max-w-4xl text-[clamp(2.2rem,5vw,4.2rem)] leading-[1.03] text-ink">{trip.title}</h1>
             <Reveal y={10} delay={0.2} className="flex shrink-0 flex-wrap items-center gap-3">
               {trip.rating ? (
                 <a href="#reviews" className="inline-flex items-center gap-1.5 rounded-lg border border-line px-3.5 py-2.5 text-sm font-semibold">
@@ -123,9 +121,7 @@ export default async function TripPage({ params }: Props) {
           </div>
         </div>
         <div className="mx-auto mt-7 max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <Reveal y={20} delay={0.1}>
-            <TripSlider images={[...(sharpest ? [sharpest] : []), ...photos.filter((p) => p.src !== sharpest?.src)]} title={trip.title} />
-          </Reveal>
+          <TripSlider images={[...(sharpest ? [sharpest] : []), ...photos.filter((p) => p.src !== sharpest?.src)]} title={trip.title} />
         </div>
 
         {/* Facts */}
@@ -185,7 +181,7 @@ export default async function TripPage({ params }: Props) {
             <section id="altitude" className="scroll-mt-40">
               <SectionHeading eyebrow="Altitude profile" lines={["How high,", <Accent key="w">and when.</Accent>]} intro="Every overnight stop on the route. Rest days at the same height are where your body adjusts." />
               <div className="mt-8 rounded-[1.6rem] border border-line bg-card p-4 sm:p-6">
-                <AltitudeProfile days={altitudeDays} tone="light" />
+                <AltitudeProfile days={altitudeDays.map(({ day, title, altitude }) => ({ day, title, altitude }))} tone="light" />
               </div>
             </section>
           ) : null}
