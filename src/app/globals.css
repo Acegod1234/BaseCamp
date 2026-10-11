@@ -424,3 +424,25 @@
     linear-gradient(90deg, currentColor 1px, transparent 1px);
   background-size: 64px 64px;
 }
+
+/* Card grids become a swipeable row on phones: the next card peeks in at the
+   edge, so long pages stay short and every card is one swipe away. */
+@media (max-width: 639px) {
+  .rail {
+    display: flex !important;
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    overscroll-behavior-x: contain;
+    margin-inline: -1rem;
+    padding: 0.25rem 1rem 0.75rem;
+    scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .rail > * {
+    flex: 0 0 84%;
+    max-width: 22rem;
+    scroll-snap-align: start;
+  }
+}

@@ -58,7 +58,7 @@ export function TableOfContents({ headings, variant }: { headings: Heading[]; va
 
   if (variant === "side") {
     return (
-      <nav aria-label="On this page" className="sticky top-32 max-h-[calc(100dvh-10rem)] overflow-y-auto pr-2">
+      <nav aria-label="On this page" data-lenis-prevent className="sticky top-32 max-h-[calc(100dvh-10rem)] overflow-y-auto overscroll-contain pr-2">
         <p className="eyebrow text-pine mb-4">On this page</p>
         {list}
       </nav>

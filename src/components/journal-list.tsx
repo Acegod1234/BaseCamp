@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { Reveal } from "@/components/motion";
 import { PageHero, type Crumb } from "@/components/page-hero";
 import { PostCard } from "@/components/post-card";
+import { ShowMore } from "@/components/show-more";
 import { getTaxonomies } from "@/lib/content";
 import { itemListLd } from "@/lib/seo";
 import type { PostCard as Card } from "@/lib/types";
@@ -80,13 +81,13 @@ export function JournalList({
           </Reveal>
         ) : null}
 
-        <Stagger className="mt-16 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <ShowMore className="mt-16 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3" label="more articles">
           {rest.map((p) => (
-            <StaggerItem key={p.slug}>
+            <Reveal key={p.slug}>
               <PostCard post={p} categoryNames={names} />
-            </StaggerItem>
+            </Reveal>
           ))}
-        </Stagger>
+        </ShowMore>
       </section>
       <JsonLd data={itemListLd(title, posts.map((p) => `/${p.slug}/`))} />
     </>

@@ -87,7 +87,7 @@ export function FeaturedTrips({ groups, regionNames, regions }: { groups: TripGr
         <p className="text-sm text-muted">{Math.min(group.trips.length, 8)} handpicked trips</p>
       </div>
 
-      <motion.div layout className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      <motion.div layout className="rail mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         <AnimatePresence mode="popLayout" initial={false}>
           {group.trips.slice(0, 8).map((t, i) => (
             <motion.div

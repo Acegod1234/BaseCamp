@@ -73,7 +73,7 @@ export function Offers({ offer, trips, regionNames }: { offer: Offer | null; tri
           <Newsletter source="offers" className="w-full sm:max-w-sm" />
         </div>
 
-        <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        <Stagger className="rail grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
           {shown.map((t) => (
             <StaggerItem key={t.slug}>
               <TripCard trip={t} regionName={regionNames[t.destinations[0]]} />

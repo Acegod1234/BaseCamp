@@ -185,22 +185,7 @@ export function TripExplorer({
       </div>
 
       {results.length ? (
-        <motion.div layout className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {results.map((t, i) => (
-              <motion.div
-                key={t.slug}
-                layout
-                initial={{ opacity: 0, scale: 0.94, y: 24 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.92 }}
-                transition={{ duration: 0.45, delay: Math.min(i, 8) * 0.03, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <TripCard trip={t} regionName={regionNames[t.destinations[0]]} priority={i < 3} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <Results key={params.toString()} trips={results} regionNames={regionNames} />
       ) : (
         <div className="mt-10 flex flex-col items-center rounded-[2rem] border border-dashed border-line px-6 py-16 text-center">
           <Compass className="text-pine size-10" aria-hidden />
@@ -272,5 +257,42 @@ function Select({ id, label, value, onChange, options }: { id: string; label: st
         ))}
       </select>
     </label>
+  );
+}
+
+/** The matching trips, twelve at a time. All are in the page; the rest stay folded until "Show more". */
+function Results({ trips, regionNames }: { trips: Card[]; regionNames: Record<string, string> }) {
+  const [shown, setShown] = useState(12);
+  const left = trips.length - shown;
+  return (
+    <>
+      <motion.div layout className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        <AnimatePresence mode="popLayout" initial={false}>
+          {trips.map((t, i) => (
+            <motion.div
+              key={t.slug}
+              layout
+              initial={{ opacity: 0, scale: 0.94, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.45, delay: Math.min(i % 12, 8) * 0.03, ease: [0.22, 1, 0.36, 1] }}
+              className={i >= shown ? "hidden" : undefined}
+            >
+              <TripCard trip={t} regionName={regionNames[t.destinations[0]]} priority={i < 3} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
+      {left > 0 ? (
+        <div className="mt-10 flex flex-col items-center gap-2">
+          <button type="button" onClick={() => setShown((n) => n + 12)} className="hover:border-pine inline-flex items-center gap-2 rounded-lg border border-line bg-card px-6 py-3.5 text-sm font-bold transition-colors">
+            Show {Math.min(12, left)} more trips
+          </button>
+          <p className="text-xs text-muted">
+            Showing {shown} of {trips.length}
+          </p>
+        </div>
+      ) : null}
+    </>
   );
 }

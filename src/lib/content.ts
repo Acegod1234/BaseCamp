@@ -98,6 +98,7 @@ const data = cache(() => ({
   about: load<AboutContent | null>("about", null),
   videos: load<Video[]>("videos", []),
   awards: load<Award[]>("awards", []),
+  tripadvisor: load<TripadvisorFacts | null>("tripadvisor", null),
   tripInfo: load<Record<string, InfoOverrides>>("trip-info", {}),
   travellerPhotos: load<Record<string, (Img & { traveller: string; date?: string | null })[]>>("traveller-photos", {}),
   offers: load<Offer[]>("offers", []),
@@ -246,6 +247,11 @@ export function getTripInfo(trip: Trip) {
   const activity = trip.activities[0] ? getActivity(trip.activities[0])?.name : null;
   return tripInfo(trip, { region, activity, overrides: data().tripInfo[trip.slug] });
 }
+
+export type TripadvisorFacts = { url: string; rating: number; reviews: number; ranking: string | null; breakdown: Record<string, number>; checked: string };
+
+/** The Tripadvisor listing's figures, as last checked (admin). */
+export const getTripadvisor = () => data().tripadvisor;
 
 /** Awards, newest first. */
 export const getAwards = () => [...data().awards].sort((a, b) => (b.year ?? 0) - (a.year ?? 0));

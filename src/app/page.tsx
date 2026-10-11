@@ -31,6 +31,7 @@ import {
   getTeam,
   getTrip,
   getTripCards,
+  getTripadvisor,
   getTripsIn,
   photo,
   termSummary,
@@ -135,7 +136,7 @@ export default function HomePage() {
                 <p className="text-ink-soft">Explore cultural landmarks, city life and wildlife with our local team.</p>
               </Reveal>
             </div>
-            <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <Stagger className="rail grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {tours.map((t) => (
                 <StaggerItem key={t.slug}>
                   <TripCard trip={t} regionName="Nepal Tour" label={`${t.days} ${t.days === 1 ? "day" : "days"}`} />
@@ -229,7 +230,7 @@ export default function HomePage() {
         <section className="border-t border-line py-20 sm:py-24 lg:py-28">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
             <SectionHeading eyebrow="In comfort" lines={["Luxury trekking", <span key="l">& tour <Accent>packages.</Accent></span>]} />
-            <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <Stagger className="rail mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {luxury.map((t) => (
                 <StaggerItem key={t.slug}>
                   <TripCard trip={t} regionName={regionNames[t.destinations[0]]} label="Luxury" />
@@ -319,7 +320,7 @@ export default function HomePage() {
                 <Link href="/community/" className="mt-6 inline-block border-b-2 border-ink pb-1 text-sm font-bold">See our community work</Link>
               </Reveal>
             </div>
-            <CommunityCards posts={community.slice(0, 2)} />
+            <CommunityCards posts={community.slice(0, 2)} className="rail" />
           </div>
         </section>
       ) : null}
@@ -356,7 +357,7 @@ export default function HomePage() {
       ) : null}
 
       {/* Testimonials */}
-      <Testimonials reviews={reviews} />
+      <Testimonials reviews={reviews} tripadvisor={getTripadvisor()} />
 
       {/* 05 / Before you go */}
       <section className="py-20 sm:py-24 lg:py-28">
@@ -385,7 +386,7 @@ export default function HomePage() {
             <SectionHeading eyebrow="Journal" lines={["Notes from", <Accent key="t">the trail.</Accent>]} />
             <Link href="/blogs/" className="border-b-2 border-ink pb-1 text-sm font-bold">Read our blogs</Link>
           </div>
-          <Stagger className="grid gap-6 md:grid-cols-3">
+          <Stagger className="rail grid gap-6 md:grid-cols-3">
             {posts.map((p) => (
               <StaggerItem key={p.slug} className="relative isolate">
                 {p.cover ? <PhotoGlow src={p.cover.src} strength="sm" /> : null}

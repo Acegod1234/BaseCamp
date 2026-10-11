@@ -1,73 +1,111 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star } from "lucide-react";
-import { FeaturedReviews, type Featured } from "@/components/home/featured-reviews";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { Flag } from "@/components/flag";
+import { ReviewCarousel, type CarouselReview } from "@/components/home/review-carousel";
 import { Reveal } from "@/components/motion";
-import { ReviewsMarquee } from "@/components/reviews-marquee";
 import { Accent, SectionHeading } from "@/components/section-heading";
-import { site } from "@/lib/site";
+import type { TripadvisorFacts } from "@/lib/content";
+import { reviewer } from "@/lib/reviewer";
 import type { Review } from "@/lib/types";
 
 type R = Review & { trip: { slug: string; title: string } };
 
-/** "Peter D-Cornwall, United Kingdom" → name and home town, as written on the review. */
-export function splitAuthor(author: string) {
-  const m = author.match(/^(.+?)-([A-Z][^-]*,.*)$/);
-  if (m) return { name: m[1].trim(), from: m[2].trim() };
-  const [name, ...rest] = author.split(",");
-  return { name: name.trim(), from: rest.join(",").trim() || null };
-}
-
 /**
- * Real traveller reviews: a featured quote that turns every few seconds, the
- * average rating beside it, and the rest drifting past underneath.
+ * Real traveller reviews: the Tripadvisor rating up top, the reviews in a
+ * 3D carousel (each with the traveller's own home town and flag), and the
+ * countries they came from.
  */
-export function Testimonials({ reviews }: { reviews: R[] }) {
+export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvisor: TripadvisorFacts | null }) {
   if (!reviews.length) return null;
-  const avg = reviews.reduce((s, r) => s + r.rating, 0) / reviews.length;
-  // Long enough to say something, short enough to read in one go; one per trip.
+
+  // One review per text (some were posted on several trips); the most
+  // readable lengths first, and those that say where the traveller is from.
   const seen = new Set<string>();
-  const featured: Featured[] = reviews
-    .filter((r) => r.rating >= 5 && r.body.length > 240 && r.body.length < 640)
-    .filter((r) => (seen.has(r.trip.slug) ? false : (seen.add(r.trip.slug), true)))
-    .slice(0, 5)
-    .map((r) => ({ ...splitAuthor(r.author), body: r.body, trip: r.trip }));
+  const items: CarouselReview[] = reviews
+    .filter((r) => (seen.has(r.body) ? false : (seen.add(r.body), true)))
+    .map((r) => ({ r, who: reviewer(r.author) }))
+    .sort((a, b) => Number(Boolean(b.who.code)) - Number(Boolean(a.who.code)) || Math.abs(a.r.body.length - 380) - Math.abs(b.r.body.length - 380))
+    .slice(0, 12)
+    .map(({ r, who }) => ({ name: who.name, place: who.place, country: who.country, flag: who.flag, body: r.body, rating: r.rating, trip: r.trip }));
+
+  const countries = new Map<string, { name: string; flag: string; n: number }>();
+  for (const r of reviews) {
+    const w = reviewer(r.author);
+    if (!w.code || !w.flag) continue;
+    const c = countries.get(w.code) ?? { name: w.country ?? w.code, flag: w.flag, n: 0 };
+    c.n++;
+    countries.set(w.code, c);
+  }
+  const list = [...countries.values()].sort((a, b) => b.n - a.n);
+  const excellent = tripadvisor ? Math.round(((tripadvisor.breakdown.excellent ?? 0) / tripadvisor.reviews) * 1000) / 10 : null;
 
   return (
-    <section className="bg-snow-2 overflow-hidden py-20 sm:py-24 lg:py-28">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow="Testimonials" lines={["In their", <Accent key="w">own words.</Accent>]} />
-        <div className="mt-10 grid gap-4 lg:grid-cols-[1.55fr_1fr] lg:gap-5">
-          <Reveal>
-            <FeaturedReviews items={featured} />
-          </Reveal>
-          <Reveal delay={0.1} className="flex flex-col justify-between gap-8 rounded-[1.4rem] border border-line bg-card p-6 sm:p-8">
-            <div>
-              <p className="text-[0.66rem] font-bold tracking-[0.14em] text-muted uppercase">Average rating</p>
-              <p className="font-display mt-2 text-[5.5rem] leading-none text-ink">{avg.toFixed(1)}</p>
-              <div className="mt-3 flex gap-1" aria-label={`${avg.toFixed(1)} out of 5`}>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="fill-marigold text-marigold size-5" aria-hidden />
-                ))}
-              </div>
-              <p className="mt-3 text-ink-soft">
-                From <strong className="text-ink">{reviews.length} traveller reviews</strong> across our treks and tours.
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-              <a href={site.social.tripadvisor} target="_blank" rel="noopener noreferrer" aria-label="Base Camp Adventure on Tripadvisor" className="rounded-lg bg-white p-1.5">
-                <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-11 w-auto" />
+    <section className="bg-snow-2 relative overflow-hidden py-16 sm:py-20 lg:py-24">
+      <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-[#00afc4]/10 blur-3xl" />
+      <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading eyebrow="Testimonials" lines={["In their", <Accent key="w">own words.</Accent>]} />
+          {tripadvisor ? (
+            <Reveal className="w-full lg:w-auto">
+              <a href={tripadvisor.url} target="_blank" rel="noopener noreferrer" className="group hover:border-pine/40 flex items-center gap-4 rounded-2xl border border-line bg-card p-4 pr-5 shadow-[0_20px_40px_-32px_oklch(0.2_0.04_200/0.6)] transition-colors">
+                <span className="grid h-14 w-[4.5rem] shrink-0 place-items-center rounded-xl bg-white p-1.5">
+                  <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-11 w-auto" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="flex items-baseline gap-2">
+                    <span className="font-display text-3xl leading-none text-ink">{tripadvisor.rating.toFixed(1)}</span>
+                    <Bubbles />
+                  </span>
+                  <span className="mt-1 block text-sm text-ink-soft">
+                    <strong className="text-ink">{tripadvisor.reviews} reviews</strong> on Tripadvisor
+                    {excellent ? ` · ${excellent}% Excellent` : ""}
+                  </span>
+                  {excellent ? (
+                    <span className="mt-2 block h-1.5 w-full overflow-hidden rounded-full bg-line sm:w-56" aria-hidden>
+                      <span className="block h-full rounded-full bg-[#34e0a1]" style={{ width: `${excellent}%` }} />
+                    </span>
+                  ) : null}
+                </span>
+                <ArrowUpRight className="text-pine size-5 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
               </a>
-              <Link href="/testimonials/" className="bg-pine hover:bg-pine-deep inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-bold text-white transition-colors">
-                Read all reviews <ArrowRight className="size-4" aria-hidden />
-              </Link>
-            </div>
-          </Reveal>
+            </Reveal>
+          ) : null}
         </div>
-      </div>
-      <div className="mt-5">
-        <ReviewsMarquee reviews={reviews.filter((r) => !featured.some((f) => f.body === r.body)).slice(0, 18)} />
+
+        <div className="mt-10 sm:mt-12">
+          <ReviewCarousel items={items} />
+        </div>
+
+        {list.length ? (
+          <Reveal className="mt-10 flex flex-col items-center gap-4 border-t border-line pt-8 sm:flex-row sm:justify-between">
+            <p className="text-sm text-ink-soft">
+              Reviews from travellers in <strong className="text-ink">{list.length} countries</strong>
+            </p>
+            <ul className="no-scrollbar -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 sm:mx-0 sm:w-auto sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
+              {list.map((c) => (
+                <li key={c.name} className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-2.5 py-1 text-xs font-semibold">
+                  <Flag svg={c.flag} label={c.name} /> {c.name}
+                </li>
+              ))}
+            </ul>
+            <Link href="/testimonials/" className="text-pine inline-flex shrink-0 items-center gap-1.5 text-sm font-bold hover:underline">
+              All reviews <ArrowRight className="size-4" aria-hidden />
+            </Link>
+          </Reveal>
+        ) : null}
       </div>
     </section>
+  );
+}
+
+/** Tripadvisor-style rating bubbles. */
+function Bubbles() {
+  return (
+    <span className="flex gap-0.5" aria-label="5 out of 5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <span key={i} className="block size-3 rounded-full bg-[#34e0a1]" />
+      ))}
+    </span>
   );
 }
