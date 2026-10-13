@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion";
@@ -23,7 +23,7 @@ export default function TeamPage() {
         photo="/photos/page-team.webp"
         crumbs={[{ name: "Our team", path: "/our-team/" }]}
       />
-      <section className="mx-auto max-w-[90rem] px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-site px-4 py-20 sm:px-6">
         <Stagger className="grid grid-cols-2 gap-x-5 gap-y-12 md:grid-cols-3 lg:grid-cols-4">
           {team.map((m) => (
             <StaggerItem key={m.slug}>

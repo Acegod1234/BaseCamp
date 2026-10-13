@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/image";
 import { useState } from "react";
 import { Images } from "lucide-react";
 import { Lightbox } from "@/components/lightbox";

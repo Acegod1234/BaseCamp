@@ -1,0 +1,42 @@
+{
+  "bardia-national-park": {
+    "src": "/photos/home-tours/bardia-national-park-enhanced.webp",
+    "w": 1774,
+    "h": 887
+  },
+  "buddhist-tour-in-nepal": {
+    "src": "/photos/home-tours/buddhist-tour-in-nepal-enhanced.webp",
+    "w": 1086,
+    "h": 1448
+  },
+  "chitwan-national-park": {
+    "src": "/photos/home-tours/chitwan-national-park-enhanced.webp",
+    "w": 1774,
+    "h": 887
+  },
+  "helicopter-tour": {
+    "src": "/photos/home-tours/helicopter-tour-enhanced.webp",
+    "w": 1774,
+    "h": 887
+  },
+  "helicopter-tours-in-nepal": {
+    "src": "/photos/home-tours/helicopter-tours-in-nepal-enhanced.webp",
+    "w": 1620,
+    "h": 971
+  },
+  "kathmandu-city-tour": {
+    "src": "/photos/home-tours/kathmandu-city-tour-enhanced.webp",
+    "w": 1448,
+    "h": 1086
+  },
+  "kathmandu-and-nagarkot-tour": {
+    "src": "/photos/home-tours/kathmandu-and-nagarkot-tour-enhanced.webp",
+    "w": 1774,
+    "h": 887
+  },
+  "kathmandu-chitwan-pokhara-tours": {
+    "src": "/photos/home-tours/kathmandu-chitwan-pokhara-tours-enhanced.webp",
+    "w": 1774,
+    "h": 887
+  }
+}

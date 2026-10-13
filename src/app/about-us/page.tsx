@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Award, Compass, HeartPulse, Mountain, Route, Users } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
@@ -54,7 +54,7 @@ export default function AboutPage() {
       />
 
       {/* Numbers */}
-      <section className="mx-auto max-w-[90rem] px-4 pt-14 sm:px-6 sm:pt-20 lg:px-8">
+      <section className="mx-auto max-w-site px-4 pt-14 sm:px-6 sm:pt-20 lg:px-6">
         <Stagger className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-4">
           {[
             { n: years, s: "+", l: "Years on the trail" },
@@ -71,7 +71,7 @@ export default function AboutPage() {
       </section>
 
       {/* Who we are, in the live page's own words */}
-      <section id="who-we-are" className="mx-auto grid max-w-[90rem] scroll-mt-28 gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:px-8">
+      <section id="who-we-are" className="mx-auto grid max-w-site scroll-mt-28 gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16 lg:px-6">
         <div className="relative isolate">
           <PhotoGlow src="/photos/page-about.webp" strength="lg" />
           <div className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-snow-2">
@@ -120,7 +120,7 @@ export default function AboutPage() {
       {/* Our services */}
       {about?.services.length ? (
         <section id="services" className="bg-snow-2 scroll-mt-28 py-16 sm:py-24">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
             <SectionHeading eyebrow="What we do" lines={["Our", <Accent key="s">services.</Accent>]} />
             <Stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {about.services.map((sv) => (
@@ -147,7 +147,7 @@ export default function AboutPage() {
       {about?.why.length ? (
         <section className="bg-pine relative overflow-hidden py-16 text-white sm:py-24 dark:bg-pine-deep">
           <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.07]" />
-          <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="relative mx-auto max-w-site px-4 sm:px-6 lg:px-6">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <SectionHeading tone="dark" eyebrow="Base Camp Adventure" lines={["Why book", <Accent key="w">with us.</Accent>]} />
               <Link href="/why-book-with-us/" className="inline-flex items-center gap-2 self-start rounded-lg bg-white px-5 py-3 text-sm font-bold text-[#006c7c] lg:self-auto">
@@ -174,7 +174,7 @@ export default function AboutPage() {
 
       {/* Community & social work */}
       {community.length ? (
-        <section id="community" className="mx-auto max-w-[90rem] scroll-mt-28 px-4 pt-16 sm:px-6 sm:pt-24 lg:px-8">
+        <section id="community" className="mx-auto max-w-site scroll-mt-28 px-4 pt-16 sm:px-6 sm:pt-24 lg:px-6">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <SectionHeading eyebrow="Community & social work" lines={["Where we", <Accent key="g">give back.</Accent>]} />
             <Link href="/community/" className="border-b-2 border-ink pb-1 text-sm font-bold">
@@ -186,7 +186,7 @@ export default function AboutPage() {
       ) : null}
 
       {/* Our team */}
-      <section className="mx-auto max-w-[90rem] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section className="mx-auto max-w-site px-4 py-16 sm:px-6 sm:py-24 lg:px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading eyebrow="The people behind the journey" lines={["Our", <Accent key="t">team.</Accent>]} />
           <Link href="/our-team/" className="border-b-2 border-ink pb-1 text-sm font-bold">
@@ -210,17 +210,17 @@ export default function AboutPage() {
 
       {/* Our affiliation: where the menu's "Our Affiliation" lands */}
       <section id="affiliations" className="scroll-mt-28 border-t border-line pt-16">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <SectionHeading eyebrow="Associated with" lines={["Our", <Accent key="a">affiliation.</Accent>]} />
         </div>
         <div className="mt-4">
           <Accreditations />
         </div>
-        <div id="awards" className="mx-auto max-w-[90rem] scroll-mt-28 px-4 pt-10 sm:px-6 lg:px-8">
+        <div id="awards" className="mx-auto max-w-site scroll-mt-28 px-4 pt-10 sm:px-6 lg:px-6">
           <p className="eyebrow text-pine mb-4">Awards &amp; recognition</p>
           <Awards awards={getAwards()} />
         </div>
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-site flex-col gap-4 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-6">
           <p className="font-mono text-xs text-ink-soft sm:text-sm">{site.registration.map((r) => `${r.label} ${r.value}`).join("  ·  ")}</p>
           <Link href="/legal-documents/" className="text-pine inline-flex items-center gap-2 text-sm font-bold">
             Licences &amp; documents <ArrowRight className="size-4" aria-hidden />

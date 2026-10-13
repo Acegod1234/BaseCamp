@@ -3,6 +3,69 @@
 /* Dark mode follows a class on <html>, set before first paint (see layout). */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Shared page width and package spacing keep every collection aligned. */
+@utility max-w-site {
+  max-width: 120rem;
+}
+
+@utility package-grid-gap {
+  column-gap: clamp(1.5rem, 2vw, 2.5rem);
+  row-gap: clamp(2rem, 2.5vw, 3rem);
+}
+
+/* Nepal tour collage: two tall rows, with square features at opposite corners. */
+.nepal-tour-mosaic {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.5rem, 2vw, 2.5rem);
+}
+.nepal-tour-mosaic > * { min-width: 0; }
+.nepal-tour-square {
+  aspect-ratio: 1;
+  height: auto;
+}
+.nepal-tour-square > a > div:first-child {
+  aspect-ratio: auto;
+  flex: 1;
+  min-height: 0;
+}
+.nepal-tour-square > a > div:nth-child(2) { flex: 0 0 auto; }
+.nepal-tour-mosaic h3 { -webkit-line-clamp: unset; }
+@media (min-width: 640px) {
+  .nepal-tour-mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .nepal-tour-mosaic {
+    aspect-ratio: 1;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+      "helicopter-one helicopter-one tour-one tour-one"
+      "helicopter-one helicopter-one tour-two tour-three"
+      "tour-four tour-five helicopter-two helicopter-two"
+      "tour-six tour-six helicopter-two helicopter-two";
+  }
+  .nepal-tour-feature-1 { grid-area: helicopter-one; }
+  .nepal-tour-feature-2 { grid-area: helicopter-two; }
+  .nepal-tour-secondary-1 { grid-area: tour-one; }
+  .nepal-tour-secondary-2 { grid-area: tour-two; }
+  .nepal-tour-secondary-3 { grid-area: tour-three; }
+  .nepal-tour-secondary-4 { grid-area: tour-four; }
+  .nepal-tour-secondary-5 { grid-area: tour-five; }
+  .nepal-tour-secondary-6 { grid-area: tour-six; }
+  .nepal-tour-secondary { min-height: 0; }
+  .nepal-tour-secondary article > a > div:first-child {
+    aspect-ratio: auto;
+    flex: 1;
+    min-height: 0;
+  }
+  .nepal-tour-secondary article > a > div:nth-child(2) { flex: 0 0 auto; }
+  .nepal-tour-secondary article > a > div:nth-child(2) > div:last-child {
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Base Camp Adventure — design tokens
 
@@ -342,8 +405,8 @@
 .prose-on-dark h2, .prose-on-dark h3, .prose-on-dark strong { color: white; }
 
 /* Theme switch: the whole page changes light together for a moment. */
-.theme-fade, .theme-fade *, .theme-fade *::before, .theme-fade *::after {
-  transition: background-color 400ms ease, color 400ms ease, border-color 400ms ease, fill 400ms ease !important;
+.theme-switching, .theme-switching *, .theme-switching *::before, .theme-switching *::after {
+  transition: none !important;
 }
 
 /* ---------------------------------------------------------------------------
@@ -415,7 +478,16 @@
   0% { background-size: 112% auto; }
   100% { background-size: 124% auto; }
 }
+.hero-full-photo {
+  background-size: cover;
+  background-position: var(--px, 50%) var(--py, 50%);
+}
+@keyframes hero-full-drift {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.1); }
+}
 @media (prefers-reduced-motion: no-preference) {
+  .hero-full-photo { animation: hero-full-drift 14s ease-in-out infinite alternate; transition: background-position 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
   .hero-drift { animation: hero-drift 14s ease-in-out infinite alternate; transition: background-position 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
 }
 
@@ -432,7 +504,7 @@
 @media (max-width: 639px) {
   .rail {
     display: flex !important;
-    gap: 0.75rem;
+    gap: 1.5rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: 1rem;

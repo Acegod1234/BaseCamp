@@ -1,10 +1,9 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { LineReveal, Reveal } from "@/components/motion";
 import { breadcrumbLd } from "@/lib/seo";
-import { LogoOverlay } from "@/components/brand/logo-overlay";
 import { cropFor } from "@/lib/banner";
 import { imageSize } from "@/lib/image-size";
 import { cn } from "@/lib/utils";
@@ -60,7 +59,7 @@ export function PageHero({
 }) {
   return (
     <section className="pt-[5.5rem] lg:pt-[6.25rem]">
-      <div className="mx-auto max-w-[90rem] px-4 pt-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-site px-4 pt-6 sm:px-6 lg:px-6">
         <Reveal y={8}>
           <Breadcrumbs items={crumbs} />
         </Reveal>
@@ -85,7 +84,7 @@ export function PageHero({
         </div>
         {children ? <Reveal delay={0.25} y={10}>{children}</Reveal> : null}
       </div>
-      <div className="mx-auto mt-8 max-w-[90rem] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-8 max-w-site px-4 sm:px-6 lg:px-6">
         <BannerPhoto src={photo} wide={size === "lg" ? 21 / 8 : 21 / 7} />
       </div>
     </section>
@@ -106,8 +105,6 @@ function BannerPhoto({ src, wide }: { src: string; wide: number }) {
       style={{ ["--pos-s" as string]: small?.position ?? "50% 50%", ["--pos-l" as string]: large?.position ?? "50% 40%" }}
     >
       <Image src={src} alt="" fill preload fetchPriority="high" quality={82} sizes="(max-width: 1440px) 100vw, 1376px" className="object-cover object-[var(--pos-s)] sm:object-[var(--pos-l)]" />
-      {small?.overlay ? <LogoOverlay box={small.overlay} className="sm:hidden" /> : null}
-      {large?.overlay ? <LogoOverlay box={large.overlay} className="hidden sm:block" /> : null}
     </div>
   );
 }

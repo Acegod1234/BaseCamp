@@ -1,7 +1,6 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -24,15 +23,15 @@ export function ThemeToggle({ className }: { className?: string }) {
   const dark = useSyncExternalStore(subscribe, isDark, () => false);
 
   const toggle = () => {
-    const next = !dark;
+    const next = !isDark();
     const root = document.documentElement;
-    // A brief cross-fade so the whole page changes light together.
-    root.classList.add("theme-fade");
+    // Apply every theme colour in one paint, without per-element cross-fades.
+    root.classList.add("theme-switching");
     root.classList.toggle("dark", next);
     try {
       localStorage.setItem(KEY, next ? "dark" : "light");
     } catch {}
-    window.setTimeout(() => root.classList.remove("theme-fade"), 450);
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("theme-switching")));
   };
 
   return (
@@ -43,18 +42,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       title={dark ? "Light mode" : "Dark mode"}
       className={cn("relative grid size-10 place-items-center overflow-hidden rounded-full text-ink transition-colors hover:bg-snow-2", className)}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={dark ? "moon" : "sun"}
-          initial={{ y: 14, opacity: 0, rotate: -60 }}
-          animate={{ y: 0, opacity: 1, rotate: 0 }}
-          exit={{ y: -14, opacity: 0, rotate: 60 }}
-          transition={{ duration: 0.25 }}
-          className="grid place-items-center"
-        >
-          {dark ? <Moon className="size-[1.15rem]" aria-hidden /> : <Sun className="size-[1.15rem]" aria-hidden />}
-        </motion.span>
-      </AnimatePresence>
+      {dark ? <Moon className="size-[1.15rem]" aria-hidden /> : <Sun className="size-[1.15rem]" aria-hidden />}
     </button>
   );
 }

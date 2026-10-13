@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUp, ChevronDown, Mail, MapPin, Phone } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
@@ -48,7 +48,7 @@ export function SiteFooter() {
     <footer>
       {/* Let's make a plan. */}
       <section className="relative border-t border-line bg-snow">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 py-14 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8 lg:py-16">
+        <div className="mx-auto flex max-w-site flex-col gap-8 px-4 py-14 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-6 lg:py-16">
           <div>
             <p className="eyebrow text-pine">Your time. Your interests. Your trip.</p>
             <h2 className="font-display mt-3 text-[clamp(2.4rem,5vw,4rem)] leading-[1.02] text-ink">
@@ -74,7 +74,7 @@ export function SiteFooter() {
       <div className="relative overflow-hidden bg-[#1c2224] text-white/75">
         <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.04]" />
         <div aria-hidden className="absolute -top-40 right-[-10%] size-[36rem] rounded-full bg-[#00afc4]/12 blur-[120px]" />
-        <div className="relative mx-auto max-w-[90rem] px-4 pt-12 pb-8 sm:px-6 lg:px-8 lg:pt-14">
+        <div className="relative mx-auto max-w-site px-4 pt-12 pb-8 sm:px-6 lg:px-6 lg:pt-14">
           {/* Newsletter: email only */}
           <div className="flex flex-col gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
@@ -168,7 +168,7 @@ export function SiteFooter() {
         </div>
 
         <div className="relative border-t border-white/10">
-          <div className="mx-auto flex max-w-[90rem] flex-col items-center gap-3 px-4 py-6 text-xs text-white/50 sm:flex-row sm:justify-between sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-site flex-col items-center gap-3 px-4 py-6 text-xs text-white/50 sm:flex-row sm:justify-between sm:px-6 lg:px-6">
             <p>© {year} {site.legalName}. All rights reserved.</p>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
               <Link href="/privacy-policy/" className="hover:text-white">Privacy Policy</Link>

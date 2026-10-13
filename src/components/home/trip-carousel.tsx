@@ -45,7 +45,8 @@ export function TripCarousel({ trips, regionNames, moreHref, moreLabel }: { trip
     const el = ref.current;
     if (!el) return;
     const card = el.querySelector<HTMLElement>("[data-slide]");
-    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.85;
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
+    const step = card ? card.offsetWidth + gap : el.clientWidth * 0.85;
     const per = Math.max(1, Math.floor(el.clientWidth / step));
     el.scrollBy({ left: dir * step * per, behavior: "smooth" });
   };
@@ -55,7 +56,7 @@ export function TripCarousel({ trips, regionNames, moreHref, moreLabel }: { trip
       <div
         ref={ref}
         data-lenis-prevent-wheel
-        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pt-2 pb-6 [-webkit-overflow-scrolling:touch] [scroll-padding-inline:1rem] sm:-mx-6 sm:px-6 sm:[scroll-padding-inline:1.5rem]"
+        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain px-4 pt-2 pb-6 [-webkit-overflow-scrolling:touch] [scroll-padding-inline:1rem] sm:-mx-6 sm:gap-8 sm:px-6 sm:[scroll-padding-inline:1.5rem] lg:gap-10"
         role="region"
         aria-label="Popular trips"
         tabIndex={0}

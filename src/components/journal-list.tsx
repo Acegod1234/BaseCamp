@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
@@ -46,7 +46,7 @@ export function JournalList({
 
       <div className="h-6" aria-hidden />
       <div data-subnav className="sticky top-[4.5rem] z-30 px-2.5 sm:px-4 lg:top-[5.25rem]">
-        <nav aria-label="Journal categories" className="no-scrollbar mx-auto flex max-w-[86rem] gap-1.5 overflow-x-auto rounded-2xl border border-line bg-card/92 p-1.5 shadow-[0_14px_40px_-26px_oklch(0.2_0.04_170/0.45)] backdrop-blur-xl">
+        <nav aria-label="Journal categories" className="no-scrollbar mx-auto flex max-w-site gap-1.5 overflow-x-auto rounded-2xl border border-line bg-card/92 p-1.5 shadow-[0_14px_40px_-26px_oklch(0.2_0.04_170/0.45)] backdrop-blur-xl">
           <Link href="/blogs/" className={cn("shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors", !activeCategory ? "bg-pine text-white" : "text-ink-soft hover:bg-snow-2 hover:text-ink")}>
             All articles
           </Link>
@@ -62,7 +62,7 @@ export function JournalList({
         </nav>
       </div>
 
-      <section className="mx-auto max-w-[90rem] px-4 pt-10 pb-16 sm:px-6">
+      <section className="mx-auto max-w-site px-4 pt-10 pb-16 sm:px-6">
         {lead ? (
           <Reveal>
             <Link href={`/${lead.slug}/`} className="group grid gap-8 lg:grid-cols-[1.25fr_1fr] lg:items-center">

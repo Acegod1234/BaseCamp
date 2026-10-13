@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
@@ -31,7 +31,7 @@ export function TermIndex({
   return (
     <>
       <PageHero title={title} accent={accent} eyebrow="Nepal & beyond" intro={intro} photo={photo} crumbs={[{ name: crumb, path }]} />
-      <section className="mx-auto max-w-[90rem] px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-site px-4 py-20 sm:px-6">
         <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {items.map((it, i) => (
             <StaggerItem key={it.slug} className={i === 0 ? "md:col-span-2 lg:row-span-2" : ""}>

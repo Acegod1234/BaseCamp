@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Flag } from "@/components/flag";
@@ -43,7 +43,7 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
   return (
     <section className="bg-snow-2 relative overflow-hidden py-12 sm:py-14 lg:py-16">
       <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-[#00afc4]/10 blur-3xl" />
-      <div className="relative mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-site px-4 sm:px-6 lg:px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading eyebrow="Testimonials" lines={["In their", <Accent key="w">own words.</Accent>]} />
           {tripadvisor ? (

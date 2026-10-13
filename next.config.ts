@@ -37,6 +37,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  distDir: process.env.BCA_NEXT_DIST_DIR || ".next",
+  turbopack: { root: process.cwd() },
   poweredByHeader: false,
   // pdfkit reads its built-in font metrics from its own folder at runtime.
   serverExternalPackages: ["pdfkit"],
@@ -52,9 +54,14 @@ const nextConfig: NextConfig = {
     "/trip/**": ["./node_modules/@fontsource/manrope/files/manrope-latin-{600,700}-normal.woff", "./node_modules/@fontsource/dm-sans/files/dm-sans-latin-{400,500,700}-normal.woff"],
   },
   images: {
+    localPatterns: [
+      { pathname: "/**", search: "" },
+      { pathname: "/media/**", search: "?v=without-logo-1" },
+      { pathname: "/photos/**", search: "?v=without-logo-1" },
+    ],
     deviceSizes: [640, 828, 1200, 1920, 2560, 3840],
     imageSizes: [96, 256, 384],
-    qualities: [70, 75, 80, 85],
+    qualities: [70, 75, 80, 82, 85, 95],
     // WebP only: AVIF takes several times longer to encode, which made first
     // visits wait on the optimiser. The sources are WebP already.
     formats: ["image/webp"],
@@ -102,6 +109,10 @@ const nextConfig: NextConfig = {
       {
         source: "/(media|photos|brand)/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/videos/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
       },
     ];
   },

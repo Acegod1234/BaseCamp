@@ -1,7 +1,7 @@
 import "server-only";
 import { resolveOldPath } from "@/lib/redirects";
 import { tripInfo, type InfoOverrides } from "@/lib/trip-info";
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 import type {
@@ -55,14 +55,24 @@ const directLinks = (s: string) =>
     return m;
   });
 
+const parsedContent = new Map<string, { modified: number; value: unknown }>();
+
 function load<T>(name: string, fallback: T): T {
   try {
-    return JSON.parse(readFileSync(path.join(dir, `${name}.json`), "utf8"), (_k, v) => {
+    const file = path.join(dir, `${name}.json`);
+    const existing = parsedContent.get(name);
+    // Published content is fixed for a build; local edits invalidate by file time.
+    if (existing && process.env.NODE_ENV === "production") return existing.value as T;
+    const modified = statSync(file).mtimeMs;
+    if (existing?.modified === modified) return existing.value as T;
+    const value = JSON.parse(readFileSync(file, "utf8"), (_k, v) => {
       if (typeof v !== "string") return v;
       let s = v.includes('class="measurement"') ? withFeet(v) : v;
       if (s.includes('href="')) s = directLinks(s);
       return s;
     }) as T;
+    parsedContent.set(name, { modified, value });
+    return value;
   } catch {
     return fallback;
   }

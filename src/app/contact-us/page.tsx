@@ -32,7 +32,7 @@ export default function ContactPage() {
         photo="/photos/page-contact.webp"
         crumbs={[{ name: "Contact us", path: "/contact-us/" }]}
       />
-      <section className="mx-auto grid max-w-[90rem] gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
+      <section className="mx-auto grid max-w-site gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="space-y-4">
           {cards.map(({ Icon, title, lines, href }, i) => (
             <Reveal key={title} delay={i * 0.06}>

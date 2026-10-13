@@ -21,7 +21,7 @@ export function Offers({ offer, trips, regionNames }: { offer: Offer | null; tri
 
   return (
     <section id="offers" className="scroll-mt-24 py-14 sm:py-16 lg:py-20">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
         {offer ? (
           <div className="bg-pine relative mb-12 overflow-hidden rounded-[1.4rem] text-white dark:bg-pine-deep">
             <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.08]" />
@@ -73,7 +73,7 @@ export function Offers({ offer, trips, regionNames }: { offer: Offer | null; tri
           <Newsletter source="offers" className="w-full sm:max-w-sm" />
         </div>
 
-        <Stagger className="rail grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+        <Stagger className="rail package-grid-gap grid sm:grid-cols-2 lg:grid-cols-4">
           {shown.map((t) => (
             <StaggerItem key={t.slug}>
               <TripCard trip={t} regionName={regionNames[t.destinations[0]]} />

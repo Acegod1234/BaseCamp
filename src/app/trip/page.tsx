@@ -29,8 +29,8 @@ export default function TripsPage() {
         photo="/photos/page-trips.webp"
         crumbs={[{ name: "All trips", path: "/trip/" }]}
       />
-      <section className="mx-auto max-w-[90rem] px-4 pb-24 sm:px-6">
-        <Suspense fallback={<TripGrid trips={trips} regionNames={regionNames} />}>
+      <section className="mx-auto max-w-site px-4 pb-24 sm:px-6">
+        <Suspense fallback={<TripGrid trips={trips.slice(0, 12)} regionNames={regionNames} />}>
           <TripExplorer trips={trips} regions={destinations.map(opt)} activities={activities.map(opt)} regionNames={regionNames} />
         </Suspense>
       </section>

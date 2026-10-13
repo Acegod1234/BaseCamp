@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -14,21 +14,44 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { site, whatsappHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-export type HeaderRegion = { slug: string; name: string; count: number; photo: string };
+export type HeaderRegion = { slug: string; name: string; count: number; photo: string; href: string };
 
 /** The prototype's navigation, word for word. */
 const LINKS = [
-  { href: "/trip/", label: "Our trips" },
+  { href: "/trip/", label: "Our trips", menu: true },
   { href: "/destination/", label: "Destinations", menu: true },
   { href: "/blogs/", label: "Journal" },
-  { href: "/about-us/#affiliations", label: "Our Affiliation" },
   { href: "/about-us/", label: "About us" },
 ];
 
-export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
+function TourMenu() {
+  return (
+    <div className="grid gap-2">
+      {[
+        { name: "Cultural & Sightseeing Tours", description: "Heritage, temples & city discoveries", href: "/activities/nepal-tour/", photo: "/media/2021/09/bouddhanath-scaled.webp" },
+        { name: "Helicopter Tours", description: "Himalayan scenic flights", href: "/trip/?q=helicopter%20tour", photo: "/media/2018/07/helicopter-tour-ii.webp" },
+        { name: "Day Tours", description: "Short escapes & local discoveries", href: "/activities/day-tours/", photo: "/media/2018/08/swembhunath.webp" },
+        { name: "Jungle Safari", description: "Wildlife & national parks", href: "/trip/?activity=nepal-tour&q=safari", photo: "/media/2018/07/bardia-national-park-cover.webp" },
+        { name: "River Rafting", description: "Nepal’s white-water adventures", href: "/activities/river-rafting-in-nepal/", photo: "/media/2018/08/trishuli-river-rafting-iv-1.webp" },
+      ].map(({ name, description, href, photo }) => (
+        <Link key={name} href={href} className="group flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-snow-2">
+          <span className="relative size-12 shrink-0 overflow-hidden rounded-lg">
+            <Image src={photo} alt="" fill sizes="48px" className="object-cover transition-transform duration-300 group-hover:scale-105" />
+          </span>
+          <span>
+          <span className="block text-sm font-semibold group-hover:text-pine">{name}</span>
+          <span className="mt-1 block text-xs text-muted">{description}</span>
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]; trekRegions: HeaderRegion[] }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [dest, setDest] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { scrollY } = useScroll();
@@ -36,7 +59,7 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
 
   useEffect(() => {
     const id = requestAnimationFrame(() => {
-      setDest(false);
+      setOpenMenu(null);
       setMobile(false);
     });
     return () => cancelAnimationFrame(id);
@@ -46,7 +69,7 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
     document.documentElement.style.overflow = mobile ? "hidden" : "";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setDest(false);
+        setOpenMenu(null);
         setMobile(false);
       }
     };
@@ -54,13 +77,13 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobile]);
 
-  const open = () => {
+  const open = (href: string) => {
     if (timer.current) clearTimeout(timer.current);
-    setDest(true);
+    setOpenMenu(href);
   };
   const close = () => {
     if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => setDest(false), 150);
+    timer.current = setTimeout(() => setOpenMenu(null), 150);
   };
 
   const isActive = (href: string) => {
@@ -81,7 +104,7 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
             scrolled ? "border-line shadow-[0_8px_30px_-22px_oklch(0.25_0.05_210/0.5)]" : "border-line/70",
           )}
         >
-          <div className="mx-auto flex h-16 max-w-[90rem] items-center gap-4 px-4 sm:px-6 lg:h-[4.75rem] lg:px-8">
+          <div className="mx-auto flex h-16 max-w-site items-center gap-4 px-4 sm:px-6 lg:h-[4.75rem] lg:px-6">
             <Link href="/" aria-label="Base Camp Adventure home" className="shrink-0">
               <Logo priority className="w-[92px] sm:w-[104px] lg:w-[112px]" />
             </Link>
@@ -89,44 +112,54 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
             <nav aria-label="Main" className="mx-auto hidden items-center gap-1 lg:flex">
               {LINKS.map((l) =>
                 l.menu ? (
-                  <div key={l.href} className="relative" onMouseEnter={open} onMouseLeave={close}>
+                  <div key={l.href} className="relative" onMouseEnter={() => open(l.href)} onMouseLeave={close}>
                     <Link
                       href={l.href}
-                      onFocus={open}
-                      aria-expanded={dest}
-                      className={cn("relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-[0.95rem] font-semibold transition-colors", isActive(l.href) || dest ? "text-pine" : "text-ink hover:text-pine")}
+                      onFocus={() => open(l.href)}
+                      aria-expanded={openMenu === l.href}
+                      className={cn("relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-[0.95rem] font-semibold transition-colors", isActive(l.href) || openMenu === l.href ? "text-pine" : "text-ink hover:text-pine")}
                     >
                       {l.label}
-                      <ChevronDown className={cn("size-4 transition-transform", dest && "rotate-180")} aria-hidden />
+                      <ChevronDown className={cn("size-4 transition-transform", openMenu === l.href && "rotate-180")} aria-hidden />
                     </Link>
                     <AnimatePresence>
-                      {dest ? (
+                      {openMenu === l.href ? (
                         <motion.div
                           initial={{ opacity: 0, y: -6 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -4 }}
                           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute top-full left-1/2 w-[30rem] -translate-x-1/2 pt-3"
+                          className={cn("absolute top-full left-1/2 -translate-x-1/2 pt-3", l.href === "/trip/" ? "w-[44rem]" : "w-[30rem]")}
                         >
-                          <div className="overflow-hidden rounded-2xl border border-line bg-card shadow-[0_24px_60px_-28px_oklch(0.25_0.05_210/0.45)]">
-                            <ul className="grid grid-cols-2 gap-1 p-2.5">
-                              {regions.map((r) => (
+                          <div data-lenis-prevent className={cn("max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-2xl border border-line bg-card shadow-[0_24px_60px_-28px_oklch(0.25_0.05_210/0.45)]", l.href === "/trip/" && "grid grid-cols-2")}>
+                            <div>
+                            {l.href === "/trip/" ? (
+                              <div className="px-4 pt-4 pb-2">
+                                <h2 className="text-sm font-bold text-pine">Nepal Trekking Services</h2>
+                              </div>
+                            ) : null}
+                            <ul className="grid gap-1 p-2.5">
+                              {(l.href === "/trip/" ? trekRegions : regions).map((r) => (
                                 <li key={r.slug}>
-                                  <Link href={`/destinations/${r.slug}/`} className="group flex items-center gap-3 rounded-xl p-2 hover:bg-snow-2">
+                                  <Link href={r.href} className="group flex items-center gap-3 rounded-xl p-2 hover:bg-snow-2">
                                     <span className="relative size-10 shrink-0 overflow-hidden rounded-lg">
                                       <Image src={r.photo} alt="" fill sizes="40px" className="object-cover" />
                                     </span>
                                     <span className="min-w-0">
                                       <span className="block truncate text-sm font-semibold group-hover:text-pine">{r.name}</span>
-                                      <span className="block text-xs text-muted">{r.count} trips</span>
+                                      <span className="block text-xs text-muted">{r.count} {r.slug === "nepal" ? "tours" : "trips"}</span>
                                     </span>
                                   </Link>
                                 </li>
                               ))}
                             </ul>
-                            <Link href="/destination/" className="flex items-center justify-between border-t border-line px-4 py-3 text-sm font-bold text-pine hover:bg-snow-2">
-                              All destinations <ArrowRight className="size-4" aria-hidden />
-                            </Link>
+                            </div>
+                            {l.href === "/trip/" ? (
+                              <div className="border-l border-line p-3">
+                                <h2 className="mb-3 px-1 pt-1 text-sm font-bold text-pine">Nepal Touring Service</h2>
+                                <TourMenu />
+                              </div>
+                            ) : null}
                           </div>
                         </motion.div>
                       ) : null}
@@ -190,12 +223,25 @@ export function HeaderClient({ regions }: { regions: HeaderRegion[] }) {
                       {l.label} <ArrowRight className="size-5 text-muted" aria-hidden />
                     </Link>
                     {l.menu ? (
-                      <div className="grid grid-cols-2 gap-2 py-3">
-                        {regions.map((r) => (
-                          <Link key={r.slug} href={`/destinations/${r.slug}/`} className="rounded-xl border border-line bg-card px-3 py-2.5 text-sm font-semibold">
+                      <div className="py-3">
+                        {l.href === "/trip/" ? (
+                          <div className="mb-3">
+                            <h2 className="text-sm font-bold text-pine">Nepal Trekking Services</h2>
+                          </div>
+                        ) : null}
+                        <div className="grid grid-cols-2 gap-2">
+                        {(l.href === "/trip/" ? trekRegions : regions).map((r) => (
+                          <Link key={r.slug} href={r.href} className="rounded-xl border border-line bg-card px-3 py-2.5 text-sm font-semibold">
                             {r.name.replace(" Region", "")} <span className="text-xs font-normal text-muted">{r.count}</span>
                           </Link>
                         ))}
+                        </div>
+                        {l.href === "/trip/" ? (
+                          <div className="mt-4 border-t border-line pt-4">
+                            <h2 className="mb-3 text-sm font-bold text-pine">Nepal Touring Service</h2>
+                            <TourMenu />
+                          </div>
+                        ) : null}
                       </div>
                     ) : null}
                   </motion.div>

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Backpack, Check, Clock, Compass, FileDown, Flag, Gauge, Info, MapPin, Mountain, Route, Star, Sun, Users, X, type LucideIcon } from "lucide-react";
@@ -24,6 +24,9 @@ import { ReviewText } from "@/components/review-text";
 import { reviewer } from "@/lib/reviewer";
 import { whatsappHref } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
+import { costTitle } from "@/lib/cost-title";
+import { Equipment } from "@/components/trip/equipment";
+import equipmentData from "@/content/equipment.json";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -53,6 +56,21 @@ const INFO_ICONS: Record<InfoKey, LucideIcon> = {
   season: Sun,
 };
 
+const GOKYO_COST_TITLES = {
+  includes: [
+    "Airport transfers", "Kathmandu accommodation", "Trek meals",
+    "Guesthouse accommodation", "Experienced trekking guide", "Trekking crew support",
+    "Permits and fees", "Baggage storage", "Trekking equipment",
+    "Trekking map", "First aid kit", "Ground transportation", "Lukla flights",
+  ],
+  excludes: [
+    "Nepal visa fees", "Meals in Kathmandu", "International flights",
+    "Insurance and emergency expenses", "Optional porter service", "Drinks and refreshments",
+    "Laundry and personal expenses", "Excess baggage charges", "Personal trekking gear",
+    "Tips and gratuities", "Other services and expenses",
+  ],
+};
+
 export default async function TripPage({ params }: Props) {
   const { slug } = await params;
   const trip = getTrip(slug);
@@ -69,13 +87,44 @@ export default async function TripPage({ params }: Props) {
   const altitudeDays = trip.itinerary.filter((d) => d.altitude).length >= 3 ? trip.itinerary : [];
 
   const info = getTripInfo(trip);
+  const equipment = (equipmentData as Record<string, { items: { name: string; description: string; image: string; category: string }[] }>)[trip.slug];
+  const costTitles = trip.slug === "everest-base-camp-and-gokyo-trek" ? GOKYO_COST_TITLES : {
+    includes: trip.includes.map(costTitle),
+    excludes: trip.excludes.map(costTitle),
+  };
+
+  // Combine repeated More information sections without losing their content.
+  const mergedSections: typeof trip.sections = [];
+  for (const section of trip.sections) {
+    // The illustrated equipment section replaces the old packing-list copy.
+    if (equipment && (section.id === "equipment" || /packing (?:list|checklist)|equipment list/i.test(section.title) || (/equipment list:/i.test(section.html) && !/<strong>Q:/i.test(section.html)))) continue;
+    const existing = section.title.trim().toLowerCase() === "more information"
+      ? mergedSections.find((item) => item.title.trim().toLowerCase() === "more information")
+      : undefined;
+    if (existing) {
+      if (existing.html !== section.html) existing.html += `\n<div class="mt-8">${section.html}</div>`;
+    } else {
+      mergedSections.push({ ...section });
+    }
+  }
+
+  // Imported sections can share IDs; each tab needs its own section target.
+  const sectionIds = new Set(["overview", "itinerary", "altitude", "included", "equipment", "route-map", "videos", "gallery", "faqs", "reviews"]);
+  const sections = mergedSections.map((section) => {
+    let id = section.id;
+    let suffix = 2;
+    while (sectionIds.has(id)) id = `${section.id}-${suffix++}`;
+    sectionIds.add(id);
+    return { ...section, id };
+  });
 
   const nav = [
     { id: "overview", label: "Overview" },
     ...(trip.itinerary.length ? [{ id: "itinerary", label: "Itinerary" }] : []),
     ...(altitudeDays.length ? [{ id: "altitude", label: "Altitude" }] : []),
     ...(trip.includes.length || trip.excludes.length ? [{ id: "included", label: "What's included" }] : []),
-    ...trip.sections.map((s) => ({ id: s.id, label: s.title.length > 22 ? `${s.title.slice(0, 20)}…` : s.title })),
+    ...sections.map((s) => ({ id: s.id, label: s.title.length > 22 ? `${s.title.slice(0, 20)}…` : s.title })),
+    ...(equipment ? [{ id: "equipment", label: "Equipment" }] : []),
     ...(trip.map ? [{ id: "route-map", label: "Route map" }] : []),
     ...(videos.length ? [{ id: "videos", label: "Videos" }] : []),
     { id: "gallery", label: "Gallery" },
@@ -87,7 +136,7 @@ export default async function TripPage({ params }: Props) {
     <>
       {/* Heading, in the prototype's layout */}
       <section className="pt-[5.5rem] lg:pt-[6.25rem]">
-        <div className="mx-auto max-w-[90rem] px-4 pt-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 pt-6 sm:px-6 lg:px-6">
           <Reveal y={8}>
             <Breadcrumbs
               items={[
@@ -112,12 +161,12 @@ export default async function TripPage({ params }: Props) {
             </Reveal>
           </div>
         </div>
-        <div className="mx-auto mt-7 max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-7 max-w-site px-4 sm:px-6 lg:px-6">
           <TripSlider images={[...(sharpest ? [sharpest] : []), ...photos.filter((p) => p.src !== sharpest?.src)]} title={trip.title} />
         </div>
 
         {/* Trip information: only the fields that have a value */}
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <h2 className="sr-only">Trip information</h2>
           <Stagger className="grid grid-cols-2 gap-x-5 gap-y-5 border-b border-line py-6 sm:grid-cols-3 lg:grid-cols-5" gap={0.04}>
             {info.map((f) => {
@@ -142,7 +191,7 @@ export default async function TripPage({ params }: Props) {
       <div className="h-6" aria-hidden />
       <SectionNav items={nav} price={trip.price} />
 
-      <div className="mx-auto grid max-w-[90rem] gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_23rem] lg:gap-16 lg:px-8">
+      <div className="mx-auto grid max-w-site gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_23rem] lg:gap-16 lg:px-6">
         <article className="min-w-0 space-y-20">
           <section id="overview" className="scroll-mt-40">
             <p className="eyebrow text-pine">Overview</p>
@@ -192,10 +241,13 @@ export default async function TripPage({ params }: Props) {
                   <div className="rounded-[1.4rem] border border-line bg-card p-6">
                     <h3 className="text-lg font-bold">The price includes</h3>
                     <ul className="mt-4 space-y-3">
-                      {trip.includes.map((x) => (
+                      {trip.includes.map((x, i) => (
                         <li key={x} className="flex gap-3 text-[0.95rem] text-ink-soft">
                           <span className="bg-moss/15 text-moss mt-0.5 grid size-5 shrink-0 place-items-center rounded-full"><Check className="size-3.5" aria-hidden /></span>
-                          {x}
+                          <div>
+                            {costTitles?.includes[i] ? <h4 className="font-bold text-ink">{costTitles.includes[i]}</h4> : null}
+                            <p>{x}</p>
+                          </div>
                         </li>
                       ))}
                     </ul>
@@ -205,10 +257,13 @@ export default async function TripPage({ params }: Props) {
                   <div className="rounded-[1.4rem] border border-line bg-snow-2 p-6">
                     <h3 className="text-lg font-bold">Not included</h3>
                     <ul className="mt-4 space-y-3">
-                      {trip.excludes.map((x) => (
+                      {trip.excludes.map((x, i) => (
                         <li key={x} className="flex gap-3 text-[0.95rem] text-ink-soft">
                           <span className="bg-crimson/10 text-crimson mt-0.5 grid size-5 shrink-0 place-items-center rounded-full"><X className="size-3.5" aria-hidden /></span>
-                          {x}
+                          <div>
+                            {costTitles?.excludes[i] ? <h4 className="font-bold text-ink">{costTitles.excludes[i]}</h4> : null}
+                            <p>{x}</p>
+                          </div>
                         </li>
                       ))}
                     </ul>
@@ -218,11 +273,13 @@ export default async function TripPage({ params }: Props) {
             </section>
           ) : null}
 
-          {trip.sections.map((s) => (
+          {sections.map((s) => (
             <section key={s.id} id={s.id} className="scroll-mt-40">
               <div className="prose-trail" dangerouslySetInnerHTML={{ __html: s.html }} />
             </section>
           ))}
+
+          {equipment ? <Equipment key={trip.slug} items={equipment.items} /> : null}
 
           {trip.map ? (
             <section id="route-map" className="scroll-mt-40">
@@ -334,7 +391,7 @@ export default async function TripPage({ params }: Props) {
 
       {guides.length ? (
         <section className="border-t border-line py-20">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
+          <div className="mx-auto max-w-site px-4 sm:px-6">
             <SectionHeading eyebrow={`${region?.name} guides`} lines={["Read before", <Accent key="y">you go.</Accent>]} />
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {guides.map((p) => (
@@ -353,14 +410,14 @@ export default async function TripPage({ params }: Props) {
 
       {related.length ? (
         <section className="bg-snow-2 py-20 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
+          <div className="mx-auto max-w-site px-4 sm:px-6">
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading eyebrow="You might also like" lines={["Other trails", <Accent key="n">nearby.</Accent>]} />
               <Link href="/trip/" className="text-pine inline-flex items-center gap-2 font-bold">
                 All trips <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <div className="mt-10 package-grid-gap grid sm:grid-cols-2 lg:grid-cols-4">
               {related.map((t) => (
                 <TripCard key={t.slug} trip={t} regionName={region?.name} />
               ))}

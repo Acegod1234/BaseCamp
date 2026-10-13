@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { Suspense } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mountain } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { CountUp, Reveal } from "@/components/motion";
 import { PageHero, type Crumb } from "@/components/page-hero";
@@ -72,9 +72,9 @@ export function CollectionPage({
         </dl>
       </PageHero>
 
-      <section className="mx-auto max-w-[90rem] px-4 pb-24 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-site px-4 pb-24 sm:px-6 lg:px-6">
         <h2 className="sr-only">{`${term.name} trips`}</h2>
-        <Suspense fallback={<TripGrid trips={trips} regionNames={regionNames} />}>
+        <Suspense fallback={<TripGrid trips={trips.slice(0, 12)} regionNames={regionNames} />}>
           <TripExplorer
             trips={trips}
             regions={destinations.map(opt)}
@@ -84,11 +84,30 @@ export function CollectionPage({
             lockActivity={kind === "activity" ? term.slug : undefined}
           />
         </Suspense>
+
+        {kind === "activity" && term.slug === "nepal-tour" ? (
+          <Reveal className="mt-12">
+            <div className="flex flex-col gap-6 rounded-2xl border border-line bg-glacier-soft p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-card text-pine">
+                  <Mountain className="size-6" aria-hidden />
+                </span>
+                <div>
+                  <h2 className="font-display text-2xl leading-tight text-ink sm:text-3xl">Want to explore our trekking options too?</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft sm:text-base">Discover Himalayan trails and find your next adventure in our full trip collection.</p>
+                </div>
+              </div>
+              <Link href="/trip/" className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-lg bg-pine px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-pine-deep focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine lg:self-auto">
+                Explore Our Trips <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+          </Reveal>
+        ) : null}
       </section>
 
       {hasDescription ? (
         <section className="border-t border-line bg-card py-20">
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="mx-auto grid max-w-site gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr]">
             <SectionHeading eyebrow={`About ${term.name}`} lines={["Know the", <Accent key="g">ground.</Accent>]} />
             <Reveal>
               <div className="prose-trail" dangerouslySetInnerHTML={{ __html: term.description }} />
@@ -99,7 +118,7 @@ export function CollectionPage({
 
       {guides.length ? (
         <section className="bg-snow-2 py-20">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
+          <div className="mx-auto max-w-site px-4 sm:px-6">
             <div className="flex flex-wrap items-end justify-between gap-6">
               <SectionHeading eyebrow="Trekking guides" lines={["Plan it", <Accent key="p">properly.</Accent>]} />
               <Link href="/blogs/" className="text-pine inline-flex items-center gap-2 font-bold">

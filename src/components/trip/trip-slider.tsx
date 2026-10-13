@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { LogoOverlay } from "@/components/brand/logo-overlay";
 import { cropFor } from "@/lib/banner";
 import { GalleryButton } from "@/components/trip/gallery";
 import { openTripModal } from "@/components/trip/trip-modals";
@@ -44,9 +43,6 @@ export function TripSlider({ images, title }: { images: Img[]; title: string }) 
           </motion.div>
         </AnimatePresence>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/45 to-transparent" />
-        {crops[0].overlay ? <LogoOverlay box={crops[0].overlay} className="sm:hidden" /> : null}
-        {crops[1].overlay ? <LogoOverlay box={crops[1].overlay} className="hidden sm:block lg:hidden" /> : null}
-        {crops[2].overlay ? <LogoOverlay box={crops[2].overlay} className="hidden lg:block" /> : null}
       </div>
 
       {images.length > 1 ? (

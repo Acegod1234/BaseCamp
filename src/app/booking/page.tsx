@@ -18,7 +18,7 @@ export default function BookingPage() {
 
   return (
     <div className="bg-snow-2 min-h-dvh pt-32 pb-24">
-      <div className="mx-auto max-w-[80rem] px-4 sm:px-6">
+      <div className="mx-auto max-w-site px-4 sm:px-6">
         <p className="eyebrow text-pine flex items-center gap-2"><Lock className="size-3.5" aria-hidden /> Secure booking</p>
         <h1 className="font-display mt-3 text-[clamp(3rem,7vw,5.5rem)] font-black uppercase leading-[0.88]">
           Book your <span className="accent-word text-marigold">adventure.</span>

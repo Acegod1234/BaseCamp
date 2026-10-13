@@ -27,7 +27,7 @@ export default function CustomizeTripPage() {
         photo="/photos/page-customize.webp"
         crumbs={[{ name: "Customize your trip", path: "/customize-trip/" }]}
       />
-      <section id="request" className="mx-auto max-w-[90rem] scroll-mt-28 px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <section id="request" className="mx-auto max-w-site scroll-mt-28 px-4 py-14 sm:px-6 sm:py-20 lg:px-6">
         <SectionHeading eyebrow="Four short steps" lines={["Start your", <Accent key="r">trip request.</Accent>]} />
         <div className="mt-10">
           <Suspense fallback={<div className="h-[36rem] rounded-2xl border border-line bg-card" />}>

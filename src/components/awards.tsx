@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import { ArrowUpRight, Award as AwardIcon } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion";
 import { site } from "@/lib/site";

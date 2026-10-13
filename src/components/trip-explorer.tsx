@@ -266,9 +266,9 @@ function Results({ trips, regionNames }: { trips: Card[]; regionNames: Record<st
   const left = trips.length - shown;
   return (
     <>
-      <motion.div layout className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      <motion.div layout className="mt-8 package-grid-gap grid sm:grid-cols-2 lg:grid-cols-4">
         <AnimatePresence mode="popLayout" initial={false}>
-          {trips.map((t, i) => (
+          {trips.slice(0, shown).map((t, i) => (
             <motion.div
               key={t.slug}
               layout
@@ -276,7 +276,6 @@ function Results({ trips, regionNames }: { trips: Card[]; regionNames: Record<st
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92 }}
               transition={{ duration: 0.45, delay: Math.min(i % 12, 8) * 0.03, ease: [0.22, 1, 0.36, 1] }}
-              className={i >= shown ? "hidden" : undefined}
             >
               <TripCard trip={t} regionName={regionNames[t.destinations[0]]} priority={i < 3} />
             </motion.div>

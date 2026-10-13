@@ -62,7 +62,7 @@ export function ArticleLayout({
         ) : null}
       </PageHero>
 
-      <div className="mx-auto grid max-w-[90rem] gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[15rem_minmax(0,1fr)_20rem] lg:gap-14">
+      <div className="mx-auto grid max-w-site gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[15rem_minmax(0,1fr)_20rem] lg:gap-14">
         <aside className="hidden lg:block">
           {headings.length > 2 ? <TableOfContents headings={headings} variant="side" /> : null}
         </aside>
@@ -77,7 +77,7 @@ export function ArticleLayout({
             {trips.length ? (
               <div>
                 <p className="eyebrow text-pine">Trips for this guide</p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div className="package-grid-gap mt-4 grid sm:grid-cols-2">
                   {trips.slice(0, 2).map((t) => (
                     <TripCard key={t.slug} trip={t} />
                   ))}
@@ -111,7 +111,7 @@ export function ArticleLayout({
 
       {related.length ? (
         <section className="bg-snow-2 py-20">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6">
+          <div className="mx-auto max-w-site px-4 sm:px-6">
             <h2 className="font-display text-4xl">
               Keep <span className="accent-word">reading.</span>
             </h2>

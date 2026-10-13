@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Star } from "lucide-react";
@@ -29,6 +29,8 @@ export function TripCard({
   label,
   priority = false,
   className,
+  imageSizes = "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw",
+  imageQuality = 80,
 }: {
   trip: Card;
   regionName?: string;
@@ -36,6 +38,8 @@ export function TripCard({
   label?: string;
   priority?: boolean;
   className?: string;
+  imageSizes?: string;
+  imageQuality?: number;
   size?: "md" | "lg";
 }) {
   const reduce = useReducedMotion();
@@ -80,9 +84,9 @@ export function TripCard({
               src={trip.cover.src}
               alt={trip.cover.alt || trip.title}
               fill
-              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw"
+              sizes={imageSizes}
               preload={priority}
-              quality={80}
+              quality={imageQuality}
               className="object-cover object-right-bottom transition-transform duration-[1100ms] ease-[var(--ease-trail)] group-hover:scale-[1.03]"
             />
           ) : null}

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowUpRight, Star } from "lucide-react";
 import { Flag } from "@/components/flag";
@@ -39,7 +39,7 @@ export default function TestimonialsPage() {
         crumbs={[{ name: "Reviews", path: "/testimonials/" }]}
       />
 
-      <section className="mx-auto max-w-[90rem] px-4 pt-12 sm:px-6 sm:pt-16 lg:px-8">
+      <section className="mx-auto max-w-site px-4 pt-12 sm:px-6 sm:pt-16 lg:px-6">
         <div className="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
           {ta ? (
             <a href={ta.url} target="_blank" rel="noopener noreferrer" className="group hover:border-pine/40 flex flex-col gap-5 rounded-2xl border border-line bg-card p-5 transition-colors sm:flex-row sm:items-center sm:p-6">
@@ -89,7 +89,7 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[90rem] px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <section className="mx-auto max-w-site px-4 py-12 sm:px-6 sm:py-16 lg:px-6">
         <ShowMore className="columns-1 gap-5 md:columns-2 lg:columns-3 [&>*>*]:mb-5 [&>*>*]:break-inside-avoid" label="more reviews">
           {rows.map(({ r, who }, i) => (
             <article key={i} className="rounded-2xl border border-line bg-card p-6">

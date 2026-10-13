@@ -41,12 +41,12 @@ export default function GalleryPage() {
         }}
       />
       <PageHero title="Photo" accent="Gallery" eyebrow={`${photos.length} photographs`} photo={hero.src} crumbs={[{ name: "Gallery", path: "/gallery/" }]} />
-      <section className="mx-auto max-w-[90rem] px-4 py-14 sm:px-6 sm:py-20">
+      <section className="mx-auto max-w-site px-4 py-14 sm:px-6 sm:py-20">
         <GalleryGrid photos={photos} regions={regions} />
       </section>
 
       {credits.length ? (
-        <div id="photo-credits" className="mx-auto max-w-[90rem] scroll-mt-28 px-4 pb-10 sm:px-6 lg:px-8">
+        <div id="photo-credits" className="mx-auto max-w-site scroll-mt-28 px-4 pb-10 sm:px-6 lg:px-6">
           <details className="group text-xs text-muted">
             <summary className="cursor-pointer list-none hover:text-ink">Photo credits</summary>
             <p className="mt-3 max-w-3xl leading-relaxed">

@@ -2,184 +2,99 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Pause, Play, Plus } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Mountain } from "lucide-react";
 import { EASE } from "@/components/motion";
 
-export type HeroSlide = { src: string; label: string };
-
-/** Optimised image URL for use inside CSS, where next/image cannot reach. */
-const optimised = (src: string, w = 1920) => `/_next/image/?url=${encodeURIComponent(src)}&w=${w}&q=80`;
-
-/**
- * The photograph for each screen: 828 px on phones (1200 on sharp ones), whose
- * letters are under 400 px wide; 1920 px on laptops and the full 3840 px
- * original on retina and 4K displays.
- */
-const SMALL = [828, 1200];
-const LARGE = [1920, 3840];
-const srcSet = (src: string, [x1, x2]: number[]) => `${optimised(src, x1)} 1x, ${optimised(src, x2)} 2x`;
-const imageSet = (src: string, [x1, x2]: number[]) => `image-set(url("${optimised(src, x1)}") 1x, url("${optimised(src, x2)}") 2x)`;
-const photoVars = (src: string) => ({
-  ["--photo" as string]: `url("${optimised(src)}")`,
-  ["--photo-set" as string]: imageSet(src, LARGE),
-  ["--photo-sm" as string]: imageSet(src, SMALL),
-});
-
-/**
- * The prototype's title: the company name set huge, with photographs of the
- * Himalaya showing through the letters. Slides cross-fade, the photograph
- * drifts slowly inside the type, and on a mouse it follows the pointer.
- */
-export function HomeHero({ slides }: { slides: HeroSlide[] }) {
+export function HomeHero() {
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(true);
+  const [warmNext, setWarmNext] = useState(false);
   const reduce = useReducedMotion();
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const wordRef = useRef<HTMLDivElement>(null);
+  const [activeClip, setActiveClip] = useState(0);
+  const clips = ["/videos/home-hero.mp4", "/videos/home-hero-second.mp4"];
 
   useEffect(() => {
-    if (reduce || paused) return;
-    const t = setInterval(() => setI((n) => (n + 1) % slides.length), 6000);
-    return () => clearInterval(t);
-  }, [slides.length, reduce, paused]);
+    let inView = true;
+    const update = () => setVisible(inView && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; update(); });
+    if (heroRef.current) observer.observe(heroRef.current);
+    document.addEventListener("visibilitychange", update);
+    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); };
+  }, []);
 
-  // Warm the next photograph once the page has settled, only on a fast
-  // connection, at the size this screen will ask for.
+  const entrance = (delay: number) => ({
+    initial: reduce ? false as const : { opacity: 0, y: 22, filter: "blur(6px)" },
+    animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+    transition: { duration: 0.85, delay: reduce ? 0 : delay, ease: EASE },
+  });
+
   useEffect(() => {
-    if (reduce || paused) return;
-    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-    if (conn?.saveData || (conn?.effectiveType && conn.effectiveType !== "4g")) return;
-    const id = window.setTimeout(() => {
-      const [x1, x2] = window.innerWidth < 640 ? SMALL : LARGE;
-      new Image().src = optimised(slides[(i + 1) % slides.length].src, devicePixelRatio > 1 ? x2 : x1);
-    }, 4500);
-    return () => window.clearTimeout(id);
-  }, [slides, i, reduce, paused]);
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
+      if (index !== activeClip || reduce || !visible) video.pause();
+      else void video.play().catch(() => {});
+    });
+  }, [activeClip, reduce, visible]);
 
-  const slide = slides[i];
-  const word = (
-    <>
-      <span className="block text-[clamp(2.4rem,16.6vw,15.6rem)] leading-[0.86] whitespace-nowrap">Base Camp</span>
-      <span className="block text-[clamp(2rem,13.9vw,13.1rem)] leading-[0.9] whitespace-nowrap">Adventure</span>
-    </>
-  );
+
+  const nextClip = () => {
+    const next = (activeClip + 1) % clips.length;
+    const video = videoRefs.current[next];
+    if (video) video.currentTime = 0;
+    setActiveClip(next);
+  };
 
   return (
-    <section className="relative overflow-hidden pt-[5.5rem] lg:pt-[6.25rem]">
-      {/* The first photograph is the page's largest paint: fetch it before the CSS asks for it. */}
-      <link rel="preload" as="image" href={optimised(slides[0].src, SMALL[0])} imageSrcSet={srcSet(slides[0].src, SMALL)} media="(max-width: 639px)" fetchPriority="high" />
-      <link rel="preload" as="image" href={optimised(slides[0].src, LARGE[0])} imageSrcSet={srcSet(slides[0].src, LARGE)} media="(min-width: 640px)" fetchPriority="high" />
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-4 text-[0.65rem] font-bold tracking-[0.18em] text-muted uppercase">
-          <span>Est. 2009</span>
-          <span>Kathmandu, Nepal</span>
-        </div>
-
-        <h1 className="sr-only">Base Camp Adventure</h1>
-        <div
-          ref={wordRef}
-          aria-hidden
-          onPointerMove={(e) => {
-            if (e.pointerType !== "mouse" || reduce || !wordRef.current) return;
-            const r = wordRef.current.getBoundingClientRect();
-            wordRef.current.style.setProperty("--px", `${35 + ((e.clientX - r.left) / r.width) * 30}%`);
-            wordRef.current.style.setProperty("--py", `${35 + ((e.clientY - r.top) / r.height) * 30}%`);
-          }}
-          // Extra-bold letters show more of the photograph; at night they glow.
-          className="font-display hero-title relative mx-auto mt-2 text-center tracking-[-0.055em] select-none sm:mt-4"
-        >
-          {/* Sizing copy, in the page colour, so the block keeps its height */}
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: 40, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.1, ease: EASE }}
-            className="text-snow-2"
-          >
-            {word}
-          </motion.div>
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={slide.src}
-              className="photo-text hero-drift absolute inset-0"
-              style={photoVars(slide.src)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.4, ease: "easeInOut" }}
-            >
-              {word}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <motion.p
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
-          className="mx-auto mt-6 max-w-xl text-center text-base text-ink-soft sm:mt-8 sm:text-lg"
-        >
-          Trekking &amp; tours with the people who call Nepal home.
-        </motion.p>
-
-        <div className="mt-8 flex flex-col items-center gap-5 border-t border-line pt-6 sm:mt-10 md:flex-row md:justify-between">
-          <Link href="/trip/" className="bg-pine hover:bg-pine-deep inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-bold text-white transition-colors">
-            Explore our trips <ArrowRight className="size-4" aria-hidden />
-          </Link>
-
-          <div className="flex items-center gap-4">
-            <AnimatePresence mode="wait">
-              <motion.span key={slide.label} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} className="text-pine min-w-[11rem] text-right text-[0.7rem] font-bold tracking-[0.16em] uppercase">
-                {String(i + 1).padStart(2, "0")} / {slide.label}
-              </motion.span>
-            </AnimatePresence>
-            <div className="flex items-center gap-0.5" role="tablist" aria-label="Photographs">
-              {slides.map((s, n) => (
-                <button
-                  key={s.src}
-                  type="button"
-                  role="tab"
-                  aria-selected={n === i}
-                  aria-label={s.label}
-                  onClick={() => setI(n)}
-                  className="group grid h-6 min-w-6 place-items-center"
-                >
-                  <span className={`block h-1.5 rounded-full transition-all duration-500 ${n === i ? "bg-pine w-6" : "w-1.5 bg-line group-hover:bg-muted"}`} />
-                </button>
-              ))}
+    <section aria-label="Discover Nepal with Base Camp Adventure" className="px-4 pt-20 sm:px-6 lg:pt-[5.75rem]">
+      <div ref={heroRef} className="relative isolate mx-auto grid max-w-site overflow-hidden rounded-[1.5rem] bg-[#142e34] lg:grid-cols-[15rem_minmax(0,1fr)] xl:grid-cols-[18rem_minmax(0,1fr)]">
+        {clips.map((src, index) => (
+          <video key={src} ref={(video) => { videoRefs.current[index] = video; }} src={src} poster={index === 0 ? "/videos/home-hero-poster.jpg" : "/videos/home-hero-second-poster.jpg"} muted playsInline preload={index === activeClip || warmNext ? "auto" : "metadata"} onTimeUpdate={(event) => { const video = event.currentTarget; if (index === activeClip && video.duration - video.currentTime < 6) setWarmNext(true); }} onEnded={nextClip} className={`pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-center transition-opacity duration-1000 motion-reduce:transition-none ${index === activeClip ? "opacity-100" : "opacity-0"}`} aria-hidden />
+        ))}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#071a20]/90 via-[#071a20]/10 to-[#071a20]/20" />
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-[#071a20]/85 via-transparent to-transparent" />
+        <aside className="order-2 flex flex-col justify-between border-t border-white/20 p-6 text-white lg:order-1 lg:border-t-0 lg:border-r lg:p-7">
+          <motion.div {...entrance(0.15)}>
+            <p className="text-[0.65rem] font-bold tracking-[0.2em] text-white/65 uppercase">Kathmandu, Nepal · Est. 2009</p>
+            <div className="mt-6 flex items-center gap-3 lg:mt-10">
+              <Mountain className="size-8 text-white/80" aria-hidden />
+              <p className="text-xl leading-tight font-bold">Big mountains.<br />Local knowledge.</p>
             </div>
-            <button type="button" onClick={() => setPaused((p) => !p)} className="inline-flex items-center gap-1 border-b border-line text-xs text-muted hover:text-ink" aria-pressed={paused}>
-              {paused ? <Play className="size-3" aria-hidden /> : <Pause className="size-3" aria-hidden />} {paused ? "Play" : "Pause"}
-            </button>
+          </motion.div>
+          <motion.div {...entrance(0.45)} className="mt-8 lg:mt-16">
+            <p className="max-w-xs text-sm leading-relaxed text-white/80">Trekking &amp; tours with the people who call Nepal home. Discover the Himalayas with our experienced local team.</p>
+            <Link href="/about-us/" className="mt-5 inline-flex items-center gap-2 border-b border-white/35 pb-1 text-sm font-semibold transition-colors hover:text-white/75">Meet your local guides <ArrowUpRight className="size-4" aria-hidden /></Link>
+          </motion.div>
+          <motion.div {...entrance(0.75)} className="mt-8 grid gap-3 lg:mt-16">
+            <Link href="/customize-trip/" className="group flex items-center justify-between gap-3 rounded-full bg-white px-5 py-3.5 text-sm font-bold text-pine-deep transition-colors hover:bg-white/90">Plan your adventure <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden /></Link>
+            <p className="text-center text-[0.65rem] tracking-wider text-white/60">Small groups. Personal journeys.</p>
+          </motion.div>
+        </aside>
+        <div className="relative order-1 min-h-[34rem] lg:order-2 lg:h-[calc(100svh-7rem)] lg:min-h-[38rem] lg:max-h-[62rem]">
+          <div className="relative flex h-full min-h-[34rem] flex-col justify-between p-6 sm:p-9 lg:min-h-0 lg:p-10 xl:p-12">
+            <motion.div {...entrance(0.2)} className="flex items-center justify-between gap-4">
+              <span className="rounded-full border border-white/35 bg-black/10 px-4 py-2 text-[0.65rem] font-semibold tracking-[0.16em] text-white backdrop-blur-sm uppercase">Your Himalayan journey</span>
+            </motion.div>
+            <div className="mt-36 text-white">
+              <motion.p {...entrance(0.35)} className="mb-4 text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">Beyond the everyday</motion.p>
+              <h1 className="max-w-3xl font-display text-[clamp(3rem,5.8vw,7rem)] leading-[0.98] font-bold tracking-[-0.055em]">
+                <motion.span {...entrance(0.5)} className="block">Find yourself</motion.span>
+                <motion.span {...entrance(0.7)} className="block">in the <span className="font-serif italic font-normal tracking-[-0.04em]">Himalayas.</span></motion.span>
+              </h1>
+              <motion.div {...entrance(0.95)} className="mt-7 flex flex-col gap-5 border-t border-white/25 pt-6 sm:flex-row sm:items-end sm:justify-between">
+                <p className="max-w-xs text-sm leading-relaxed text-white/85">Remarkable trails. Rich cultures.<br />An adventure that feels like yours.</p>
+                <Link href="/trip/" className="group inline-flex items-center gap-4 self-start rounded-full bg-white px-5 py-3.5 text-sm font-bold text-pine-deep sm:self-auto">Explore our trips <ArrowUpRight className="size-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden /></Link>
+              </motion.div>
+            </div>
           </div>
-
-          <p className="hidden text-right text-[0.65rem] leading-relaxed font-bold tracking-[0.18em] text-muted uppercase md:block">
-            Real places.
-            <br />
-            Local people.
-          </p>
         </div>
       </div>
-
-      {/* Big mountains. Local knowledge. */}
-      <div className="mt-10 border-y border-line bg-card/60">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-5 px-4 py-6 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p className="text-lg leading-snug">
-            Big mountains.
-            <br />
-            <strong>Local knowledge.</strong>
-          </p>
-          <ul className="flex flex-wrap gap-x-8 gap-y-2 text-[0.95rem]">
-            {["Small group adventures", "Experienced local guides", "Trips made around you"].map((t) => (
-              <li key={t} className="inline-flex items-center gap-2">
-                <Plus className="text-pine size-4" aria-hidden /> {t}
-              </li>
-            ))}
-          </ul>
-          <Link href="/about-us/" className="self-start border-b-2 border-ink pb-1 text-sm font-bold lg:self-auto">
-            Meet Base Camp
-          </Link>
-        </div>
+      <div className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-4 px-1 py-5 text-xs text-muted">
+        <p>Experienced local guides <span className="mx-2 text-line">/</span> Trips made around you</p>
+        <Link href="#find" className="inline-flex items-center gap-2 font-semibold text-pine">Find your next adventure <ArrowDown className="size-4" aria-hidden /></Link>
       </div>
     </section>
   );
 }
+

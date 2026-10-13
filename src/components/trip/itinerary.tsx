@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image from "@/components/image";
 import { BedDouble, ChevronDown, Coffee, Expand, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
 import { Lightbox } from "@/components/lightbox";
 import { UnitTip, altitudeLines, distanceLines } from "@/components/unit-tip";

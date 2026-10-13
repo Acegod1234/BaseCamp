@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import { Award, CalendarDays, HeartHandshake, MapPin, Sprout, Users } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion";
 import type { CommunityPost } from "@/lib/types";

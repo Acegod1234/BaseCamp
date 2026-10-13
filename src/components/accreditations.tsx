@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import { ShieldCheck } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion";
 import { site } from "@/lib/site";
@@ -26,7 +26,7 @@ export function Accreditations({ variant = "band", surface = "auto" }: { variant
 
   return (
     <section aria-label="Licences and memberships" className="border-b border-line bg-card">
-      <div className="mx-auto grid max-w-[90rem] gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[18rem_1fr] lg:items-center lg:gap-12">
+      <div className="mx-auto grid max-w-site gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[18rem_1fr] lg:items-center lg:gap-12">
         <div>
           <p className="eyebrow text-pine flex items-center gap-2">
             <ShieldCheck className="size-4" aria-hidden /> Licensed &amp; trusted

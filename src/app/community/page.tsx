@@ -29,13 +29,13 @@ export default function CommunityPage() {
         ]}
       />
 
-      <section className="mx-auto max-w-[90rem] px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <section className="mx-auto max-w-site px-4 py-16 sm:px-6 sm:py-20 lg:px-6">
         <SectionHeading eyebrow={`${posts.length} ${posts.length === 1 ? "story" : "stories"}`} lines={["Where we", <Accent key="g">give back.</Accent>]} />
         <CommunityCards posts={posts} full className="mt-10" />
       </section>
 
       <section className="border-t border-line bg-snow-2">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-6 px-4 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="mx-auto flex max-w-site flex-col gap-6 px-4 py-14 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-6">
           <div>
             <p className="eyebrow text-pine">Work with us</p>
             <p className="font-display mt-2 text-2xl text-ink sm:text-3xl">Want to know more about our community work?</p>

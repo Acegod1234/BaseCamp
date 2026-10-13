@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowRight, Check, Clock, Mountain } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
@@ -17,6 +17,7 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PhotoGlow } from "@/components/photo-glow";
 import { Accent, SectionHeading } from "@/components/section-heading";
 import { TripCard } from "@/components/trip-card";
+import homeTourImages from "@/content/home-tour-images.json";
 import {
   getActiveOffer,
   getAwards,
@@ -67,7 +68,13 @@ export default function HomePage() {
   const featured = getFeaturedTrips();
   const popular = getHomeList("popular");
   const luxury = getHomeList("luxury");
-  const tours = getTripsIn("activities", "nepal-tour").slice(0, 8);
+  const enhancedTourImages: Record<string, { src: string; w: number; h: number }> = homeTourImages;
+  const tours = getTripsIn("activities", "nepal-tour").slice(0, 8).map((trip) => {
+    const enhanced = enhancedTourImages[trip.slug];
+    return enhanced && trip.cover ? { ...trip, cover: { ...trip.cover, ...enhanced } } : trip;
+  });
+  const helicopterTours = tours.filter((trip) => ["helicopter-tour", "helicopter-tours-in-nepal"].includes(trip.slug));
+  const otherTours = tours.filter((trip) => !helicopterTours.some((featured) => featured.slug === trip.slug));
   const offer = getActiveOffer();
   const offerTrips = getOfferTrips(offer);
   const community = getCommunity();
@@ -87,7 +94,7 @@ export default function HomePage() {
     // The finder shows eight per tab; sending more only weighs the page down.
     .map((g) => ({ ...g, trips: g.trips.slice(0, 8) }));
 
-  const regionOrder = ["everest-region", "annapurna-region", "langtang-region", "manaslu-region", "remote-area-trekking", "bhutan", "tibet"];
+  const regionOrder = ["everest-region", "annapurna-region", "manaslu-region"];
   const panels = regionOrder
     .map((slug) => {
       const d = destinations.find((x) => x.slug === slug);
@@ -97,13 +104,19 @@ export default function HomePage() {
     })
     .filter((x): x is NonNullable<typeof x> => Boolean(x));
 
-  const slides = [
-    { slot: "region-everest", label: "Everest" },
-    { slot: "hero-alpenglow", label: "Annapurna" },
-    { slot: "hero-gokyo", label: "Gokyo Lakes" },
-    { slot: "hero-ama-dablam", label: "Ama Dablam" },
-    { slot: "hero-mustang", label: "Upper Mustang" },
-  ].map(({ slot, label }) => ({ src: photo(slot).src, label }));
+  for (const [slug, name] of [["kanchenjunga-base-camp-trek", "Kanchenjunga"], ["makalu-base-camp-trek", "Makalu"]]) {
+    const trip = getTrip(slug);
+    if (trip?.cover) panels.push({ slug: trip.slug, name, line: trip.summary, photo: trip.cover.src, trips: 1, highest: trip.maxAltitude });
+  }
+  const moreTreks = [
+    "makalu-base-camp-trek", "upper-dolpo-trek", "arun-valley-trekking",
+    "mustang-trek", "mustang-tiji-festival-trek", "ganesh-himal-trekking",
+    "dolpo-trek", "jumla-rara-lake-trek", "dhaulagiri-round-trek",
+    "kanchenjunga-base-camp-trek",
+  ].flatMap((slug) => {
+    const trip = getTrip(slug);
+    return trip ? [{ slug: trip.slug, name: trip.title, days: trip.days }] : [];
+  });
 
   const about = photo("hero-alpenglow");
   // Key stops on the classic route, read from the real itinerary.
@@ -111,11 +124,11 @@ export default function HomePage() {
 
   return (
     <>
-      <HomeHero slides={slides} />
+      <HomeHero />
 
       {/* 01 / Find your trail */}
       <section id="find" className="scroll-mt-24 py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading eyebrow="01 / Find your trail" lines={["Where do you", <span key="g">want to <Accent>go?</Accent></span>]} />
             <Reveal className="max-w-sm">
@@ -130,17 +143,22 @@ export default function HomePage() {
       {/* Nepal tours */}
       {tours.length ? (
         <section className="border-t border-line py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
             <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <SectionHeading eyebrow="Nepal tours" lines={["Discover Nepal.", <Accent key="b">Beyond the trails.</Accent>]} />
               <Reveal className="max-w-sm">
                 <p className="text-ink-soft">Explore cultural landmarks, city life and wildlife with our local team.</p>
               </Reveal>
             </div>
-            <Stagger className="rail grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-              {tours.map((t) => (
-                <StaggerItem key={t.slug}>
-                  <TripCard trip={t} regionName="Nepal Tour" label={`${t.days} ${t.days === 1 ? "day" : "days"}`} />
+            <Stagger className="nepal-tour-mosaic">
+              {helicopterTours.map((t, index) => (
+                <StaggerItem key={t.slug} className={`nepal-tour-feature nepal-tour-feature-${index + 1}`}>
+                  <TripCard trip={t} regionName="Nepal Tour" label={`${t.days} ${t.days === 1 ? "day" : "days"}`} className="nepal-tour-square" imageSizes="(max-width: 640px) 92vw, 48vw" imageQuality={95} />
+                </StaggerItem>
+              ))}
+              {otherTours.map((t, index) => (
+                <StaggerItem key={t.slug} className={`nepal-tour-secondary nepal-tour-secondary-${index + 1}`}>
+                  <TripCard trip={t} regionName="Nepal Tour" label={`${t.days} ${t.days === 1 ? "day" : "days"}`} imageSizes={index === 0 || index === 5 ? "(max-width: 640px) 92vw, 48vw" : "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw"} imageQuality={95} />
                 </StaggerItem>
               ))}
             </Stagger>
@@ -155,21 +173,21 @@ export default function HomePage() {
 
       {/* 02 / Get to know Nepal */}
       <section className="bg-pine relative overflow-hidden py-20 text-white sm:py-24 lg:py-28 dark:bg-pine-deep">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading tone="dark" eyebrow="02 / Get to know Nepal" lines={["Same country.", <Accent key="d">Different worlds.</Accent>]} />
             <Reveal className="max-w-sm">
               <p className="text-white/80">Everest, Annapurna, Langtang, Manaslu. There&apos;s more than one way into the Himalayas.</p>
             </Reveal>
           </div>
-          <RegionShowcase regions={panels} />
+          <RegionShowcase regions={panels.map((panel) => ({ ...panel, href: ["kanchenjunga-base-camp-trek", "makalu-base-camp-trek"].includes(panel.slug) ? `/trip/${panel.slug}/` : `/destinations/${panel.slug}/` }))} moreTreks={moreTreks} />
         </div>
       </section>
 
       {/* 03 / Day by day: the classic route, from the real itinerary */}
       {ebc ? (
         <section className="relative overflow-hidden py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
             <div className="grid gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start lg:gap-14">
               <div className="lg:sticky lg:top-28">
                 <SectionHeading eyebrow={`03 / ${ebc.title}`} lines={["Day by", <Accent key="d">day.</Accent>]} />
@@ -215,7 +233,7 @@ export default function HomePage() {
 
       {/* Popular Trekking & Tour Packages */}
       <section className="bg-snow-2 overflow-hidden py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <SectionHeading eyebrow={`${popular.length} packages`} lines={["Popular trekking", <span key="p">& tour <Accent>packages.</Accent></span>]} />
           <div className="mt-6">
             <TripCarousel trips={popular.slice(0, 20)} regionNames={regionNames} moreHref="/trip/" moreLabel={`All ${cards.length} trips`} />
@@ -229,9 +247,9 @@ export default function HomePage() {
       {/* Luxury Trekking & Tour Packages, with Customize as the fourth tile */}
       {luxury.length ? (
         <section className="border-t border-line py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
             <SectionHeading eyebrow="In comfort" lines={["Luxury trekking", <span key="l">& tour <Accent>packages.</Accent></span>]} />
-            <Stagger className="rail mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <Stagger className="rail mt-10 package-grid-gap grid sm:grid-cols-2 lg:grid-cols-4">
               {luxury.map((t) => (
                 <StaggerItem key={t.slug}>
                   <TripCard trip={t} regionName={regionNames[t.destinations[0]]} label="Luxury" />
@@ -258,7 +276,7 @@ export default function HomePage() {
 
       {/* 04 / The people behind the journey */}
       <section className="border-t border-line py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
+        <div className="mx-auto grid max-w-site gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-6">
           <div className="relative isolate">
             <PhotoGlow src={about.src} strength="lg" />
             <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-snow-2">
@@ -313,7 +331,7 @@ export default function HomePage() {
       {/* Community & social work */}
       {community.length ? (
         <section id="community" className="scroll-mt-24 border-t border-line py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.6fr] lg:gap-14 lg:px-8">
+          <div className="mx-auto grid max-w-site gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.6fr] lg:gap-14 lg:px-6">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <SectionHeading eyebrow="Community & social work" lines={["Rooted in", <Accent key="c">our community.</Accent>]} />
               <Reveal delay={0.1}>
@@ -328,7 +346,7 @@ export default function HomePage() {
 
       {/* Our affiliation */}
       <section id="affiliations" className="scroll-mt-24 border-t border-line pt-16">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <SectionHeading eyebrow="Licensed & trusted" lines={["Our", <Accent key="a">affiliation.</Accent>]} />
         </div>
         <div className="mt-4">
@@ -336,7 +354,7 @@ export default function HomePage() {
         </div>
         {/* Shown once the company's awards are added; the Tripadvisor rating is already in the reviews. */}
         {awards.length ? (
-          <div className="mx-auto max-w-[90rem] px-4 py-10 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-site px-4 py-10 sm:px-6 lg:px-6">
             <p className="eyebrow text-pine mb-4">Awards &amp; recognition</p>
             <Awards awards={awards} />
           </div>
@@ -346,7 +364,7 @@ export default function HomePage() {
       {/* Videos from the trail */}
       {videos.length ? (
         <section className="border-t border-line py-14 sm:py-16">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
             <SectionHeading eyebrow="Watch" lines={["Videos from", <Accent key="v">the trail.</Accent>]} />
             <div className={`mt-10 grid gap-4 ${videos.length > 1 ? "md:grid-cols-2 lg:grid-cols-3" : "max-w-3xl"}`}>
               {videos.map((v) => (
@@ -365,7 +383,7 @@ export default function HomePage() {
 
       {/* 05 / Before you go */}
       <section className="py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+        <div className="mx-auto grid max-w-site gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-6">
           <div>
             <SectionHeading eyebrow="05 / Before you go" lines={["A few things", <span key="k">worth <Accent>knowing.</Accent></span>]} />
             <Reveal delay={0.1}>
@@ -385,7 +403,7 @@ export default function HomePage() {
 
       {/* From the journal */}
       <section className="border-t border-line py-14 sm:py-16">
-        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading eyebrow="Journal" lines={["Notes from", <Accent key="t">the trail.</Accent>]} />
             <Link href="/blogs/" className="border-b-2 border-ink pb-1 text-sm font-bold">Read our blogs</Link>
