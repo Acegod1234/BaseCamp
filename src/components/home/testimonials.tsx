@@ -3,8 +3,9 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Flag } from "@/components/flag";
 import { ReviewCarousel, type CarouselReview } from "@/components/home/review-carousel";
+import { ReviewSources } from "@/components/home/review-sources";
 import { Reveal } from "@/components/motion";
-import { Accent, SectionHeading } from "@/components/section-heading";
+import { Accent } from "@/components/section-heading";
 import type { TripadvisorFacts } from "@/lib/content";
 import { reviewer } from "@/lib/reviewer";
 import type { Review } from "@/lib/types";
@@ -41,28 +42,31 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
   const excellent = tripadvisor ? Math.round(((tripadvisor.breakdown.excellent ?? 0) / tripadvisor.reviews) * 1000) / 10 : null;
 
   return (
-    <section className="bg-snow-2 relative overflow-hidden py-12 sm:py-14 lg:py-16">
+    <section className="bg-snow-2 relative overflow-hidden py-8 sm:py-9 lg:py-10">
       <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-[#00afc4]/10 blur-3xl" />
       <div className="relative mx-auto max-w-site px-4 sm:px-6 lg:px-6">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeading eyebrow="Testimonials" lines={["In their", <Accent key="w">own words.</Accent>]} />
+        <ReviewSources>
+        <div className="grid items-center gap-6 lg:grid-cols-[0.8fr_1.7fr] lg:gap-12">
+          <div className="min-w-0">
+          <p className="eyebrow text-pine">Testimonials</p>
+          <h2 className="font-display mt-3 text-[clamp(2.25rem,3.2vw,3.5rem)] leading-[1.05] tracking-tight">In their<br /><Accent>own words.</Accent></h2>
           {tripadvisor ? (
-            <Reveal className="w-full lg:w-auto">
-              <a href={tripadvisor.url} target="_blank" rel="noopener noreferrer" className="group hover:border-pine/40 flex items-center gap-4 rounded-2xl border border-line bg-card p-4 pr-5 shadow-[0_20px_40px_-32px_oklch(0.2_0.04_200/0.6)] transition-colors">
+            <Reveal className="mt-6 w-full">
+              <a href={tripadvisor.url} target="_blank" rel="noopener noreferrer" className="group hover:border-pine/40 flex items-center gap-3 rounded-2xl border border-line bg-card p-4 pr-5 shadow-[0_20px_40px_-32px_oklch(0.2_0.04_200/0.6)] transition-colors">
                 <span className="grid h-14 w-[4.5rem] shrink-0 place-items-center">
                   <Image src="/brand/partners/tripadvisor.png" alt="Tripadvisor" width={245} height={220} className="h-12 w-auto dark:brightness-0 dark:invert" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="flex items-baseline gap-2">
-                    <span className="font-display text-3xl leading-none text-ink">{tripadvisor.rating.toFixed(1)}</span>
+                    <span className="font-display text-2xl leading-none text-ink">{tripadvisor.rating.toFixed(1)}</span>
                     <Bubbles />
                   </span>
-                  <span className="mt-1 block text-sm text-ink-soft">
+                  <span className="mt-1 block text-xs text-ink-soft">
                     <strong className="text-ink">{tripadvisor.reviews} reviews</strong> on Tripadvisor
                     {excellent ? ` · ${excellent}% Excellent` : ""}
                   </span>
                   {excellent ? (
-                    <span className="mt-2 block h-1.5 w-full overflow-hidden rounded-full bg-line sm:w-56" aria-hidden>
+                    <span className="mt-2 block h-1.5 w-full overflow-hidden rounded-full bg-line max-w-56" aria-hidden>
                       <span className="block h-full rounded-full bg-[#34e0a1]" style={{ width: `${excellent}%` }} />
                     </span>
                   ) : null}
@@ -71,18 +75,18 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
               </a>
             </Reveal>
           ) : null}
-        </div>
-
-        <div className="mt-10 sm:mt-12">
-          <ReviewCarousel items={items} />
+          </div>
+          <div className="min-w-0 overflow-hidden py-2">
+            <ReviewCarousel items={items} />
+          </div>
         </div>
 
         {list.length ? (
-          <Reveal className="mt-10 flex flex-col items-center gap-4 border-t border-line pt-8 sm:flex-row sm:justify-between">
+          <Reveal className="mt-5 flex flex-col items-center gap-3 border-t border-line pt-4 sm:flex-row sm:justify-between">
             <p className="text-sm text-ink-soft">
               Reviews from travellers in <strong className="text-ink">{list.length} countries</strong>
             </p>
-            <ul className="no-scrollbar -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 sm:mx-0 sm:w-auto sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
+            <ul className="no-scrollbar -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 sm:mx-0 sm:min-w-0 sm:flex-1 sm:w-auto sm:px-0">
               {list.map((c) => (
                 <li key={c.name} className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-2.5 py-1 text-xs font-semibold">
                   <Flag svg={c.flag} label={c.name} /> {c.name}
@@ -94,6 +98,7 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
             </Link>
           </Reveal>
         ) : null}
+        </ReviewSources>
       </div>
     </section>
   );
@@ -109,3 +114,4 @@ function Bubbles() {
     </span>
   );
 }
+

@@ -9,7 +9,7 @@ const whiteOnDark = (a: object, surface: "dark" | "auto") =>
   "onDark" in a && a.onDark === "white" ? (surface === "dark" ? "brightness-0 invert" : "dark:brightness-0 dark:invert") : "";
 
 /** Licences and memberships in their real colours, on no background, each with its credential. */
-export function Accreditations({ variant = "band", surface = "auto" }: { variant?: "band" | "compact"; surface?: "dark" | "auto" }) {
+export function Accreditations({ variant = "band", surface = "auto", large = false }: { variant?: "band" | "compact"; surface?: "dark" | "auto"; large?: boolean }) {
   if (variant === "compact") {
     return (
       <ul className="flex flex-wrap items-center gap-2.5" aria-label="Licences and memberships">
@@ -35,7 +35,7 @@ export function Accreditations({ variant = "band", surface = "auto" }: { variant
             Licensed by the Government of Nepal. Members of TAAN and the Nepal Mountaineering Association since 2010.
           </p>
         </div>
-        <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-6" gap={0.05}>
+        <Stagger className={cn("grid grid-cols-2 gap-3", large ? "sm:grid-cols-3" : "sm:grid-cols-4 lg:grid-cols-6")} gap={0.05}>
           {site.affiliations.map((a) => (
             <StaggerItem key={a.name}>
               <a
@@ -45,14 +45,14 @@ export function Accreditations({ variant = "band", surface = "auto" }: { variant
                 title={a.name}
                 className="group flex h-full flex-col items-center justify-between gap-3 rounded-2xl border border-line bg-card p-3 text-center transition-all duration-300 hover:-translate-y-1 hover:border-pine/30 hover:shadow-[0_18px_40px_-26px_oklch(0.2_0.04_170/0.5)]"
               >
-                <span className="grid h-20 w-full place-items-center px-2">
+                <span className={cn("grid w-full place-items-center px-2", large ? "h-36" : "h-20")}>
                   <Image
                     src={a.logo}
                     alt={a.name}
                     width={a.w}
                     height={a.h}
-                    sizes="160px"
-                    className={cn("max-h-16 w-auto object-contain transition-transform duration-500 group-hover:scale-105", a.w / a.h > 3 ? "max-w-full" : "max-w-[5.5rem]", whiteOnDark(a, surface))}
+                    sizes={large ? "(max-width: 640px) 40vw, 240px" : "160px"}
+                    className={cn("w-auto object-contain transition-transform duration-500 group-hover:scale-105", large ? "max-h-28 max-w-[min(10rem,100%)]" : "max-h-16", !large && (a.w / a.h > 3 ? "max-w-full" : "max-w-[5.5rem]"), whiteOnDark(a, surface))}
                   />
                 </span>
                 <span className="text-[0.7rem] font-semibold leading-tight text-muted">{a.short}</span>

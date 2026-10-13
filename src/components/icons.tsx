@@ -30,6 +30,16 @@ export function FacebookIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+export function ViberIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden {...props}>
+      <path d="M6 3.5h12a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3h-7l-4.5 3v-3H6a3 3 0 0 1-3-3v-9a3 3 0 0 1 3-3Z" />
+      <path d="m8 7-1 1.5c-.5 2.5 3.5 6.5 6 6l1.5-1-2-2-1.2.6a8 8 0 0 1-2.4-2.4l.6-1.2Z" />
+      <path d="M13 6.5a4.5 4.5 0 0 1 4.5 4.5M13 9a2 2 0 0 1 2 2" />
+    </svg>
+  );
+}
+
 export function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden {...props}>

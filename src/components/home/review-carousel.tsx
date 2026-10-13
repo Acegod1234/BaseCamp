@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote, Star } from "lucide-react";
 import { Flag } from "@/components/flag";
-import { cn } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 
 export type CarouselReview = {
   name: string;
@@ -14,7 +14,13 @@ export type CarouselReview = {
   flag: string | null;
   body: string;
   rating: number;
-  trip: { slug: string; title: string };
+  trip?: { slug: string; title: string };
+  sourceUrl?: string;
+  sourceLabel?: string;
+  published?: string;
+  publishedLabel?: string;
+  isExcerpt?: boolean;
+  title?: string;
 };
 
 const narrowQuery = "(max-width: 639px)";
@@ -85,7 +91,7 @@ export function ReviewCarousel({ items }: { items: CarouselReview[] }) {
       className="outline-none"
     >
       <motion.div
-        className="relative mx-auto h-[27rem] touch-pan-y select-none sm:h-[25rem] [perspective:1400px]"
+        className="relative mx-auto h-[20rem] touch-pan-y select-none sm:h-[19rem] [perspective:1400px]"
         onPanEnd={(_, info) => {
           if (info.offset.x < -50) go(1);
           else if (info.offset.x > 50) go(-1);
@@ -120,11 +126,11 @@ export function ReviewCarousel({ items }: { items: CarouselReview[] }) {
               }
               transition={{ type: "spring", stiffness: 160, damping: 24, mass: 0.9 }}
               style={{ zIndex: 20 - d, transformStyle: "preserve-3d", pointerEvents: shown ? "auto" : "none" }}
-              className="absolute top-0 left-1/2 h-full w-[84%] max-w-[30rem] sm:w-[27rem] lg:w-[30rem]"
+              className="absolute top-0 left-1/2 h-full w-[88%] max-w-[34rem] sm:w-[32rem]"
             >
               <div
                 className={cn(
-                  "relative flex h-full flex-col overflow-hidden rounded-3xl border bg-card p-6 transition-shadow duration-500 sm:p-7",
+                  "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-5 transition-shadow duration-500 sm:p-6",
                   isActive ? "border-pine/25 shadow-[0_40px_80px_-40px_oklch(0.25_0.06_210/0.55)]" : "border-line shadow-[0_20px_40px_-34px_oklch(0.25_0.06_210/0.5)]",
                 )}
               >
@@ -136,24 +142,26 @@ export function ReviewCarousel({ items }: { items: CarouselReview[] }) {
                       <Star key={s} className={s < Math.round(r.rating) ? "fill-marigold text-marigold size-4" : "size-4 text-line"} aria-hidden />
                     ))}
                   </span>
-                  <Quote className="text-pine/25 size-9" aria-hidden />
+                  <Quote className="text-pine/25 size-6" aria-hidden />
                 </div>
+                {r.title ? <h3 className="relative mt-2 line-clamp-2 shrink-0 text-sm font-bold text-ink">{r.title}</h3> : null}
                 <blockquote
                   className={cn(
-                    "relative mt-4 flex-1 text-[0.97rem] leading-relaxed text-ink-soft",
-                    open === i ? "overflow-y-auto pr-1" : "line-clamp-6 sm:line-clamp-7",
+                    "relative mt-3 min-h-0 flex-1 text-[0.9rem] leading-relaxed text-ink-soft",
+                    open === i ? "overflow-y-auto pr-1" : "line-clamp-4 sm:line-clamp-5",
                   )}
                   data-lenis-prevent
                 >
-                  &ldquo;{r.body}&rdquo;
+                  {r.body ? <><span className="whitespace-pre-line">&ldquo;{r.body}&rdquo;</span>{r.isExcerpt ? <span className="mt-1 block text-xs font-semibold text-muted">Excerpt</span> : null}</> : <span className="text-muted">This traveller left a star rating without a written comment.</span>}
                 </blockquote>
-                {isActive && r.body.length > 300 ? (
+                {isActive && r.sourceUrl ? <a href={r.sourceUrl} target="_blank" rel="noopener noreferrer" className="relative mt-2 self-start text-sm font-bold text-pine hover:underline">{r.isExcerpt ? "Read complete review on" : "Read on"} {r.sourceLabel ?? "source"}</a> : null}
+                {isActive && r.body.length > 180 ? (
                   <button type="button" onClick={() => setOpen(open === i ? null : i)} className="text-pine relative mt-2 self-start text-sm font-bold hover:underline">
-                    {open === i ? "Show less" : "Read full review"}
+                    {open === i ? "Show less" : r.isExcerpt ? "Expand excerpt" : "Read full review"}
                   </button>
                 ) : null}
-                <figcaption className="relative mt-5 flex items-center gap-3 border-t border-line pt-4">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#00afc4] to-[#00788a] text-sm font-bold text-white shadow-inner">
+                <figcaption className="relative mt-3 flex shrink-0 items-center gap-3 border-t border-line pt-3">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#00afc4] to-[#00788a] text-xs font-bold text-white shadow-inner">
                     {initials(r.name)}
                   </span>
                   <span className="min-w-0 flex-1">
@@ -163,9 +171,7 @@ export function ReviewCarousel({ items }: { items: CarouselReview[] }) {
                     </span>
                     <span className="block truncate text-xs text-muted">
                       {r.place ? `${r.place} · ` : ""}
-                      <Link href={`/trip/${r.trip.slug}/`} tabIndex={isActive ? 0 : -1} className="text-pine hover:underline">
-                        {r.trip.title}
-                      </Link>
+                      {r.trip ? <Link href={`/trip/${r.trip.slug}/`} tabIndex={isActive ? 0 : -1} className="text-pine hover:underline">{r.trip.title}</Link> : r.published ? <time dateTime={r.published}>{formatDate(r.published)} · {r.sourceLabel ?? "Traveller"} review</time> : r.publishedLabel ? <span>{r.publishedLabel} · {r.sourceLabel ?? "Traveller"} review</span> : null}
                     </span>
                   </span>
                 </figcaption>
@@ -178,19 +184,19 @@ export function ReviewCarousel({ items }: { items: CarouselReview[] }) {
         })}
       </motion.div>
 
-      <div className="mt-6 flex items-center justify-center gap-4">
-        <button type="button" onClick={() => go(-1)} aria-label="Previous review" className="hover:border-pine grid size-11 place-items-center rounded-full border border-line bg-card transition-colors">
+      <div className="mt-3 flex items-center justify-center gap-3">
+        <button type="button" onClick={() => go(-1)} aria-label="Previous review" className="hover:border-pine grid size-10 place-items-center rounded-full border border-line bg-card transition-colors">
           <ArrowLeft className="size-5" aria-hidden />
         </button>
         <div className="flex items-center gap-1.5" aria-hidden>
-          {items.map((_, i) => (
+          {n > 12 ? <span className="min-w-14 text-center text-xs font-semibold text-muted">{active + 1} / {n}</span> : items.map((_, i) => (
             <span key={i} className={cn("h-1.5 rounded-full transition-all duration-500", i === active ? "bg-pine w-6" : "w-1.5 bg-line")} />
           ))}
         </div>
         <span className="sr-only" aria-live="polite">
           Review {active + 1} of {n}
         </span>
-        <button type="button" onClick={() => go(1)} aria-label="Next review" className="hover:border-pine grid size-11 place-items-center rounded-full border border-line bg-card transition-colors">
+        <button type="button" onClick={() => go(1)} aria-label="Next review" className="hover:border-pine grid size-10 place-items-center rounded-full border border-line bg-card transition-colors">
           <ArrowRight className="size-5" aria-hidden />
         </button>
       </div>

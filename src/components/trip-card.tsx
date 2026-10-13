@@ -71,7 +71,7 @@ export function TripCard({
         py.set(0.5);
       }}
       style={tilt ? { rotateX: rx, rotateY: ry, transformPerspective: 1100 } : undefined}
-      className={cn("group relative isolate h-full", className)}
+      className={cn("package-card group relative isolate h-full", className)}
     >
       {trip.cover ? <PhotoGlow src={trip.cover.src} strength="sm" /> : null}
       <Link

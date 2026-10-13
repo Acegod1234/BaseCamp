@@ -5,6 +5,7 @@ import { Accreditations } from "@/components/accreditations";
 import { Logo } from "@/components/brand/logo";
 import { FacebookIcon, InstagramIcon, WhatsappIcon, XIcon } from "@/components/icons";
 import { Newsletter } from "@/components/newsletter";
+import { FooterPlan } from "@/components/site/footer-plan";
 import { getTrip } from "@/lib/content";
 import { site, whatsappHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -47,6 +48,7 @@ export function SiteFooter() {
   return (
     <footer>
       {/* Let's make a plan. */}
+      <FooterPlan>
       <section className="relative border-t border-line bg-snow">
         <div className="mx-auto flex max-w-site flex-col gap-8 px-4 py-14 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-6 lg:py-16">
           <div>
@@ -70,6 +72,7 @@ export function SiteFooter() {
           </div>
         </div>
       </section>
+      </FooterPlan>
 
       <div className="relative overflow-hidden bg-[#1c2224] text-white/75">
         <div aria-hidden className="blueprint absolute inset-0 text-white opacity-[0.04]" />
@@ -97,11 +100,6 @@ export function SiteFooter() {
                     </a>
                   </li>
                 ))}
-                <li>
-                  <a href={site.social.tripadvisor} target="_blank" rel="me noopener noreferrer" aria-label="Base Camp Adventure on Tripadvisor" className="grid size-10 place-items-center overflow-hidden rounded-full border border-white/20 transition-all hover:-translate-y-0.5 hover:border-[#34e0a1]">
-                    <Image src="/brand/partners/tripadvisor.png" alt="" width={245} height={220} className="h-6 w-auto brightness-0 invert" />
-                  </a>
-                </li>
               </ul>
             </div>
 
@@ -158,7 +156,10 @@ export function SiteFooter() {
           </div>
 
           <div className="mt-12 flex flex-col items-center gap-6 border-t border-white/10 pt-8 lg:flex-row lg:justify-between">
-            <Accreditations variant="compact" surface="dark" />
+            <div>
+              <p className="eyebrow mb-3 text-center text-[#3ccbdc] lg:text-left">Our affiliations</p>
+              <Accreditations variant="compact" surface="dark" />
+            </div>
             <p className="text-center text-xs leading-relaxed text-white/50 lg:text-right">
               Government Reg. No: 68517/066/067 · VAT No: 303970392
               <br />

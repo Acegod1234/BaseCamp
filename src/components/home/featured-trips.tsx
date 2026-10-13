@@ -105,7 +105,6 @@ export function FeaturedTrips({ groups, regionNames, regions }: { groups: TripGr
       </motion.div>
 
       <div className="mt-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <p className="text-xs text-muted">Prices in US dollars, per person. Final costs depend on your group and travel dates.</p>
         <Link href={group.href} className="border-b-2 border-ink pb-1 text-sm font-bold">
           Explore the full collection
         </Link>

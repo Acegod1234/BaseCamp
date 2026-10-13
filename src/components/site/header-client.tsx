@@ -7,9 +7,9 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowRight, ChevronDown, Menu as MenuIcon, Phone, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
-import { WhatsappIcon } from "@/components/icons";
+import { ViberIcon, WhatsappIcon } from "@/components/icons";
 import { Portal } from "@/components/portal";
-import { SearchButton, SiteSearch } from "@/components/site/search";
+import { SiteSearch } from "@/components/site/search";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { site, whatsappHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -20,35 +20,19 @@ export type HeaderRegion = { slug: string; name: string; count: number; photo: s
 const LINKS = [
   { href: "/trip/", label: "Our trips", menu: true },
   { href: "/destination/", label: "Destinations", menu: true },
+  { href: "/visa-info/", label: "Vis Info", menu: true },
   { href: "/blogs/", label: "Journal" },
+  { href: "/our-affiliation/", label: "Our Affiliation" },
   { href: "/about-us/", label: "About us" },
 ];
 
-function TourMenu() {
-  return (
-    <div className="grid gap-2">
-      {[
-        { name: "Cultural & Sightseeing Tours", description: "Heritage, temples & city discoveries", href: "/activities/nepal-tour/", photo: "/media/2021/09/bouddhanath-scaled.webp" },
-        { name: "Helicopter Tours", description: "Himalayan scenic flights", href: "/trip/?q=helicopter%20tour", photo: "/media/2018/07/helicopter-tour-ii.webp" },
-        { name: "Day Tours", description: "Short escapes & local discoveries", href: "/activities/day-tours/", photo: "/media/2018/08/swembhunath.webp" },
-        { name: "Jungle Safari", description: "Wildlife & national parks", href: "/trip/?activity=nepal-tour&q=safari", photo: "/media/2018/07/bardia-national-park-cover.webp" },
-        { name: "River Rafting", description: "Nepal’s white-water adventures", href: "/activities/river-rafting-in-nepal/", photo: "/media/2018/08/trishuli-river-rafting-iv-1.webp" },
-      ].map(({ name, description, href, photo }) => (
-        <Link key={name} href={href} className="group flex items-center gap-3 rounded-xl p-3 transition-colors hover:bg-snow-2">
-          <span className="relative size-12 shrink-0 overflow-hidden rounded-lg">
-            <Image src={photo} alt="" fill sizes="48px" className="object-cover transition-transform duration-300 group-hover:scale-105" />
-          </span>
-          <span>
-          <span className="block text-sm font-semibold group-hover:text-pine">{name}</span>
-          <span className="mt-1 block text-xs text-muted">{description}</span>
-          </span>
-        </Link>
-      ))}
-    </div>
-  );
-}
+const VISA_OPTIONS: HeaderRegion[] = [
+  { slug: "nepal-visa", name: "Nepal Visa", count: 0, href: "/visa-info/nepal/", photo: "/media/2021/09/bouddhanath-scaled.webp" },
+  { slug: "tibet-visa", name: "Tibet Visa", count: 0, href: "/visa-info/tibet/", photo: "/photos/region-tibet.webp" },
+  { slug: "bhutan-visa", name: "Bhutan Visa", count: 0, href: "/visa-info/bhutan/", photo: "/photos/region-bhutan.webp" },
+];
 
-export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]; trekRegions: HeaderRegion[] }) {
+export function HeaderClient({ regions, tripOptions }: { regions: HeaderRegion[]; tripOptions: HeaderRegion[] }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -90,6 +74,7 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
     const base = href.split("#")[0];
     if (base === "/destination/") return pathname.startsWith("/destination");
     if (base === "/trip/") return pathname.startsWith("/trip") || pathname.startsWith("/activities");
+    if (base === "/visa-info/") return pathname.startsWith("/visa-info");
     if (base === "/blogs/") return pathname.startsWith("/blogs") || pathname.startsWith("/category");
     return pathname === base && !href.includes("#");
   };
@@ -109,7 +94,7 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
               <Logo priority className="w-[92px] sm:w-[104px] lg:w-[112px]" />
             </Link>
 
-            <nav aria-label="Main" className="mx-auto hidden items-center gap-1 lg:flex">
+            <nav aria-label="Main" className="mx-auto hidden items-center gap-0 xl:flex">
               {LINKS.map((l) =>
                 l.menu ? (
                   <div key={l.href} className="relative" onMouseEnter={() => open(l.href)} onMouseLeave={close}>
@@ -117,7 +102,7 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
                       href={l.href}
                       onFocus={() => open(l.href)}
                       aria-expanded={openMenu === l.href}
-                      className={cn("relative inline-flex items-center gap-1 rounded-full px-4 py-2 text-[0.95rem] font-semibold transition-colors", isActive(l.href) || openMenu === l.href ? "text-pine" : "text-ink hover:text-pine")}
+                      className={cn("relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors", isActive(l.href) || openMenu === l.href ? "text-pine" : "text-ink hover:text-pine")}
                     >
                       {l.label}
                       <ChevronDown className={cn("size-4 transition-transform", openMenu === l.href && "rotate-180")} aria-hidden />
@@ -129,17 +114,12 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -4 }}
                           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className={cn("absolute top-full left-1/2 -translate-x-1/2 pt-3", l.href === "/trip/" ? "w-[44rem]" : "w-[30rem]")}
+                          className="absolute top-full left-1/2 w-[30rem] -translate-x-1/2 pt-3"
                         >
-                          <div data-lenis-prevent className={cn("max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-2xl border border-line bg-card shadow-[0_24px_60px_-28px_oklch(0.25_0.05_210/0.45)]", l.href === "/trip/" && "grid grid-cols-2")}>
+                          <div data-lenis-prevent className={cn("max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-2xl border border-line bg-card shadow-[0_24px_60px_-28px_oklch(0.25_0.05_210/0.45)]")}>
                             <div>
-                            {l.href === "/trip/" ? (
-                              <div className="px-4 pt-4 pb-2">
-                                <h2 className="text-sm font-bold text-pine">Nepal Trekking Services</h2>
-                              </div>
-                            ) : null}
                             <ul className="grid gap-1 p-2.5">
-                              {(l.href === "/trip/" ? trekRegions : regions).map((r) => (
+                              {(l.href === "/trip/" ? tripOptions : l.href === "/visa-info/" ? VISA_OPTIONS : regions).map((r) => (
                                 <li key={r.slug}>
                                   <Link href={r.href} className="group flex items-center gap-3 rounded-xl p-2 hover:bg-snow-2">
                                     <span className="relative size-10 shrink-0 overflow-hidden rounded-lg">
@@ -147,19 +127,13 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
                                     </span>
                                     <span className="min-w-0">
                                       <span className="block truncate text-sm font-semibold group-hover:text-pine">{r.name}</span>
-                                      <span className="block text-xs text-muted">{r.count} {r.slug === "nepal" ? "tours" : "trips"}</span>
+                                      <span className="block text-xs text-muted">{l.href === "/visa-info/" ? "Fees, documents & application steps" : `${r.count} ${r.slug === "nepal" ? "tours" : "trips"}`}</span>
                                     </span>
                                   </Link>
                                 </li>
                               ))}
                             </ul>
                             </div>
-                            {l.href === "/trip/" ? (
-                              <div className="border-l border-line p-3">
-                                <h2 className="mb-3 px-1 pt-1 text-sm font-bold text-pine">Nepal Touring Service</h2>
-                                <TourMenu />
-                              </div>
-                            ) : null}
                           </div>
                         </motion.div>
                       ) : null}
@@ -170,7 +144,7 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
                     key={l.href}
                     href={l.href}
                     aria-current={isActive(l.href) ? "page" : undefined}
-                    className={cn("rounded-full px-4 py-2 text-[0.95rem] font-semibold transition-colors", isActive(l.href) ? "text-pine" : "text-ink hover:text-pine")}
+                    className={cn("rounded-full px-3 py-2 text-[0.95rem] font-semibold transition-colors", isActive(l.href) ? "text-pine" : "text-ink hover:text-pine")}
                   >
                     {l.label}
                   </Link>
@@ -179,12 +153,20 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
             </nav>
 
             <div className="ml-auto flex items-center gap-1.5 lg:ml-0">
-              <SearchButton />
-              <ThemeToggle />
+              <div className="flex shrink-0 flex-col items-center gap-0.5 px-1 sm:items-start sm:px-2">
+                <span className="flex items-center gap-1.5 whitespace-nowrap text-[0.65rem] sm:text-xs text-muted"><span className="font-semibold text-ink">Shree</span><span className="size-1 rounded-full bg-emerald-500" aria-hidden />Available 24/7</span>
+                <a href="tel:+9779851029616" className="whitespace-nowrap text-xs font-bold text-pine hover:underline sm:text-sm">+977 9851 029616</a>
+                <span className="flex items-center gap-2">
+                  <a href={whatsappHref("Namaste Shree, I would like to ask about a trip.")} target="_blank" rel="noopener noreferrer" aria-label="Contact Shree on WhatsApp" title="WhatsApp" className="grid size-6 place-items-center text-[#168c4a] hover:opacity-75"><WhatsappIcon className="size-4" /></a>
+                  <a href="tel:+9779851029616" aria-label="Call Shree" title="Phone" className="grid size-6 place-items-center text-pine hover:opacity-75"><Phone className="size-3.5" aria-hidden /></a>
+                  <a href="viber://chat?number=%2B9779851029616" aria-label="Contact Shree on Viber" title="Viber" className="grid size-6 place-items-center text-[#8060bf] hover:opacity-75"><ViberIcon className="size-4" /></a>
+                </span>
+              </div>
+              <div className="hidden sm:block"><ThemeToggle /></div>
               <Link href="/customize-trip/" className="bg-pine hover:bg-pine-deep hidden rounded-lg px-5 py-3 text-sm font-bold text-white transition-colors sm:inline-flex">
                 Plan your trip
               </Link>
-              <button type="button" onClick={() => setMobile(true)} aria-label="Open menu" aria-expanded={mobile} className="grid size-10 place-items-center rounded-lg border border-line text-ink lg:hidden">
+              <button type="button" onClick={() => setMobile(true)} aria-label="Open menu" aria-expanded={mobile} className="grid size-10 place-items-center rounded-lg border border-line text-ink xl:hidden">
                 <MenuIcon className="size-5" aria-hidden />
               </button>
             </div>
@@ -202,7 +184,7 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[150] flex flex-col bg-snow lg:hidden"
+              className="fixed inset-0 z-[150] flex flex-col bg-snow xl:hidden"
               role="dialog"
               aria-modal="true"
               aria-label="Menu"
@@ -224,24 +206,18 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
                     </Link>
                     {l.menu ? (
                       <div className="py-3">
-                        {l.href === "/trip/" ? (
-                          <div className="mb-3">
-                            <h2 className="text-sm font-bold text-pine">Nepal Trekking Services</h2>
-                          </div>
-                        ) : null}
                         <div className="grid grid-cols-2 gap-2">
-                        {(l.href === "/trip/" ? trekRegions : regions).map((r) => (
-                          <Link key={r.slug} href={r.href} className="rounded-xl border border-line bg-card px-3 py-2.5 text-sm font-semibold">
-                            {r.name.replace(" Region", "")} <span className="text-xs font-normal text-muted">{r.count}</span>
+                        {(l.href === "/trip/" ? tripOptions : l.href === "/visa-info/" ? VISA_OPTIONS : regions).map((r) => (
+                          <Link key={r.slug} href={r.href} className="flex items-center gap-2 rounded-xl border border-line bg-card px-3 py-2.5 text-sm font-semibold">
+                            <span className="relative size-10 shrink-0 overflow-hidden rounded-lg">
+                              <Image src={r.photo} alt="" fill sizes="40px" className="object-cover" />
+                            </span>
+                            <span>
+                            {r.name.replace(" Region", "")} {l.href !== "/visa-info/" ? <span className="text-xs font-normal text-muted">{r.count}</span> : null}
+                            </span>
                           </Link>
                         ))}
                         </div>
-                        {l.href === "/trip/" ? (
-                          <div className="mt-4 border-t border-line pt-4">
-                            <h2 className="mb-3 text-sm font-bold text-pine">Nepal Touring Service</h2>
-                            <TourMenu />
-                          </div>
-                        ) : null}
                       </div>
                     ) : null}
                   </motion.div>
@@ -268,3 +244,7 @@ export function HeaderClient({ regions, trekRegions }: { regions: HeaderRegion[]
     </>
   );
 }
+
+
+
+

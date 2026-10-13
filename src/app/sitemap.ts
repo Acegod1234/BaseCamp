@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { categoryPath } from "@/components/journal-list";
 import { getLiveTerms, getPages, getPosts, getTaxonomies, getTeam, getTrips } from "@/lib/content";
 import { abs } from "@/lib/seo";
+import { visaGuides } from "@/content/visa-guides";
 
 const SKIP_PAGES = new Set([
   "home", "booking", "checkout", "thank-you", "online-payment", "online-payment-form", "search-result",
@@ -22,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const { destinations, activities } = getLiveTerms();
 
   return [
+    { url: abs("/visa-info/"), changeFrequency: "monthly" as const, priority: 0.6 },
+    ...Object.keys(visaGuides).map((country) => ({ url: abs(`/visa-info/${country}/`), changeFrequency: "monthly" as const, priority: 0.6 })),
     { url: abs("/"), lastModified: date(latest(trips.map((t) => t.modified))), changeFrequency: "weekly", priority: 1, images: [abs("/photos/home-banner.webp")] },
     { url: abs("/trip/"), lastModified: date(latest(trips.map((t) => t.modified))), changeFrequency: "weekly", priority: 0.9 },
     { url: abs("/destination/"), changeFrequency: "monthly", priority: 0.7 },

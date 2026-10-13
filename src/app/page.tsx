@@ -1,11 +1,7 @@
 import Image from "@/components/image";
 import Link from "next/link";
-import { ArrowRight, Check, Clock, Mountain } from "lucide-react";
-import { Accreditations } from "@/components/accreditations";
+import { Check, Clock } from "lucide-react";
 import { Awards } from "@/components/awards";
-import { AltitudeProfile } from "@/components/altitude-profile";
-import { placeOf } from "@/lib/itinerary";
-import { Faq } from "@/components/faq";
 import { FeaturedTrips, type TripGroup } from "@/components/home/featured-trips";
 import { CommunityCards } from "@/components/community-cards";
 import { HomeHero } from "@/components/home/hero";
@@ -16,7 +12,7 @@ import { TripCarousel } from "@/components/home/trip-carousel";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { PhotoGlow } from "@/components/photo-glow";
 import { Accent, SectionHeading } from "@/components/section-heading";
-import { TripCard } from "@/components/trip-card";
+import { JourneyCollections } from "@/components/home/journey-collections";
 import homeTourImages from "@/content/home-tour-images.json";
 import {
   getActiveOffer,
@@ -49,14 +45,6 @@ export const metadata = meta({
   description: site.description,
 });
 
-const FAQ = [
-  { q: "Can I customise my trip?", a: "<p>Yes. We tailor itineraries to your available time, interests, fitness level and travel preferences. Share your plans through our <a href=\"/customize-trip/\">trip-planning page</a>.</p>" },
-  { q: "What information is included with a trek?", a: "<p>Our trip information covers the itinerary, costs, accommodation, equipment and useful travel details. Open a trip page to start planning, or ask us for the full itinerary.</p>" },
-  { q: "Do you offer more than trekking?", a: "<p>We arrange cultural tours, peak climbing, helicopter tours, jungle safaris, rafting and day tours in Nepal, as well as trips to Bhutan and Tibet.</p>" },
-  { q: "How do I choose the right trip?", a: "<p>Tell us how much time you have, what you'd like to see and your trekking experience. We'll help you choose an itinerary around your interests and fitness level.</p>" },
-  { q: "Where can I find your booking terms?", a: "<p>Read our <a href=\"/terms-and-conditions/\">terms and conditions</a> for the full booking information, or contact our Kathmandu team with your questions.</p>" },
-];
-
 export default function HomePage() {
   const cards = getTripCards();
   const { destinations } = getLiveTerms();
@@ -64,7 +52,6 @@ export default function HomePage() {
   const founder = getTeam().find((m) => m.slug === "shree-ghimire");
   const reviews = getAllReviews();
   const posts = getPostCards().slice(0, 3);
-  const ebc = getTrip("everest-base-camp-trek");
   const featured = getFeaturedTrips();
   const popular = getHomeList("popular");
   const luxury = getHomeList("luxury");
@@ -119,8 +106,6 @@ export default function HomePage() {
   });
 
   const about = photo("hero-alpenglow");
-  // Key stops on the classic route, read from the real itinerary.
-  const stops = ebc ? ebc.itinerary.filter((d) => d.altitude && placeOf(d.title)).filter((d, i, a) => a.findIndex((x) => placeOf(x.title) === placeOf(d.title)) === i).slice(0, 8) : [];
 
   return (
     <>
@@ -140,36 +125,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Nepal tours */}
-      {tours.length ? (
-        <section className="border-t border-line py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
-            <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <SectionHeading eyebrow="Nepal tours" lines={["Discover Nepal.", <Accent key="b">Beyond the trails.</Accent>]} />
-              <Reveal className="max-w-sm">
-                <p className="text-ink-soft">Explore cultural landmarks, city life and wildlife with our local team.</p>
-              </Reveal>
-            </div>
-            <Stagger className="nepal-tour-mosaic">
-              {helicopterTours.map((t, index) => (
-                <StaggerItem key={t.slug} className={`nepal-tour-feature nepal-tour-feature-${index + 1}`}>
-                  <TripCard trip={t} regionName="Nepal Tour" label={`${t.days} ${t.days === 1 ? "day" : "days"}`} className="nepal-tour-square" imageSizes="(max-width: 640px) 92vw, 48vw" imageQuality={95} />
-                </StaggerItem>
-              ))}
-              {otherTours.map((t, index) => (
-                <StaggerItem key={t.slug} className={`nepal-tour-secondary nepal-tour-secondary-${index + 1}`}>
-                  <TripCard trip={t} regionName="Nepal Tour" label={`${t.days} ${t.days === 1 ? "day" : "days"}`} imageSizes={index === 0 || index === 5 ? "(max-width: 640px) 92vw, 48vw" : "(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 24vw"} imageQuality={95} />
-                </StaggerItem>
-              ))}
-            </Stagger>
-            <div className="mt-10 flex justify-center">
-              <Link href="/activities/nepal-tour/" className="bg-pine hover:bg-pine-deep inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-bold text-white transition-colors">
-                View all Nepal tours <ArrowRight className="size-4" aria-hidden />
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : null}
+      <JourneyCollections tours={[...helicopterTours.slice(0, 1), ...otherTours.slice(0, 3)]} luxury={luxury} regionNames={regionNames} />
 
       {/* 02 / Get to know Nepal */}
       <section className="bg-pine relative overflow-hidden py-20 text-white sm:py-24 lg:py-28 dark:bg-pine-deep">
@@ -184,53 +140,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 03 / Day by day: the classic route, from the real itinerary */}
-      {ebc ? (
-        <section className="relative overflow-hidden py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
-            <div className="grid gap-10 lg:grid-cols-[0.85fr_1.4fr] lg:items-start lg:gap-14">
-              <div className="lg:sticky lg:top-28">
-                <SectionHeading eyebrow={`03 / ${ebc.title}`} lines={["Day by", <Accent key="d">day.</Accent>]} />
-                <Reveal delay={0.1}>
-                  <p className="mt-5 text-ink-soft">{ebc.summary}</p>
-                  <dl className="mt-8 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-line bg-line">
-                    {[
-                      { k: "Days", v: String(ebc.days) },
-                      { k: "Highest", v: `${ebc.maxAltitude?.toLocaleString("en-US")} m` },
-                      { k: "From", v: ebc.price ? `US$${ebc.price.amount.toLocaleString("en-US")}` : "Ask us" },
-                    ].map((x) => (
-                      <div key={x.k} className="bg-card p-4">
-                        <dt className="text-[0.62rem] font-bold tracking-[0.14em] text-muted uppercase">{x.k}</dt>
-                        <dd className="font-display mt-1 text-xl text-ink sm:text-2xl">{x.v}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                  <Link href="/trip/everest-base-camp-trek/#itinerary" className="bg-pine hover:bg-pine-deep mt-8 inline-flex items-center gap-2 rounded-lg px-6 py-3.5 text-sm font-bold text-white transition-colors">
-                    See the full itinerary <ArrowRight className="size-4" aria-hidden />
-                  </Link>
-                </Reveal>
-              </div>
-              <Reveal delay={0.1}>
-                <div className="rounded-2xl border border-line bg-card p-4 sm:p-6">
-                  <AltitudeProfile days={ebc.itinerary.map(({ day, title, altitude }) => ({ day, title, altitude }))} tone="light" />
-                </div>
-                <ol className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                  {stops.map((d) => (
-                    <li key={d.day} className="rounded-xl border border-line bg-card px-3.5 py-3">
-                      <p className="text-[0.62rem] font-bold tracking-[0.14em] text-pine uppercase">Day {d.day}</p>
-                      <p className="mt-1 truncate text-sm font-semibold">{placeOf(d.title)}</p>
-                      <p className="mt-0.5 inline-flex items-center gap-1 text-xs text-muted">
-                        <Mountain className="size-3" aria-hidden /> {d.altitude?.toLocaleString("en-US")} m
-                      </p>
-                    </li>
-                  ))}
-                </ol>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
       {/* Popular Trekking & Tour Packages */}
       <section className="bg-snow-2 overflow-hidden py-14 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
@@ -244,42 +153,14 @@ export default function HomePage() {
       {/* Festival offers, or the trips on a reduced price today */}
       <Offers offer={offer} trips={offerTrips} regionNames={regionNames} />
 
-      {/* Luxury Trekking & Tour Packages, with Customize as the fourth tile */}
-      {luxury.length ? (
-        <section className="border-t border-line py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
-            <SectionHeading eyebrow="In comfort" lines={["Luxury trekking", <span key="l">& tour <Accent>packages.</Accent></span>]} />
-            <Stagger className="rail mt-10 package-grid-gap grid sm:grid-cols-2 lg:grid-cols-4">
-              {luxury.map((t) => (
-                <StaggerItem key={t.slug}>
-                  <TripCard trip={t} regionName={regionNames[t.destinations[0]]} label="Luxury" />
-                </StaggerItem>
-              ))}
-              <StaggerItem>
-                <Link href="/customize-trip/" className="bg-pine group relative flex h-full min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.1rem] p-6 text-white">
-                  <span className="text-[0.64rem] font-bold tracking-[0.14em] text-white/70 uppercase">Customize your trip</span>
-                  <span>
-                    <span className="font-display block text-3xl leading-[1.05]">
-                      A route made <span className="accent-word">around you.</span>
-                    </span>
-                    <span className="mt-3 block text-sm text-white/80">{site.customize}</span>
-                    <span className="mt-5 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-sm font-bold text-[#006c7c]">
-                      Customize Trip <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
-                    </span>
-                  </span>
-                </Link>
-              </StaggerItem>
-            </Stagger>
-          </div>
-        </section>
-      ) : null}
-
       {/* 04 / The people behind the journey */}
-      <section className="border-t border-line py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-site gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-6">
-          <div className="relative isolate">
+      <section className="story-community border-t border-line py-10 sm:py-11 lg:py-14">
+        <div className="mx-auto grid max-w-site gap-8 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.35fr] lg:items-start lg:gap-10 lg:px-6">
+          <div className="relative isolate lg:sticky lg:top-28">
+            <SectionHeading eyebrow="Our story & community" lines={["Local roots.", <Accent key="o">Open horizons.</Accent>]} />
+            <div className="relative mt-5">
             <PhotoGlow src={about.src} strength="lg" />
-            <div className="relative aspect-[3/2] overflow-hidden rounded-xl bg-snow-2">
+            <div className="relative aspect-[15/7] overflow-hidden rounded-xl bg-snow-2">
               <Image src={about.src} alt="Evening light on the Annapurna range" fill sizes="(max-width: 1024px) 100vw, 45vw" quality={80} className="object-cover object-right-bottom" />
             </div>
             <Reveal delay={0.2} className="bg-glacier-soft absolute top-6 right-4 rotate-[3deg] rounded-md px-5 py-4 text-center shadow-lg sm:-right-4">
@@ -291,18 +172,18 @@ export default function HomePage() {
               <span>The place we call home</span>
               <span>Nepal / Annapurna</span>
             </div>
+            </div>
           </div>
 
           <div>
-            <SectionHeading eyebrow="04 / The people behind the journey" lines={["Local roots.", <Accent key="o">Open horizons.</Accent>]} />
             <Reveal delay={0.1}>
-              <p className="mt-6 text-xl leading-snug text-ink">
+              <p className="mt-4 text-xl leading-snug text-ink">
                 Founded by a local guide.
                 <br />
                 Built on a love of Nepal.
               </p>
-              <p className="mt-5 text-ink-soft">{site.about}</p>
-              <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-line py-5">
+              <p className="mt-3 text-ink-soft">{site.about}</p>
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-y border-line py-3">
                 {founder?.photo ? (
                   <div className="flex items-center gap-3">
                     <span className="relative size-12 overflow-hidden rounded-full">
@@ -316,7 +197,7 @@ export default function HomePage() {
                 ) : null}
                 <Link href="/our-team/" className="border-b-2 border-ink pb-1 text-sm font-bold">Meet our team</Link>
               </div>
-              <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">
+              <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">
                 {["Small groups", "Local guides", "No hidden fees"].map((t) => (
                   <li key={t} className="inline-flex items-center gap-1.5">
                     <Check className="text-pine size-4" aria-hidden /> {t}
@@ -324,42 +205,32 @@ export default function HomePage() {
                 ))}
               </ul>
             </Reveal>
+            {community.length ? (
+              <div id="community" className="mt-5 scroll-mt-28 border-t border-line pt-5">
+                <div className="mb-3 flex flex-wrap items-end justify-between gap-4">
+                  <div>
+                    <p className="eyebrow text-pine">Community &amp; social work</p>
+                    <h3 className="font-display mt-2 text-2xl tracking-tight">Giving back to the place we call home.</h3>
+                    <p className="mt-2 max-w-lg text-sm text-ink-soft">Supporting the people and places that make every journey possible.</p>
+                  </div>
+                  <Link href="/community/" className="shrink-0 border-b-2 border-ink pb-1 text-sm font-bold">See our community work</Link>
+                </div>
+                <CommunityCards posts={community.slice(0, 2)} className="home-community" />
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
 
-      {/* Community & social work */}
-      {community.length ? (
-        <section id="community" className="scroll-mt-24 border-t border-line py-14 sm:py-16 lg:py-20">
-          <div className="mx-auto grid max-w-site gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.6fr] lg:gap-14 lg:px-6">
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <SectionHeading eyebrow="Community & social work" lines={["Rooted in", <Accent key="c">our community.</Accent>]} />
-              <Reveal delay={0.1}>
-                <p className="mt-5 text-ink-soft">Giving back to the people and places that make every journey possible.</p>
-                <Link href="/community/" className="mt-6 inline-block border-b-2 border-ink pb-1 text-sm font-bold">See our community work</Link>
-              </Reveal>
-            </div>
-            <CommunityCards posts={community.slice(0, 2)} className="rail" />
-          </div>
-        </section>
-      ) : null}
 
-      {/* Our affiliation */}
-      <section id="affiliations" className="scroll-mt-24 border-t border-line pt-16">
-        <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
-          <SectionHeading eyebrow="Licensed & trusted" lines={["Our", <Accent key="a">affiliation.</Accent>]} />
-        </div>
-        <div className="mt-4">
-          <Accreditations />
-        </div>
-        {/* Shown once the company's awards are added; the Tripadvisor rating is already in the reviews. */}
-        {awards.length ? (
+      {awards.length ? (
+        <section className="border-t border-line">
           <div className="mx-auto max-w-site px-4 py-10 sm:px-6 lg:px-6">
             <p className="eyebrow text-pine mb-4">Awards &amp; recognition</p>
             <Awards awards={awards} />
           </div>
-        ) : null}
-      </section>
+        </section>
+      ) : null}
 
       {/* Videos from the trail */}
       {videos.length ? (
@@ -380,26 +251,6 @@ export default function HomePage() {
 
       {/* Testimonials */}
       <Testimonials reviews={reviews} tripadvisor={getTripadvisor()} />
-
-      {/* 05 / Before you go */}
-      <section className="py-14 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-site gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-6">
-          <div>
-            <SectionHeading eyebrow="05 / Before you go" lines={["A few things", <span key="k">worth <Accent>knowing.</Accent></span>]} />
-            <Reveal delay={0.1}>
-              <p className="mt-5 text-ink-soft">
-                Start with the essentials.
-                <br />
-                Ask us about the rest.
-              </p>
-              <Link href="/contact-us/" className="mt-6 inline-block border-b-2 border-ink pb-1 text-sm font-bold">Talk through your plans</Link>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1}>
-            <Faq items={FAQ} />
-          </Reveal>
-        </div>
-      </section>
 
       {/* From the journal */}
       <section className="border-t border-line py-14 sm:py-16">
@@ -429,3 +280,9 @@ export default function HomePage() {
     </>
   );
 }
+
+
+
+
+
+

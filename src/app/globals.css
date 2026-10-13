@@ -13,7 +13,29 @@
   row-gap: clamp(2rem, 2.5vw, 3rem);
 }
 
+
 /* Nepal tour collage: two tall rows, with square features at opposite corners. */
+.journey-collage h3 { -webkit-line-clamp: unset; }
+.story-community .home-community article > div:first-child { aspect-ratio: 16 / 6; }
+.story-community .home-community article > div:nth-child(2) { padding: 1rem; }
+.story-community .home-community h3 { margin-top: 0.5rem; font-size: 1.125rem; }
+.story-community .home-community article > div:nth-child(2) > p:last-child { font-size: 0.875rem; line-height: 1.5; }
+.journey-collage > article > a > div:first-child img { object-position: center; }
+@media (min-width: 1024px) {
+  .journey-collage {
+    height: clamp(42rem, 48vw, 50rem);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+  .journey-collage > :first-child { grid-column: span 4; grid-row: span 2; height: 100%; }
+  .journey-collage > :nth-child(2) { grid-column: span 8; }
+  .journey-collage > :nth-child(n+3) { grid-column: span 4; }
+  .journey-collage > article { min-height: 0; }
+  .journey-collage > article > a > div:first-child { aspect-ratio: auto; flex: 1; min-height: 0; }
+  .journey-collage > article > a > div:nth-child(2) { flex: 0 0 10rem; }
+  .journey-collage > article:nth-child(2) > a > div:first-child img { object-position: center 35%; }
+  .journey-collage > article:nth-child(3) > a > div:first-child img { object-position: center 35%; }
+}
 .nepal-tour-mosaic {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

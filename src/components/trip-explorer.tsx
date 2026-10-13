@@ -84,7 +84,7 @@ export function TripExplorer({
       (t) =>
         (!needle || t.title.toLowerCase().includes(needle) || t.summary.toLowerCase().includes(needle)) &&
         (!state.region || t.destinations.includes(state.region)) &&
-        (!state.activity || t.activities.includes(state.activity)) &&
+        (!state.activity || state.activity.split(",").some((activity) => t.activities.includes(activity))) &&
         (!dur?.test || dur.test(t.days)) &&
         (!budget || (t.price && t.price.amount < budget)),
     );
@@ -100,9 +100,13 @@ export function TripExplorer({
     return [...list].sort(sorters[state.sort] ?? sorters.popular);
   }, [trips, state.q, state.region, state.activity, state.days, state.budget, state.sort]);
 
+  const combinedActivity = state.activity.includes(",");
+  const activityLabel = state.activity === "nepal-peak-climbing,expedition-in-nepal"
+    ? "Peak Climbing / Expeditions"
+    : state.activity.split(",").map((slug) => activities.find((a) => a.slug === slug)?.name ?? slug).join(" / ");
   const active = [
     !lockRegion && state.region && { k: "region", l: regionNames[state.region] ?? state.region },
-    !lockActivity && state.activity && { k: "activity", l: activities.find((a) => a.slug === state.activity)?.name ?? state.activity },
+    !lockActivity && state.activity && { k: "activity", l: activityLabel },
     state.days && { k: "days", l: DURATIONS.find((d) => d.v === state.days)?.l },
     state.budget && { k: "budget", l: BUDGETS.find((b) => b.v === state.budget)?.l },
     state.q && { k: "q", l: `“${state.q}”` },
@@ -111,7 +115,7 @@ export function TripExplorer({
   const controls = (p: string) => (
     <div className="grid gap-3 sm:grid-cols-2 lg:flex lg:flex-wrap lg:items-center">
       {!lockActivity ? (
-        <Select id={`${p}-activity`} label="Activity" value={state.activity} onChange={(v) => set({ activity: v })} options={[{ v: "", l: "All activities" }, ...activities.map((a) => ({ v: a.slug, l: `${a.name} (${a.count})` }))]} />
+        <Select id={`${p}-activity`} label="Activity" value={state.activity} onChange={(v) => set({ activity: v })} options={[{ v: "", l: "All activities" }, ...(combinedActivity ? [{ v: state.activity, l: activityLabel }] : []), ...activities.map((a) => ({ v: a.slug, l: `${a.name} (${a.count})` }))]} />
       ) : null}
       <Select id={`${p}-days`} label="Duration" value={state.days} onChange={(v) => set({ days: v })} options={DURATIONS} />
       <Select id={`${p}-budget`} label="Budget" value={state.budget} onChange={(v) => set({ budget: v })} options={BUDGETS} />

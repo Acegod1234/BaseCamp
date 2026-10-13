@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Mountain } from "lucide-react";
 import { EASE } from "@/components/motion";
+import { openSearch } from "@/components/site/search";
+import { Search } from "lucide-react";
 
 export function HomeHero() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -75,6 +77,9 @@ export function HomeHero() {
           <div className="relative flex h-full min-h-[34rem] flex-col justify-between p-6 sm:p-9 lg:min-h-0 lg:p-10 xl:p-12">
             <motion.div {...entrance(0.2)} className="flex items-center justify-between gap-4">
               <span className="rounded-full border border-white/35 bg-black/10 px-4 py-2 text-[0.65rem] font-semibold tracking-[0.16em] text-white backdrop-blur-sm uppercase">Your Himalayan journey</span>
+              <button type="button" onClick={openSearch} aria-label="Search trips and destinations" className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/35 bg-white/10 px-3 py-2.5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20 sm:px-4">
+                <Search className="size-4" aria-hidden /><span className="hidden sm:inline">Search</span><kbd className="hidden rounded border border-white/30 px-1.5 text-[0.65rem] font-normal text-white/80 lg:inline">Ctrl K</kbd>
+              </button>
             </motion.div>
             <div className="mt-36 text-white">
               <motion.p {...entrance(0.35)} className="mb-4 text-xs font-semibold tracking-[0.2em] text-white/80 uppercase">Beyond the everyday</motion.p>
