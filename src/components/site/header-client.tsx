@@ -20,7 +20,7 @@ export type HeaderRegion = { slug: string; name: string; count: number; photo: s
 const LINKS = [
   { href: "/trip/", label: "Our trips", menu: true },
   { href: "/destination/", label: "Destinations", menu: true },
-  { href: "/visa-info/", label: "Vis Info", menu: true },
+  { href: "/visa-info/", label: "Visa Info", menu: true },
   { href: "/blogs/", label: "Journal" },
   { href: "/our-affiliation/", label: "Our Affiliation" },
   { href: "/about-us/", label: "About us" },
@@ -163,9 +163,6 @@ export function HeaderClient({ regions, tripOptions }: { regions: HeaderRegion[]
                 </span>
               </div>
               <div className="hidden sm:block"><ThemeToggle /></div>
-              <Link href="/customize-trip/" className="bg-pine hover:bg-pine-deep hidden rounded-lg px-5 py-3 text-sm font-bold text-white transition-colors sm:inline-flex">
-                Plan your trip
-              </Link>
               <button type="button" onClick={() => setMobile(true)} aria-label="Open menu" aria-expanded={mobile} className="grid size-10 place-items-center rounded-lg border border-line text-ink xl:hidden">
                 <MenuIcon className="size-5" aria-hidden />
               </button>
@@ -227,7 +224,6 @@ export function HeaderClient({ regions, tripOptions }: { regions: HeaderRegion[]
                 </Link>
               </nav>
               <div className="grid shrink-0 gap-2 border-t border-line bg-card px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
-                <Link href="/customize-trip/" className="bg-pine rounded-lg py-3.5 text-center font-bold text-white">Plan your trip</Link>
                 <div className="grid grid-cols-2 gap-2">
                   <a href={`tel:${site.mobileHref}`} className="flex items-center justify-center gap-2 rounded-lg border border-line py-3 text-sm font-bold">
                     <Phone className="size-4" aria-hidden /> Call 24/7
@@ -244,7 +240,3 @@ export function HeaderClient({ regions, tripOptions }: { regions: HeaderRegion[]
     </>
   );
 }
-
-
-
-

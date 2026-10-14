@@ -58,7 +58,7 @@ export function BookingCard({ slug, title, price }: { slug: string; title: strin
         </li>
         <li className="flex items-start gap-2.5">
           <Lock className="text-pine mt-0.5 size-4 shrink-0" aria-hidden />
-          <span>Secure online payment with WeTravel</span>
+          <span>Secure online payment</span>
         </li>
         <li className="flex items-start gap-2.5">
           <BadgeCheck className="text-pine mt-0.5 size-4 shrink-0" aria-hidden />

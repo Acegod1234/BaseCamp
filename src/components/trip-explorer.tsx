@@ -105,7 +105,7 @@ export function TripExplorer({
     ? "Peak Climbing / Expeditions"
     : state.activity.split(",").map((slug) => activities.find((a) => a.slug === slug)?.name ?? slug).join(" / ");
   const active = [
-    !lockRegion && state.region && { k: "region", l: regionNames[state.region] ?? state.region },
+    !lockRegion && state.region && { k: "region", l: state.region === "remote-area-trekking" ? "More Treks" : regionNames[state.region] ?? state.region },
     !lockActivity && state.activity && { k: "activity", l: activityLabel },
     state.days && { k: "days", l: DURATIONS.find((d) => d.v === state.days)?.l },
     state.budget && { k: "budget", l: BUDGETS.find((b) => b.v === state.budget)?.l },
@@ -162,7 +162,7 @@ export function TripExplorer({
             <Chip on={!state.region} onClick={() => set({ region: "" })}>All regions</Chip>
             {regions.map((r) => (
               <Chip key={r.slug} on={state.region === r.slug} onClick={() => set({ region: state.region === r.slug ? "" : r.slug })}>
-                {r.name} <span className="font-mono text-[0.7rem] opacity-60">{r.count}</span>
+                {r.slug === "remote-area-trekking" ? "More Treks" : r.name} <span className="font-mono text-[0.7rem] opacity-60">{r.count}</span>
               </Chip>
             ))}
           </div>

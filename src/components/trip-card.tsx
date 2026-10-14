@@ -55,7 +55,8 @@ export function TripCard({
   const tilt = fine && !reduce;
 
   const off = trip.price?.regular && trip.price.amount < trip.price.regular ? Math.round((1 - trip.price.amount / trip.price.regular) * 100) : null;
-  const tag = label ?? regionName?.replace(" Region", "");
+  const photoTag = label ?? regionName?.replace(" Region", "");
+  const tag = photoTag?.trim().toLowerCase() === "other treks" ? undefined : photoTag;
 
   return (
     <motion.article

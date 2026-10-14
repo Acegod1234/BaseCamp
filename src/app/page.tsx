@@ -128,7 +128,7 @@ export default function HomePage() {
       <JourneyCollections tours={[...helicopterTours.slice(0, 1), ...otherTours.slice(0, 3)]} luxury={luxury} regionNames={regionNames} />
 
       {/* 02 / Get to know Nepal */}
-      <section className="bg-pine relative overflow-hidden py-20 text-white sm:py-24 lg:py-28 dark:bg-pine-deep">
+      <section className="bg-pine relative overflow-hidden pt-7 pb-10 text-white sm:pt-8 sm:pb-12 lg:pt-9 lg:pb-14 dark:bg-pine-deep">
         <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading tone="dark" eyebrow="02 / Get to know Nepal" lines={["Same country.", <Accent key="d">Different worlds.</Accent>]} />
@@ -141,7 +141,7 @@ export default function HomePage() {
       </section>
 
       {/* Popular Trekking & Tour Packages */}
-      <section className="bg-snow-2 overflow-hidden py-14 sm:py-16 lg:py-20">
+      <section className="bg-snow-2 overflow-hidden pt-8 pb-14 sm:pt-10 sm:pb-16 lg:pt-12 lg:pb-20">
         <div className="mx-auto max-w-site px-4 sm:px-6 lg:px-6">
           <SectionHeading eyebrow={`${popular.length} packages`} lines={["Popular trekking", <span key="p">& tour <Accent>packages.</Accent></span>]} />
           <div className="mt-6">

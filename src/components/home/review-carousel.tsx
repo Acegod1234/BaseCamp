@@ -21,6 +21,7 @@ export type CarouselReview = {
   publishedLabel?: string;
   isExcerpt?: boolean;
   title?: string;
+  video?: { src: string; poster?: string };
 };
 
 const narrowQuery = "(max-width: 639px)";
