@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, BadgePercent, Sparkles } from "lucide-react";
+import { BadgePercent, Sparkles } from "lucide-react";
 import { Countdown, CopyCode } from "@/components/home/offer-bits";
-import { Stagger, StaggerItem } from "@/components/motion";
 import { Newsletter } from "@/components/newsletter";
 import { Accent, SectionHeading } from "@/components/section-heading";
-import { TripCard } from "@/components/trip-card";
+import { TripCarousel } from "@/components/home/trip-carousel";
 import type { Offer, TripCard as Card } from "@/lib/types";
 import { formatDate, usd } from "@/lib/utils";
 
@@ -17,7 +16,6 @@ import { formatDate, usd } from "@/lib/utils";
 export function Offers({ offer, trips, regionNames }: { offer: Offer | null; trips: Card[]; regionNames: Record<string, string> }) {
   if (!offer && !trips.length) return null;
   const best = trips.reduce((m, t) => Math.max(m, t.price?.regular ? t.price.regular - t.price.amount : 0), 0);
-  const shown = trips.slice(0, 4);
 
   return (
     <section id="offers" className="scroll-mt-24 py-14 sm:py-16 lg:py-20">
@@ -73,24 +71,7 @@ export function Offers({ offer, trips, regionNames }: { offer: Offer | null; tri
           <Newsletter source="offers" className="w-full sm:max-w-sm" />
         </div>
 
-        <Stagger className="rail package-grid-gap grid sm:grid-cols-2 lg:grid-cols-4">
-          {shown.map((t) => (
-            <StaggerItem key={t.slug}>
-              <TripCard trip={t} regionName={regionNames[t.destinations[0]]} />
-            </StaggerItem>
-          ))}
-        </Stagger>
-        {trips.length > shown.length ? (
-          <div className="mt-6 flex flex-wrap gap-2">
-            {trips.slice(4, 12).map((t) => (
-              <Link key={t.slug} href={`/trip/${t.slug}/`} className="hover:border-pine hover:text-pine inline-flex items-center gap-2 rounded-full border border-line bg-card px-3.5 py-2 text-[0.8rem] font-semibold transition-colors">
-                {t.title}
-                {t.price?.regular ? <span className="text-crimson">−{usd(t.price.regular - t.price.amount)}</span> : null}
-                <ArrowRight className="size-3.5" aria-hidden />
-              </Link>
-            ))}
-          </div>
-        ) : null}
+        <TripCarousel trips={trips} regionNames={regionNames} moreHref="/trip/" moreLabel="Find your next adventure." ariaLabel="Trips on offer" />
       </div>
     </section>
   );

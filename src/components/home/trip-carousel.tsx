@@ -11,7 +11,7 @@ import type { TripCard as Card } from "@/lib/types";
  * trackpad on desktop. On touch the browser does the scrolling natively
  * (snapping softly to each card); a bar underneath shows how far along you are.
  */
-export function TripCarousel({ trips, regionNames, moreHref, moreLabel }: { trips: Card[]; regionNames: Record<string, string>; moreHref: string; moreLabel: string }) {
+export function TripCarousel({ trips, regionNames, moreHref, moreLabel, ariaLabel = "Popular trips" }: { trips: Card[]; regionNames: Record<string, string>; moreHref: string; moreLabel: string; ariaLabel?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [state, setState] = useState({ start: true, end: false, progress: 0, view: 0.25 });
 
@@ -58,7 +58,7 @@ export function TripCarousel({ trips, regionNames, moreHref, moreLabel }: { trip
         data-lenis-prevent-wheel
         className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain px-4 pt-2 pb-6 [-webkit-overflow-scrolling:touch] [scroll-padding-inline:1rem] sm:-mx-6 sm:gap-8 sm:px-6 sm:[scroll-padding-inline:1.5rem] lg:gap-10"
         role="region"
-        aria-label="Popular trips"
+        aria-label={ariaLabel}
         tabIndex={0}
       >
         {trips.map((t) => (

@@ -2,6 +2,35 @@
   {
     "id": "review-1",
     "title": "Traveller video review",
-    "src": "/videos/review-1.mp4"
+    "src": "/videos/review-1.mp4",
+    "poster": "/videos/review-1-poster.jpg"
+  },
+  {
+    "id": "review-preview-2",
+    "title": "Video review layout preview 2",
+    "src": "/videos/review-1.mp4",
+    "preview": true,
+    "poster": "/videos/review-1-poster.jpg"
+  },
+  {
+    "id": "review-preview-3",
+    "title": "Video review layout preview 3",
+    "src": "/videos/review-1.mp4",
+    "preview": true,
+    "poster": "/videos/review-1-poster.jpg"
+  },
+  {
+    "id": "review-preview-4",
+    "title": "Video review layout preview 4",
+    "src": "/videos/review-1.mp4",
+    "preview": true,
+    "poster": "/videos/review-1-poster.jpg"
+  },
+  {
+    "id": "review-preview-5",
+    "title": "Video review layout preview 5",
+    "src": "/videos/review-1.mp4",
+    "preview": true,
+    "poster": "/videos/review-1-poster.jpg"
   }
 ]
