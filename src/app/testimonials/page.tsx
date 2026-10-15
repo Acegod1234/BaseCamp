@@ -2,7 +2,12 @@ import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowUpRight, Star } from "lucide-react";
 import { Flag } from "@/components/flag";
-import { PageHero } from "@/components/page-hero";
+import { Breadcrumbs } from "@/components/page-hero";
+import { TestimonialVideoGallery } from "@/components/testimonial-video-gallery";
+import { Accent } from "@/components/section-heading";
+import google from "@/content/google-reviews.json";
+import trustindex from "@/content/trustindex-reviews.json";
+import videos from "@/content/video-reviews.json";
 import { ReviewText } from "@/components/review-text";
 import { ShowMore } from "@/components/show-more";
 import { getAllReviews, getTripadvisor } from "@/lib/content";
@@ -19,7 +24,7 @@ export const metadata = meta({
 export default function TestimonialsPage() {
   const reviews = getAllReviews();
   const ta = getTripadvisor();
-  const avg = reviews.reduce((s, r) => s + r.rating, 0) / Math.max(1, reviews.length);
+  const total = reviews.length + google.reviews.length + trustindex.reviews.length;
   const rows = reviews.map((r) => ({ r, who: reviewer(r.author) }));
   const countries = new Map<string, { name: string; flag: string; n: number }>();
   for (const { who } of rows) {
@@ -32,12 +37,17 @@ export default function TestimonialsPage() {
 
   return (
     <>
-      <PageHero
-        title="Testimonials"
-        eyebrow={`${reviews.length} reviews · ${avg.toFixed(1)} average`}
-        photo="/photos/page-reviews.webp"
-        crumbs={[{ name: "Reviews", path: "/testimonials/" }]}
-      />
+      <header className="mx-auto max-w-site px-4 pt-10 sm:px-6 sm:pt-12">
+        <Breadcrumbs items={[{ name: "Reviews", path: "/testimonials/" }]} />
+        <p className="eyebrow mt-8 text-pine">{total} published review entries · Three platforms</p>
+        <h1 className="font-display mt-3 text-[clamp(2.75rem,5vw,5rem)] leading-tight tracking-tight">Their journeys. <Accent>Their words.</Accent></h1>
+        <nav aria-label="Review collections" className="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-pine">{[{label:"Video stories",id:"video-stories"},{label:"Tripadvisor",id:"tripadvisor-reviews"},{label:"Google",id:"google-reviews"},{label:"Trustindex",id:"trustindex-reviews"}].map(item => <a key={item.id} href={`#${item.id}`} className="rounded-full border border-pine/20 px-4 py-2 hover:bg-pine/5">{item.label}</a>)}</nav>
+      </header>
+      <section id="video-stories" className="testimonial-video-showcase relative mt-8 scroll-mt-28 overflow-hidden border-y border-line bg-snow-2 px-4 py-10 sm:px-6 sm:py-12">
+        <div className="mx-auto max-w-site">
+          <TestimonialVideoGallery items={videos} />
+        </div>
+      </section>
 
       <section className="mx-auto max-w-site px-4 pt-12 sm:px-6 sm:pt-16 lg:px-6">
         <div className="grid gap-4 lg:grid-cols-[1.1fr_1fr]">
@@ -89,7 +99,7 @@ export default function TestimonialsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-site px-4 py-12 sm:px-6 sm:py-16 lg:px-6">
+      <section id="tripadvisor-reviews" className="mx-auto max-w-site scroll-mt-28 px-4 py-12 sm:px-6 sm:py-16 lg:px-6"><h2 className="font-display mb-6 text-3xl tracking-tight">Tripadvisor reviews</h2>
         <ShowMore className="columns-1 gap-5 md:columns-2 lg:columns-3 [&>*>*]:mb-5 [&>*>*]:break-inside-avoid" label="more reviews">
           {rows.map(({ r, who }, i) => (
             <article key={i} className="rounded-2xl border border-line bg-card p-6">
@@ -124,6 +134,15 @@ export default function TestimonialsPage() {
           ))}
         </ShowMore>
       </section>
+      <PlatformReviews id="google-reviews" platform="Google" href={google.url} reviews={google.reviews.map(r => ({name:r.name,rating:r.rating,body:r.excerpt,title:"",date:r.published ? formatDate(r.published) : r.publishedLabel ? r.publishedLabel + " (as shown)" : "",excerpt:r.isExcerpt}))} />
+      <PlatformReviews id="trustindex-reviews" platform="Trustindex" href={trustindex.url} reviews={trustindex.reviews.map(r => ({name:r.name,rating:r.rating,body:r.body,title:r.title,date:formatDate(r.published),excerpt:false}))} />
     </>
   );
+}
+
+function PlatformReviews({id,platform,href,reviews}: {id:string;platform:string;href:string;reviews:{name:string;rating:number;body:string;title:string;date:string;excerpt:boolean}[]}) {
+  return <section id={id} className="mx-auto max-w-site scroll-mt-28 border-t border-line px-4 py-12 sm:px-6 sm:py-16">
+    <div className="mb-6 flex flex-wrap items-end justify-between gap-3"><div><p className="eyebrow text-pine">{reviews.length} review entries</p><h2 className="font-display mt-2 text-3xl tracking-tight">{platform} reviews</h2></div><a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-pine">Read on {platform}<ArrowUpRight className="size-4" aria-hidden /></a></div>
+    <ShowMore label="reviews" className="columns-1 gap-5 md:columns-2 lg:columns-3 [&>*>*]:mb-5 [&>*>*]:break-inside-avoid">{reviews.map((r,i)=><article key={i} className="rounded-2xl border border-line bg-card p-6"><div className="flex gap-0.5" aria-label={`${r.rating} out of 5`}>{Array.from({length:5},(_,i)=><Star key={i} className={i<r.rating ? "size-4 fill-marigold text-marigold" : "size-4 text-line"} aria-hidden />)}</div>{r.title ? <h3 className="mt-3 font-bold">{r.title}</h3>:null}<div className="mt-3">{r.body ? <ReviewText text={r.body} />:<p className="text-sm text-muted">This traveller left a rating without a written comment.</p>}</div>{r.excerpt ? <p className="mt-3 text-xs text-muted">Excerpt · <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-pine underline">Continue on {platform}</a></p>:null}<footer className="mt-5 border-t border-line pt-4"><p className="font-semibold">{r.name}</p><p className="mt-1 text-xs text-muted">{r.date} · {platform}</p></footer></article>)}</ShowMore>
+  </section>;
 }
