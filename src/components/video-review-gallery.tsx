@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Play, Pause, X } from "lucide-react";
 import Image from "@/components/image";
+import { usePageWheelScroll } from "@/lib/use-page-wheel-scroll";
 
 export type VideoReview = { id: string; title: string; src: string; poster?: string };
 
@@ -33,6 +34,8 @@ export function VideoReviewGallery({ items }: { items: VideoReview[] }) {
     };
   }, [isOpen]);
 
+  usePageWheelScroll(track, items.length);
+
   const close = () => { player.current?.pause(); setSelected(null); };
   const switchVideo = (step: number) => {
     player.current?.pause();
@@ -62,7 +65,6 @@ export function VideoReviewGallery({ items }: { items: VideoReview[] }) {
       ref={track}
       tabIndex={0}
       aria-label="Video stories. Swipe or use the arrow keys to browse."
-      data-lenis-prevent
       onKeyDown={(event) => {
         if (event.target !== event.currentTarget) return;
         if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); go(event.key === "ArrowRight" ? 1 : -1); }
@@ -94,7 +96,7 @@ export function VideoReviewGallery({ items }: { items: VideoReview[] }) {
         if (drag.current?.moved) { event.preventDefault(); event.stopPropagation(); }
         drag.current = null;
       }}
-      className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain rounded-xl pb-3 select-none active:cursor-grabbing focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine"
+      className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain overscroll-y-auto rounded-xl pb-3 select-none active:cursor-grabbing focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine"
     >
       {items.map((item, index) => <article key={item.id} className="w-[72%] shrink-0 snap-start sm:w-[calc((100%_-_2rem)/3)] lg:w-[calc((100%_-_4rem)/5)]">
         <button type="button" onClick={(event) => { opener.current = event.currentTarget; setSelected(item); }} aria-label={`Open video: ${item.title}`} className="group block w-full cursor-pointer text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine">
