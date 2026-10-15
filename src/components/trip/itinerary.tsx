@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "@/components/image";
-import { BedDouble, ChevronDown, Coffee, Expand, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
+import { ChevronDown, Coffee, Expand, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
+import { AccommodationFact } from "@/components/trip/accommodation-fact";
 import { Lightbox } from "@/components/lightbox";
 import { UnitTip, altitudeLines, distanceLines } from "@/components/unit-tip";
 import { durationOf, overnightOf } from "@/lib/itinerary";
@@ -95,7 +96,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                       <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
                         {km ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={`${km.toLocaleString("en-US")} km`} tip={<UnitTip label="Distance, approx." lines={distanceLines(km)} />} /> : null}
                         {duration ? <Fact icon={<Timer className="size-4" aria-hidden />} label="Duration" value={duration} /> : null}
-                        {accommodation ? <Fact icon={<BedDouble className="size-4" aria-hidden />} label="Accommodation" value={accommodation} /> : null}
+                        {accommodation ? <AccommodationFact value={accommodation} place={place} /> : null}
                       </dl>
                     ) : null}
                     {d.meals.length ? (

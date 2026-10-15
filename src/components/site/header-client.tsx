@@ -114,14 +114,14 @@ export function HeaderClient({ regions, tripOptions }: { regions: HeaderRegion[]
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -4 }}
                           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute top-full left-1/2 w-[30rem] -translate-x-1/2 pt-3"
+                          className={cn("absolute top-full left-1/2 -translate-x-1/2 pt-3", l.href === "/destination/" ? "w-[19rem]" : "w-[24rem]")}
                         >
                           <div data-lenis-prevent className={cn("max-h-[calc(100dvh-7rem)] overflow-y-auto rounded-2xl border border-line bg-card shadow-[0_24px_60px_-28px_oklch(0.25_0.05_210/0.45)]")}>
                             <div>
-                            <ul className="grid gap-1 p-2.5">
+                            <ul className="grid gap-0.5 p-1.5">
                               {(l.href === "/trip/" ? tripOptions : l.href === "/visa-info/" ? VISA_OPTIONS : regions).map((r) => (
                                 <li key={r.slug}>
-                                  <Link href={r.href} className="group flex items-center gap-3 rounded-xl p-2 hover:bg-snow-2">
+                                  <Link href={r.href} className="group flex items-center gap-3 rounded-xl px-2 py-1 hover:bg-snow-2">
                                     <span className="relative size-10 shrink-0 overflow-hidden rounded-lg">
                                       <Image src={r.photo} alt="" fill sizes="40px" className="object-cover" />
                                     </span>

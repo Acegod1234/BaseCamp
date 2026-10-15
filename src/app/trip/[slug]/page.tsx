@@ -192,7 +192,7 @@ export default async function TripPage({ params }: Props) {
       <SectionNav items={nav} price={trip.price} />
 
       <div className="mx-auto grid max-w-site gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_23rem] lg:gap-16 lg:px-6">
-        <article className="min-w-0 space-y-20">
+        <article className="trip-detail-content min-w-0 space-y-20">
           <section id="overview" className="scroll-mt-40">
             <p className="eyebrow text-pine">Overview</p>
             {trip.highlights.length ? (
