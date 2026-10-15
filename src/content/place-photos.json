@@ -6,7 +6,8 @@
     "author": "Gerd Eichmann",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kathmandu-Durbar_Square-06-Mahavishnu-Kuh-Vishnu-Pratapamalla-Jagannath-2007-gje.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Kathmandu-Durbar_Square-06-Mahavishnu-Kuh-Vishnu-Pratapamalla-Jagannath-2007-gje.jpg",
+    "previewSrc": "/photos/places/kathmandu-preview.webp"
   },
   "lumbini": {
     "name": "Lumbini",
@@ -15,7 +16,8 @@
     "author": "Bibek Raj Pandeya",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:BRP_Lumbini_Mayadevi_temple.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:BRP_Lumbini_Mayadevi_temple.jpg",
+    "previewSrc": "/photos/places/lumbini-preview.webp"
   },
   "namche-bazaar": {
     "name": "Namche Bazaar",
@@ -24,7 +26,8 @@
     "author": "stevehicks",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Namche_Bazaar_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Namche_Bazaar_Nepal.jpg",
+    "previewSrc": "/photos/places/namche-bazaar-preview.webp"
   },
   "lukla": {
     "name": "Lukla",
@@ -33,7 +36,8 @@
     "author": "Vyacheslav Argenberg",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Lukla_and_Lukla_Airport,_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Lukla_and_Lukla_Airport,_Nepal.jpg",
+    "previewSrc": "/photos/places/lukla-preview.webp"
   },
   "tengboche": {
     "name": "Tengboche",
@@ -42,7 +46,8 @@
     "author": "Vyacheslav Argenberg",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Tengboche,_Mountains_of_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Tengboche,_Mountains_of_Nepal.jpg",
+    "previewSrc": "/photos/places/tengboche-preview.webp"
   },
   "bhaktapur": {
     "name": "Bhaktapur",
@@ -51,7 +56,8 @@
     "author": "Saroj Pandey",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Nyatpola_%26_Bhairav_Temple.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Nyatpola_%26_Bhairav_Temple.jpg",
+    "previewSrc": "/photos/places/bhaktapur-preview.webp"
   },
   "khumjung": {
     "name": "Khumjung",
@@ -60,7 +66,8 @@
     "author": "Moralist",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Khumbila_2.JPG"
+    "source": "https://commons.wikimedia.org/wiki/File:Khumbila_2.JPG",
+    "previewSrc": "/photos/places/khumjung-preview.webp"
   },
   "pokhara": {
     "name": "Pokhara",
@@ -69,7 +76,8 @@
     "author": "Utsab Raj Giri",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Pokhara_Valley.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Pokhara_Valley.jpg",
+    "previewSrc": "/photos/places/pokhara-preview.webp"
   },
   "langtang": {
     "name": "Langtang",
@@ -78,7 +86,8 @@
     "author": "Q-lieb-in",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Starry_night_in_Langtang_National_Park.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Starry_night_in_Langtang_National_Park.jpg",
+    "previewSrc": "/photos/places/langtang-preview.webp"
   },
   "annapurna-sanctuary": {
     "name": "Annapurna Sanctuary",
@@ -87,7 +96,8 @@
     "author": "Nancy Collins",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Machapuchre-wow.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Machapuchre-wow.jpg",
+    "previewSrc": "/photos/places/annapurna-sanctuary-preview.webp"
   },
   "ghorepani": {
     "name": "Ghorepani",
@@ -96,7 +106,8 @@
     "author": "John Pavelka",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Ghorepani.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Ghorepani.jpg",
+    "previewSrc": "/photos/places/ghorepani-preview.webp"
   },
   "gorakshep": {
     "name": "Gorakshep",
@@ -105,7 +116,8 @@
     "author": "Vyacheslav Argenberg",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Gorakshep,_Everest_Zone,_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Gorakshep,_Everest_Zone,_Nepal.jpg",
+    "previewSrc": "/photos/places/gorakshep-preview.webp"
   },
   "muktinath": {
     "name": "Muktinath",
@@ -114,7 +126,8 @@
     "author": "Ironicfreak",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:The_Muktinath_Temple.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:The_Muktinath_Temple.jpg",
+    "previewSrc": "/photos/places/muktinath-preview.webp"
   },
   "dingboche": {
     "name": "Dingboche",
@@ -123,7 +136,8 @@
     "author": "Nirojsedhai",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Dingboche_settlement.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Dingboche_settlement.jpg",
+    "previewSrc": "/photos/places/dingboche-preview.webp"
   },
   "dole": {
     "name": "Dole",
@@ -132,7 +146,8 @@
     "author": "Vyacheslav Argenberg",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Dole,_Khumbu,_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Dole,_Khumbu,_Nepal.jpg",
+    "previewSrc": "/photos/places/dole-preview.webp"
   },
   "nagarkot": {
     "name": "Nagarkot",
@@ -141,7 +156,8 @@
     "author": "松岡明芳",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:2015-03-18_Nagarkot_Hotel_Galaxy_DSCF2094.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:2015-03-18_Nagarkot_Hotel_Galaxy_DSCF2094.jpg",
+    "previewSrc": "/photos/places/nagarkot-preview.webp"
   },
   "pheriche": {
     "name": "Pheriche",
@@ -150,7 +166,8 @@
     "author": "Babin Dulal",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Amazing_Sunset_of_Pheriche.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Amazing_Sunset_of_Pheriche.jpg",
+    "previewSrc": "/photos/places/pheriche-preview.webp"
   },
   "jomsom": {
     "name": "Jomsom",
@@ -159,7 +176,8 @@
     "author": "Saddam19",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Jomsom_from_View_Tower_(cropped).jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Jomsom_from_View_Tower_(cropped).jpg",
+    "previewSrc": "/photos/places/jomsom-preview.webp"
   },
   "chame-rural-municipality": {
     "name": "Chame Rural Municipality",
@@ -168,7 +186,8 @@
     "author": "Brockzilla",
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Chame,_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Chame,_Nepal.jpg",
+    "previewSrc": "/photos/places/chame-rural-municipality-preview.webp"
   },
   "manang": {
     "name": "Manang",
@@ -177,7 +196,8 @@
     "author": "Solundir",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Manang_Annapurna3_Gangapurna.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Manang_Annapurna3_Gangapurna.jpg",
+    "previewSrc": "/photos/places/manang-preview.webp"
   },
   "kagbeni": {
     "name": "Kagbeni",
@@ -186,7 +206,8 @@
     "author": "Vyacheslav Argenberg",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kagbeni,_Mustang,_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Kagbeni,_Mustang,_Nepal.jpg",
+    "previewSrc": "/photos/places/kagbeni-preview.webp"
   },
   "ghandruk": {
     "name": "Ghandruk",
@@ -195,7 +216,8 @@
     "author": "Bijaya2043",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Ghandruk_HDR6.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Ghandruk_HDR6.jpg",
+    "previewSrc": "/photos/places/ghandruk-preview.webp"
   },
   "syaphru": {
     "name": "Syaphru",
@@ -204,7 +226,8 @@
     "author": "Bharat2",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:20140729_151654day.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:20140729_151654day.jpg",
+    "previewSrc": "/photos/places/syaphru-preview.webp"
   },
   "pisang": {
     "name": "Pisang",
@@ -213,7 +236,8 @@
     "author": "Kondephy",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Upper_and_Lower_Pisang.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Upper_and_Lower_Pisang.jpg",
+    "previewSrc": "/photos/places/pisang-preview.webp"
   },
   "lobuche": {
     "name": "Lobuche",
@@ -222,7 +246,8 @@
     "author": "DARIO SEVERI",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Lobuche.nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Lobuche.nepal.jpg",
+    "previewSrc": "/photos/places/lobuche-preview.webp"
   },
   "pangboche": {
     "name": "Pangboche",
@@ -231,7 +256,8 @@
     "author": "Moralist",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Pangboche.JPG"
+    "source": "https://commons.wikimedia.org/wiki/File:Pangboche.JPG",
+    "previewSrc": "/photos/places/pangboche-preview.webp"
   },
   "gokyo": {
     "name": "Gokyo",
@@ -240,7 +266,8 @@
     "author": "Gerd Eichmann",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Gokyo_Ri-30-Gokyo-2007-gje.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Gokyo_Ri-30-Gokyo-2007-gje.jpg",
+    "previewSrc": "/photos/places/gokyo-preview.webp"
   },
   "machhermo": {
     "name": "Machhermo",
@@ -249,7 +276,8 @@
     "author": "Vyacheslav Argenberg",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Machermo,_Kyajo_Ri,_Nepal.jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Machermo,_Kyajo_Ri,_Nepal.jpg",
+    "previewSrc": "/photos/places/machhermo-preview.webp"
   },
   "phakding": {
     "name": "Phakding",
@@ -258,6 +286,7 @@
     "author": "DARIO SEVERI",
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Trail_exiting_the_village_of_Phakding..jpg"
+    "source": "https://commons.wikimedia.org/wiki/File:Trail_exiting_the_village_of_Phakding..jpg",
+    "previewSrc": "/photos/places/phakding-preview.webp"
   }
 }

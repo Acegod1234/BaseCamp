@@ -364,6 +364,9 @@
   width: 100%;
   max-width: none;
 }
+.trip-detail-content .prose-trail p {
+  text-align: justify;
+}
 .prose-trail > * + * { margin-top: 1.1em; }
 .prose-trail h2 {
   font-family: var(--font-display);
@@ -584,4 +587,13 @@
   background: rgb(0 0 0 / 78%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+}
+
+/* Original chart sources are 800px wide; do not stretch their text. */
+.trip-detail-content .prose-trail img.trip-original-chart {
+  display: block;
+  width: 800px;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
 }

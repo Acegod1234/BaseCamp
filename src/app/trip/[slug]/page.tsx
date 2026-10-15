@@ -2,6 +2,7 @@ import Image from "@/components/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Backpack, Check, Clock, Compass, FileDown, Flag, Gauge, Info, MapPin, Mountain, Route, Star, Sun, Users, X, type LucideIcon } from "lucide-react";
+import { TripProse } from "@/components/trip/trip-prose";
 import { AltitudeProfile } from "@/components/altitude-profile";
 import { Faq } from "@/components/faq";
 import { JsonLd } from "@/components/json-ld";
@@ -192,7 +193,7 @@ export default async function TripPage({ params }: Props) {
       <SectionNav items={nav} price={trip.price} />
 
       <div className="mx-auto grid max-w-site gap-12 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_23rem] lg:gap-16 lg:px-6">
-        <article className="trip-detail-content min-w-0 space-y-20">
+        <article className="trip-detail-content min-w-0 space-y-20 xl:px-[clamp(2rem,4.7vw,6rem)]">
           <section id="overview" className="scroll-mt-40">
             <p className="eyebrow text-pine">Overview</p>
             {trip.highlights.length ? (
@@ -207,7 +208,7 @@ export default async function TripPage({ params }: Props) {
                 </ul>
               </Reveal>
             ) : null}
-            <div className="prose-trail mt-6" dangerouslySetInnerHTML={{ __html: trip.overview }} />
+            <TripProse html={trip.overview} className="mt-6" />
           </section>
 
           {trip.itinerary.length ? (
@@ -275,7 +276,7 @@ export default async function TripPage({ params }: Props) {
 
           {sections.map((s) => (
             <section key={s.id} id={s.id} className="scroll-mt-40">
-              <div className="prose-trail" dangerouslySetInnerHTML={{ __html: s.html }} />
+              <TripProse html={s.html} />
             </section>
           ))}
 
