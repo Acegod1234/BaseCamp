@@ -172,6 +172,7 @@ export function SiteFooter() {
           <div className="mx-auto flex max-w-site flex-col items-center gap-3 px-4 py-6 text-xs text-white/50 sm:flex-row sm:justify-between sm:px-6 lg:px-6">
             <p>© {year} {site.legalName}. All rights reserved.</p>
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+              <Link href="/image-attributions/" className="hover:text-white">Photo credits</Link>
               <Link href="/privacy-policy/" className="hover:text-white">Privacy Policy</Link>
               <Link href="/terms-and-conditions/" className="hover:text-white">Terms</Link>
               <Link href="/contact-us/" className="hover:text-white">Contact Us</Link>

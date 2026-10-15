@@ -7,7 +7,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Kathmandu-Durbar_Square-06-Mahavishnu-Kuh-Vishnu-Pratapamalla-Jagannath-2007-gje.jpg",
-    "previewSrc": "/photos/places/kathmandu-preview.webp"
+    "previewSrc": "/photos/places/kathmandu-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/kathmandu-slide-v2-2-fit.webp",
+        "alt": "Kathmandu — Historic Pagoda Style Architecture in Kathmandu Durbar Square-IMG 4069",
+        "author": "Bijay Chaurasia",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Historic_Pagoda_Style_Architecture_in_Kathmandu_Durbar_Square-IMG_4069.jpg",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "src": "/photos/places/kathmandu-slide-v2-3-fit.webp",
+        "alt": "Kathmandu — Kathmandu Durbar Square, Shiva Parvati Temple, Nepal (edit)",
+        "author": "Original: Vyacheslav Argenberg Derivative work: UnpetitproleX",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Kathmandu_Durbar_Square,_Shiva_Parvati_Temple,_Nepal_(edit).jpg",
+        "width": 1600,
+        "height": 1127
+      }
+    ],
+    "width": 1920,
+    "height": 1188
   },
   "lumbini": {
     "name": "Lumbini",
@@ -17,7 +41,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:BRP_Lumbini_Mayadevi_temple.jpg",
-    "previewSrc": "/photos/places/lumbini-preview.webp"
+    "previewSrc": "/photos/places/lumbini-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/lumbini-slide-v2-2-fit.webp",
+        "alt": "Lumbini — Lumbini Maya Devi Temple 1",
+        "author": "Rangan Datta Wiki",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Lumbini_Maya_Devi_Temple_1.jpg",
+        "width": 1600,
+        "height": 990
+      },
+      {
+        "src": "/photos/places/lumbini-slide-v2-3-fit.webp",
+        "alt": "Lumbini — Lumbini, Maitreya Temple, Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Lumbini,_Maitreya_Temple,_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1005
   },
   "namche-bazaar": {
     "name": "Namche Bazaar",
@@ -27,7 +75,31 @@
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Namche_Bazaar_Nepal.jpg",
-    "previewSrc": "/photos/places/namche-bazaar-preview.webp"
+    "previewSrc": "/photos/places/namche-bazaar-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/namche-bazaar-slide-2-fit.webp",
+        "alt": "Namche Bazaar — Namche Bazaar facing Kongde Ri towards west",
+        "author": "Nirojsedhai",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Namche_Bazaar_facing_Kongde_Ri_towards_west.jpg",
+        "width": 1600,
+        "height": 1151
+      },
+      {
+        "src": "/photos/places/namche-bazaar-slide-3-fit.webp",
+        "alt": "Namche Bazaar — Namche Bazaar-02-2007-gje",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Namche_Bazaar-02-2007-gje.jpg",
+        "width": 1336,
+        "height": 1600
+      }
+    ],
+    "width": 1920,
+    "height": 2560
   },
   "lukla": {
     "name": "Lukla",
@@ -37,7 +109,31 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Lukla_and_Lukla_Airport,_Nepal.jpg",
-    "previewSrc": "/photos/places/lukla-preview.webp"
+    "previewSrc": "/photos/places/lukla-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/lukla-slide-2-fit.webp",
+        "alt": "Lukla — Lukla Airport, Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Lukla_Airport,_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/lukla-slide-3-fit.webp",
+        "alt": "Lukla — Lukla Airport Landing",
+        "author": "Super Trekkers",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Lukla_Airport_Landing.jpg",
+        "width": 1600,
+        "height": 722
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "tengboche": {
     "name": "Tengboche",
@@ -47,7 +143,31 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Tengboche,_Mountains_of_Nepal.jpg",
-    "previewSrc": "/photos/places/tengboche-preview.webp"
+    "previewSrc": "/photos/places/tengboche-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/tengboche-slide-2-fit.webp",
+        "alt": "Tengboche — Tengboche, Helicopter in flight, Mountains of Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Tengboche,_Helicopter_in_flight,_Mountains_of_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/tengboche-slide-3-fit.webp",
+        "alt": "Tengboche — Valley, Tengboche, Mountains of Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Valley,_Tengboche,_Mountains_of_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "bhaktapur": {
     "name": "Bhaktapur",
@@ -57,7 +177,31 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Nyatpola_%26_Bhairav_Temple.jpg",
-    "previewSrc": "/photos/places/bhaktapur-preview.webp"
+    "previewSrc": "/photos/places/bhaktapur-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/bhaktapur-slide-v2-2-fit.webp",
+        "alt": "Bhaktapur — Bhaktapur Durbar Square 2018 13",
+        "author": "Nabin K. Sapkota",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Bhaktapur_Durbar_Square_2018_13.jpg",
+        "width": 1067,
+        "height": 1600
+      },
+      {
+        "src": "/photos/places/bhaktapur-slide-v2-3-fit.webp",
+        "alt": "Bhaktapur — Bhaktapur Durbar Square 7",
+        "author": "Janak Bhatta",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Bhaktapur_Durbar_Square_7.jpg",
+        "width": 1600,
+        "height": 1202
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "khumjung": {
     "name": "Khumjung",
@@ -67,7 +211,31 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Khumbila_2.JPG",
-    "previewSrc": "/photos/places/khumjung-preview.webp"
+    "previewSrc": "/photos/places/khumjung-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/khumjung-slide-2-fit.webp",
+        "alt": "Khumjung — Mt. Amadablam and buddhist chorten on the way to Khumjung",
+        "author": "Nirojsedhai",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Mt._Amadablam_and_buddhist_chorten_on_the_way_to_Khumjung.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/khumjung-slide-3-fit.webp",
+        "alt": "Khumjung — Namche-Khumjung-12-Bhote Koshi-Tal-2007-gje",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Namche-Khumjung-12-Bhote_Koshi-Tal-2007-gje.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1285
   },
   "pokhara": {
     "name": "Pokhara",
@@ -77,7 +245,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Pokhara_Valley.jpg",
-    "previewSrc": "/photos/places/pokhara-preview.webp"
+    "previewSrc": "/photos/places/pokhara-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/pokhara-slide-v2-2-fit.webp",
+        "alt": "Pokhara — Phewa Lake of Pokhara city",
+        "author": "Iamavinashk",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Phewa_Lake_of_Pokhara_city.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/pokhara-slide-v2-3-fit.webp",
+        "alt": "Pokhara — Sunset over Phewa Lake 2",
+        "author": "Lurey Rohit",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Sunset_over_Phewa_Lake_2.jpg",
+        "width": 1067,
+        "height": 1600
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "langtang": {
     "name": "Langtang",
@@ -87,7 +279,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Starry_night_in_Langtang_National_Park.jpg",
-    "previewSrc": "/photos/places/langtang-preview.webp"
+    "previewSrc": "/photos/places/langtang-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/langtang-slide-2-fit.webp",
+        "alt": "Langtang — Morning in Langtang",
+        "author": "Q-lieb-in",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Morning_in_Langtang.jpg",
+        "width": 1600,
+        "height": 964
+      },
+      {
+        "src": "/photos/places/langtang-slide-3-fit.webp",
+        "alt": "Langtang — Paints of sunrise on Langtang National Park",
+        "author": "Q-lieb-in",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Paints_of_sunrise_on_Langtang_National_Park.jpg",
+        "width": 1600,
+        "height": 1030
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "annapurna-sanctuary": {
     "name": "Annapurna Sanctuary",
@@ -97,7 +313,31 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Machapuchre-wow.jpg",
-    "previewSrc": "/photos/places/annapurna-sanctuary-preview.webp"
+    "previewSrc": "/photos/places/annapurna-sanctuary-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/annapurna-sanctuary-slide-2-fit.webp",
+        "alt": "Annapurna Sanctuary — Annapurna Sanctuary",
+        "author": "HereAndSometimesThere",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Annapurna_Sanctuary.jpg",
+        "width": 1600,
+        "height": 901
+      },
+      {
+        "src": "/photos/places/annapurna-sanctuary-slide-3-fit.webp",
+        "alt": "Annapurna Sanctuary — Annapurna Sanctuary Panorama May 2013",
+        "author": "Mike Pinkowish",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Annapurna_Sanctuary_Panorama_May_2013.jpg",
+        "width": 1600,
+        "height": 427
+      }
+    ],
+    "width": 1920,
+    "height": 1443
   },
   "ghorepani": {
     "name": "Ghorepani",
@@ -107,7 +347,31 @@
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Ghorepani.jpg",
-    "previewSrc": "/photos/places/ghorepani-preview.webp"
+    "previewSrc": "/photos/places/ghorepani-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/ghorepani-slide-2-fit.webp",
+        "alt": "Ghorepani — Annapurna-I, Annapurna South and Himchuli from Ghorepani Poonhill",
+        "author": "Bijay Chaurasia",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Annapurna-I,_Annapurna_South_and_Himchuli_from_Ghorepani_Poonhill.jpg",
+        "width": 1600,
+        "height": 1280
+      },
+      {
+        "src": "/photos/places/ghorepani-slide-3-fit.webp",
+        "alt": "Ghorepani — Ghorepani-Tadapani-10-Rastplatz-2013-gje",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Ghorepani-Tadapani-10-Rastplatz-2013-gje.jpg",
+        "width": 1600,
+        "height": 915
+      }
+    ],
+    "width": 1024,
+    "height": 768
   },
   "gorakshep": {
     "name": "Gorakshep",
@@ -117,7 +381,31 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Gorakshep,_Everest_Zone,_Nepal.jpg",
-    "previewSrc": "/photos/places/gorakshep-preview.webp"
+    "previewSrc": "/photos/places/gorakshep-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/gorakshep-slide-2-fit.webp",
+        "alt": "Gorakshep — Gorakshep Nestled Below Lingtren, Khumbutse & Changtse",
+        "author": "Rohit Sharma",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Gorakshep_Nestled_Below_Lingtren,_Khumbutse_%26_Changtse.jpg",
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "src": "/photos/places/gorakshep-slide-3-fit.webp",
+        "alt": "Gorakshep — Mount Pumori en Route to Kala Patthar from Gorakshep, Nepal",
+        "author": "Rohit Sharma",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Mount_Pumori_en_Route_to_Kala_Patthar_from_Gorakshep,_Nepal.jpg",
+        "width": 1600,
+        "height": 900
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "muktinath": {
     "name": "Muktinath",
@@ -127,7 +415,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:The_Muktinath_Temple.jpg",
-    "previewSrc": "/photos/places/muktinath-preview.webp"
+    "previewSrc": "/photos/places/muktinath-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/muktinath-slide-2-fit.webp",
+        "alt": "Muktinath — Muktinath Valley, View of Thorong La Pass, Mountains, Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Muktinath_Valley,_View_of_Thorong_La_Pass,_Mountains,_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/muktinath-slide-3-fit.webp",
+        "alt": "Muktinath — 160323-045 Waterspouts, Muktinath",
+        "author": "Faj2323",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:160323-045_Waterspouts,_Muktinath.jpg",
+        "width": 1200,
+        "height": 1600
+      }
+    ],
+    "width": 1920,
+    "height": 1586
   },
   "dingboche": {
     "name": "Dingboche",
@@ -137,7 +449,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Dingboche_settlement.jpg",
-    "previewSrc": "/photos/places/dingboche-preview.webp"
+    "previewSrc": "/photos/places/dingboche-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/dingboche-slide-2-fit.webp",
+        "alt": "Dingboche — Dingboche village",
+        "author": "Ummidnp",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Dingboche_village.jpg",
+        "width": 1600,
+        "height": 634
+      },
+      {
+        "src": "/photos/places/dingboche-slide-3-fit.webp",
+        "alt": "Dingboche — Dingboche to Chhukung-12-Berge-2007-gje",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Dingboche_to_Chhukung-12-Berge-2007-gje.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "dole": {
     "name": "Dole",
@@ -147,7 +483,31 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Dole,_Khumbu,_Nepal.jpg",
-    "previewSrc": "/photos/places/dole-preview.webp"
+    "previewSrc": "/photos/places/dole-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/dole-slide-v2-2-fit.webp",
+        "alt": "Dole — Dole, Khumbu, Kangtega and Thamserku mountain peaks, Trekking in Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Dole,_Khumbu,_Kangtega_and_Thamserku_mountain_peaks,_Trekking_in_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/dole-slide-v2-3-fit.webp",
+        "alt": "Dole — Dole, Dudh Koshi Valley, Khumbu, Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Dole,_Dudh_Koshi_Valley,_Khumbu,_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "nagarkot": {
     "name": "Nagarkot",
@@ -157,7 +517,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:2015-03-18_Nagarkot_Hotel_Galaxy_DSCF2094.jpg",
-    "previewSrc": "/photos/places/nagarkot-preview.webp"
+    "previewSrc": "/photos/places/nagarkot-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/nagarkot-slide-2-fit.webp",
+        "alt": "Nagarkot — Nagarkot hill-2539",
+        "author": "Bijay chaurasia",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Nagarkot_hill-2539.jpg",
+        "width": 1600,
+        "height": 900
+      },
+      {
+        "src": "/photos/places/nagarkot-slide-3-fit.webp",
+        "alt": "Nagarkot — Nagarkot -3009 01",
+        "author": "Bijay chaurasia",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Nagarkot_-3009_01.jpg",
+        "width": 1068,
+        "height": 1600
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "pheriche": {
     "name": "Pheriche",
@@ -167,7 +551,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Amazing_Sunset_of_Pheriche.jpg",
-    "previewSrc": "/photos/places/pheriche-preview.webp"
+    "previewSrc": "/photos/places/pheriche-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/pheriche-slide-2-fit.webp",
+        "alt": "Pheriche — 120408 Pheriche Pano 4k",
+        "author": "Faj2323",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:120408_Pheriche_Pano_4k.jpg",
+        "width": 1600,
+        "height": 1000
+      },
+      {
+        "src": "/photos/places/pheriche-slide-3-fit.webp",
+        "alt": "Pheriche — Sagarmatha National Park-Gorak Shep to Pheriche 2013-05-06 08-10-23-2013-05-06 08-11-08",
+        "author": "Thomas Fuhrmann",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Sagarmatha_National_Park-Gorak_Shep_to_Pheriche_2013-05-06_08-10-23-2013-05-06_08-11-08.jpg",
+        "width": 1600,
+        "height": 389
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "jomsom": {
     "name": "Jomsom",
@@ -177,7 +585,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Jomsom_from_View_Tower_(cropped).jpg",
-    "previewSrc": "/photos/places/jomsom-preview.webp"
+    "previewSrc": "/photos/places/jomsom-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/jomsom-slide-2-fit.webp",
+        "alt": "Jomsom — Jomsom Airport, Mustang, Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Jomsom_Airport,_Mustang,_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/jomsom-slide-3-fit.webp",
+        "alt": "Jomsom — A clear view of Mount Nilgiri (7,061 m) covered in thick snow, as captured from Jomsom, Mustang District, Nepal",
+        "author": "Saddam19",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:A_clear_view_of_Mount_Nilgiri_(7,061_m)_covered_in_thick_snow,_as_captured_from_Jomsom,_Mustang_District,_Nepal.jpg",
+        "width": 1200,
+        "height": 1600
+      }
+    ],
+    "width": 1920,
+    "height": 1368
   },
   "chame-rural-municipality": {
     "name": "Chame Rural Municipality",
@@ -187,7 +619,21 @@
     "license": "CC BY 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Chame,_Nepal.jpg",
-    "previewSrc": "/photos/places/chame-rural-municipality-preview.webp"
+    "previewSrc": "/photos/places/chame-rural-municipality-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/chame-rural-municipality-slide-v2-2-fit.webp",
+        "alt": "Chame Rural Municipality — Chame village Nepal",
+        "author": "Solundir",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Chame_village_Nepal.jpg",
+        "width": 1557,
+        "height": 1280
+      }
+    ],
+    "width": 1180,
+    "height": 1748
   },
   "manang": {
     "name": "Manang",
@@ -197,7 +643,31 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Manang_Annapurna3_Gangapurna.jpg",
-    "previewSrc": "/photos/places/manang-preview.webp"
+    "previewSrc": "/photos/places/manang-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/manang-village-2-fit.webp",
+        "alt": "Manang, Nepal",
+        "author": "Schutz",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Manang_village.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/manang-village-3-fit.webp",
+        "alt": "Manang, Nepal",
+        "author": "Smnbhattarai",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Manang_Village.JPG",
+        "width": 1600,
+        "height": 1200
+      }
+    ],
+    "width": 1920,
+    "height": 1069
   },
   "kagbeni": {
     "name": "Kagbeni",
@@ -207,7 +677,31 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Kagbeni,_Mustang,_Nepal.jpg",
-    "previewSrc": "/photos/places/kagbeni-preview.webp"
+    "previewSrc": "/photos/places/kagbeni-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/kagbeni-slide-2-fit.webp",
+        "alt": "Kagbeni — Kagbeni Mustang-WLV-0741",
+        "author": "Bijay Chaurasia",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Kagbeni_Mustang-WLV-0741.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/kagbeni-slide-3-fit.webp",
+        "alt": "Kagbeni — Kagbeni Mustang-WLV-0756",
+        "author": "Bijay Chaurasia",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Kagbeni_Mustang-WLV-0756.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "ghandruk": {
     "name": "Ghandruk",
@@ -217,7 +711,31 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Ghandruk_HDR6.jpg",
-    "previewSrc": "/photos/places/ghandruk-preview.webp"
+    "previewSrc": "/photos/places/ghandruk-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/ghandruk-slide-v2-2-fit.webp",
+        "alt": "Ghandruk — A view from Ghandruk",
+        "author": "Sudeepacharya076",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:A_view_from_Ghandruk.jpg",
+        "width": 1244,
+        "height": 1600
+      },
+      {
+        "src": "/photos/places/ghandruk-slide-v2-3-fit.webp",
+        "alt": "Ghandruk — Ghandruk (6)",
+        "author": "Bijaya2043",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Ghandruk_(6).JPG",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "syaphru": {
     "name": "Syaphru",
@@ -227,7 +745,31 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:20140729_151654day.jpg",
-    "previewSrc": "/photos/places/syaphru-preview.webp"
+    "previewSrc": "/photos/places/syaphru-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/syaphru-village-2-fit.webp",
+        "alt": "Syaphru, Nepal",
+        "author": "Rameshjarvis",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Settlements_at_Syabrubesi,_Langtang.JPG",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/photos/places/syaphru-village-3-fit.webp",
+        "alt": "Syaphru, Nepal",
+        "author": "Rameshjarvis",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Syabrubesi,_Langtang.JPG",
+        "width": 1600,
+        "height": 1200
+      }
+    ],
+    "width": 1920,
+    "height": 2560
   },
   "pisang": {
     "name": "Pisang",
@@ -237,7 +779,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Upper_and_Lower_Pisang.jpg",
-    "previewSrc": "/photos/places/pisang-preview.webp"
+    "previewSrc": "/photos/places/pisang-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/pisang-village-2-fit.webp",
+        "alt": "Pisang, Nepal",
+        "author": "Solundir",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Pisang_village_in_Nepal.jpg",
+        "width": 1600,
+        "height": 1049
+      },
+      {
+        "src": "/photos/places/pisang-village-3-fit.webp",
+        "alt": "Pisang, Nepal",
+        "author": "Solundir",
+        "license": "CC BY-SA 3.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Both_Pisangs.jpg",
+        "width": 1600,
+        "height": 1115
+      }
+    ],
+    "width": 1920,
+    "height": 1278
   },
   "lobuche": {
     "name": "Lobuche",
@@ -247,7 +813,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Lobuche.nepal.jpg",
-    "previewSrc": "/photos/places/lobuche-preview.webp"
+    "previewSrc": "/photos/places/lobuche-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/lobuche-slide-2-fit.webp",
+        "alt": "Lobuche — Dzongla to Lobuche-70-Bach-2007-gje",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Dzongla_to_Lobuche-70-Bach-2007-gje.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/lobuche-slide-3-fit.webp",
+        "alt": "Lobuche — Lobuche to Dughla-46-Berge-Gebetsfahnen-2007-gje",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Lobuche_to_Dughla-46-Berge-Gebetsfahnen-2007-gje.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1440
   },
   "pangboche": {
     "name": "Pangboche",
@@ -257,7 +847,31 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Pangboche.JPG",
-    "previewSrc": "/photos/places/pangboche-preview.webp"
+    "previewSrc": "/photos/places/pangboche-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/pangboche-slide-2-fit.webp",
+        "alt": "Pangboche — 120405-018 Ama Dablam, Phortse-Pangboche",
+        "author": "Faj2323",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:120405-018_Ama_Dablam,_Phortse-Pangboche.jpg",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "src": "/photos/places/pangboche-slide-3-fit.webp",
+        "alt": "Pangboche — Pangboche, Imja Khola River, Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Pangboche,_Imja_Khola_River,_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 2868
   },
   "gokyo": {
     "name": "Gokyo",
@@ -267,7 +881,31 @@
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Gokyo_Ri-30-Gokyo-2007-gje.jpg",
-    "previewSrc": "/photos/places/gokyo-preview.webp"
+    "previewSrc": "/photos/places/gokyo-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/gokyo-slide-2-fit.webp",
+        "alt": "Gokyo — Gokyo Ri summit, Gokyo Lake, Nepal, Himalayas",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Gokyo_Ri_summit,_Gokyo_Lake,_Nepal,_Himalayas.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/gokyo-slide-3-fit.webp",
+        "alt": "Gokyo — Aerial View of Peaks of Khumbu, Ngozumpa Glacier and Gokyo Lakes (crop)",
+        "author": "Original: Megaurab09 Derivative work: UnpetitproleX",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Aerial_View_of_Peaks_of_Khumbu,_Ngozumpa_Glacier_and_Gokyo_Lakes_(crop).jpg",
+        "width": 1600,
+        "height": 800
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "machhermo": {
     "name": "Machhermo",
@@ -277,7 +915,31 @@
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:Machermo,_Kyajo_Ri,_Nepal.jpg",
-    "previewSrc": "/photos/places/machhermo-preview.webp"
+    "previewSrc": "/photos/places/machhermo-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/machhermo-slide-2-fit.webp",
+        "alt": "Machhermo — Luza, Kangtega and Thamserku mountain peaks, Machhermo, Nepal",
+        "author": "Vyacheslav Argenberg",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Luza,_Kangtega_and_Thamserku_mountain_peaks,_Machhermo,_Nepal.jpg",
+        "width": 1600,
+        "height": 1067
+      },
+      {
+        "src": "/photos/places/machhermo-slide-3-fit.webp",
+        "alt": "Machhermo — Dhole to Machhermo-50-Pass-2007-gje",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Dhole_to_Machhermo-50-Pass-2007-gje.jpg",
+        "width": 1600,
+        "height": 1067
+      }
+    ],
+    "width": 1920,
+    "height": 1280
   },
   "phakding": {
     "name": "Phakding",
@@ -287,6 +949,30 @@
     "license": "CC BY-SA 3.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Trail_exiting_the_village_of_Phakding..jpg",
-    "previewSrc": "/photos/places/phakding-preview.webp"
+    "previewSrc": "/photos/places/phakding-preview.webp",
+    "images": [
+      {
+        "src": "/photos/places/phakding-village-2-fit.webp",
+        "alt": "Phakding, Nepal",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Phakding-40-Lodges_und_Zeltplaetze-2007-gje.jpg",
+        "width": 1600,
+        "height": 1049
+      },
+      {
+        "src": "/photos/places/phakding-village-3-fit.webp",
+        "alt": "Phakding, Nepal",
+        "author": "Gerd Eichmann",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Phakding-42-Dudh_Koshi-Bruecke-2007-gje.jpg",
+        "width": 1600,
+        "height": 1040
+      }
+    ],
+    "width": 943,
+    "height": 708
   }
 }

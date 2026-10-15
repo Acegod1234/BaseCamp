@@ -71,7 +71,7 @@ export function SectionNav({
           stuck ? "border-line bg-card/95 shadow-[0_14px_40px_-22px_oklch(0.2_0.04_170/0.45)]" : "border-line/70 bg-card/80",
         )}
       >
-        <div ref={scrollerRef} className="no-scrollbar flex min-w-0 flex-1 gap-1 overflow-x-auto scroll-smooth xl:pl-[clamp(0rem,13vw,16rem)]">
+        <div ref={scrollerRef} className="no-scrollbar flex min-w-0 flex-1 gap-1 overflow-x-auto scroll-smooth xl:pl-[clamp(2rem,4.7vw,6rem)]">
           {items.map((i) => {
             const on = active === i.id;
             return (
