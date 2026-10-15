@@ -1,5 +1,5 @@
 import { Accent } from "@/components/section-heading";
-import { VideoReviewCarousel, type VideoReview } from "@/components/home/video-review-carousel";
+import { VideoReviewGallery, type VideoReview } from "@/components/video-review-gallery";
 
 export function TestimonialVideoGallery({ items }: { items: VideoReview[] }) {
   if (!items.length) return null;
@@ -8,6 +8,6 @@ export function TestimonialVideoGallery({ items }: { items: VideoReview[] }) {
       <div><p className="eyebrow text-pine">The traveller collection</p><h2 className="font-display mt-3 text-[clamp(2rem,3.5vw,3.5rem)] leading-tight tracking-tight">Their journeys. <Accent>On film.</Accent></h2></div>
       <p className="max-w-sm text-sm leading-relaxed text-ink-soft">Stories from the people who travelled with us. Tap a video to watch.</p>
     </div>
-    <VideoReviewCarousel items={items} />
+    <VideoReviewGallery items={items} />
   </div>;
 }

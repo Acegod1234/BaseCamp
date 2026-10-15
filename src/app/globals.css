@@ -17,6 +17,17 @@
 /* Alternate wide scenic photographs with tighter crops, keeping the card details intact. */
 .video-reviews-layout { position: relative; }
 .video-reviews-heading { margin-bottom: 1.25rem; }
+@media (min-width: 1024px) {
+  .video-reviews-layout .video-review-slide { left: 50%; }
+  .video-reviews-heading {
+    position: absolute;
+    top: -6rem;
+    left: 0;
+    width: 20%;
+    z-index: 25;
+    margin-bottom: 0;
+  }
+}
 .journey-collection-grid h3 { -webkit-line-clamp: unset; }
 .journey-collection-grid > article > a > div:first-child { aspect-ratio: 16 / 9; }
 .journey-collection-grid > article > a > div:first-child img { object-position: center; }
