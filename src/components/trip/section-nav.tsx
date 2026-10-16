@@ -63,15 +63,15 @@ export function SectionNav({
   }, [active]);
 
   return (
-    <div ref={navRef} data-subnav className="sticky top-[4.5rem] z-30 px-2.5 sm:px-4 lg:top-[5.25rem]">
+    <div ref={navRef} data-subnav className="sticky top-[4.5rem] z-30 mx-auto max-w-site px-4 sm:px-6 lg:top-[5.25rem]">
       <nav
         aria-label="Trip sections"
         className={cn(
-          "relative mx-auto flex max-w-site items-center gap-2 overflow-hidden rounded-2xl border p-1.5 backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-500",
+          "relative flex w-full max-w-full items-center lg:w-[calc(100%_-_27rem)] xl:ml-[clamp(2rem,4.7vw,6rem)] xl:w-[calc(100%_-_27rem_-_clamp(4rem,9.4vw,12rem))] gap-2 overflow-hidden rounded-2xl border p-1.5 backdrop-blur-xl transition-[background-color,box-shadow,border-color] duration-500",
           stuck ? "border-line bg-card/95 shadow-[0_14px_40px_-22px_oklch(0.2_0.04_170/0.45)]" : "border-line/70 bg-card/80",
         )}
       >
-        <div ref={scrollerRef} className="no-scrollbar flex min-w-0 flex-1 gap-1 overflow-x-auto scroll-smooth xl:pl-[clamp(2rem,4.7vw,6rem)]">
+        <div ref={scrollerRef} className="no-scrollbar flex min-w-0 flex-1 justify-between gap-1 overflow-x-auto scroll-smooth">
           {items.map((i) => {
             const on = active === i.id;
             return (
@@ -88,7 +88,7 @@ export function SectionNav({
                   scrollToId(i.id);
                 }}
                 className={cn(
-                  "relative shrink-0 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-colors sm:px-4",
+                  "relative shrink-0 grow rounded-xl text-center px-3.5 py-2.5 text-sm font-semibold transition-colors sm:px-4",
                   on ? "text-white" : "text-ink-soft hover:bg-snow-2 hover:text-ink",
                 )}
               >
