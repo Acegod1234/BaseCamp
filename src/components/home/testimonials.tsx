@@ -40,11 +40,29 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
   }
   const list = [...countries.values()].sort((a, b) => b.n - a.n);
 
+  const countryFooter = list.length ? (
+    <Reveal className="mt-5 flex flex-col items-center gap-3 border-t border-line pt-4 sm:flex-row sm:justify-between">
+      <p className="text-sm text-ink-soft">
+        Reviews from travellers in <strong className="text-ink">{list.length} countries</strong>
+      </p>
+      <ul className="no-scrollbar -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 sm:mx-0 sm:min-w-0 sm:flex-1 sm:w-auto sm:px-0">
+        {list.map((c) => (
+          <li key={c.name} className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-2.5 py-1 text-xs font-semibold">
+            <Flag svg={c.flag} label={c.name} /> {c.name}
+          </li>
+        ))}
+      </ul>
+      <Link href="/testimonials/" className="text-pine inline-flex shrink-0 items-center gap-1.5 text-sm font-bold hover:underline">
+        All reviews <ArrowRight className="size-4" aria-hidden />
+      </Link>
+    </Reveal>
+  ) : null;
+
   return (
     <section className="bg-snow-2 relative overflow-hidden py-8 sm:py-9 lg:py-10">
       <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-[#00afc4]/10 blur-3xl" />
       <div className="relative mx-auto max-w-site px-4 sm:px-6 lg:px-6">
-        <ReviewSources tripadvisorRating={tripadvisor?.rating}>
+        <ReviewSources tripadvisorRating={tripadvisor?.rating} footer={countryFooter}>
         <div className="grid gap-5">
           <div className="min-w-0">
           <p className="eyebrow text-pine">Testimonials</p>
@@ -55,24 +73,6 @@ export function Testimonials({ reviews, tripadvisor }: { reviews: R[]; tripadvis
             <ReviewCarousel items={items} />
           </div>
         </div>
-
-        {list.length ? (
-          <Reveal className="mt-5 flex flex-col items-center gap-3 border-t border-line pt-4 sm:flex-row sm:justify-between">
-            <p className="text-sm text-ink-soft">
-              Reviews from travellers in <strong className="text-ink">{list.length} countries</strong>
-            </p>
-            <ul className="no-scrollbar -mx-4 flex w-[calc(100%+2rem)] gap-2 overflow-x-auto px-4 sm:mx-0 sm:min-w-0 sm:flex-1 sm:w-auto sm:px-0">
-              {list.map((c) => (
-                <li key={c.name} className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-2.5 py-1 text-xs font-semibold">
-                  <Flag svg={c.flag} label={c.name} /> {c.name}
-                </li>
-              ))}
-            </ul>
-            <Link href="/testimonials/" className="text-pine inline-flex shrink-0 items-center gap-1.5 text-sm font-bold hover:underline">
-              All reviews <ArrowRight className="size-4" aria-hidden />
-            </Link>
-          </Reveal>
-        ) : null}
         </ReviewSources>
       </div>
     </section>

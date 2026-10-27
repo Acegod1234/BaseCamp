@@ -42,7 +42,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       title={dark ? "Light mode" : "Dark mode"}
       className={cn("relative grid size-10 place-items-center overflow-hidden rounded-full text-ink transition-colors hover:bg-snow-2", className)}
     >
-      {dark ? <Moon className="size-[1.15rem]" aria-hidden /> : <Sun className="size-[1.15rem]" aria-hidden />}
+      {dark ? <Moon className="size-6" aria-hidden /> : <Sun className="size-6" aria-hidden />}
     </button>
   );
 }

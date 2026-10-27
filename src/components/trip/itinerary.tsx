@@ -2,24 +2,18 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "@/components/image";
-import { ChevronDown, Coffee, Expand, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
-import { AccommodationFact } from "@/components/trip/accommodation-fact";
-import { Lightbox } from "@/components/lightbox";
-import { UnitTip, altitudeLines, distanceLines } from "@/components/unit-tip";
+import { BedDouble, ChevronDown, Coffee, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
 import { durationOf, overnightOf } from "@/lib/itinerary";
 import type { ItineraryDay } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 /**
  * Day-by-day timeline. Each day shows only what it has: altitude, distance,
- * duration, accommodation, meals and photos. Every day's text is in the HTML
+ * duration, accommodation and meals. Every day's text is in the HTML
  * even when folded.
  */
 export function Itinerary({ days }: { days: ItineraryDay[] }) {
   const [open, setOpen] = useState<Set<number>>(new Set([1]));
-  const [viewer, setViewer] = useState<{ day: number; index: number } | null>(null);
-  const viewerDay = viewer ? days.find((d) => d.day === viewer.day) : null;
   const all = open.size === days.length;
 
   const toggle = (d: number) =>
@@ -46,8 +40,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
           // Where the night is spent: the day's own entry, or the stop its title ends at
           // (not on the last day, which is the departure).
           const place = d.overnight?.trim() || (d.day < days.length ? overnightOf(d.title) : "");
-          const accommodation = [d.accommodation, place].filter(Boolean).join(", ");
-          const images = d.images ?? [];
+          const accommodation = place ? `${place} - Guest house` : d.accommodation?.trim() || "";
           return (
             <li key={d.day} className="relative pb-3 pl-14">
               <span
@@ -72,14 +65,12 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                   <ul className="-mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 px-4 pb-3.5 text-[0.8rem] text-ink-soft" aria-label={`Day ${d.day} at a glance`}>
                     {d.altitude ? (
                       <li className="inline-flex items-center gap-1.5">
-                        <Mountain className="text-pine size-3.5" aria-hidden /> {d.altitude.toLocaleString("en-US")} m
-                        <UnitTip label="Altitude" lines={altitudeLines(d.altitude)} className="-ml-1" />
+                        <Mountain className="text-pine size-3.5" aria-hidden /> {d.altitude.toLocaleString("en-US")} m / {Math.round(d.altitude / 0.3048).toLocaleString("en-US")} ft
                       </li>
                     ) : null}
                     {km ? (
                       <li className="inline-flex items-center gap-1.5">
                         <Route className="text-pine size-3.5" aria-hidden /> {km.toLocaleString("en-US")} km
-                        <UnitTip label="Distance, approx." lines={distanceLines(km)} className="-ml-1" />
                       </li>
                     ) : null}
                     {duration ? (
@@ -91,12 +82,11 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                 ) : null}
                 <motion.div initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden" inert={!isOpen}>
                   <div className="px-4 pb-5">
-                    {d.html ? <div className="prose-trail text-base" dangerouslySetInnerHTML={{ __html: d.html }} /> : null}
-                    {km || duration || accommodation ? (
+                    {d.html ? <div className="prose-trail text-base" dangerouslySetInnerHTML={{ __html: withoutPhotos(d.html) }} /> : null}
+                    {km || accommodation ? (
                       <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                        {km ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={`${km.toLocaleString("en-US")} km`} tip={<UnitTip label="Distance, approx." lines={distanceLines(km)} />} /> : null}
-                        {duration ? <Fact icon={<Timer className="size-4" aria-hidden />} label="Duration" value={duration} /> : null}
-                        {accommodation ? <AccommodationFact value={accommodation} place={place} /> : null}
+                        {km ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={`${(km / 1.609344).toLocaleString("en-US", { maximumFractionDigits: 2 })} miles / ${Math.round(km * 1000 / 0.3048).toLocaleString("en-US")} ft`} /> : null}
+                        {accommodation ? <Fact icon={<BedDouble className="size-4" aria-hidden />} label="Accommodation" value={accommodation} /> : null}
                       </dl>
                     ) : null}
                     {d.meals.length ? (
@@ -112,20 +102,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                         })}
                       </ul>
                     ) : null}
-                    {images.length ? (
-                      <ul className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4" aria-label={`Day ${d.day} photos`}>
-                        {images.slice(0, 8).map((im, i) => (
-                          <li key={im.src}>
-                            <button type="button" onClick={() => setViewer({ day: d.day, index: i })} aria-label={`Open photo: ${im.alt || d.title}`} className="group relative block aspect-[3/2] w-full overflow-hidden rounded-lg bg-snow-2">
-                              <Image src={im.src} alt={im.alt || `Day ${d.day}: ${d.title}`} fill sizes="(max-width: 640px) 33vw, 180px" className="object-cover object-right-bottom transition-transform duration-500 group-hover:scale-[1.04]" />
-                              <span className="absolute top-1.5 right-1.5 grid size-6 place-items-center rounded-full bg-black/45 text-white opacity-0 transition-opacity group-hover:opacity-100">
-                                <Expand className="size-3" aria-hidden />
-                              </span>
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
+
                   </div>
                 </motion.div>
               </div>
@@ -133,12 +110,11 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
           );
         })}
       </ol>
-      <Lightbox images={viewerDay?.images ?? []} index={viewer ? viewer.index : null} onIndex={(i) => setViewer((v) => (v && i !== null ? { ...v, index: i } : null))} title={viewerDay ? `Day ${viewerDay.day}` : "Photos"} />
     </div>
   );
 }
 
-function Fact({ icon, label, value, tip }: { icon: React.ReactNode; label: string; value: string; tip?: React.ReactNode }) {
+function Fact({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="rounded-xl bg-snow-2 px-3 py-2.5">
       <dt className="flex items-center gap-1.5 text-[0.66rem] font-bold tracking-[0.1em] text-muted uppercase">
@@ -147,7 +123,6 @@ function Fact({ icon, label, value, tip }: { icon: React.ReactNode; label: strin
       </dt>
       <dd className="mt-0.5 flex items-center gap-1 text-[0.85rem] font-semibold leading-snug">
         {value}
-        {tip}
       </dd>
     </div>
   );
@@ -158,4 +133,12 @@ function kmIn(text: string) {
   const m = text.match(/(\d+(?:\.\d+)?)\s?(?:km|kilomet(?:er|re)s?)\b/i);
   const v = m ? Number(m[1]) : 0;
   return v > 0 && v < 80 ? v : null;
+}
+
+/** Imported day descriptions may contain photos outside the gallery field. */
+function withoutPhotos(html: string) {
+  return html
+    .replace(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi, (figure) => /<img\b/i.test(figure) ? "" : figure)
+    .replace(/<img\b[^>]*>/gi, "")
+    .replace(/<p\b[^>]*>\s*<\/p>/gi, "");
 }

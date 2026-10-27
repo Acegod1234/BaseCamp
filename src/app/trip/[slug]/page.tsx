@@ -2,6 +2,8 @@ import Image from "@/components/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Backpack, Check, Clock, Compass, FileDown, Flag, Gauge, Info, MapPin, Mountain, Route, Star, Sun, Users, X, type LucideIcon } from "lucide-react";
+import { TripSidebar } from "@/components/trip/trip-sidebar";
+import { TripAwards } from "@/components/trip/trip-awards";
 import { TripProse } from "@/components/trip/trip-prose";
 import { AltitudeProfile } from "@/components/altitude-profile";
 import { Faq } from "@/components/faq";
@@ -209,6 +211,7 @@ export default async function TripPage({ params }: Props) {
               </Reveal>
             ) : null}
             <TripProse html={trip.overview} className="mt-6" />
+            <div className="mx-auto mt-8 max-w-sm lg:hidden"><TripAwards /></div>
           </section>
 
           {trip.itinerary.length ? (
@@ -384,9 +387,10 @@ export default async function TripPage({ params }: Props) {
         </article>
 
         <aside className="hidden lg:block">
-          <div className="sticky top-40">
+          <TripSidebar>
             <BookingCard slug={trip.slug} title={trip.title} price={trip.price} days={trip.days} />
-          </div>
+            <TripAwards />
+          </TripSidebar>
         </aside>
       </div>
 

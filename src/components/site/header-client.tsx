@@ -153,14 +153,15 @@ export function HeaderClient({ regions, tripOptions }: { regions: HeaderRegion[]
             </nav>
 
             <div className="ml-auto flex items-center gap-1.5 lg:ml-0">
-              <div className="flex shrink-0 flex-col items-center gap-0.5 px-1 sm:items-start sm:px-2">
-                <span className="flex items-center gap-1.5 whitespace-nowrap text-[0.65rem] sm:text-xs text-muted"><span className="font-semibold text-ink">Shree</span><span className="size-1 rounded-full bg-emerald-500" aria-hidden />Available 24/7</span>
-                <a href="tel:+9779851029616" className="whitespace-nowrap text-xs font-bold text-pine hover:underline sm:text-sm">+977 9851 029616</a>
-                <span className="flex items-center gap-2">
-                  <a href={whatsappHref("Namaste Shree, I would like to ask about a trip.")} target="_blank" rel="noopener noreferrer" aria-label="Contact Shree on WhatsApp" title="WhatsApp" className="grid size-6 place-items-center text-[#168c4a] hover:opacity-75"><WhatsappIcon className="size-4" /></a>
-                  <a href="tel:+9779851029616" aria-label="Call Shree" title="Phone" className="grid size-6 place-items-center text-pine hover:opacity-75"><Phone className="size-3.5" aria-hidden /></a>
-                  <a href="viber://chat?number=%2B9779851029616" aria-label="Contact Shree on Viber" title="Viber" className="grid size-6 place-items-center text-[#8060bf] hover:opacity-75"><ViberIcon className="size-4" /></a>
-                </span>
+              <div className="flex shrink-0 flex-col gap-0.5 rounded-xl border border-pine/15 border-l-2 border-l-pine bg-pine/[0.035] px-2 py-1.5 sm:gap-1 sm:px-3">
+                <div className="flex items-center justify-between gap-3 text-xs leading-tight sm:text-sm">
+                  <span className="font-bold tracking-wide text-ink">Shree</span>
+                  <span className="inline-flex items-center gap-1 whitespace-nowrap text-muted"><span className="size-1.5 rounded-full bg-emerald-500" aria-hidden />Available 24/7</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <a href="tel:+9779851029616" className="inline-flex items-center gap-1.5 whitespace-nowrap text-[0.65rem] font-bold tracking-tight text-pine hover:underline sm:text-sm"><Phone className="size-3 shrink-0 sm:size-3.5" aria-hidden />+977 9851 029616</a>
+                  <a href="viber://chat?number=%2B9779851029616" aria-label="Contact Shree on Viber" title="Chat on Viber" className="grid size-5 shrink-0 place-items-center rounded-full bg-[#8060bf]/10 text-[#8060bf] transition-colors hover:bg-[#8060bf]/20 sm:size-6"><ViberIcon className="size-3.5" /></a>
+                </div>
               </div>
               <div className="hidden sm:block"><ThemeToggle /></div>
               <button type="button" onClick={() => setMobile(true)} aria-label="Open menu" aria-expanded={mobile} className="grid size-10 place-items-center rounded-lg border border-line text-ink xl:hidden">
