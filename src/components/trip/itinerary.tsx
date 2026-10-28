@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BedDouble, ChevronDown, Coffee, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
-import { durationOf, overnightOf } from "@/lib/itinerary";
+import { accommodationPlaceOf, distanceOf, distanceEstimateOf, distanceLabels, durationOf } from "@/lib/itinerary";
 import type { ItineraryDay } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -33,14 +33,16 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
       </div>
       <ol className="relative">
         <span aria-hidden className="absolute top-3 bottom-3 left-[1.15rem] w-px bg-gradient-to-b from-glacier via-pine/30 to-marigold" />
-        {days.map((d) => {
+        {days.map((d, index) => {
           const isOpen = open.has(d.day);
-          const km = d.distanceKm ?? kmIn(`${d.title} ${d.html.replace(/<[^>]+>/g, " ")}`);
+          const km = distanceOf(d);
+          const estimate = distanceEstimateOf(d, days[index - 1]);
+          const labels = distanceLabels(km, estimate);
+          const travelDay = /trek|drive|hike|walk|flight|fly|ride|rafting|sightseeing|tour|^day\s*\d+/i.test(d.title) && !/rest|acclimati|departure/i.test(d.title);
           const duration = durationOf(d);
-          // Where the night is spent: the day's own entry, or the stop its title ends at
-          // (not on the last day, which is the departure).
-          const place = d.overnight?.trim() || (d.day < days.length ? overnightOf(d.title) : "");
-          const accommodation = place ? `${place} - Guest house` : d.accommodation?.trim() || "";
+          // Use the recorded overnight stop, the day description, or its destination.
+          const place = accommodationPlaceOf(d);
+          const accommodation = place ? `${place} - Guest house` : d.accommodation?.trim() || (!/departure|onward destination|fly (?:back )?home/i.test(d.title) && d.day < days.length ? "Not specified" : "");
           return (
             <li key={d.day} className="relative pb-3 pl-14">
               <span
@@ -51,7 +53,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
               >
                 {String(d.day).padStart(2, "0")}
               </span>
-              <div className={cn("rounded-2xl border transition-colors", isOpen ? "border-pine/30 bg-card shadow-[0_18px_40px_-30px_oklch(0.2_0.04_170/0.5)]" : "border-transparent hover:bg-card/60")}>
+              <div className={cn("rounded-2xl border transition-colors", isOpen ? "border-pine/30 bg-card shadow-[0_18px_40px_-30px_oklch(0.2_0.04_170/0.5)]" : "border-line bg-card hover:border-pine/30")}>
                 <h3>
                   <button type="button" onClick={() => toggle(d.day)} aria-expanded={isOpen} className="flex w-full items-start justify-between gap-4 p-4 text-left">
                     <span>
@@ -61,21 +63,21 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                     <ChevronDown className={cn("mt-5 size-5 shrink-0 text-muted transition-transform", isOpen && "rotate-180")} aria-hidden />
                   </button>
                 </h3>
-                {d.altitude || km || duration ? (
+                {d.altitude || labels || duration || travelDay ? (
                   <ul className="-mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 px-4 pb-3.5 text-[0.8rem] text-ink-soft" aria-label={`Day ${d.day} at a glance`}>
-                    {d.altitude ? (
+                    {d.altitude || travelDay ? (
                       <li className="inline-flex items-center gap-1.5">
-                        <Mountain className="text-pine size-3.5" aria-hidden /> {d.altitude.toLocaleString("en-US")} m / {Math.round(d.altitude / 0.3048).toLocaleString("en-US")} ft
+                        <Mountain className="text-pine size-3.5" aria-hidden /> {d.altitude ? `${d.altitude.toLocaleString("en-US")} m / ${Math.round(d.altitude / 0.3048).toLocaleString("en-US")} ft` : "Altitude not specified"}
                       </li>
                     ) : null}
-                    {km ? (
+                    {labels || travelDay ? (
                       <li className="inline-flex items-center gap-1.5">
-                        <Route className="text-pine size-3.5" aria-hidden /> {km.toLocaleString("en-US")} km
+                        <Route className="text-pine size-3.5" aria-hidden /> {labels?.metric ?? "Distance not specified"}
                       </li>
                     ) : null}
-                    {duration ? (
+                    {duration || travelDay ? (
                       <li className="inline-flex items-center gap-1.5">
-                        <Timer className="text-pine size-3.5" aria-hidden /> {duration}
+                        <Timer className="text-pine size-3.5" aria-hidden /> {duration ?? "Duration not specified"}
                       </li>
                     ) : null}
                   </ul>
@@ -83,9 +85,9 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                 <motion.div initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden" inert={!isOpen}>
                   <div className="px-4 pb-5">
                     {d.html ? <div className="prose-trail text-base" dangerouslySetInnerHTML={{ __html: withoutPhotos(d.html) }} /> : null}
-                    {km || accommodation ? (
+                    {labels || travelDay || accommodation ? (
                       <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                        {km ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={`${(km / 1.609344).toLocaleString("en-US", { maximumFractionDigits: 2 })} miles / ${Math.round(km * 1000 / 0.3048).toLocaleString("en-US")} ft`} /> : null}
+                        {labels || travelDay ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={labels?.imperial ?? "Not specified"} /> : null}
                         {accommodation ? <Fact icon={<BedDouble className="size-4" aria-hidden />} label="Accommodation" value={accommodation} /> : null}
                       </dl>
                     ) : null}
@@ -126,13 +128,6 @@ function Fact({ icon, label, value }: { icon: React.ReactNode; label: string; va
       </dd>
     </div>
   );
-}
-
-/** Walking distance stated in a day's text ("about 12 km"); flights are left out. */
-function kmIn(text: string) {
-  const m = text.match(/(\d+(?:\.\d+)?)\s?(?:km|kilomet(?:er|re)s?)\b/i);
-  const v = m ? Number(m[1]) : 0;
-  return v > 0 && v < 80 ? v : null;
 }
 
 /** Imported day descriptions may contain photos outside the gallery field. */

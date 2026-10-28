@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const { destinations, activities } = getLiveTerms();
 
   return [
+    { url: abs("/awards/"), changeFrequency: "yearly" as const, priority: 0.4 },
     { url: abs("/visa-info/"), changeFrequency: "monthly" as const, priority: 0.6 },
     ...Object.keys(visaGuides).map((country) => ({ url: abs(`/visa-info/${country}/`), changeFrequency: "monthly" as const, priority: 0.6 })),
     { url: abs("/"), lastModified: date(latest(trips.map((t) => t.modified))), changeFrequency: "weekly", priority: 1, images: [abs("/photos/home-banner.webp")] },
