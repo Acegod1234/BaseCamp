@@ -73,11 +73,6 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                         <Mountain className="text-pine size-3.5" aria-hidden /> {d.altitude ? `${d.altitude.toLocaleString("en-US")} m / ${Math.round(d.altitude / 0.3048).toLocaleString("en-US")} ft` : "Altitude not specified"}
                       </li>
                     ) : null}
-                    {labels || travelDay ? (
-                      <li className="inline-flex items-center gap-1.5">
-                        <Route className="text-pine size-3.5" aria-hidden /> {labels?.metric ?? "Distance not specified"}
-                      </li>
-                    ) : null}
                     {duration || travelDay ? (
                       <li className="inline-flex items-center gap-1.5">
                         <Timer className="text-pine size-3.5" aria-hidden /> {duration ?? "Duration not specified"}

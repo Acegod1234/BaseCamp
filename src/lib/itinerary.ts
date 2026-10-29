@@ -179,5 +179,5 @@ export function distanceLabels(km: number | null, estimate: ReturnType<typeof di
     const format = (value: number) => (value * factor).toLocaleString("en-US", { maximumFractionDigits: digits });
     return min === max ? format(min) : `${format(min)}–${format(max)}`;
   };
-  return { metric: `${range(1, 1)} km`, imperial: `${range(1 / 1.609344, 2)} miles / ${range(1000 / 0.3048, 0)} ft` };
+  return { metric: `${range(1, 1)} km`, imperial: `${range(1 / 1.609344, 2)} miles / ${range(1, 1)} km` };
 }
