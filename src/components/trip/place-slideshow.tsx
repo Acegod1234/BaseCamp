@@ -30,7 +30,7 @@ export function PlaceSlideshow({ photo, interactive = false, onAspectChange }: {
     if (reduce || interactive || ready.length < 2) return;
     const timer = window.setInterval(() => {
       if (!document.hidden) setActive((current) => ready[(ready.indexOf(current) + 1) % ready.length]);
-    }, 3600);
+    }, 2000);
     return () => window.clearInterval(timer);
   }, [ready, reduce, interactive]);
 

@@ -26,7 +26,7 @@ async function rebuild() {
   building = true;
   const next = current === '.next-preview-a' ? '.next-preview-b' : '.next-preview-a';
   console.log('[preview] Building updated pages; current site stays available.');
-  const build = run('build', next);
+  const build = run('build', next, ['--webpack']);
   const code = await new Promise(resolve => { build.once('exit', resolve); build.once('error', () => resolve(1)); });
   if (code === 0) {
     if (server && server.exitCode === null) {

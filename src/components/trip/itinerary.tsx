@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { BedDouble, ChevronDown, Coffee, Mountain, Route, Sandwich, Timer, UtensilsCrossed } from "lucide-react";
-import { accommodationPlaceOf, distanceOf, distanceEstimateOf, distanceLabels, durationOf } from "@/lib/itinerary";
+import { accommodationPlaceOf, distanceOf, distanceEstimateOf, distanceLabels, durationOf, placeOf } from "@/lib/itinerary";
+import { AccommodationFact } from "@/components/trip/accommodation-fact";
+import { photoOfPlace, type PlacePhoto } from "@/lib/place-photos";
 import type { ItineraryDay } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -42,6 +44,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
           const duration = durationOf(d);
           // Use the recorded overnight stop, the day description, or its destination.
           const place = accommodationPlaceOf(d);
+          const photo = itineraryPhoto(d, place);
           const accommodation = place ? `${place} - Guest house` : d.accommodation?.trim() || (!/departure|onward destination|fly (?:back )?home/i.test(d.title) && d.day < days.length ? "Not specified" : "");
           return (
             <li key={d.day} className="relative pb-3 pl-14">
@@ -63,7 +66,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                     <ChevronDown className={cn("mt-5 size-5 shrink-0 text-muted transition-transform", isOpen && "rotate-180")} aria-hidden />
                   </button>
                 </h3>
-                {d.altitude || labels || duration || travelDay ? (
+                {d.altitude || labels || duration || travelDay || photo ? (
                   <ul className="-mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 px-4 pb-3.5 text-[0.8rem] text-ink-soft" aria-label={`Day ${d.day} at a glance`}>
                     {d.altitude || travelDay ? (
                       <li className="inline-flex items-center gap-1.5">
@@ -80,6 +83,7 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                         <Timer className="text-pine size-3.5" aria-hidden /> {duration ?? "Duration not specified"}
                       </li>
                     ) : null}
+                    {photo ? <li className="inline-flex items-center"><AccommodationFact value="" place={photo.name} images={photo} iconOnly /></li> : null}
                   </ul>
                 ) : null}
                 <motion.div initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden" inert={!isOpen}>
@@ -136,4 +140,13 @@ function withoutPhotos(html: string) {
     .replace(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi, (figure) => /<img\b/i.test(figure) ? "" : figure)
     .replace(/<img\b[^>]*>/gi, "")
     .replace(/<p\b[^>]*>\s*<\/p>/gi, "");
+}
+
+/** Prefer the overnight destination; use that day's own gallery when supplied. */
+function itineraryPhoto(day: ItineraryDay, place: string): PlacePhoto | undefined {
+  const destination = photoOfPlace(place) ?? photoOfPlace(placeOf(day.title));
+  if (destination) return destination;
+  if (!day.images?.length) return undefined;
+  const images = day.images.map((image) => ({ src: image.src, alt: image.alt || day.title, author: "", license: "", licenseUrl: "", source: "" }));
+  return { ...images[0], name: place || `Day ${day.day}`, images: images.slice(1) };
 }

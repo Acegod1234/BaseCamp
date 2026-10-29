@@ -4,12 +4,12 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { BedDouble, ImageIcon, X } from "lucide-react";
 import { Portal } from "@/components/portal";
 import { PlaceSlideshow } from "@/components/trip/place-slideshow";
-import { photoOfPlace } from "@/lib/place-photos";
+import { photoOfPlace, type PlacePhoto } from "@/lib/place-photos";
 
 const warmedPhotos = new Set<string>();
 
-export function AccommodationFact({ value, place }: { value: string; place: string }) {
-  const photo = photoOfPlace(place);
+export function AccommodationFact({ value, place, iconOnly = false, images }: { value: string; place: string; iconOnly?: boolean; images?: PlacePhoto }) {
+  const photo = images ?? photoOfPlace(place);
   const aspect = useRef(photo?.width && photo?.height ? photo.width / photo.height : 8 / 3);
   const trigger = useRef<HTMLButtonElement>(null);
   const popup = useRef<HTMLDivElement>(null);
@@ -88,10 +88,14 @@ export function AccommodationFact({ value, place }: { value: string; place: stri
     return () => observer.disconnect();
   }, [source]);
 
-  return <div className="relative rounded-xl bg-snow-2 px-3 py-2.5" onPointerEnter={(event) => { if (event.pointerType !== "touch") { pointer.current = { x: event.clientX, y: event.clientY }; show(); } }} onPointerMove={(event) => { if (event.pointerType !== "touch") { pointer.current = { x: event.clientX, y: event.clientY }; if (!pos) show(); } }} onPointerLeave={() => { pointer.current = null; deferHide(); }} onBlur={(event) => { if (!popup.current?.contains(event.relatedTarget as Node)) deferHide(); }}>
+  if (iconOnly && !photo) return null;
+
+  return <div className={iconOnly ? "relative inline-flex" : "relative rounded-xl bg-snow-2 px-3 py-2.5"} onPointerEnter={(event) => { if (event.pointerType !== "touch") { pointer.current = { x: event.clientX, y: event.clientY }; show(); } }} onPointerMove={(event) => { if (event.pointerType !== "touch") { pointer.current = { x: event.clientX, y: event.clientY }; if (!pos) show(); } }} onPointerLeave={() => { pointer.current = null; deferHide(); }} onBlur={(event) => { if (!popup.current?.contains(event.relatedTarget as Node)) deferHide(); }}>
+    {!iconOnly && <>
     <dt className="flex items-center gap-1.5 text-[0.66rem] font-bold tracking-[0.1em] text-muted uppercase"><BedDouble className="size-4 text-pine" aria-hidden />Accommodation{photo && <ImageIcon className="ml-auto size-3.5 text-pine/60" aria-hidden />}</dt>
     <dd className="mt-0.5 text-[0.85rem] font-semibold leading-snug">{value}</dd>
-    {photo && <button ref={trigger} type="button" aria-label={`Preview ${photo.name}`} aria-describedby={pos && !pinned ? id : undefined} aria-expanded={pinned} aria-controls={pos ? id : undefined} aria-haspopup="dialog" onFocus={show} onPointerEnter={show} onClick={() => { cancelHide(); pinnedRef.current = true; setPinned(true); show(); }} className="absolute inset-0 cursor-help rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine" />}
+    </>}
+    {photo && <button ref={trigger} type="button" aria-label={`Preview ${photo.name}`} aria-describedby={pos && !pinned ? id : undefined} aria-expanded={pinned} aria-controls={pos ? id : undefined} aria-haspopup="dialog" onFocus={show} onPointerEnter={show} onClick={() => { cancelHide(); pinnedRef.current = true; setPinned(true); show(); }} className={iconOnly ? "inline-flex size-6 items-center justify-center rounded-md text-pine transition-colors hover:bg-pine/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine" : "absolute inset-0 cursor-help rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine"}>{iconOnly && <ImageIcon className="size-4" aria-hidden />}</button>}
     {photo && pos && <Portal><div ref={popup} id={id} role={pinned ? "dialog" : "tooltip"} aria-label={`Photos of ${photo.name}`} tabIndex={pinned ? -1 : undefined} onMouseEnter={cancelHide} onMouseLeave={deferHide} onFocus={cancelHide} onBlur={deferHide} style={{ left: pos.left, top: pos.top, width: pos.width, height: pos.height }} className="transition-[width,height,left,top] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none fixed z-[110] overflow-hidden rounded-2xl border border-line bg-card text-ink shadow-2xl">
       <PlaceSlideshow photo={photo} interactive={pinned} onAspectChange={resizeForPhoto} />
       {pinned && <button type="button" onClick={hide} aria-label="Close photo preview" className="absolute top-3 right-3 z-20 grid size-8 place-items-center rounded-full bg-black/40 text-white backdrop-blur-sm hover:bg-black/65"><X className="size-4" aria-hidden /></button>}

@@ -382,6 +382,11 @@ export default async function TripPage({ params }: Props) {
                   );
                 })}
               </Stagger>
+              <div className="mt-4 flex justify-end">
+                <Link href="/testimonials/" className="inline-flex items-center gap-2 rounded-sm py-2 text-sm font-bold text-pine hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine">
+                  View more Reviews <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </div>
             </section>
           ) : null}
         </article>
