@@ -73,6 +73,11 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                         <Mountain className="text-pine size-3.5" aria-hidden /> {d.altitude ? `${d.altitude.toLocaleString("en-US")} m / ${Math.round(d.altitude / 0.3048).toLocaleString("en-US")} ft` : "Altitude not specified"}
                       </li>
                     ) : null}
+                    {labels || travelDay ? (
+                      <li className="inline-flex items-center gap-1.5">
+                        <Route className="text-pine size-3.5" aria-hidden /> {labels?.imperial ?? "Distance not specified"}
+                      </li>
+                    ) : null}
                     {duration || travelDay ? (
                       <li className="inline-flex items-center gap-1.5">
                         <Timer className="text-pine size-3.5" aria-hidden /> {duration ?? "Duration not specified"}
@@ -84,9 +89,8 @@ export function Itinerary({ days }: { days: ItineraryDay[] }) {
                 <motion.div initial={false} animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden" inert={!isOpen}>
                   <div className="px-4 pb-5">
                     {d.html ? <div className="prose-trail text-base" dangerouslySetInnerHTML={{ __html: withoutPhotos(d.html) }} /> : null}
-                    {labels || travelDay || accommodation ? (
+                    {accommodation ? (
                       <dl className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                        {labels || travelDay ? <Fact icon={<Route className="size-4" aria-hidden />} label="Distance" value={labels?.imperial ?? "Not specified"} /> : null}
                         {accommodation ? <Fact icon={<BedDouble className="size-4" aria-hidden />} label="Accommodation" value={accommodation} /> : null}
                       </dl>
                     ) : null}
