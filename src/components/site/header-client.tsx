@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowRight, ChevronDown, Menu as MenuIcon, Phone, X } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
-import { ViberIcon, WhatsappIcon } from "@/components/icons";
+import { WhatsappIcon } from "@/components/icons";
 import { Portal } from "@/components/portal";
 import { SiteSearch } from "@/components/site/search";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -156,11 +156,11 @@ export function HeaderClient({ regions, tripOptions }: { regions: HeaderRegion[]
               <div className="flex shrink-0 flex-col gap-0.5 rounded-xl border border-pine/15 border-l-2 border-l-pine bg-pine/[0.035] px-2 py-1.5 sm:gap-1 sm:px-3">
                 <div className="flex items-center justify-between gap-3 text-xs leading-tight sm:text-sm">
                   <span className="font-bold tracking-wide text-ink">Shree</span>
-                  <span className="inline-flex items-center gap-1 whitespace-nowrap text-muted"><span className="size-1.5 rounded-full bg-emerald-500" aria-hidden />Available 24/7</span>
+                  <span className="inline-flex items-center gap-1 whitespace-nowrap text-muted"><span className="size-1.5 rounded-full bg-emerald-500" aria-hidden />Available Now</span>
                 </div>
                 <div className="flex items-center justify-between gap-2">
                   <a href="tel:+9779851029616" className="inline-flex items-center gap-1.5 whitespace-nowrap text-[0.65rem] font-bold tracking-tight text-pine hover:underline sm:text-sm"><Phone className="size-3 shrink-0 sm:size-3.5" aria-hidden />+977 9851 029616</a>
-                  <a href="viber://chat?number=%2B9779851029616" aria-label="Contact Shree on Viber" title="Chat on Viber" className="grid size-5 shrink-0 place-items-center rounded-full bg-[#8060bf]/10 text-[#8060bf] transition-colors hover:bg-[#8060bf]/20 sm:size-6"><ViberIcon className="size-3.5" /></a>
+                  <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" aria-label="Contact Shree on WhatsApp" title="Chat on WhatsApp" className="grid size-5 shrink-0 place-items-center rounded-full bg-emerald-500/10 text-emerald-600 transition-colors hover:bg-emerald-500/20 sm:size-6"><WhatsappIcon className="size-3.5" /></a>
                 </div>
               </div>
               <div className="hidden sm:block"><ThemeToggle /></div>
