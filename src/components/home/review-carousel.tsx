@@ -1,5 +1,6 @@
 "use client";
 
+import { ReviewVerified } from "@/components/review-verified";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
@@ -169,6 +170,7 @@ export function ReviewCarousel({ items }: { items: CarouselReview[] }) {
                     <span className="flex items-center gap-2 font-semibold">
                       <span className="truncate">{r.name}</span>
                       {r.flag && r.country ? <Flag svg={r.flag} label={r.country} /> : null}
+                      <ReviewVerified />
                     </span>
                     <span className="block truncate text-xs text-muted">
                       {r.place ? `${r.place} · ` : ""}

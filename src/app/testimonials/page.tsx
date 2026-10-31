@@ -1,3 +1,4 @@
+import { ReviewVerified } from "@/components/review-verified";
 import Image from "@/components/image";
 import Link from "next/link";
 import { ArrowUpRight, Star } from "lucide-react";
@@ -120,6 +121,7 @@ export default function TestimonialsPage() {
                   <p className="flex items-center gap-2 font-semibold">
                     <span className="truncate">{who.name}</span>
                     {who.flag && who.country ? <Flag svg={who.flag} label={who.country} /> : null}
+                          <ReviewVerified />
                   </p>
                   <p className="truncate text-sm text-muted">
                     {who.place ? `${who.place} · ` : ""}
@@ -143,6 +145,6 @@ export default function TestimonialsPage() {
 function PlatformReviews({id,platform,href,reviews}: {id:string;platform:string;href:string;reviews:{name:string;rating:number;body:string;title:string;date:string;excerpt:boolean}[]}) {
   return <section id={id} className="mx-auto max-w-site scroll-mt-28 border-t border-line px-4 py-12 sm:px-6 sm:py-16">
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3"><div><p className="eyebrow text-pine">{reviews.length} review entries</p><h2 className="font-display mt-2 text-3xl tracking-tight">{platform} reviews</h2></div><a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-pine">Read on {platform}<ArrowUpRight className="size-4" aria-hidden /></a></div>
-    <ShowMore label="reviews" className="columns-1 gap-5 md:columns-2 lg:columns-3 [&>*>*]:mb-5 [&>*>*]:break-inside-avoid">{reviews.map((r,i)=><article key={i} className="rounded-2xl border border-line bg-card p-6"><div className="flex gap-0.5" aria-label={`${r.rating} out of 5`}>{Array.from({length:5},(_,i)=><Star key={i} className={i<r.rating ? "size-4 fill-marigold text-marigold" : "size-4 text-line"} aria-hidden />)}</div>{r.title ? <h3 className="mt-3 font-bold">{r.title}</h3>:null}<div className="mt-3">{r.body ? <ReviewText text={r.body} />:<p className="text-sm text-muted">This traveller left a rating without a written comment.</p>}</div>{r.excerpt ? <p className="mt-3 text-xs text-muted">Excerpt · <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-pine underline">Continue on {platform}</a></p>:null}<footer className="mt-5 border-t border-line pt-4"><p className="font-semibold">{r.name}</p><p className="mt-1 text-xs text-muted">{r.date} · {platform}</p></footer></article>)}</ShowMore>
+    <ShowMore label="reviews" className="columns-1 gap-5 md:columns-2 lg:columns-3 [&>*>*]:mb-5 [&>*>*]:break-inside-avoid">{reviews.map((r,i)=><article key={i} className="rounded-2xl border border-line bg-card p-6"><div className="flex gap-0.5" aria-label={`${r.rating} out of 5`}>{Array.from({length:5},(_,i)=><Star key={i} className={i<r.rating ? "size-4 fill-marigold text-marigold" : "size-4 text-line"} aria-hidden />)}</div>{r.title ? <h3 className="mt-3 font-bold">{r.title}</h3>:null}<div className="mt-3">{r.body ? <ReviewText text={r.body} />:<p className="text-sm text-muted">This traveller left a rating without a written comment.</p>}</div>{r.excerpt ? <p className="mt-3 text-xs text-muted">Excerpt · <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-pine underline">Continue on {platform}</a></p>:null}<footer className="mt-5 border-t border-line pt-4"><p className="flex items-center gap-1.5 font-semibold">{r.name}<ReviewVerified /></p><p className="mt-1 text-xs text-muted">{r.date} · {platform}</p></footer></article>)}</ShowMore>
   </section>;
 }

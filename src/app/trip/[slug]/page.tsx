@@ -1,3 +1,4 @@
+import { ReviewVerified } from "@/components/review-verified";
 import Image from "@/components/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -368,10 +369,11 @@ export default async function TripPage({ params }: Props) {
                       <span className="grid size-10 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#00afc4] to-[#00788a] text-xs font-bold text-white">
                         {who.name.replace(/[^A-Za-z\s]/g, " ").trim().split(/\s+/).slice(0, 2).map((w) => w[0]?.toUpperCase()).join("") || "★"}
                       </span>
-                      <div className="min-w-0">
+                      <div className="min-w-0 flex-1">
                         <p className="flex items-center gap-2 text-sm font-semibold">
                           <span className="truncate">{who.name}</span>
                           {who.flag && who.country ? <CountryFlag svg={who.flag} label={who.country} /> : null}
+                          <ReviewVerified />
                         </p>
                         <p className="truncate text-xs text-muted">
                           {[who.place, r.date ? formatDate(r.date) || r.date : null].filter(Boolean).join(" · ")}

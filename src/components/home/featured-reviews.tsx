@@ -1,5 +1,6 @@
 "use client";
 
+import { ReviewVerified } from "@/components/review-verified";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -42,7 +43,7 @@ export function FeaturedReviews({ items }: { items: Featured[] }) {
           <motion.div key={i} initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.5, ease: EASE }}>
             <blockquote className="text-[1.15rem] leading-relaxed sm:text-[1.35rem] sm:leading-[1.55]">&ldquo;{r.body}&rdquo;</blockquote>
             <figcaption className="mt-6">
-              <p className="font-bold">{r.name}</p>
+              <p className="flex items-center gap-1.5 font-bold">{r.name}<ReviewVerified /></p>
               <p className="text-sm text-white/75">
                 {r.from ? `${r.from} · ` : ""}
                 <Link href={`/trip/${r.trip.slug}/`} className="underline decoration-white/40 underline-offset-4 hover:decoration-white">
