@@ -35,7 +35,8 @@ export const site = {
   social: {
     facebook: "https://www.facebook.com/BaseCampAdventure/",
     instagram: "https://www.instagram.com/base.camp.adventure/",
-    x: "https://x.com/basecampadven",
+    youtube: "https://www.youtube.com/@base.camp.adventure",
+    tiktok: "https://www.tiktok.com/@base.camp.adventure",
     // The company's Tripadvisor listing (from the review widget on the old site).
     tripadvisor: "https://www.tripadvisor.com/Attraction_Review-g293890-d2437309-Reviews-Base_Camp_Adventure-Kathmandu_Kathmandu_Valley_Bagmati_Zone_Central_Region.html",
   },

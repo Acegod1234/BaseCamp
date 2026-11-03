@@ -23,9 +23,9 @@ export function Equipment({ items }: { items: EquipmentItem[] }) {
           <span className="flex items-center gap-3"><Backpack className="size-5 text-pine" aria-hidden /> Your packing overview</span>
           <ChevronDown className="size-5 shrink-0 text-pine transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none" aria-hidden />
         </summary>
-        <div className="border-t border-line bg-white p-4">
+        <div className="border-t border-line bg-snow-2 p-4">
           <div className="relative mx-auto max-w-2xl">
-            <Image src="/equipment/trekking-equipment-overview.webp" alt="Illustrated overview of trekking clothing, footwear, and equipment" width={1024} height={746} sizes="(max-width: 1024px) 100vw, 60vw" className="h-auto w-full" />
+            <Image src="/equipment/trekking-equipment-overview.webp" alt="Illustrated overview of trekking clothing, footwear, and equipment" width={1024} height={746} sizes="(max-width: 1024px) 100vw, 60vw" className="h-auto w-full rounded-lg" />
           </div>
         </div>
       </details>

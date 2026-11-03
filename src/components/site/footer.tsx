@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUp, ChevronDown, Mail, MapPin, Phone } from "lucide-react";
 import { Accreditations } from "@/components/accreditations";
 import { Logo } from "@/components/brand/logo";
-import { FacebookIcon, InstagramIcon, WhatsappIcon, XIcon } from "@/components/icons";
+import { FacebookIcon, InstagramIcon, WhatsappIcon, YoutubeIcon, TiktokIcon } from "@/components/icons";
 import { Newsletter } from "@/components/newsletter";
 import { FooterPlan } from "@/components/site/footer-plan";
 import { getTrip } from "@/lib/content";
@@ -42,7 +42,8 @@ export function SiteFooter() {
   const socials = [
     { href: site.social.facebook, label: "Facebook", icon: <FacebookIcon className="size-4" /> },
     { href: site.social.instagram, label: "Instagram", icon: <InstagramIcon className="size-4" /> },
-    { href: site.social.x, label: "X", icon: <XIcon className="size-3.5" /> },
+    { href: site.social.youtube, label: "YouTube", icon: <YoutubeIcon className="size-4" /> },
+    { href: site.social.tiktok, label: "TikTok", icon: <TiktokIcon className="size-4" /> },
   ];
 
   return (
@@ -95,8 +96,9 @@ export function SiteFooter() {
               <ul className="mt-6 flex items-center justify-center gap-2 lg:justify-start">
                 {socials.map((s) => (
                   <li key={s.label}>
-                    <a href={s.href} target="_blank" rel="me noopener noreferrer" aria-label={`Base Camp Adventure on ${s.label}`} className="grid size-10 place-items-center rounded-full border border-white/20 transition-all hover:-translate-y-0.5 hover:border-[#3ccbdc] hover:text-[#3ccbdc]">
-                      {s.icon}
+                    <a href={s.href} target="_blank" rel="me noopener noreferrer" aria-label={`Base Camp Adventure on ${s.label}`} className="group relative grid size-10 place-items-center rounded-full border border-white/20 transition-[transform,border-color,background-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-white/70 hover:bg-white hover:shadow-lg focus-visible:border-white/70 focus-visible:bg-white motion-reduce:transform-none motion-reduce:transition-none">
+                      <span className="absolute transition-[opacity,transform] duration-300 ease-out group-hover:scale-75 group-hover:opacity-0 group-focus-visible:scale-75 group-focus-visible:opacity-0 motion-reduce:transition-none">{s.icon}</span>
+                      <Image src={`/brand/social/${s.label.toLowerCase()}.svg`} alt="" width={22} height={22} unoptimized className="scale-75 opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100 motion-reduce:transition-none" />
                     </a>
                   </li>
                 ))}

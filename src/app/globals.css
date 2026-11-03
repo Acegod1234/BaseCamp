@@ -188,7 +188,22 @@
     /* clip, not hidden: no sideways scroll on phones, and sticky still works. */
     overflow-x: clip;
   }
-  .dark { color-scheme: dark; }
+  html.dark { color-scheme: dark; }
+  /* Native popup lists do not reliably inherit a transparent select's surface. */
+  select {
+    color-scheme: light;
+  }
+  html.dark select {
+    color-scheme: dark;
+  }
+  select option,
+  select optgroup {
+    background-color: var(--card);
+    color: var(--ink);
+  }
+  select option:disabled {
+    color: var(--muted);
+  }
   body {
     background: var(--snow);
     color: var(--ink);
@@ -628,4 +643,17 @@
 @media (prefers-reduced-motion: reduce) {
   .review-video-tab { animation: none; box-shadow: 0 3px 12px rgb(0 120 138 / 32%); }
   .review-video-tab::before { animation: none; opacity: 0; }
+}
+
+/* Bright teal needs dark lettering in night mode, including selected tabs. */
+@layer utilities {
+  html.dark .bg-pine.text-white,
+  html.dark .bg-marigold.text-white,
+  html.dark .bg-glacier.text-white {
+    color: var(--pine-night);
+  }
+  html.dark .bg-pine.text-white:hover {
+    background-color: var(--glacier);
+    color: var(--pine-night);
+  }
 }
